@@ -27,3 +27,11 @@ packages_needed <- c("readr","dplyr","tidyr","stringr")
 loadpackages(packages_needed)
 
 #_______________________________________________________________________________####
+
+library(vegan)
+data("BCI")
+data("dune")
+data("mite")
+data("pyrifos")
+data("sipoo")
+data("varespec")
