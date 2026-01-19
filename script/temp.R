@@ -89,189 +89,6 @@ new_varespec <- as.data.frame(new_varespec)
 
 #________________________Indices de diversite alpha_____________________________####
 
-#### Shannon ####---------------------------------------------------------------
-
-vegan::diversity(x,index = "shannon")
-
-biosampleR::calc_diversity_indices(x)
-
-divDyn::indices(as.matrix(x),method = "shannon")
-
-sprex::diversity(as.numeric(x),type = "shannon")
-
-OTUtable::shannon(x)
-
-agricolae::index.bio(x,method = "Shannon") # marche pas
-
-aqp::shannonEntropy(x_relative) # Ne correspond pas à l'indice
-DescTools::Entropy(x) # Ne correspond pas à l'indice
-pgirmess::shannon(x_relative) # Ne correspond pas
-EconGeo::entropy(x) # ne correspond pas
-
-SpiecEasi::shannon(x)
-
-BiodiversityR::diversityresult(varespec,y=NULL,index="Shannon",method = "each site")
-
-abdiv::shannon(as.vector(x))
-
-install.packages("HardyWeinberg")
-HardyWeinberg::shannon(x)$Hp
-
-install.packages("benthos")
-benthos::shannon(taxon = colnames(x),count = as.numeric(x)) # ne correspond pas à l'indice
-
-install.packages("divseg")
-divseg::ds_shannon(varespec,.cols = dplyr::everything()) # marche pas tres bien
-
-install.packages("MCPAN")
-MCPAN::estShannon(x)$estraw
-
-MCPAN::Shannon(x_relative)
-
-install.packages("entropart")
-entropart::Shannon(as.numeric(x))
-
-install.packages("tabula")
-tabula::index_shannon(as.numeric(x))
-
-tabula::diversity(x)
-
-install.packages("breakaway")
-breakaway::true_shannon_e(x_relative)
-
-install.packages("EvaluateCore") # removed
-
-install.packages("wavethresh")
-wavethresh::Shannon.entropy(x) # ne correspond pas à l'indice
-
-install.packages("spatialEco")
-spatialEco::shannons(t(x_relative),counts = T,ens = F,margin = "row") # marche pas tres bien$
-
-install.packages("coda4microbiome")
-coda4microbiome::shannon(as.numeric(x)) # a une dependance mal concu
-
-install.packages("iNEXT")
-iNEXT::ChaoShannon(t(varespec),datatype = "abundance",transform = T)$Observed
-
-adiv::speciesdiv(x,method = "Shannon")
-
-diverse::diversity(t(x),type = "entropy",category_row = T)
-
-asbio::alpha.div(varespec,"shan")
-
-ecodive::shannon(round(x,digits = 0))
-
-wiqid::biodSimpson(abVec=varespec) # Faux
-
-microbiome::diversity(t(varespec), index = "shannon") # OK
-
-triversity::get_diversity_from_distribution(as.numeric(x_relative),measure = "entropy" ) # faux
-
-?chemodiv::calcDiv(x,type = "Shannon") # OK
-
-codyn::community_diversity(varespec_long,abundance.var = "Value",metric = "Shannon") # OK
-
-divent::ent_shannon(as.numeric(x),estimator = "naive")$entropy # OK
-
-
-#### Simpson et variantes ####---------------------------------------------------------------
-vegan::diversity(x,index = "simpson") #Gini-simpson
-
-biosampleR::calc_diversity_indices(x)
-
-sprex::diversity(as.numeric(x),type = "simpson")
-
-sprex::diversity(as.numeric(x),type = "gini.simpson")
-
-sprex::diversity(as.numeric(x),type = "inv.simpson")
-
-vegan::diversity(x,index = "invsimpson")
-
-codyn::community_diversity(varespec_long,abundance.var = "Value",metric = "InverseSimpson") # OK
-
-abdiv::simpson(x)
-
-ecodive::simpson(round(x,digits = 0))
-
-ecodive::inv_simpson(round(x,digits = 0))
-
-abdiv::invsimpson(x)
-
-MCPAN::estSimpson(x) # ne correspond pas
-
-MCPAN::Simpson(x_relative)
-
-entropart::Simpson(as.numeric(x),Correction = "None")
-
-tabula::index_simpson(as.numeric(x),eveness = T, unbiaised = T, na.rm=F)
-
-breakaway::true_simpson(x_relative)
-
-breakaway::true_inverse_simpson(x_relative)
-
-iNEXT::ChaoSimpson(t(varespec),datatype = "abundance",transform = F)$Observed
-
-iNEXT::ChaoSimpson(t(varespec),datatype = "abundance",transform = T)$Observed
-
-BiodiversityR::diversityresult(varespec,y=NULL,index="Simpson",method = "each site")
-
-BiodiversityR::diversityresult(varespec,y=NULL,index="inverseSimpson",method = "each site")
-
-BiodiversityR::diversityresult(round(varespec,digits = 0),y=NULL,index="simpson.unb.inverse",method = "each site")
-
-install.packages("simboot")
-simboot::Simpson(x_relative)
-
-simboot::estSimpson(x) # ne correspond pas
-
-install.packages("concstats")
-concstats::concstats_simpson(as.numeric(x_relative),na.rm = T) # ne correspond pas
-
-install.packages("untb")
-untb::simpson(x,with.replacement = F) # ne correspond pas
-
-benthos::simpson(taxon = colnames(x),count = as.numeric(x))
-
-install.packages("OnomasticDiversity")
-OnomasticDiversity::fSimpson(varespec,k= "Value",n="Value",location = NA) # pas fonctionnel
-
-DescTools::GiniSimpson(as.numeric(x),na.rm = T) # ne marche pas
-DescTools::Gini(as.numeric(x),na.rm = F) # faux
-entropart::GenSimpsonD(as.numeric(x_relative),Correction ="None")
-
-adiv::speciesdiv(x,method = "Simpson")
-?adiv::speciesdiv(x,method = "GiniSimpson")
-
-diverse::diversity(t(x),type = "simpson",category_row = T)
-diverse::diversity(t(x),type = "gini-simpson",category_row = T)
-
-asbio::alpha.div(x,"simp")
-asbio::alpha.div(x,"inv.simp")
-
-agricolae::index.bio(x,method = "Simpson.Dom")$index
-agricolae::index.bio(x,method = "Simpson.Div")$index
-
-benthos::simpson(taxon = varespec_long$Esp,count = varespec_long$Value) # ne correspond pas
-
-wiqid::biodSimpson(abVec=varespec) # Faux
-
-microbiome::diversity(t(varespec), index = "inverse_simpson") # OK
-microbiome::diversity(t(varespec), index = "gini_simpson") # OK
-
-
-
-divseg::ds_simpson(varespec,.cols = dplyr::everything()) # OK 
-
-chemodiv::calcDiv(x,type = "Simpson") # OK
-
-divent::ent_gen_simpson(as.integer(x),estimator = "naive") # pas tout à fait Gini-Simpson
-
-divent::ent_simpson(as.numeric(x),estimator = "naive") # Gini-Simpson
-
-abdiv::dominance(x) # Simpson
-
-microbiome::dominance(as.numeric(x),index = "simpson") # Simpson
-
 #### Pielou ####----------------------------------------------------------------
 OTUtable::pielou(x)
 abdiv::pielou_e(as.numeric(x_relative))
@@ -326,33 +143,7 @@ microbiome::dominance(as.numeric(x),index = "DBP") # Berger-Parker
 
 triversity::get_diversity_from_distribution(as.numeric(x_relative),measure = "bergerparker" ) # OK
 
-#### Margalef ####--------------------------------------------------------------
-abdiv::margalef(round(x,digits = 0))
 
-tabula::index_margalef(as.numeric(x))
-
-agricolae::index.bio(x,method = "Margalef",nboot=0,console = F) # faux
-
-adiv::speciesdiv(x,method = "Margalef")
-
-benthos::margalef(taxon = varespec_long$Esp,count = varespec_long$Value)
-
-tabula::richness(x,method = "margalef")
-
-install.packages("ecodive")
-ecodive::margalef(round(x,digits = 0))
-
-
-#### Menhinick ####-------------------------------------------------------------
-abdiv::menhinick(x)
-
-tabula::index_menhinick(as.numeric(x))
-
-tabula::richness(x,method = "menhinick")
-
-adiv::speciesdiv(x,method = "Menhinick")
-
-ecodive::menhinick(round(x,digits = 0))
 
 #### Hulburt ####---------------------------------------------------------------
 hulburt_index <- function(x) {
@@ -429,17 +220,6 @@ patten_index <- function(comm, base = exp(1)) {
 }
 
 patten_index(varespec)
-
-#### Brillouin ####-------------------------------------------------------------
-
-tabula::index_brillouin(as.numeric(x))
-tabula::heterogeneity(x,method = "brillouin")
-
-abdiv::brillouin_d(x)
-
-ecodive::alpha_div(round(x,digits = 0),metric = "brillouin")
-
-wiqid::biodBrillouin(varespec) # faux
 
 #### Hurlbert ####--------------------------------------------------------------
 
@@ -702,66 +482,6 @@ adiv::divparam(x,method = "renyi",q=c(0,1,2))# 3.367296 2.017763 1.724352
 EntropyEstimation::Renyi.z(as.numeric(x),r=1) # 1.821906 
 
 diverse::diversity(t(varespec),type = "renyi",category_row = T,q=0) # OK
-#### Hill ####------------------------------------------------------------------
-vegan::renyi(x,scales = c(0,1,2),hill = T)  # 29.0000000  7.5214829  5.6088868 OK
-adiv::divparam(x,method = "hill",q=c(0,1,2))$div # correct
-
-wiqid::biodShannon(as.numeric(x)) # 7.5214829
-
-divDyn::indices(as.matrix(x),method = "hill2") # que pour q = 2
-
-sprex::diversity(as.numeric(x),type = "hill",q=2) #OK
-
-wiqid::biodSimpson(as.numeric(x),correct = F)
-
-EntropyEstimation::Hill.z(as.numeric(x),r=1) # 1.8219059 normalisation probabiliste différente
-
-hill_number <- function(x, q = 1, na.rm = TRUE, include_zero = FALSE) {
-  x <- as.numeric(x)
-  if (na.rm) x <- x[!is.na(x)] else if (any(is.na(x))) return(NA_real_)
-  if (!include_zero) x <- x[x>0]
-  N <- sum(x)
-  if (N == 0) return(NA_real_)
-  p <- x / N
-  
-  if (abs(q - 1) < .Machine$double.eps^0.5) {
-    return(exp(-sum(p*log(p))))
-  } else {
-    return((sum(p^q))^(1/(1-q)))
-  }
-} # OK
-
-hill_number(x, q = 1)
-
-extremefit::hill(varespec_long$Value,weights = rep(1,nrow(varespec_long)),grid = varespec_long$Value)$hill # incomprehensible
-
-BAT::hill(x,q=1) # OK
-
-breakaway::true_hill(as.numeric(x_relative),q=1) # OK
-
-evir::hill(x) # correspond a un graphe pas l'indice
-
-qrmtools::Hill_estimator(as.numeric(x), k = c(2,3)) # ne correspond pas
-
-ReIns::Hill(as.numeric(x),k=F) # ne prend pas en charge les 0 
-
-hillR::hill_taxa(varespec,q=1) # OK
-
-hilldiv::hill_div(t(varespec),qvalue = 1) # pas tout a fait la meme valeur pour q=1, OK
-
-benthos::hill(taxon = colnames(x),count = as.numeric(x),a = 2) # OK
-
-entropart::Diversity(as.numeric(x),q=1) # OK
-
-chemodiv::calcDiv(x,type = "HillDiv",q=2) # OK
-
-alakazam::calcDiversity(x,q=2) # dependendance archive, non fonctionnel
-
-iNEXT::estimateD(t(varespec),datatype = "abundance",q = 1,nboot = 0) # faux
-
-diverse::diversity(t(varespec),type = "hill-numbers",category_row = T,q=0) # non fonctionnel
-
-divent::div_hill(as.numeric(x),q = 1)$diversity # OK
 
 #### NHC : Nee-Harvey-Cotgreave ####--------------------------------------------
 nhc_original <- function(x, na.rm = TRUE) {
@@ -844,27 +564,6 @@ adiv::specieseve(x,method = "SmithWilson") # OK S&W Evenness -> divisé par n-1
 
 microbiome::evenness(t(varespec), index = "evar")
 
-#### McIntosh ####--------------------------------------------------------------
-install.packages("forestHES")
-
-forestHES::mcIntosh(x) #0.6461754 faux
-
-abdiv::mcintosh_d(x) # OK D
-
-abdiv::mcintosh_e(x) # ne correspond pas
-
-tabula::index_mcintosh(as.numeric(x),evenness = F) # OK
-
-tabula::index_mcintosh(as.numeric(x),evenness = T) # 0.70951058
-
-adiv::specieseve(x,method = "McIntosh") # 0.70951058
-
-adiv::speciesdiv(x,method = "McIntosh") #OK
-
-agricolae::index.bio(x,method = "McIntosh")$index # OK
-
-ecodive::alpha_div(as.integer(x),metric = "mcintosh") # OK
-
 #### McNaughton ####------------------------------------------------------------
 mcnaughton_index <- function(x, na.rm = TRUE) {
   x <- as.numeric(x)
@@ -913,17 +612,6 @@ BiodiversityR::diversityresult(varespec,y=NULL,index="Eevenness",method = "each 
 #### Strong Dominance Index ####------------------------------------------------
 abdiv::strong(as.numeric(x))
 
-#### Cuba ####------------------------------------------------------------------
-# Rien
-
-#### Odum ####------------------------------------------------------------------
-# Rien
-odum <- function(x) {
-  S <- sum(x > 0)       # nombre d'espèces présentes
-  N <- sum(x)           # total d'individus
-  (S / N) * 1000
-}
-odum(x)
 
 #### Kothe ####-----------------------------------------------------------------
 # Rien
@@ -934,20 +622,6 @@ kothe <- function(matrix_data) {
   (S_max - S_i) / S_max
 }
 kothe(varespec)
-
-#### Gleason ####---------------------------------------------------------------
-# Rien ope sur phyto
-gleason <- function(x) {
-  S <- sum(x > 0)    # nombre d'espèces présentes
-  N <- sum(x)        # total d'individus
-  if (N > 1) {
-    return(S / log(N))
-  } else {
-    return(NA)
-  }
-}
-
-gleason(x)
 
 #### Redundancy =? Patten ####--------------------------------------------------
 redundancy_index <- function(abundances) {
@@ -970,76 +644,6 @@ redundancy_index <- function(abundances) {
 }
 redundancy_index(x)
 
-#### Rao ####-------------------------------------------------------------------
-varespec_dist <- as.matrix(dist(t(varespec),method = "euclidean",diag = T,upper = T))
-chemodiv::calcDiv(varespec,compDisMat = varespec_dist, type = "RaoQ") # correct 69.64516
-varespec_dist <- dist(t(varespec), method = "euclidean")
-varespec_dist <- as.matrix(varespec_dist)
-
-rownames(varespec_dist) <- rownames(t(varespec))
-colnames(varespec_dist) <- rownames(t(varespec))
-diverse::diversity(t(varespec), type = "rao", category_row = TRUE, dis = varespec_dist) # ne correspond pas 34.82258
-diverse::diversity(t(varespec), type = "rao-stirling", category_row = TRUE, dis = varespec_dist) # ne correspond pas, donne la même chose que Rao 34.82258, rao-striling
-
-install.packages("robustrao")
-varespec_dist <- dist(varespec, method = "euclidean",diag = T,upper = T)
-varespec_dist <- as.matrix.data.frame(varespec_dist)
-robustrao::RaoStirling(count.matrix = varespec,similarity = varespec_dist) # non fonctionnel
-
-rao_from_abundance <- function(abundance_matrix, dist_method = "euclidean") {
-  # Vérification du format
-  abundance_matrix <- as.data.frame(abundance_matrix)
-  abundance_matrix[] <- lapply(abundance_matrix, as.numeric)  # conversion en numérique
-  
-  # Vérification des noms de lignes
-  if (is.null(rownames(abundance_matrix))) {
-    rownames(abundance_matrix) <- paste0("Site_", seq_len(nrow(abundance_matrix)))
-  }
-  
-  # Calcul de la matrice de dissimilarité entre espèces
-  dissimilarity_matrix <- as.matrix(dist(t(abundance_matrix), method = dist_method))
-  
-  # Initialiser le vecteur des résultats
-  rao_values <- numeric(nrow(abundance_matrix))
-  names(rao_values) <- rownames(abundance_matrix)
-  
-  # Boucle sur chaque site
-  for (i in 1:nrow(abundance_matrix)) {
-    abundances <- as.numeric(abundance_matrix[i, ])
-    total <- sum(abundances)
-    if (total == 0) {
-      rao_values[i] <- NA
-      next
-    }
-    
-    # Proportions
-    p <- abundances / total
-    
-    # Calcul de Rao via produit matriciel
-    rao <- sum(outer(p, p) * dissimilarity_matrix)
-    rao_values[i] <- rao
-  }
-  
-  return(rao_values)
-}
-rao_from_abundance(varespec) # 69.64516
-
-BAT::rao(as.matrix(varespec)) # 0.8217115 Rao quadratic entropy
-
-entropart::Rao(as.matrix(varespec),Tree = varespec_dist) # basé sur un arbre, et donc distance assez problematique
-
-ade4::apqe(as.data.frame(t(x)),dis = NULL)$results[2,1] # 0.8217115 Rao quadratic entropy
-
-hilldiv::index_div(index = "rao") # basé sur un arbre
-
-entropart::Hqz(as.integer(x),Correction = "ChaoShen") # 1.83 pas sur que ca corresponde
-
-SYNCSA::rao.diversity(varespec)$Simpson #0.8217115
-
-divent::ent_rao(as.numeric(x),estimator = "naive") # necessite un arbere
-
-#### Q-statistic Kempton-Taylor ####--------------------------------------------
-abdiv::kempton_taylor_q(as.numeric(x),lower_quantile = 0.5,upper_quantile = 0.9)  # 0
 
 #### Tsallis ###----------------------------------------------------------------
 vegan::tsallis(x,scales = c(0,1,2),hill = F) # 28.0000000  2.0177633  0.8217115 OK
@@ -1063,29 +667,6 @@ diverse::diversity(t(x),type = "blau",category_row = T)
 #### Rarity ####----------------------------------------------------------------
 Rarity::Irr(t(x),t(x),abundance = T) # il faut des poids qui ne s'applique pas
 
-#### Rygg ####------------------------------------------------------------------
-benthos::rygg(taxon = colnames(x),count = as.numeric(x),adjusted = F) # 2.41
-benthos::rygg(taxon = colnames(x),count = as.numeric(x),adjusted = T) # 1.974
-
-rygg_indices <- function(data) {
-  # S = nombre total d'espèces (colonnes)
-  S <- ncol(data)
-  
-  # N = nombre total d'individus (toutes les valeurs, même les zéros)
-  N <- sum(as.numeric(data))
-  
-  # Vérifications
-  if (N <= 1 || S <= 0 || log(N) <= 0 || log(log(N)) <= 0 || log(log(N + 1)) + 1 <= 0) {
-    return(list(original = NA, adjusted = NA))
-  }
-  
-  # Calcul des indices
-  original <- log(S) / log(log(N))
-  adjusted <- log(S) / (log(log(N + 1)) + 1)
-  
-  return(list(original = original, adjusted = adjusted))
-}
-rygg_indices(x) # ne donne pas la meme chose
 
 #### Ludwig-Reynold ####
 Ludwig_Reynold <- function(abondances) {
@@ -1187,37 +768,6 @@ indice_hurlbert <- function(abondances) {
 }
 
 #_________________Estimateurs de la richesse specifique_________________________####
-
-#### Fisher alpha, logseries alpha ####-----------------------------------------
-
-vegan::fisher.alpha(round(x,digits = 0)) #3.303093
-vegan::fisherfit(round(x,digits = 0)) #3.303093
-
-microbiome::diversity(t(round(varespec,digits = 0)), index = "fisher") #3.303093
-
-sads::fitsad(x_entier[x_entier != 0],sad = "ls") # 3.3031 
-
-mat_need <- as.data.frame(t(as.data.frame(rbind(freq = x_entier/sum(x_entier), numb = x_entier))))
-mat_need$freq <- as.numeric(mat_need$freq)
-mat_need <- mat_need[order(mat_need$freq,decreasing = T), ]
-preseqR::fisher.alpha(t(mat_need)) # 4.597485
-
-ecodive::fisher(x_entier) #3.303093
-
-BiodiversityR::diversityresult(x_entier,y=NULL,index="Logalpha",method = "each site") #3.303093
-
-#### Preston's log normal ####--------------------------------------------------
-# Pas comprehensible
-vegan::prestondistr(x_entier)
-vegan::prestonfit(x_entier)
-
-sads::fitsad(x_entier[x_entier != 0],sad = "lnorm") 
-
-Compositional::alfa.tune(varespec) # sortie difficilement comprehensible
-
-untb::preston(x) # montre la distrib mais pas le reste
-
-asbio::Preston.dist(as.numeric(x_entier)) # 21.27031
 
 #### Abundance-based coverage estimator ACE ####--------------------------------
 
@@ -2240,7 +1790,7 @@ pctax::mat_dist(t((x12)),method = "horn") #0.4886065
 ecodive::horn(x12,rescale = F) #0.4886065
 
 ?abdiv::horn_morisita(as.numeric(x1),as.numeric(x2)) #0.4886065
- 
+
 1-tabula::index_morisita(as.numeric(x1),as.numeric(x2)) #0.5113935
 
 tabula::similarity(x12,method = "morisita") #0.5113935
@@ -2508,7 +2058,7 @@ adespatial::beta.div(x12,method = "ruzicka",save.D = T)$D #0.6936661
 print(adespatial::dist.ldc(x12,method = "ruzicka")) #0.6936661
 
 abdiv::ruzicka(as.numeric(x1),as.numeric(x2)) #0.6936661
- 
+
 labdsv::dsvdis(x12, index = "ruzicka") #0.6936661
 
 philentropy::ruzicka(as.numeric(x1),as.numeric(x1)) #0.3063339
