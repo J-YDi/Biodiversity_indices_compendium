@@ -86,39 +86,6 @@ colnames(new_varespec) <- colnames(varespec)
 # Convertir en data.frame
 new_varespec <- as.data.frame(new_varespec)
 
-
-#________________________Indices de diversite alpha_____________________________####
-
-#### Herfindahl-Hirschman ####--------------------------------------------------
-# Mathematiquement equivalent a Simpson 
-
-EconGeo::herfindahl(varespec) # 0.17828850
-
-concstats::concstats_hhi(as.numeric(x)) # 0.1782885
-
-REAT::herf(x) # 0.1782885
-
-varespec_long$Relative <- as.numeric(varespec_long$Value/sum(varespec_long$Value))
-hhi::hhi(as.data.frame(varespec_long),"Relative") # OK mais ne pas transformer en x100 !
-
-politicsR::hh(as.numeric(x_relative)) # DOIT ETRE EN RELATIF sinon Faux
-
-PDtoolkit::hhi(as.numeric(x_relative)) # A relancer
-
-antitrust::HHI(as.numeric(x_relative)) # Faux, multiplicateur
-
-DescTools::Herfindahl(as.numeric(x)) # OK
-
-divseg::ds_hhi(varespec,.cols = dplyr::everything()) # OK
-
-ineq::Herfindahl(x) # OK
-
-triversity::get_diversity_from_distribution(as.numeric(x_relative),measure = "herfindahl" ) # OK
-
-diverse::diversity(t(x),type = "herfindahl-hirschman",category_row = T) # OK
-
-
-
 #_________________Estimateurs de la richesse specifique_________________________####
 
 #### Abundance-based coverage estimator ACE ####--------------------------------

@@ -56,6 +56,7 @@ DBRI <- as.data.frame(DBRI)
 
 # Cuba ####
 # None 
+
 # Fisher alpha ####
 vegan_DFIS <- vegan::fisher.alpha(mite)
 microbiome_DFIS <- microbiome::diversity(t(mite), index = "fisher")$fisher 
@@ -89,7 +90,12 @@ gleason <- function(x) {
   }
 }
 
-DGLE <- apply(mite,1,gleason)
+custom_DGLE <- apply(mite,1,gleason)
+
+# Put all the values in a single dataframe
+DGLE <- ls(pattern = "_DGLE$")
+DGLE <- mget(DGLE)
+DGLE <- as.data.frame(DGLE)
 
 # Good ####
 good_index <- function(p, m, n) {
@@ -154,7 +160,12 @@ kothe <- function(matrix_data) {
   S_max <- max(S_i)
   (S_max - S_i) / S_max
 }
-DKO <- kothe(mite)
+custom_DKO <- kothe(mite)
+
+# Put all the values in a single dataframe
+DKO <- ls(pattern = "_DKO$")
+DKO <- mget(DKO)
+DKO <- as.data.frame(DKO)
 
 # Log normal lambda ####
 sads_DLMD <- rep(1,70)
@@ -252,7 +263,12 @@ odum <- function(x) {
   N <- sum(x)           # total d'individus
   (S / N) * 1000
 }
-OD <- apply(mite,1,odum)
+custom_DOD <- apply(mite,1,odum)
+
+# Put all the values in a single dataframe
+DOD <- ls(pattern = "_DOD$")
+DOD <- mget(DOD)
+DOD <- as.data.frame(DOD)
 
 # Q-statistic ####
 abdiv_DQ <- rep(1,70)
@@ -269,43 +285,6 @@ DQ <- as.data.frame(DQ)
 chemodiv_DRAO <- chemodiv::calcDiv(mite,compDisMat = mite_dist, type = "RaoQ") 
 chemodiv_DRAO <- chemodiv_DRAO$RaoQ
 diverse_DRAO <- diverse::diversity(t(mite), type = "rao", category_row = TRUE, dis = mite_dist)[[1]] #FALSE
-rao_from_abundance <- function(abundance_matrix, dist_method = "euclidean") {
-  # Vérification du format
-  abundance_matrix <- as.data.frame(abundance_matrix)
-  abundance_matrix[] <- lapply(abundance_matrix, as.numeric)  # conversion en numérique
-  
-  # Vérification des noms de lignes
-  if (is.null(rownames(abundance_matrix))) {
-    rownames(abundance_matrix) <- paste0("Site_", seq_len(nrow(abundance_matrix)))
-  }
-  
-  # Calcul de la matrice de dissimilarité entre espèces
-  dissimilarity_matrix <- as.matrix(dist(t(abundance_matrix), method = dist_method))
-  
-  # Initialiser le vecteur des résultats
-  rao_values <- numeric(nrow(abundance_matrix))
-  names(rao_values) <- rownames(abundance_matrix)
-  
-  # Boucle sur chaque site
-  for (i in 1:nrow(abundance_matrix)) {
-    abundances <- as.numeric(abundance_matrix[i, ])
-    total <- sum(abundances)
-    if (total == 0) {
-      rao_values[i] <- NA
-      next
-    }
-    
-    # Proportions
-    p <- abundances / total
-    
-    # Calcul de Rao via produit matriciel
-    rao <- sum(outer(p, p) * dissimilarity_matrix)
-    rao_values[i] <- rao
-  }
-  
-  return(rao_values)
-}
-custom_DRAO <- rao_from_abundance(mite) 
 BAT_DRAO <- BAT::rao(as.matrix(mite))[,1] 
 ade4_DRAO <- rep(1,70)
 for (i in 1:nrow(mite)){
@@ -369,6 +348,12 @@ triversity_DSHA <- rep(1,70)
 for (i in 1:nrow(mite)){
   triversity_DSHA[i] <- triversity::get_diversity_from_distribution(mite_relat[i,])
 } #FALSE
+forestmangr_DSHA <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  mite_long <- tidyr::pivot_longer(mite[i,],cols = colnames(mite)[1]:colnames(mite)[35],names_to = "Esp",values_to = "Value")
+  mite_long <- mite_long[1:35,]
+  forestmangr_DSHA[i] <- forestmangr::species_diversity(mite_long,species = "Esp",index = "H")
+}
 
 # Put all the values in a single dataframe
 DSHA <- ls(pattern = "_DSHA$")
@@ -398,7 +383,6 @@ for (i in seq_len(nrow(mite))) {
   )
 }
 
-#####
 wiqid_DSP <- rep(1,70)
 for (i in 1:nrow(mite)){
   wiqid_DSP[i] <- wiqid::biodSimpson(abVec=as.numeric(mite[i,]))
@@ -410,6 +394,50 @@ for (i in 1:nrow(mite)){
 microbiome_DSP <- rep(1,70)
 for (i in 1:nrow(mite)){
   microbiome_DSP[i] <- microbiome::dominance(as.numeric(mite[i,]),index = "simpson")$simpson
+}
+EconGeo_DSP <- EconGeo::herfindahl(mite) 
+concstats_DSP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  concstats_DSP[i] <- concstats::concstats_hhi(as.numeric(mite[i,])) 
+}
+REAT_DSP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  REAT_DSP[i] <- REAT::herf(mite[i,]) 
+}
+hhi_DSP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  mite_long <- tidyr::pivot_longer(mite[i,],cols = colnames(mite)[1]:colnames(mite)[35],names_to = "Esp",values_to = "Value")
+  mite_long <- mite_long[1:35,]
+  mite_long$Relative <- as.numeric(mite_long$Value/sum(mite_long$Value))
+  hhi_DSP[i] <- hhi::hhi(as.data.frame(mite_long),"Relative") 
+}
+
+politics_DSP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  politics_DSP[i] <- politicsR::hh(as.numeric(mite_relat[i,])) 
+}
+
+PDtoolkit_DSP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  PDtoolkit_DSP[i] <- PDtoolkit::hhi(as.numeric(mite_relat[i,]))
+}
+antitrust_DSP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  antitrust_DSP[i] <- antitrust::HHI(as.numeric(mite_relat[i,])) # Faux, multiplicateur
+}
+DescTools_DSP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  DescTools_DSP[i] <- DescTools::Herfindahl(as.numeric(mite[i,])) # OK
+}
+divseg_DSP <- divseg::ds_hhi(mite,.cols = dplyr::everything()) # OK
+ineq_DSP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  ineq_DSP[i] <- ineq::Herfindahl(mite[i,]) # OK
+}
+
+triversity_DSP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  triversity_DSP[i] <- triversity::get_diversity_from_distribution(as.numeric(mite_relat[i,]),measure = "herfindahl" ) # OK
 }
 
 # Put all the values in a single dataframe
@@ -464,47 +492,33 @@ divent_D1SP <- rep(1,70)
 for (i in 1:nrow(mite)){
   divent_D1SP[i] <- divent::ent_simpson(as.numeric(mite[i,]),estimator = "naive")$entropy
 }
-
-# Arret ici ####
-
-lawstat::gini.index(as.numeric(x)) # faux
-
-CUB::gini(as.numeric(x_relative)) # faux
-
-RoughSets::X.gini(as.numeric(x)) #OK
-
-breakaway::true_gini(x_relative) #OK
-
-concstats::concstats_gini(as.numeric(x_relative)) #faux
-
-catsim::gini(as.numeric(x)) # faux
-
-catsim::sqrtgini(as.numeric(x)) # faux
-
-ade4::divc(as.data.frame(t(varespec)),dis = NULL) # 115
-
-DescTools::DivCoef(as.data.frame(t(varespec)),dis = NULL) # 115
-
-adiv::speciesdiv(x,method = "GiniSimpson") #115
-
-diverse::diversity(t(x),type = "gini-simpson",category_row = T)$gini.simpson #115
-
-ecodive::alpha_div(x,metric = "simpson") #115
-
-agricolae::index.bio(x,method = "Simpson.Div")$index
-
-entropart::GenSimpsonD(as.numeric(x_relative),Correction ="None")
-
-PCRA::divHHI(x_relative) # 1-HHI = 1-Simpson = Gini-Simpson
-
-diverse::diversity(t(x),type = "blau",category_row = T)
-
-####
-
-
-
-
-
+lawstat_D1SP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  lawstat_D1SP[i] <- as.numeric(lawstat::gini.index(as.numeric(mite[i,])))
+}
+CUB_D1SP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  CUB_D1SP[i] <- CUB::gini(as.numeric(mite_relat[i,]))
+}
+RoughSets_D1SP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  RoughSets_D1SP[i] <- RoughSets::X.gini(as.numeric(mite[i,])) #OK
+}
+breakaway_D1SP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  breakaway_D1SP[i] <- breakaway::true_gini(mite_relat[i,]) #OK
+}
+concstats_2_D1SP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  concstats_2_D1SP[i] <- concstats::concstats_gini(as.numeric(mite_relat[1,])) #faux
+}
+catsim_D1SP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  catsim_D1SP[i] <- catsim::gini(as.numeric(mite[i,])) # faux
+}
+ade4_D1SP <- ade4::divc(as.data.frame(t(mite)),dis = NULL)$diversity
+DescTools_2_D1SP <- DescTools::DivCoef(as.data.frame(t(mite)),dis = NULL)$diversity # 115
+PCRA_D1SP <- as.numeric(PCRA::divHHI(mite_relat)) # 1-HHI = 1-Simpson = Gini-Simpson
 
 # Put all the values in a single dataframe
 D1SP <- ls(pattern = "_D1SP$")
@@ -891,48 +905,6 @@ EBU <- as.data.frame(EBU)
 # Camargo ####
 BAT_ECAM <- as.numeric(BAT::evenness(mite,func = "camargo"))
 microbiome_ECAM <- microbiome::evenness(t(mite), index = "camargo")[,1] # OK
-camargo_evenness <- function(comm,margin = 1,na.rm = TRUE,include_zero = FALSE) {
-  
-  # fonction interne (calcul pour un vecteur)
-  .one <- function(v) {
-    v <- as.numeric(v)
-    if (na.rm) v <- v[!is.na(v)] else if (any(is.na(v))) return(NA_real_)
-    if (length(v) == 0) return(NA_real_)
-    if (any(v < 0)) stop("Les abondances doivent être ≥ 0.")
-    
-    total <- sum(v)
-    if (total <= 0) return(NA_real_)
-    p <- v / total
-    
-    if (!include_zero) p <- p[p > 0]
-    S <- length(p)
-    if (S < 2) return(NA_real_)
-    
-    # somme des différences absolues entre toutes les paires
-    diff_sum <- 0
-    for (i in 1:(S-1)) {
-      for (j in (i+1):S) {
-        diff_sum <- diff_sum + abs(p[i] - p[j])
-      }
-    }
-    E <- 1 - diff_sum / S
-    # borne numérique dans [0,1]
-    return(pmax(0, pmin(1, E)))
-  }
-  
-  # si vecteur simple
-  if (is.null(dim(comm))) {
-    return(.one(comm))
-  }
-  
-  # matrice / data.frame
-  if (is.data.frame(comm)) comm <- as.matrix(comm)
-  if (!is.matrix(comm)) stop("comm doit être un vecteur, une matrice ou un data.frame.")
-  if (!(margin %in% c(1,2))) stop("margin doit être 1 (lignes) ou 2 (colonnes).")
-  
-  apply(comm, margin, .one)
-}
-custom_ECAM <- camargo_evenness(mite) # 0.19933509 
 
 # Put all the values in a single dataframe
 ECAM <- ls(pattern = "_ECAM")
@@ -1020,7 +992,6 @@ mobr_EHURE <- mobr::calc_div(mite,index="PIE",effort = NA) # Hulbert PIE
 vegan_EHURE <- vegan::simpson.unb(mite) # Hulbert PIE 
 BiodiversityR_EHURE <- BiodiversityR::diversityresult(mite,y=NULL,index="simpson.unb",method = "each site")[,1] # Hulbert PIE = unbiaised Simpson
 
-
 benthos_EHURE <- rep(1,70) 
 for (i in 1:nrow(mite)){
   benthos_EHURE[i] <- benthos::hpie(taxon = colnames(mite),count = as.integer(mite[i,])) # Hulbert PIE
@@ -1067,25 +1038,6 @@ EMC <- mget(EMC)
 EMC <- as.data.frame(EMC)
 
 # McNaughton ####
-mcnaughton_index <- function(x, na.rm = TRUE) {
-  x <- as.numeric(x)
-  if (na.rm) x <- x[!is.na(x)]
-  x <- x[x > 0]
-  
-  if (length(x) == 0) return(NA_real_)
-  
-  # Total et 2 espèces dominantes
-  N <- sum(x)
-  top2 <- sort(x, decreasing = TRUE)[1:min(2, length(x))]
-  
-  D <- sum(top2) / N
-  return(D)
-}
-
-custom_EMN <- rep(1,70) 
-for (i in 1:nrow(mite)){
-  custom_EMN[i] <- mcnaughton_index(mite[i,])  #OK
-}
 microbiome_EMN <- rep(1,70) 
 for (i in 1:nrow(mite)){
   microbiome_EMN[i] <- microbiome::dominance(as.numeric(mite[i,]),index = "DMN")$dmn  #OK
@@ -1338,20 +1290,3 @@ EST <- ls(pattern = "_EST")
 EST <- mget(EST)
 EST <- as.data.frame(EST)
 
-
-# Autres ####
-# ne correspond pas
-?chemodiv::calcDiv(x,type = "HillEven",q=1)# OK
-
-?adiv::eveparam(mite,method = "hill",q=1) # OK
-
-?BiodiversityR::diversityresult(varespec,y=NULL,index="Eevenness",method = "each site")
-adiv::specieseve(x,method = "McIntosh") # 0.70951058
-iNEXT::ChaoSimpson(t(varespec),datatype = "abundance",transform = F)$Observed
-
-iNEXT::ChaoSimpson(t(varespec),datatype = "abundance",transform = T)$Observed
-tabula::index_simpson(as.numeric(x),eveness = T, unbiaised = T, na.rm=F)
-seewave::sh(x,alpha = "shannon") # 0.53320891 Shannon en base 2 (bits), pas en nats
-seewave::sh(x,alpha = "simpson") # 0.82171151 ne donne pas la forme log
-divDyn::indices(mite_long$Esp,mite_long$Value)
-forestmangr::species_diversity(mite_long,species = "Esp",index = "all") # incorrect pour tous les indices
