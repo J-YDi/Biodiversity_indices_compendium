@@ -390,11 +390,14 @@ for (i in 1:nrow(mite)){
   benthos_DSP[i] <- benthos::simpson(taxon = names(mite[i,]), count = as.numeric(mite[i,]))
 }
 diverse_DSP <- diverse::diversity(t(mite),type = "simpson",category_row = T)$simpson.D
-# A regler ####
-#agricolae_DSP <- rep(1,70)
-#for (i in 1:nrow(mite)){
-  agricolae_DSP[i] <- agricolae::index.bio(mite[i,],method = "Simpson.Dom")$index
+agricolae_DSP <- rep(1,70)
+for (i in seq_len(nrow(mite))) {
+  agricolae_DSP[i] <- tryCatch(
+    {agricolae::index.bio(mite[i,],method = "Simpson.Dom")$index},
+    error = function(e) NA
+  )
 }
+
 #####
 wiqid_DSP <- rep(1,70)
 for (i in 1:nrow(mite)){
@@ -448,17 +451,60 @@ for (i in 1:nrow(mite)){
 adiv_D1SP <- adiv::speciesdiv(mite,method = "GiniSimpson")[,1]
 diverse_D1SP <- diverse::diversity(t(mite),type = "gini-simpson",category_row = T)[[1]]
 asbio_D1SP <- asbio::alpha.div(mite,"simp")
-# A regler ####
-#agricolae_D1SP <- rep(1,70)
-#for (i in 1:nrow(mite)){
-  agricolae_D1SP[i] <- agricolae::index.bio(mite[i,],method = "Simpson.Div")$index
+
+agricolae_D1SP <- rep(1,70)
+for (i in seq_len(nrow(mite))) {
+  asbio_D1SP[i] <- tryCatch(
+    {agricolae::index.bio(mite[i,],method = "Simpson.Div")$index},
+    error = function(e) NA
+  )
 }
-#####
 microbiome_D1SP <- microbiome::diversity(t(mite), index = "gini_simpson")$gini_simpson
 divent_D1SP <- rep(1,70)
 for (i in 1:nrow(mite)){
   divent_D1SP[i] <- divent::ent_simpson(as.numeric(mite[i,]),estimator = "naive")$entropy
 }
+
+# Arret ici ####
+
+lawstat::gini.index(as.numeric(x)) # faux
+
+CUB::gini(as.numeric(x_relative)) # faux
+
+RoughSets::X.gini(as.numeric(x)) #OK
+
+breakaway::true_gini(x_relative) #OK
+
+concstats::concstats_gini(as.numeric(x_relative)) #faux
+
+catsim::gini(as.numeric(x)) # faux
+
+catsim::sqrtgini(as.numeric(x)) # faux
+
+ade4::divc(as.data.frame(t(varespec)),dis = NULL) # 115
+
+DescTools::DivCoef(as.data.frame(t(varespec)),dis = NULL) # 115
+
+adiv::speciesdiv(x,method = "GiniSimpson") #115
+
+diverse::diversity(t(x),type = "gini-simpson",category_row = T)$gini.simpson #115
+
+ecodive::alpha_div(x,metric = "simpson") #115
+
+agricolae::index.bio(x,method = "Simpson.Div")$index
+
+entropart::GenSimpsonD(as.numeric(x_relative),Correction ="None")
+
+PCRA::divHHI(x_relative) # 1-HHI = 1-Simpson = Gini-Simpson
+
+diverse::diversity(t(x),type = "blau",category_row = T)
+
+####
+
+
+
+
+
 
 # Put all the values in a single dataframe
 D1SP <- ls(pattern = "_D1SP$")
@@ -642,15 +688,670 @@ QHIL  <- ls(pattern = "_QHIL")
 QHIL <- mget(QHIL)
 QHIL <- as.data.frame(QHIL)
 
+# Tsallis ####
+vegan_QTSA_0 <- vegan::tsallis(mite,scales = 0,hill = F)
+vegan_QTSA_1 <- vegan::tsallis(mite,scales = 1,hill = F)
+vegan_QTSA_2 <- vegan::tsallis(mite,scales = 2,hill = F)
+vegan_QTSA_3 <- vegan::tsallis(mite,scales = 3,hill = F)
+
+EntropyEstimation_QTSA_1 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  EntropyEstimation_QTSA_1[i] <- EntropyEstimation::Tsallis.z(mite[i,],1)
+}
+EntropyEstimation_QTSA_2 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  EntropyEstimation_QTSA_2[i] <- EntropyEstimation::Tsallis.z(mite[i,],2)
+}
+EntropyEstimation_QTSA_3 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  EntropyEstimation_QTSA_3[i] <- EntropyEstimation::Tsallis.z(mite[i,],3)
+}
+
+adiv_QTSA_0 <- adiv::divparam(mite,method = "tsallis",q=0)
+adiv_QTSA_1 <- adiv::divparam(mite,method = "tsallis",q=1)
+adiv_QTSA_2 <- adiv::divparam(mite,method = "tsallis",q=2)
+adiv_QTSA_3 <- adiv::divparam(mite,method = "tsallis",q=3)
+
+entropart_QTSA_0 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  entropart_QTSA_0[i] <- entropart::Tsallis(as.numeric(mite[i,]),q=0)
+}
+entropart_QTSA_1 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  entropart_QTSA_1[i] <- entropart::Tsallis(as.numeric(mite[i,]),q=1)
+}
+entropart_QTSA_2 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  entropart_QTSA_2[i] <- entropart::Tsallis(as.numeric(mite[i,]),q=2)
+}
+entropart_QTSA_3 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  entropart_QTSA_3[i] <- entropart::Tsallis(as.numeric(mite[i,]),q=3)
+}
+
+divent_QTSA_0 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  divent_QTSA_0[i] <- divent::ent_tsallis(as.numeric(mite[i,]),q=0,probability_estimator = "naive",richness_estimator = "naive")$entropy # OK
+}
+divent_QTSA_1 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  divent_QTSA_1[i] <- divent::ent_tsallis(as.numeric(mite[i,]),q=1,probability_estimator = "naive",richness_estimator = "naive")$entropy # OK
+}
+divent_QTSA_2 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  divent_QTSA_2[i] <- divent::ent_tsallis(as.numeric(mite[i,]),q=2,probability_estimator = "naive",richness_estimator = "naive")$entropy # OK
+}
+divent_QTSA_3 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  divent_QTSA_3[i] <- divent::ent_tsallis(as.numeric(mite[i,]),q=3,probability_estimator = "naive",richness_estimator = "naive")$entropy # OK
+}
+
+# Put all the values in a single dataframe
+QTSA <- ls(pattern = "_QTSA")
+QTSA <- mget(QTSA)
+QTSA <- as.data.frame(QTSA)
+
+# Rényi ####
+EntropyEstimation_QREN_1 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  EntropyEstimation_QREN_1[i] <- EntropyEstimation::Renyi.z(as.numeric(mite[i,]),r=1)
+}
+EntropyEstimation_QREN_2 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  EntropyEstimation_QREN_2[i] <- EntropyEstimation::Renyi.z(as.numeric(mite[i,]),r=2)
+}
+EntropyEstimation_QREN_3 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  EntropyEstimation_QREN_3[i] <- EntropyEstimation::Renyi.z(as.numeric(mite[i,]),r=3)
+}
+sprex_QREN_0 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  sprex_QREN_0[i] <- sprex::diversity(as.numeric(mite[i,]),type = "renyi",q=0) #OK
+}
+sprex_QREN_1 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  sprex_QREN_1[i] <- sprex::diversity(as.numeric(mite[i,]),type = "renyi",q=1) #OK
+}
+sprex_QREN_2 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  sprex_QREN_2[i] <- sprex::diversity(as.numeric(mite[i,]),type = "renyi",q=2) #OK
+}
+sprex_QREN_3 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  sprex_QREN_3[i] <- sprex::diversity(as.numeric(mite[i,]),type = "renyi",q=3) #OK
+}
+statcomp_QREN_1 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  statcomp_QREN_1[i] <- statcomp::permutation_entropy_Renyi(mite[i,],1) #FALSE
+}
+statcomp_QREN_2 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  statcomp_QREN_2[i] <- statcomp::permutation_entropy_Renyi(mite[i,],2) #FALSE
+}
+statcomp_QREN_3 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  statcomp_QREN_3[i] <- statcomp::permutation_entropy_Renyi(mite[i,],3) #FALSE
+}
+vegan_QREN_0 <- vegan::renyi(mite,scales = 0,hill = F)
+vegan_QREN_1 <- vegan::renyi(mite,scales = 1,hill = F)
+vegan_QREN_2 <- vegan::renyi(mite,scales = 2,hill = F)
+vegan_QREN_3 <- vegan::renyi(mite,scales = 3,hill = F)
+seewave_QREN_2 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  seewave_QREN_2[i] <- seewave::sh(mite[i,],alpha = 2)
+}
+seewave_QREN_3 <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  seewave_QREN_3[i] <- seewave::sh(mite[i,],alpha = 3)
+}
+BiodiversityR_QREN_0 <- as.numeric(BiodiversityR::renyiresult(mite,y=NULL,method = "each site",scales = 0))
+BiodiversityR_QREN_1 <- as.numeric(BiodiversityR::renyiresult(mite,y=NULL,method = "each site",scales = 1))
+BiodiversityR_QREN_2 <- as.numeric(BiodiversityR::renyiresult(mite,y=NULL,method = "each site",scales = 2))
+BiodiversityR_QREN_3 <- as.numeric(BiodiversityR::renyiresult(mite,y=NULL,method = "each site",scales = 3))
+
+adiv_QREN_0 <- adiv::divparam(mite,method = "renyi",q=0)
+adiv_QREN_1 <- adiv::divparam(mite,method = "renyi",q=1)
+adiv_QREN_2 <- adiv::divparam(mite,method = "renyi",q=2)
+adiv_QREN_3 <- adiv::divparam(mite,method = "renyi",q=3)
+
+diverse_QREN_0 <- diverse::diversity(t(mite),type = "renyi",category_row = T,q=0)$renyi.entropy
+diverse_QREN_1 <- diverse::diversity(t(mite),type = "renyi",category_row = T,q=1)$renyi.entropy
+diverse_QREN_2 <- diverse::diversity(t(mite),type = "renyi",category_row = T,q=2)$renyi.entropy
+diverse_QREN_3 <- diverse::diversity(t(mite),type = "renyi",category_row = T,q=3)$renyi.entropy
+
+# Put all the values in a single dataframe
+QREN <- ls(pattern = "_QREN")
+QREN <- mget(QREN)
+QREN <- as.data.frame(QREN)
+
+# Berger-Parker ####
+abdiv_EBP <- apply(mite,1,abdiv::berger_parker_d)
+dyvDyn_EBP <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  dyvDyn_EBP[i] <- divDyn::indices(as.matrix(mite[i,]),method = "dominance")
+}
+tabula_EBP <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  tabula_EBP[i] <- tabula::index_berger(as.numeric(mite[i,]))
+}
+BiodiversityR_EBP <- BiodiversityR::diversityresult(mite,y=NULL,index="Berger",method = "each site")$Berger
+diverse_EBP <- diverse::diversity(t(mite),type = "berger-parker",category_row = T)$berger.parker.D
+agricolae_EBP <- rep(1,70) 
+for (i in seq_len(nrow(mite))) {
+  agricolae_EBP[i] <- tryCatch(
+    {
+      agricolae::index.bio(mite[i,],method = "Berger.Parker")$index
+    },
+    error = function(e) NA
+  )
+}
+dyvDyn_EBP <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  mite_long <- tidyr::pivot_longer(mite[i,],cols = colnames(mite)[1]:colnames(mite)[35],names_to = "Esp",values_to = "Value")
+  mite_long <- mite_long[1:35,]
+  dyvDyn_EBP[i] <- divDyn::indices(mite_long$Esp,mite_long$Value,method = "dominance")
+}
+ecodive_EBP <- ecodive::alpha_div(mite,metric="berger")
+
+wiqid_EBP <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  wiqid_EBP[i] <- wiqid::biodBerger(abVec=mite[i,]) # FALSE
+}
+microbiome_EBP <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  microbiome_EBP[i] <- microbiome::dominance(as.numeric(mite[i,]),index = "DBP")$dbp # Berger-Parker
+}
+triversity_EBP <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  triversity_EBP[i] <- triversity::get_diversity_from_distribution(as.numeric(mite_relat[i,]),measure = "bergerparker" ) # OK
+}
+
+# Put all the values in a single dataframe
+EBP <- ls(pattern = "_EBP")
+EBP <- mget(EBP)
+EBP <- as.data.frame(EBP)
+
+# Brillouin ####
+tabula_EBRI <- as.numeric(tabula::evenness(mite,method = "brillouin"))
+
+# Put all the values in a single dataframe
+EBRI <- ls(pattern = "_EBRI")
+EBRI <- mget(EBRI)
+EBRI <- as.data.frame(EBRI)
+
+# Bulla ####
+BAT_EBU <- as.numeric(BAT::evenness(mite,func = "bulla"))
+microbiome_EBU <- microbiome::evenness(t(mite), index = "bulla")[,1] # OK
+
+# Put all the values in a single dataframe
+EBU <- ls(pattern = "_EBU")
+EBU <- mget(EBU)
+EBU <- as.data.frame(EBU)
+
+# Camargo ####
+BAT_ECAM <- as.numeric(BAT::evenness(mite,func = "camargo"))
+microbiome_ECAM <- microbiome::evenness(t(mite), index = "camargo")[,1] # OK
+camargo_evenness <- function(comm,margin = 1,na.rm = TRUE,include_zero = FALSE) {
+  
+  # fonction interne (calcul pour un vecteur)
+  .one <- function(v) {
+    v <- as.numeric(v)
+    if (na.rm) v <- v[!is.na(v)] else if (any(is.na(v))) return(NA_real_)
+    if (length(v) == 0) return(NA_real_)
+    if (any(v < 0)) stop("Les abondances doivent être ≥ 0.")
+    
+    total <- sum(v)
+    if (total <= 0) return(NA_real_)
+    p <- v / total
+    
+    if (!include_zero) p <- p[p > 0]
+    S <- length(p)
+    if (S < 2) return(NA_real_)
+    
+    # somme des différences absolues entre toutes les paires
+    diff_sum <- 0
+    for (i in 1:(S-1)) {
+      for (j in (i+1):S) {
+        diff_sum <- diff_sum + abs(p[i] - p[j])
+      }
+    }
+    E <- 1 - diff_sum / S
+    # borne numérique dans [0,1]
+    return(pmax(0, pmin(1, E)))
+  }
+  
+  # si vecteur simple
+  if (is.null(dim(comm))) {
+    return(.one(comm))
+  }
+  
+  # matrice / data.frame
+  if (is.data.frame(comm)) comm <- as.matrix(comm)
+  if (!is.matrix(comm)) stop("comm doit être un vecteur, une matrice ou un data.frame.")
+  if (!(margin %in% c(1,2))) stop("margin doit être 1 (lignes) ou 2 (colonnes).")
+  
+  apply(comm, margin, .one)
+}
+custom_ECAM <- camargo_evenness(mite) # 0.19933509 
+
+# Put all the values in a single dataframe
+ECAM <- ls(pattern = "_ECAM")
+ECAM <- mget(ECAM)
+ECAM <- as.data.frame(ECAM)
+
+# Gini ####
+DescTools_EGIN <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  DescTools_EGIN[i] <- DescTools::Gini(as.numeric(mite[i,]),unbiased = F) # Gini
+}
+microbiome_EGIN <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  microbiome_EGIN[i] <- microbiome::dominance(as.numeric(mite[i,]),index = "gini")$gini
+}
+giniVarCI_EGIN <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  giniVarCI_EGIN[i] <- giniVarCI::igini(as.numeric(mite[i,]),bias.correction = F)
+}
+acid_EGIN <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  acid_EGIN[i] <- acid::gini(as.numeric(mite[i,]))$Gini 
+}
+dplR_EGIN <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  dplR_EGIN[i] <- dplR::gini.coef(as.numeric(mite[i,]))  
+}
+shipunov_EGIN <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  shipunov_EGIN[i] <- shipunov::Gini(as.numeric(mite[i,]))  
+}
+EconGeo_EGIN <- EconGeo::gini(t(mite))$Gini
+ineq_EGIN <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  ineq_EGIN[i] <- ineq::Gini(mite[i,]) 
+}
+wINEQ_EGIN <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  wINEQ_EGIN[i] <- wINEQ::Gini(as.numeric(mite[i,]))
+}
+REAT_EGIN <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  REAT_EGIN[i] <- REAT::gini(as.numeric(mite[i,]))
+}
+
+# Put all the values in a single dataframe
+EGIN <- ls(pattern = "_EGIN")
+EGIN <- mget(EGIN)
+EGIN <- as.data.frame(EGIN)
+
+
+#Heip ####
+adiv_EHEI <- adiv::specieseve(mite,method = "Heip")[,1] # OK
+abdiv_EHEI <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  abdiv_EHEI[i] <- abdiv::heip_e(as.numeric(mite[i,])) # OK
+}
+
+# Put all the values in a single dataframe
+EHEI <- ls(pattern = "_EHEI")
+EHEI <- mget(EHEI)
+EHEI <- as.data.frame(EHEI)
+
+# Hulburt ####
+hulburt_index <- function(x) {
+  s <- sum(x, na.rm = TRUE)
+  if (s == 0) return(NA_real_)
+  sum(sort(x, decreasing = TRUE)[1:2], na.rm = TRUE) / s
+}
+custom_EHUL <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  custom_EHUL[i] <- hulburt_index(as.numeric(mite[i,]))
+}
+
+# Put all the values in a single dataframe
+EHUL <- ls(pattern = "_EHUL")
+EHUL <- mget(EHUL)
+EHUL <- as.data.frame(EHUL)
+
+# Hurlbert E ####
+# Non calculable car besoin de n : nombre d'individus dans un echantillon standard
+
+# Hurlbert PIE ####
+mobr_EHURE <- mobr::calc_div(mite,index="PIE",effort = NA) # Hulbert PIE
+vegan_EHURE <- vegan::simpson.unb(mite) # Hulbert PIE 
+BiodiversityR_EHURE <- BiodiversityR::diversityresult(mite,y=NULL,index="simpson.unb",method = "each site")[,1] # Hulbert PIE = unbiaised Simpson
+
+
+benthos_EHURE <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  benthos_EHURE[i] <- benthos::hpie(taxon = colnames(mite),count = as.integer(mite[i,])) # Hulbert PIE
+}
+
+# Put all the values in a single dataframe
+EHURE <- ls(pattern = "_EHURE")
+EHURE <- mget(EHURE)
+EHURE <- as.data.frame(EHURE)
+
+# Ludwig-Reynolds ####
+#### Ludwig-Reynold ####
+Ludwig_Reynold <- function(abondances) {
+  N <- sum(abondances)
+  S <- sum(abondances > 0)  # Nombre d'espèces présentes
+  p_i <- abondances / N
+  p_i <- p_i[p_i > 0]
+  
+  H_prime <- -sum(p_i * log(p_i))
+  
+  if (S <= 1) {
+    return(NA)  # Évitons une division par zéro
+  }
+  
+  E <- exp(H_prime - 1) / (S - 1)
+  return(E)
+}
+custom_ELR <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  custom_ELR[i] <- Ludwig_Reynold(mite[i,])
+}
+
+# Put all the values in a single dataframe
+ELR <- ls(pattern = "_ELR")
+ELR <- mget(ELR)
+ELR <- as.data.frame(ELR)
+
+# McIntosh ####
+tabula_EMC <- as.numeric(tabula::evenness(mite,method = "mcintosh"))
+abdiv_EMC <- apply(mite,1,abdiv::mcintosh_e)
+# Put all the values in a single dataframe
+EMC <- ls(pattern = "_EMC")
+EMC <- mget(EMC)
+EMC <- as.data.frame(EMC)
+
+# McNaughton ####
+mcnaughton_index <- function(x, na.rm = TRUE) {
+  x <- as.numeric(x)
+  if (na.rm) x <- x[!is.na(x)]
+  x <- x[x > 0]
+  
+  if (length(x) == 0) return(NA_real_)
+  
+  # Total et 2 espèces dominantes
+  N <- sum(x)
+  top2 <- sort(x, decreasing = TRUE)[1:min(2, length(x))]
+  
+  D <- sum(top2) / N
+  return(D)
+}
+
+custom_EMN <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  custom_EMN[i] <- mcnaughton_index(mite[i,])  #OK
+}
+microbiome_EMN <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  microbiome_EMN[i] <- microbiome::dominance(as.numeric(mite[i,]),index = "DMN")$dmn  #OK
+}
+# Put all the values in a single dataframe
+EMN <- ls(pattern = "_EMN")
+EMN <- mget(EMN)
+EMN <- as.data.frame(EMN)
+
+# NHC : Nee-Harvey-Cotgreave 
+nhc_original <- function(x, na.rm = TRUE) {
+  # x : vecteur d'abondances
+  x <- as.numeric(x)
+  
+  # Nettoyage des NA
+  if (na.rm) x <- x[!is.na(x)]
+  if (length(x) < 2) return(NA_real_)
+  
+  # Ne garder que les abondances > 0
+  x <- x[x > 0]
+  if (length(x) < 2) return(NA_real_)
+  
+  # Tri décroissant
+  x_sorted <- sort(x, decreasing = TRUE)
+  rank <- 1:length(x_sorted)
+  
+  # Régression linéaire log(abondance) ~ rang
+  model <- lm(log(x_sorted) ~ rank)
+  
+  # Extraction de la pente
+  b <- coef(model)[2]
+  return(b)
+}
+custom_ENHC <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  custom_ENHC[i] <- nhc_original(mite[i,])
+}
+# Put all the values in a single dataframe
+ENHC <- ls(pattern = "_ENHC")
+ENHC <- mget(ENHC)
+ENHC <- as.data.frame(ENHC)
+
+
+# NHC EQ ####
+e0_index <- function(x, na.rm = TRUE) {
+  # x : vecteur d'abondances
+  x <- as.numeric(x)
+  
+  # Nettoyage des NA et des 0
+  if (na.rm) x <- x[!is.na(x)]
+  x <- x[x > 0]
+  
+  if (length(x) < 2) return(NA_real_)
+  
+  # Tri décroissant
+  x_sorted <- sort(x, decreasing = TRUE)
+  rank <- 1:length(x_sorted)
+  n <- length(x_sorted)
+  
+  # Régression linéaire log(abondance) ~ rang
+  model <- lm(log(x_sorted) ~ rank)
+  b <- coef(model)[2]
+  
+  # Transformation normalisée pour obtenir E0 / EQ
+  E0 <- -2 / n * atan(b)
+  
+  return(E0)
+}
+custom_EEQ <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  custom_EEQ[i] <- e0_index(mite[i,]) 
+}
+codyn_EEQ <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  mite_long <- tidyr::pivot_longer(mite[i,],cols = colnames(mite)[1]:colnames(mite)[35],names_to = "Esp",values_to = "Value")
+  mite_long <- mite_long[1:35,]
+  codyn_EEQ[i] <- codyn::community_structure(mite_long,abundance.var = "Value",metric = "EQ")$EQ
+}
+# Put all the values in a single dataframe
+EEQ <- ls(pattern = "_EEQ")
+EEQ <- mget(EEQ)
+EEQ <- as.data.frame(EEQ)
+
+# NHC Evar ####
+evar_index <- function(x, na.rm = TRUE) {
+  x <- as.numeric(x)
+  
+  # Nettoyage
+  if (na.rm) x <- x[!is.na(x)]
+  x <- x[x > 0]
+  n <- length(x)
+  if (n < 2) return(NA_real_)
+  
+  # Variance populationnelle (divisé par n)
+  mean_logx <- mean(log(x))
+  var_logx <- sum((log(x) - mean_logx)^2) / n  # populationnelle
+  
+  # Transformation arctan
+  Evar <- 1 - (2/pi) * atan(var_logx)
+  return(Evar)
+}
+custom_EEVAR <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  custom_EEVAR[i] <- evar_index(mite[i,]) # OK S&W Eveness 
+}
+codyn_EEVAR <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  mite_long <- tidyr::pivot_longer(mite[i,],cols = colnames(mite)[1]:colnames(mite)[35],names_to = "Esp",values_to = "Value")
+  mite_long <- mite_long[1:35,]
+  codyn_EEVAR[i] <- codyn::community_structure(mite_long,abundance.var = "Value",metric = "Evar")$Evar # Ok mais variance divisé par n
+  
+}
+
+adiv_EEVAR <- adiv::specieseve(mite,method = "SmithWilson")[,1] # OK S&W Evenness -> divisé par n-1
+microbiome_EEVAR <- microbiome::evenness(t(mite), index = "evar")[,1]
+
+# Put all the values in a single dataframe
+EEVAR <- ls(pattern = "_EEVAR")
+EEVAR <- mget(EEVAR)
+EEVAR <- as.data.frame(EEVAR)
+
+# Patten ####
+patten_index <- function(comm, base = exp(1)) {
+  
+  if (!requireNamespace("vegan", quietly = TRUE)) {
+    stop("Le package 'vegan' est requis")
+  }
+  # calcul de H' (Shannon) par échantillon
+  H <- vegan::diversity(comm, index = "shannon", base = base)
+  
+  # Hmax et Hmin (parmi tous les échantillons fournis)
+  Hmax <- max(H, na.rm = TRUE)
+  Hmin <- min(H, na.rm = TRUE)
+  
+  # si Hmax == Hmin (pas de variation), on evite division par 0 : on renvoie NA
+  denom <- Hmax - Hmin
+  if (is.na(denom) || denom == 0) {
+    warning("Hmax equals Hmin (no variation in Shannon)")
+    R <- rep(NA_real_, length(H))
+  } else {
+    R <- (Hmax - H) / denom
+  }
+  
+  # retourne un data.frame utile
+  out <- R
+  return(out)
+}
+custom_EPAT <- patten_index(mite)
+
+# Put all the values in a single dataframe
+EPAT <- ls(pattern = "_EPAT")
+EPAT <- mget(EPAT)
+EPAT <- as.data.frame(EPAT)
+
+# Pielou ####
+#### Pielou ####----------------------------------------------------------------
+OTUtable_EPIE <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  OTUtable_EPIE[i] <- OTUtable::pielou(mite[i,]) 
+}
+abdiv_EPIE <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  abdiv_EPIE[i] <- abdiv::pielou_e(as.numeric(mite_relat[i,])) 
+}
+tabula_EPIE <- tabula::evenness(mite,method = "shannon")@.Data
+BiodiversityR_EPIE <- BiodiversityR::diversityresult(mite,y=NULL,index="Jevenness",method = "each site")$Jevenness
+forestmangr_EPIE <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  mite_long <- tidyr::pivot_longer(mite[i,],cols = colnames(mite)[1]:colnames(mite)[35],names_to = "Esp",values_to = "Value")
+  mite_long <- mite_long[1:35,]
+  forestmangr_EPIE[i] <- forestmangr::species_diversity(mite_long,species = "Esp",index = "S")
+}
+
+adiv_EPIE <- adiv::specieseve(mite,method = "Shannon")[,1]
+pctax_EPIE <- pctax::a_diversity(t(mite),method = "pielou")$Pielou_evenness
+diverse_EPIE <- diverse::diversity(t(mite),type = "evenness",category_row = T)[,1]
+microbiome_EPIE <- microbiome::evenness(t(mite), index = "pielou")[,1]
+chemodiv_EPIE <- chemodiv::calcDiv(mite,type = "PielouEven")[,1] # OK
+sprex_EPIE <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  sprex_EPIE[i] <- sprex::diversity(as.numeric(mite[i,]),type = "eveness.pielou")
+}
+breakaway_EPIE <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  breakaway_EPIE[i] <- breakaway::true_shannon_e(mite_relat[i,]) # Pielou
+}
+
+# Put all the values in a single dataframe
+EPIE <- ls(pattern = "_EPIE")
+EPIE <- mget(EPIE)
+EPIE <- as.data.frame(EPIE)
+
+# Sheldon ####
+sheldon_index <- function(x, base = exp(1), na.rm = TRUE) {
+  x <- as.numeric(x)
+  if (na.rm) x <- x[!is.na(x)]
+  x <- x[x > 0]
+  N <- sum(x)
+  if (N == 0 || length(x) < 2) return(NA_real_)
+  
+  p <- x / N
+  H <- -sum(p * log(p, base = base))
+  
+  S <- length(p)
+  Sh <- exp(H) / S
+  return(Sh)
+}
+custom_ESHE <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  custom_ESHE[i] <- sheldon_index(mite[i,])
+}
+# Put all the values in a single dataframe
+ESHE <- ls(pattern = "_ESHE")
+ESHE <- mget(ESHE)
+ESHE <- as.data.frame(ESHE)
+
+# Inv Simpson Evenness ####
+tabula_ESP <- as.numeric(tabula::evenness(mite,method = "simpson")) # Inv Simpson E
+sprex_ESP <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  sprex_ESP[i] <- sprex::diversity(as.numeric(mite[i,]),type = "eveness.simpson") #FALSE
+}
+adiv_ESP <- adiv::specieseve(mite,method = "Simpson")[,1] # Inv Simpson E
+codyn_ESP <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  mite_long <- tidyr::pivot_longer(mite[i,],cols = colnames(mite)[1]:colnames(mite)[35],names_to = "Esp",values_to = "Value")
+  mite_long <- mite_long[1:35,]
+  codyn_ESP[i] <- codyn::community_structure(mite_long,abundance.var = "Value",metric = "SimpsonEvenness")$SimpsonEvenness
+}
+
+# Put all the values in a single dataframe
+ESP <- ls(pattern = "_ESP")
+ESP <- mget(ESP)
+ESP <- as.data.frame(ESP)
+
+# Gini Simpson Evenness ####
+adiv_EGSP <- adiv::specieseve(mite,method = "GiniSimpson")[,1] #Gini
+# Put all the values in a single dataframe
+EGSP <- ls(pattern = "_EGSP")
+EGSP <- mget(EGSP)
+EGSP <- as.data.frame(EGSP)
+
+# Strong ####
+abdiv_EST <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  abdiv_EST [i] <- abdiv::strong(as.numeric(mite[i,]))
+}
+# Put all the values in a single dataframe
+EST <- ls(pattern = "_EST")
+EST <- mget(EST)
+EST <- as.data.frame(EST)
+
 
 # Autres ####
-abdiv::mcintosh_e(x) # ne correspond pas
-tabula::index_mcintosh(as.numeric(x),evenness = T) # 0.70951058
+# ne correspond pas
+?chemodiv::calcDiv(x,type = "HillEven",q=1)# OK
+
+?adiv::eveparam(mite,method = "hill",q=1) # OK
+
+?BiodiversityR::diversityresult(varespec,y=NULL,index="Eevenness",method = "each site")
 adiv::specieseve(x,method = "McIntosh") # 0.70951058
 iNEXT::ChaoSimpson(t(varespec),datatype = "abundance",transform = F)$Observed
 
 iNEXT::ChaoSimpson(t(varespec),datatype = "abundance",transform = T)$Observed
 tabula::index_simpson(as.numeric(x),eveness = T, unbiaised = T, na.rm=F)
-
-
-
+seewave::sh(x,alpha = "shannon") # 0.53320891 Shannon en base 2 (bits), pas en nats
+seewave::sh(x,alpha = "simpson") # 0.82171151 ne donne pas la forme log
+divDyn::indices(mite_long$Esp,mite_long$Value)
+forestmangr::species_diversity(mite_long,species = "Esp",index = "all") # incorrect pour tous les indices
