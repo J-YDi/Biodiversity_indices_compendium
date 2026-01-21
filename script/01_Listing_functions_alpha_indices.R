@@ -1,8 +1,8 @@
 #_______________________________________________________________________________
-# Title              : 01_Compendium.r
-# Date               : 19/01/2025
-# Object             : Script to determine a list of reliable R packages to 
-#                      calculate diversity indices
+# Title              : 01_Listing_functions_alpha_indices.r
+# Date               : 21/01/2025
+# Object             : Script to create dataset of values from functions that 
+#                      calculate alpha diversity indices
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
 # Github link        : 
@@ -43,6 +43,315 @@ rownames(mite_dist) <- rownames(t(mite))
 colnames(mite_dist) <- rownames(t(mite))
 
 #___________________________ Alpha diversity indices ___________________________####
+
+# ACE ####
+tabula_RACE <- rep(1,70)
+for (i in 1:nrow(mite)){
+  tabula_RACE[i] <- tabula::index_ace(as.numeric(mite[i,]))
+}
+fossil_RACE <- rep(1,70)
+for (i in 1:nrow(mite)){
+  fossil_RACE[i] <- fossil::ACE(mite[i,],taxa.row = F) 
+}
+BAT_RACE <- rep(1,70)
+for (i in 1:nrow(mite)){
+  BAT_RACE[i] <- BAT::alpha.estimate(mite[i,])[11]
+}
+vegan_RACE <- rep(1,70)
+for (i in 1:nrow(mite)){
+  vegan_RACE[i] <- vegan::estimateR(mite[i,],index = "chao")[4]
+}
+ecodive_RACE <- ecodive::ace(mite) #12.17889 
+wiqid_RACE <- rep(1,70)
+for (i in 1:nrow(mite)){
+  wiqid_RACE[i] <- wiqid::richACE(as.numeric(mite[i,]))
+}
+pctax_RACE <- pctax::a_diversity(t(mite),method = "ace")[,1] # 12.178889
+sprex_RACE <- rep(1,70)
+for (i in 1:nrow(mite)){
+  sprex_RACE[i] <- sprex::ACE(as.numeric(mite[i,]))
+}
+# Put all the values in a single dataframe
+RACE <- ls(pattern = "_RACE$")
+RACE <- mget(RACE)
+RACE <- as.data.frame(RACE)
+
+# Bootstrap ####
+wiqid_RBOO <- rep(1,70)
+for (i in 1:nrow(mite)){
+  wiqid_RBOO[i] <- wiqid::richBoot(t(mite[i,])) #44
+}
+BiodiversityR_RBOO <- rep(1,70)
+for (i in 1:nrow(mite)){
+  BiodiversityR_RBOO[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "boot",method = "each site")) #11
+}
+
+# Put all the values in a single dataframe
+RBOO <- ls(pattern = "_RBOO$")
+RBOO <- mget(RBOO)
+RBOO <- as.data.frame(RBOO)
+
+# Chao1 ####
+vegan_RC1 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  vegan_RC1[i] <- vegan::estimateR(mite[i,],index = "chao")[2]
+}
+BiodiversityR_RC1 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  BiodiversityR_RC1[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "chao",method = "each site"))
+}
+microbiome_RC1 <- microbiome::richness(t(mite),index = c("chao1"))[,1]
+pctax_RC1 <- pctax::a_diversity(t(mite),method = "chao1")[,1]
+rareNMtests_RC1 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  rareNMtests_RC1[i] <- as.numeric(print(rareNMtests::chao1(mite[i,])))[2]
+}
+SpadeR_RC1 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  SpadeR_RC1[i] <- as.numeric(SpadeR::ChaoSpecies(mite[i,],datatype = "abundance")$Basic_data_information[2,2])
+}
+iNEXT_RC1 <- iNEXT::ChaoRichness(t(mite),datatype = "abundance")$Estimator
+
+BAT_RC1 <- BAT::alpha.estimate(mite)[,9] 
+
+SSP_RC1 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  SSP_RC1[i] <- SSP:::assempar(mite[i,],type = "counts",Sest.method = "chao")$Sest 
+}
+biosampleR_RC1 <- biosampleR::calc_diversity_indices(mite)[6][,1] #29
+
+# Put all the values in a single dataframe
+RC1 <- ls(pattern = "_RC1$")
+RC1 <- mget(RC1)
+RC1 <- as.data.frame(RC1)
+
+# Chao 1 modified ####
+
+wiqid_RC1M <- rep(1,70)
+for (i in 1:nrow(mite)){
+  wiqid_RC1M[i] <- as.numeric(wiqid::richChao1(t(mite[i,])))[1]
+}
+ecodive_RC1M <- ecodive::chao1(mite) 
+BAT_RC1M <- BAT::alpha.estimate(mite)[,10]
+divent_RC1M <- rep(1,70)
+for (i in 1:nrow(mite)){
+  divent_RC1M[i] <- divent::div_richness(as.numeric(t(mite[i,])),estimator = "Chao1")$diversity
+}
+entropart_RC1M <- rep(1,70)
+for (i in 1:nrow(mite)){
+  entropart_RC1M[i] <- entropart::bcRichness(mite[i,],Correction = "Chao1")
+}
+fossil_RC1M <- rep(1,70)
+for (i in 1:nrow(mite)){
+  fossil_RC1M[i] <- fossil::chao1(as.numeric(mite[i,])) 
+}
+mobr_RC1M <- mobr::calc_chao1(mite)
+OTUtable_RC1M <- rep(1,70)
+for (i in 1:nrow(mite)){
+  OTUtable_RC1M[i] <- OTUtable::chao1(as.numeric(mite[i,]))
+}
+tabula_RC1M <- rep(1,70)
+for (i in 1:nrow(mite)){
+  tabula_RC1M[i] <- tabula::index_chao1(as.numeric(mite[i,]))
+}
+
+# Put all the values in a single dataframe
+RC1M <- ls(pattern = "_RC1M$")
+RC1M <- mget(RC1M)
+RC1M <- as.data.frame(RC1M)
+
+# Chao 2 ####
+fossil_RCA2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  fossil_RCA2[i] <- fossil::chao2(as.numeric(mite[i,]))
+}
+wiqid_RCA2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  wiqid_RCA2[i] <- wiqid::richChao2(t(mite[i,]))[1]
+}
+tabula_RCA2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  tabula_RCA2[i] <- tabula::index_chao2(as.matrix(mite[i,]))
+}
+divDyn_RCA2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  divDyn_RCA2[i] <- divDyn::indices(as.matrix(mite[i,]),method = "chao2")
+}
+BAT_RCA2 <- BAT::alpha.accum(mite)[,18]
+
+# Put all the values in a single dataframe
+RCA2 <- ls(pattern = "_RCA2$")
+RCA2 <- mget(RCA2)
+RCA2 <- as.data.frame(RCA2)
+
+# Hurlbert ####
+benthos_RHUR_2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  benthos_RHUR_2[i] <- benthos::hurlbert(taxon = colnames(mite),count = as.numeric(mite[i,]), n=2) # OK
+}
+benthos_RHUR_3 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  benthos_RHUR_3[i] <- benthos::hurlbert(taxon = colnames(mite),count = as.numeric(mite[i,]), n=3) # OK
+}
+
+entropart_RHUR_2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  entropart_RHUR_2[i] <- entropart::Hurlbert(as.numeric(mite[i,]),k = 2)
+}
+entropart_RHUR_3 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  entropart_RHUR_3[i] <- entropart::Hurlbert(as.numeric(mite[i,]),k = 3)
+}
+tabula_RHUR_2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  tabula_RHUR_2[i] <- tabula::index_hurlbert(as.numeric(mite[i,]),sample = 2)
+}
+tabula_RHUR_3 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  tabula_RHUR_3[i] <- tabula::index_hurlbert(as.numeric(mite[i,]),sample = 3)
+}
+mobsim_RHUR_2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  mobsim_RHUR_2[i] <- mobsim::spec_sample(as.numeric(mite[i,]),n=2)
+}
+mobsim_RHUR_3 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  mobsim_RHUR_3[i] <- mobsim::spec_sample(as.numeric(mite[i,]),n=3)
+}
+vegan_RHUR_2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  vegan_RHUR_2[i] <- vegan::rarefy(mite[i,],sample = 2)
+}
+vegan_RHUR_3 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  vegan_RHUR_3[i] <- vegan::rarefy(mite[i,],sample = 3)
+}
+divent_RHUR_2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  divent_RHUR_2[i] <- divent::div_hurlbert(as.numeric(mite[i,]),k = 2,estimator = "Hurlbert")$diversity
+}
+divent_RHUR_3 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  divent_RHUR_3[i] <- divent::div_hurlbert(as.numeric(mite[i,]),k = 3,estimator = "Hurlbert")$diversity
+}
+# Put all the values in a single dataframe
+RHUR <- ls(pattern = "_RHUR")
+RHUR <- mget(RHUR)
+RHUR <- as.data.frame(RHUR)
+
+# ICE ####
+fossil_RICE <- rep(1,70)
+for (i in 1:nrow(mite)){
+  fossil_RICE[i] <- fossil::ICE(t(mite[i,])) #44
+}
+wiqid_RICE <- rep(1,70)
+for (i in 1:nrow(mite)){
+  wiqid_RICE[i] <- wiqid::richICE(t(mite[i,])) #44
+}
+tabula_RICE <- rep(1,70)
+for (i in 1:nrow(mite)){
+  tabula_RICE[i] <- wiqid::richICE(t(mite[i,])) #44
+}
+BAT_RICE <- BAT::alpha.accum(mite)[,22] #NaN
+# Put all the values in a single dataframe
+RICE <- ls(pattern = "_RICE")
+RICE <- mget(RICE)
+RICE <- as.data.frame(RICE)
+
+# Jacknife 1 ####
+divent_RJA1 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  divent_RJA1[i] <- divent::div_richness(as.numeric(t(mite[i,])),estimator = "jackknife")$diversity
+}
+tabula_RJA1 <- tabula::jackknife(tabula::heterogeneity(mite,method = "shannon"))[,1]
+BiodiversityR_RJA1 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  BiodiversityR_RJA1[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "jack1",method = "each site"))
+}
+entropart_RJA1 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  entropart_RJA1[i] <- entropart::bcRichness(mite[i,],Correction = "Jackknife")
+}
+BAT_RJA1 <- BAT::alpha.estimate(mite)[,5]
+fossil_RJA1 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  fossil_RJA1[i] <- fossil::jack1(as.numeric(mite[i,]))
+}
+wiqid_RJA1 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  wiqid_RJA1[i] <- wiqid::richJackA1(t(mite[i,])) #13
+}
+SSP_RJA1 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  SSP_RJA1[i] <- SSP:::assempar(mite[i,],type = "counts",Sest.method = "jack1")$Sest #10
+}
+
+# Put all the values in a single dataframe
+RJA1 <- ls(pattern = "_RJA1$")
+RJA1 <- mget(RJA1)
+RJA1 <- as.data.frame(RJA1)
+
+# Jacknife 2 ####
+SSP_RJA2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  SSP_RJA2[i] <- SSP:::assempar(mite[i,],type = "counts",Sest.method = "jack2")$Sest #10
+}
+
+wiqid_RJA2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  wiqid_RJA2[i] <- wiqid::richJackA2(t(mite[i,])) #13
+}
+fossil_RJA2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  fossil_RJA2[i] <- fossil::jack2(as.numeric(mite[i,]))
+}
+
+BiodiversityR_RJA2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  BiodiversityR_RJA2[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "jack2",method = "each site"))
+}
+
+BAT_RJA2 <- BAT::alpha.estimate(mite)[,7]
+
+# Put all the values in a single dataframe
+RJA2 <- ls(pattern = "_RJA2$")
+RJA2 <- mget(RJA2)
+RJA2 <- as.data.frame(RJA2)
+
+# Michaelis-Menten ####
+wiqid_RMM <- rep(1,70)
+for (i in 1:nrow(mite)){
+  wiqid_RMM[i] <- wiqid::richMM(t(mite[i,]))
+}
+sprex_RMM <- rep(1,70)
+for (i in 1:nrow(mite)){
+  sprex_RMM[i] <- sprex::Clench(as.numeric(mite[i,]))
+}
+
+# Put all the values in a single dataframe
+RMM <- ls(pattern = "_RMM$")
+RMM <- mget(RMM)
+RMM <- as.data.frame(RMM)
+
+# Squares Richness Estimator ####
+tabula_RSQ <- rep(1,70)
+for (i in 1:nrow(mite)){
+  tabula_RSQ[i] <- tabula::index_squares(as.numeric(mite[i,]))
+}
+divDyn_RSQ <- rep(1,70)
+for (i in 1:nrow(mite)){
+  divDyn_RSQ[i] <- divDyn::indices(as.matrix(mite[i,]),method = "squares")
+}
+ecodive_RSQ <- rep(1,70)
+for (i in 1:nrow(mite)){
+  ecodive_RSQ[i] <- ecodive::squares(mite[i,]) #12.178889
+}
+
+# Put all the values in a single dataframe
+RSQ <- ls(pattern = "_RSQ$")
+RSQ <- mget(RSQ)
+RSQ <- as.data.frame(RSQ)
+
 # Brillouin ####
 tabula_DBRI <- as.numeric(tabula::heterogeneity(mite,method = "brillouin"))
 abdiv_DBRI <- apply(mite, 1, abdiv::brillouin_d)
@@ -1289,4 +1598,31 @@ for (i in 1:nrow(mite)){
 EST <- ls(pattern = "_EST")
 EST <- mget(EST)
 EST <- as.data.frame(EST)
+
+# Save all the dataset one by one ####
+df_exclude <- c("mite","mite_long","mite_dist","mite_relat","mat_need")
+alpha_data <- Filter(is.data.frame,
+  mget(setdiff(ls(.GlobalEnv), df_exclude), envir = .GlobalEnv)
+)
+
+Map(function(df, nom) write.csv(df, paste0("data/alpha/",paste0(nom,"_all"), ".csv"), row.names = FALSE),
+    alpha_data,
+    names(alpha_data))
+
+# Combine all the dataset in only one
+alpha_combined <- do.call(cbind, alpha_data)
+colnames(alpha_combined) <- sub(".*\\.", "", colnames(alpha_combined))
+
+to_numeric_df <- function(df) {
+  df[] <- lapply(df, function(col) as.numeric(as.character(col)))
+  return(df)
+}
+alpha_combined <- to_numeric_df(alpha_combined)
+write.csv(alpha_combined,"data/alpha/combined_all.csv")
+
+# Same but with a long version
+alpha_combined_long <- pivot_longer(alpha_combined,cols = colnames(alpha_combined),names_to = "package_index",values_to = "value")
+alpha_combined_long <- alpha_combined_long |>
+  separate(package_index, into = c("package", "index"), sep = "_",extra = "merge")
+
 
