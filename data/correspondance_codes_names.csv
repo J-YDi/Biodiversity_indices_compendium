@@ -1,0 +1,71 @@
+﻿index;index_name
+RICH;Species richness
+D1SP;Simpson's reciprocal
+DBRI;Brillouin
+DFIS;Fisher's alpha
+DGLE;Gleason
+DGOO_1_1;Good m1 n1
+DGOO_1_2;Good m1 n2
+DGOO_1_3;Good m1 n3
+DGOO_2_1;Good m2 n1
+DGOO_2_2;Good m2 n2
+DGOO_2_3;Good m2 n3
+DGOO_3_1;Good m3 n1
+DGOO_3_2;Good m3 n2
+DGOO_3_3;Good m3 n3
+DINVSP;Simpson inverse
+DKO;Kothe
+DLMD;Log normal lambda
+DMC;McIntosh
+DMG;Margalef
+DMN;Menhinick
+DOD;Odum
+DQ;Q-statistic
+DRAO;Rao
+DSHA;Shannon
+DSP;Simpson
+EBP;Berger-Parker
+EBRI;Brillouin evenness
+EBU;Bulla
+ECAM;Camargo
+EEQ;NHC EQ
+EEVAR;NHC EVAR
+EGIN;Gini coefficient
+EGSP;Simpson's reciprocal E
+EHEI;Heip
+EHUL;Hulburt
+EHURE;Hurlbert PIE
+ELR;Ludwig-Reynolds
+EMC;McIntosh evenness
+EMN;McNaughton
+ENHC;NHC
+EPAT;Patten
+EPIE;Pielou
+ESHE;Sheldon
+ESP;Simpson evenness
+EST;Strong
+QHIL_0;Hill q=0
+QHIL_1;Hill q=1
+QHIL_2;Hill q=2
+QHIL_3;Hill q=3
+QHIL;Hill q=unknown
+QREN_0;Renyi q=0
+QREN_1;Renyi q=1
+QREN_2;Renyi q=2
+QREN_3;Renyi q=3
+QTSA_0;Tsallis q=0
+QTSA_1;Tsallis q=1
+QTSA_2;Tsallis q=2
+QTSA_3;Tsallis q=3
+RACE;ACE
+RBOO;Bootstrap estimator
+RC1;Chao 1
+RC1M;Chao 1 modified
+RCA2;Chao 2
+RHUR_2;Hurlbert D k=2
+RHUR_3;Hurlbert D k=3
+RICE;ICE
+RJA1;Jackknife 1
+RJA2;Jackknife 2
+RMM;Michaelis-Menten
+RSQ;Squares Richness Estimator

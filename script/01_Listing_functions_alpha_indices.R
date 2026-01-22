@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 01_Listing_functions_alpha_indices.r
-# Date               : 21/01/2025
+# Date               : 22/01/2025
 # Object             : Script to create dataset of values from functions that 
 #                      calculate alpha diversity indices
 # Authors            : Jean-Yves Dias
@@ -416,46 +416,46 @@ good_index <- function(p, m, n) {
   }
   return(sum(p^m * (-log(p))^n))
 }
-DGOO_1_1 <- rep(1,70)
+custom_DGOO_1_1 <- rep(1,70)
 for (i in 1:nrow(mite)){
-  DGOO_1_1[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],1,1)
+  custom_DGOO_1_1[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],1,1)
 }
-DGOO_1_2 <- rep(1,70)
+custom_DGOO_1_2 <- rep(1,70)
 for (i in 1:nrow(mite)){
-  DGOO_1_2[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],1,2)
-}
-
-DGOO_1_3 <- rep(1,70)
-for (i in 1:nrow(mite)){
-  DGOO_1_2[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],1,3)
+  custom_DGOO_1_2[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],1,2)
 }
 
-DGOO_2_1 <- rep(1,70)
+custom_DGOO_1_3 <- rep(1,70)
 for (i in 1:nrow(mite)){
-  DGOO_2_1[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],2,1)
-}
-DGOO_2_2 <- rep(1,70)
-for (i in 1:nrow(mite)){
-  DGOO_1_2[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],2,2)
+  custom_DGOO_1_2[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],1,3)
 }
 
-DGOO_2_3 <- rep(1,70)
+custom_DGOO_2_1 <- rep(1,70)
 for (i in 1:nrow(mite)){
-  DGOO_2_2[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],2,3)
+  custom_DGOO_2_1[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],2,1)
+}
+custom_DGOO_2_2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  custom_DGOO_1_2[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],2,2)
 }
 
-DGOO_3_1 <- rep(1,70)
+custom_DGOO_2_3 <- rep(1,70)
 for (i in 1:nrow(mite)){
-  DGOO_3_1[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],3,1)
-}
-DGOO_3_2 <- rep(1,70)
-for (i in 1:nrow(mite)){
-  DGOO_3_2[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],3,2)
+  custom_DGOO_2_2[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],2,3)
 }
 
-DGOO_3_3 <- rep(1,70)
+custom_DGOO_3_1 <- rep(1,70)
 for (i in 1:nrow(mite)){
-  DGOO_3_2[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],3,3)
+  custom_DGOO_3_1[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],3,1)
+}
+custom_DGOO_3_2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  custom_DGOO_3_2[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],3,2)
+}
+
+custom_DGOO_3_3 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  custom_DGOO_3_2[i] <- good_index(mite_relat[i, ][mite_relat[i, ] != 0],3,3)
 }
 
 # Put all the values in a single dataframe
@@ -781,10 +781,6 @@ untb_D1SP <- rep(1,70)
 for (i in 1:nrow(mite)){
   untb_D1SP[i] <- untb::simpson(mite[i,],with.replacement = F)#
 }
-DescTools_D1SP <- rep(1,70)
-for (i in 1:nrow(mite)){
-  DescTools_D1SP[i] <- DescTools::Gini(as.numeric(mite[i,]),na.rm = F)
-}
 adiv_D1SP <- adiv::speciesdiv(mite,method = "GiniSimpson")[,1]
 diverse_D1SP <- diverse::diversity(t(mite),type = "gini-simpson",category_row = T)[[1]]
 asbio_D1SP <- asbio::alpha.div(mite,"simp")
@@ -817,16 +813,12 @@ breakaway_D1SP <- rep(1,70)
 for (i in 1:nrow(mite)){
   breakaway_D1SP[i] <- breakaway::true_gini(mite_relat[i,]) #OK
 }
-concstats_2_D1SP <- rep(1,70)
-for (i in 1:nrow(mite)){
-  concstats_2_D1SP[i] <- concstats::concstats_gini(as.numeric(mite_relat[1,])) #faux
-}
 catsim_D1SP <- rep(1,70)
 for (i in 1:nrow(mite)){
   catsim_D1SP[i] <- catsim::gini(as.numeric(mite[i,])) # faux
 }
 ade4_D1SP <- ade4::divc(as.data.frame(t(mite)),dis = NULL)$diversity
-DescTools_2_D1SP <- DescTools::DivCoef(as.data.frame(t(mite)),dis = NULL)$diversity # 115
+DescTools_D1SP <- DescTools::DivCoef(as.data.frame(t(mite)),dis = NULL)$diversity # 115
 PCRA_D1SP <- as.numeric(PCRA::divHHI(mite_relat)) # 1-HHI = 1-Simpson = Gini-Simpson
 
 # Put all the values in a single dataframe
@@ -1599,13 +1591,20 @@ EST <- ls(pattern = "_EST")
 EST <- mget(EST)
 EST <- as.data.frame(EST)
 
+# Indicate species richness for next analysis
+custom_RICH <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  custom_RICH [i] <- sum(mite[i,] > 0)
+}
+custom_RICH <- as.data.frame(custom_RICH)
+
 # Save all the dataset one by one ####
 df_exclude <- c("mite","mite_long","mite_dist","mite_relat","mat_need")
 alpha_data <- Filter(is.data.frame,
   mget(setdiff(ls(.GlobalEnv), df_exclude), envir = .GlobalEnv)
 )
 
-Map(function(df, nom) write.csv(df, paste0("data/alpha/",paste0(nom,"_all"), ".csv"), row.names = FALSE),
+Map(function(df, nom) write.csv(df, paste0("data/alpha/",paste0("a",nom,"_all"), ".csv"), row.names = FALSE),
     alpha_data,
     names(alpha_data))
 
@@ -1618,11 +1617,24 @@ to_numeric_df <- function(df) {
   return(df)
 }
 alpha_combined <- to_numeric_df(alpha_combined)
-write.csv(alpha_combined,"data/alpha/combined_all.csv")
+write.csv(alpha_combined,"data/alpha/a_combined_all.csv",row.names = F)
 
 # Same but with a long version
-alpha_combined_long <- pivot_longer(alpha_combined,cols = colnames(alpha_combined),names_to = "package_index",values_to = "value")
+alpha_combined$Sample <- c(1:nrow(alpha_combined))
+alpha_combined_long <- pivot_longer(alpha_combined,cols = colnames(alpha_combined)[1:362],names_to = "package_index",values_to = "value")
 alpha_combined_long <- alpha_combined_long |>
   separate(package_index, into = c("package", "index"), sep = "_",extra = "merge")
+write.csv(alpha_combined_long,"data/alpha/a_combined_long_all.csv",row.names = F)
+
+################################################################################
+
+# Manipulate datasets
+correspondance_codes_names <- read_delim("data/correspondance_codes_names.csv", 
+                                         delim = ";", escape_double = FALSE, trim_ws = TRUE)
+
+data <- read_csv("data/alpha/a_combined_long_all.csv")
+
+data <- left_join(data,correspondance_codes_names)
+write.csv(data,"data/alpha/a_combined_long_all_withnames.csv",row.names = F)
 
 
