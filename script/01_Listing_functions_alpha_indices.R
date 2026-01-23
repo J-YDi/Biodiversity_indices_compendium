@@ -1160,12 +1160,6 @@ for (i in seq_len(nrow(mite))) {
     error = function(e) NA
   )
 }
-dyvDyn_EBP <- rep(1,70) 
-for (i in 1:nrow(mite)){
-  mite_long <- tidyr::pivot_longer(mite[i,],cols = colnames(mite)[1]:colnames(mite)[35],names_to = "Esp",values_to = "Value")
-  mite_long <- mite_long[1:35,]
-  dyvDyn_EBP[i] <- divDyn::indices(mite_long$Esp,mite_long$Value,method = "dominance")
-}
 ecodive_EBP <- ecodive::alpha_div(mite,metric="berger")
 
 wiqid_EBP <- rep(1,70) 
@@ -1448,11 +1442,11 @@ codyn_EEVAR <- rep(1,70)
 for (i in 1:nrow(mite)){
   mite_long <- tidyr::pivot_longer(mite[i,],cols = colnames(mite)[1]:colnames(mite)[35],names_to = "Esp",values_to = "Value")
   mite_long <- mite_long[1:35,]
-  codyn_EEVAR[i] <- codyn::community_structure(mite_long,abundance.var = "Value",metric = "Evar")$Evar # Ok mais variance divisé par n
+  codyn_EEVAR[i] <- codyn::community_structure(mite_long,abundance.var = "Value",metric = "Evar")$Evar 
   
 }
 
-adiv_EEVAR <- adiv::specieseve(mite,method = "SmithWilson")[,1] # OK S&W Evenness -> divisé par n-1
+adiv_EEVAR <- adiv::specieseve(mite,method = "SmithWilson")[,1]
 microbiome_EEVAR <- microbiome::evenness(t(mite), index = "evar")[,1]
 
 # Put all the values in a single dataframe
