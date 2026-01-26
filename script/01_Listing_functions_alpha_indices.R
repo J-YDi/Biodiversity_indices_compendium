@@ -120,6 +120,11 @@ for (i in 1:nrow(mite)){
 }
 biosampleR_RC1 <- biosampleR::calc_diversity_indices(mite)[6][,1] #29
 
+wiqid_RC1 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  wiqid_RC1[i] <- as.numeric(wiqid::richChao1(t(mite[i,]),correct = F))[1]
+}
+
 # Put all the values in a single dataframe
 RC1 <- ls(pattern = "_RC1$")
 RC1 <- mget(RC1)
@@ -129,7 +134,7 @@ RC1 <- as.data.frame(RC1)
 
 wiqid_RC1M <- rep(1,70)
 for (i in 1:nrow(mite)){
-  wiqid_RC1M[i] <- as.numeric(wiqid::richChao1(t(mite[i,])))[1]
+  wiqid_RC1M[i] <- as.numeric(wiqid::richChao1(t(mite[i,]),correct = F))[1]
 }
 ecodive_RC1M <- ecodive::chao1(mite) 
 BAT_RC1M <- BAT::alpha.estimate(mite)[,10]
@@ -263,7 +268,7 @@ divent_RJA1 <- rep(1,70)
 for (i in 1:nrow(mite)){
   divent_RJA1[i] <- divent::div_richness(as.numeric(t(mite[i,])),estimator = "jackknife")$diversity
 }
-tabula_RJA1 <- tabula::jackknife(tabula::heterogeneity(mite,method = "shannon"))[,1]
+tabula_RJA1 <- tabula::jackknife(tabula::heterogeneity(mite,method = "shannon"),f = summary)[,1]
 BiodiversityR_RJA1 <- rep(1,70)
 for (i in 1:nrow(mite)){
   BiodiversityR_RJA1[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "jack1",method = "each site"))
@@ -322,10 +327,6 @@ RJA2 <- as.data.frame(RJA2)
 wiqid_RMM <- rep(1,70)
 for (i in 1:nrow(mite)){
   wiqid_RMM[i] <- wiqid::richMM(t(mite[i,]))
-}
-sprex_RMM <- rep(1,70)
-for (i in 1:nrow(mite)){
-  sprex_RMM[i] <- sprex::Clench(as.numeric(mite[i,]))
 }
 
 # Put all the values in a single dataframe
@@ -966,36 +967,36 @@ for (i in 1:nrow(mite)){
 
 entropart_QHIL_0 <- rep(1,70) 
 for (i in 1:nrow(mite)){
-  entropart_QHIL_0[i] <- entropart::Diversity(as.numeric(mite[i,]),q=0)
+  entropart_QHIL_0[i] <- entropart::Diversity(as.numeric(mite[i,]),q=0,Correction = "None")
 }
 entropart_QHIL_1 <- rep(1,70) 
 for (i in 1:nrow(mite)){
-  entropart_QHIL_1[i] <- entropart::Diversity(as.numeric(mite[i,]),q=1)
+  entropart_QHIL_1[i] <- entropart::Diversity(as.numeric(mite[i,]),q=1,Correction = "None")
 }
 entropart_QHIL_2 <- rep(1,70) 
 for (i in 1:nrow(mite)){
-  entropart_QHIL_2[i] <- entropart::Diversity(as.numeric(mite[i,]),q=2)
+  entropart_QHIL_2[i] <- entropart::Diversity(as.numeric(mite[i,]),q=2,Correction = "None")
 }
 entropart_QHIL_3 <- rep(1,70) 
 for (i in 1:nrow(mite)){
-  entropart_QHIL_3[i] <- entropart::Diversity(as.numeric(mite[i,]),q=3)
+  entropart_QHIL_3[i] <- entropart::Diversity(as.numeric(mite[i,]),q=3,Correction = "None")
 }
 
 divent_QHIL_0 <- rep(1,70) 
 for (i in 1:nrow(mite)){
-  divent_QHIL_0[i] <- divent::div_hill(as.numeric(mite[i,]),q = 0)$diversity
+  divent_QHIL_0[i] <- divent::div_hill(as.numeric(mite[i,]),q = 0,probability_estimator = "naive")$diversity
 }
 divent_QHIL_1 <- rep(1,70) 
 for (i in 1:nrow(mite)){
-  divent_QHIL_1[i] <- divent::div_hill(as.numeric(mite[i,]),q = 1)$diversity
+  divent_QHIL_1[i] <- divent::div_hill(as.numeric(mite[i,]),q = 1,probability_estimator = "naive")$diversity
 }
 divent_QHIL_2 <- rep(1,70) 
 for (i in 1:nrow(mite)){
-  divent_QHIL_2[i] <- divent::div_hill(as.numeric(mite[i,]),q = 2)$diversity
+  divent_QHIL_2[i] <- divent::div_hill(as.numeric(mite[i,]),q = 2,probability_estimator = "naive")$diversity
 }
 divent_QHIL_3 <- rep(1,70) 
 for (i in 1:nrow(mite)){
-  divent_QHIL_3[i] <- divent::div_hill(as.numeric(mite[i,]),q = 3)$diversity
+  divent_QHIL_3[i] <- divent::div_hill(as.numeric(mite[i,]),q = 3,probability_estimator = "naive")$diversity
 }
 
 # Put all the values in a single dataframe
@@ -1029,19 +1030,19 @@ adiv_QTSA_3 <- adiv::divparam(mite,method = "tsallis",q=3)
 
 entropart_QTSA_0 <- rep(1,70) 
 for (i in 1:nrow(mite)){
-  entropart_QTSA_0[i] <- entropart::Tsallis(as.numeric(mite[i,]),q=0)
+  entropart_QTSA_0[i] <- entropart::Tsallis(as.numeric(mite[i,]),q=0,Correction = "None")
 }
 entropart_QTSA_1 <- rep(1,70) 
 for (i in 1:nrow(mite)){
-  entropart_QTSA_1[i] <- entropart::Tsallis(as.numeric(mite[i,]),q=1)
+  entropart_QTSA_1[i] <- entropart::Tsallis(as.numeric(mite[i,]),q=1,Correction = "None")
 }
 entropart_QTSA_2 <- rep(1,70) 
 for (i in 1:nrow(mite)){
-  entropart_QTSA_2[i] <- entropart::Tsallis(as.numeric(mite[i,]),q=2)
+  entropart_QTSA_2[i] <- entropart::Tsallis(as.numeric(mite[i,]),q=2,Correction = "None")
 }
 entropart_QTSA_3 <- rep(1,70) 
 for (i in 1:nrow(mite)){
-  entropart_QTSA_3[i] <- entropart::Tsallis(as.numeric(mite[i,]),q=3)
+  entropart_QTSA_3[i] <- entropart::Tsallis(as.numeric(mite[i,]),q=3,Correction = "None")
 }
 
 divent_QTSA_0 <- rep(1,70) 

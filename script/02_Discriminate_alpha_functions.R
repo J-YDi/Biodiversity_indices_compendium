@@ -32,115 +32,7 @@ loadpackages(packages_needed)
 
 data <- read_csv("data/alpha/a_combined_long_all.csv")
 
-
-Shannon <- data |>
-  filter(index == "DSHA") |>
-  pivot_wider(names_from = "package", values_from = "value") |>
-  select(-c(Sample, index)) |>
-  round(digits = 3) |>
-  t()
-
-Shannon_mat <- as.matrix(Shannon)
-Shannon_sc  <- scale(Shannon_mat)
-
-hc <- hclust(dist(Shannon_sc))
-dend <- as.dendrogram(hc)
-
-dend <- dendrapply(dend, function(n) {
-  if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
-  n
-})
-
-dend <- color_branches(dend, h = log1p(0.9))
-
-circos.clear()
-circos.par(track.margin = c(0.01, 0.01), gap.after = 2)  # ajustable
-circlize_dendrogram(
-  dend,
-  facing = "outside",            
-  labels_track_height = 0.18,   
-  dend_track_height   = 0.7
-)
-
-plot(dend,dLeaf = -0.01,horiz = T,xlim = c(2,0))
-
-dend <- dendrapply(dend, function(n) {
-  if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
-  n
-})
-dend <- set(dend, "branches_lwd", 4)
-
-# Ajuster les marges pour agrandir la zone des labels
-par(mar = c(4, 2, 2, 12))  # plus de place à droite
-
-# Plot avec plus de place pour les labels + axe compressé
-plot(
-  dend,
-  horiz = TRUE,
-  dLeaf = -0.01,   # augmente espace pour labels
-  xlim = c(1, 0), # réduit la zone du dendrogramme
-  axes = T      # enlève l'axe pour un rendu plus propre
-)
-
-corrplot(cor(t(Shannon),method = "pearson"),method = "shade",order = "alphabet",tl.col="black",na.label = " ",
-         col = c(rep("red",1000000), "green"),
-         addCoef.col = NULL,diag = F,cl.pos = "n",type = "full",addgrid.col = "black",addCoefasPercent = T
-)
-
-count_same_values_by_col <- function(df, digits = NULL, exclude_self = TRUE,treat_NA_as_value = FALSE) {
-  out <- lapply(df, function(col) {
-    g <- col
-    if (!is.null(digits) && is.numeric(g)) g <- round(g, digits)
-    
-    # taille du groupe (même valeur) pour chaque élément de la colonne
-    counts <- ave(seq_along(g), g, FUN = length)
-    
-    # gestion des NA si souhaitée
-    if (treat_NA_as_value) {
-      na_idx <- is.na(g)
-      if (any(na_idx)) counts[na_idx] <- sum(na_idx)
-    }
-    
-    # on ne compte pas la ligne elle-même si demandé
-    if (exclude_self) counts <- ifelse(is.na(counts), NA_integer_, counts - 1L)
-    
-    as.integer(counts)
-  })
-  
-  out <- as.data.frame(out, stringsAsFactors = FALSE)
-  rownames(out) <- rownames(df)
-  colnames(out) <- colnames(df)
-  out
-}
-
-Shannon_analysis <- count_same_values_by_col(as.data.frame(Shannon))
-Shannon_analysis <- Shannon_analysis/nrow(Shannon_analysis)
-Shannon_analysis$Percentage <- rowSums(Shannon_analysis)/ncol(Shannon_analysis)
-Shannon_analysis$Percentage <- Shannon_analysis$Percentage/max(Shannon_analysis$Percentage)
-Shannon_analysis$package <- rownames(Shannon_analysis)
-Shannon_analysis$Shannon <- Shannon_analysis$Percentage
-Shannon_analysis <- select(Shannon_analysis,package,Shannon)
-
-Shannon_analysis$Pielou <- 1 
-
-
-
-Shannon_analysis <- Shannon_analysis |> 
-  pivot_longer(cols = Shannon:Pielou, names_to = "Index", values_to = "value")
-
-ggplot(Shannon_analysis, aes(x = Index, y = package, fill = value)) +
-  geom_tile() +
-  scale_fill_gradient(low = "white", high = "darkgreen") +
-  scale_y_discrete(limits = rev(sort(unique(Shannon_analysis$package))))+
-  labs(x = "", y = "") +
-  theme(
-    axis.text.x = element_blank(),
-    axis.text.y = element_text(size = 10)
-  ) +
-  facet_wrap(~Index, scales = "free_x")
-
-# On recommence avec l'approche % d'accord entre les packages
-data <- read_csv("data/alpha/a_combined_long_all.csv")
+#__________________________Viz false values from packages_______________________####
 
 # On indique pas les fonctions custom car ce n'est pas le but du graphe
 data <- filter(data,package != "custom")
@@ -198,7 +90,8 @@ results <- map_dfr(unique(data$index), function(idx) {
     tibble(
       package = rownames(agreement),
       Percentage = rowSums(agreement) / ncol(agreement),
-      Index = idx
+      Index = idx,
+      maxi = max(Percentage)
     ) |>
       mutate(
         Percentage = ifelse(is.na(Percentage), 0, Percentage),
@@ -207,9 +100,17 @@ results <- map_dfr(unique(data$index), function(idx) {
   }
 })
 results <- results |>
+  mutate(Percentage = replace_na(Percentage, 0)) |>
+  group_by(Index) |>
   mutate(
-    Percentage = replace_na(Percentage, 0)
-  )
+    Percentage = ifelse(
+      n() > 1 & Percentage == 1 & sum(Percentage == 1) == 1,
+      0,
+      Percentage
+    )
+  ) |>
+  ungroup()
+
 
 
 results_E <- filter(results,startsWith(Index, "E"))
@@ -233,8 +134,8 @@ ggplot(results_E) +
     aes(label = scales::percent(Percentage, accuracy = 1)), 
     size = 2.5, na.rm = TRUE
   ) +
-  scale_fill_gradient(low = "red", high = "green", name = "Agreement (%)",
-                      na.value = "red") +
+  scale_fill_gradient(low = "darkorchid1", high = "gold", name = "Agreement (%)",
+                      na.value = "darkorchid1") +
   scale_y_discrete(limits = rev(sort(unique(results_E$package)))) +
   labs(x = "", y = "") +
   theme(
@@ -244,6 +145,7 @@ ggplot(results_E) +
     panel.background = NULL
   ) +
   facet_wrap(~Index, scales = "free_x", ncol = 50)
+ggsave('heatmap_alpha_E_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 900, width = 400, height = 200, units = 'mm')
 
 results_D <- filter(results,startsWith(Index, "D"))
 
@@ -266,8 +168,8 @@ ggplot(results_D) +
     aes(label = scales::percent(Percentage, accuracy = 1)), 
     size = 2.5, na.rm = TRUE
   ) +
-  scale_fill_gradient(low = "red", high = "green", name = "Agreement (%)",
-                      na.value = "red") +
+  scale_fill_gradient(low = "darkorchid1", high = "gold", name = "Agreement (%)",
+                      na.value = "darkorchid1") +
   scale_y_discrete(limits = rev(sort(unique(results_D$package)))) +
   labs(x = "", y = "") +
   theme(
@@ -277,6 +179,7 @@ ggplot(results_D) +
     panel.background = NULL
   ) +
   facet_wrap(~Index, scales = "free_x", ncol = 50)
+ggsave('heatmap_alpha_D_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 900, width = 400, height = 200, units = 'mm')
 
 results_R <- filter(results,startsWith(Index, "R"))
 
@@ -299,8 +202,8 @@ ggplot(results_R) +
     aes(label = scales::percent(Percentage, accuracy = 1)), 
     size = 2.5, na.rm = TRUE
   ) +
-  scale_fill_gradient(low = "red", high = "green", name = "Agreement (%)",
-                      na.value = "red") +
+  scale_fill_gradient(low = "darkorchid1", high = "gold", name = "Agreement (%)",
+                      na.value = "darkorchid1") +
   scale_y_discrete(limits = rev(sort(unique(results_R$package)))) +
   labs(x = "", y = "") +
   theme(
@@ -310,3 +213,42 @@ ggplot(results_R) +
     panel.background = NULL
   ) +
   facet_wrap(~Index, scales = "free_x", ncol = 50)
+ggsave('heatmap_alpha_R_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 900, width = 400, height = 200, units = 'mm')
+
+
+results_Q <- filter(results,startsWith(Index, "Q"))
+
+line_df_Q <- data.frame(
+  package = sort(unique(results_Q$package)),
+  col = rep(c("black", "grey70"), length.out = length(unique(results_Q$package)))
+)
+
+ggplot(results_Q) +
+  aes(x = Index, y = package, fill = Percentage) +
+  geom_segment(
+    data = line_df_Q,
+    aes(y = package, yend = package, x = -Inf, xend = Inf, color = col),
+    inherit.aes = FALSE,
+    linewidth = 0.3
+  ) +
+  scale_color_identity() +
+  geom_tile() +
+  geom_text(
+    aes(label = scales::percent(Percentage, accuracy = 1)), 
+    size = 2.5, na.rm = TRUE
+  ) +
+  scale_fill_gradient(low = "darkorchid1", high = "gold", name = "Agreement (%)",
+                      na.value = "darkorchid1") +
+  scale_y_discrete(limits = rev(sort(unique(results_Q$package)))) +
+  labs(x = "", y = "") +
+  theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_text(size = 10),
+    legend.position = "bottom",
+    panel.background = NULL
+  ) +
+  facet_wrap(~Index, scales = "free_x", ncol = 50)
+ggsave('heatmap_alpha_Q_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 900, width = 400, height = 200, units = 'mm')
+
+
+withNAorInf <- unique(select(filter(data,is.na(value) | value == Inf),-Sample))
