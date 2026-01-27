@@ -478,37 +478,31 @@ DKO <- mget(DKO)
 DKO <- as.data.frame(DKO)
 
 # Log normal lambda ####
-sads_DLMD <- rep(1,70)
+sads_RLMD <- rep(1,70)
 for (i in 1:nrow(mite)){
-  sads_DLMD[i] <- sads::fitsad(mite[i, ][mite[i, ] != 0],sad = "lnorm")@coef
+  sads_RLMD[i] <- sads::fitsad(mite[i, ][mite[i, ] != 0],sad = "lnorm")@coef
 }
-asbio_DLMD <- numeric(nrow(mite))
+asbio_RLMD <- numeric(nrow(mite))
 for (i in seq_len(nrow(mite))) {
-  asbio_DLMD[i] <- tryCatch(
+  asbio_RLMD[i] <- tryCatch(
     {
       as.numeric(
-        asbio::Preston.dist(
-          as.numeric(mite[i, ]),
-          plot = FALSE
-        )$Est.no.of.spp
+        asbio::Preston.dist(as.numeric(mite[i, ]),plot = FALSE)$Est.no.of.spp
       )
     },
     error = function(e) NA
   )
 }
-vegan_DLMD <- rep(1,70)
+vegan_RLMD <- rep(1,70)
 for (i in 1:nrow(mite)){
-  vegan_DLMD[i] <- vegan::veiledspec(vegan::prestonfit(mite[i,]))
+  vegan_RLMD[i] <- vegan::veiledspec(vegan::prestonfit(mite[i,]))
 }
-Compositional_DLMD <- rep(1,70)
-for (i in 1:nrow(mite)){
-  Compositional_DLMD[i] <- as.numeric(Compositional::alfa.tune(mite[i,])[1])
-} #FALSE
+
 
 # Put all the values in a single dataframe
-DLMD <- ls(pattern = "_DLMD$")
-DLMD <- mget(DLMD)
-DLMD <- as.data.frame(DLMD)
+RLMD <- ls(pattern = "_RLMD$")
+RLMD <- mget(RLMD)
+RLMD <- as.data.frame(RLMD)
 
 # Margalef ####
 abdiv_DMG <- apply(mite,1,abdiv::margalef)
@@ -592,9 +586,6 @@ DQ <- mget(DQ)
 DQ <- as.data.frame(DQ)
 
 # Rao ####
-chemodiv_DRAO <- chemodiv::calcDiv(mite,compDisMat = mite_dist, type = "RaoQ") 
-chemodiv_DRAO <- chemodiv_DRAO$RaoQ
-diverse_DRAO <- diverse::diversity(t(mite), type = "rao", category_row = TRUE, dis = mite_dist)[[1]] #FALSE
 BAT_DRAO <- BAT::rao(as.matrix(mite))[,1] 
 ade4_DRAO <- rep(1,70)
 for (i in 1:nrow(mite)){
@@ -634,10 +625,9 @@ asbio_DSHA <- asbio::alpha.div(mite,"shan")
 ecodive_DSHA <- ecodive::shannon(mite)
 microbiome_DSHA <- microbiome::diversity(t(mite), index = "shannon")$shannon
 chemodiv_DSHA <- chemodiv::calcDiv(mite,type = "Shannon")$Shannon # OK
-aqp_DSHA <- apply(mite, 1, aqp::shannonEntropy) # FALSE
-wiqid_DSHA <- apply(mite,1,wiqid::biodSimpson) # FALSE
+aqp_DSHA <- apply(mite_relat, 1, aqp::shannonEntropy) # FALSE
+wiqid_DSHA <- apply(mite,1,wiqid::biodShannon) # FALSE
 OTUtable_DSHA <- apply(mite, 1, OTUtable::shannon)
-aqp_DSHA <- apply(mite, 1, aqp::shannonEntropy) #FALSE
 DescTools_DSHA <- apply(mite, 1, DescTools::Entropy) #FALSE
 pgirmess_DSHA <- apply(mite, 1, pgirmess::shannon)[1,] #FALSE
 divent_DSHA <- apply(mite, 1, function(x) divent::ent_shannon(x, estimator = "naive")$entropy)  # OK
@@ -645,18 +635,17 @@ SpiecEasi_DSHA <- apply(mite, 1, SpiecEasi::shannon) #FALSE
 abdiv_DSHA <- apply(mite, 1, abdiv::shannon) #FALSE
 HardyWeinberg_DSHA <- apply(mite, 1, function(x) HardyWeinberg::shannon(x)$Hp)
 MCPAN_DSHA <- apply(mite, 1, function(x) MCPAN::estShannon(x)$estraw)
-entropart_DSHA <- apply(mite, 1, entropart::Shannon)
 wavethresh_DSHA <- apply(mite, 1, wavethresh::Shannon.entropy)
 codyn_DSHA <- as.numeric(t(as.data.frame(apply(mite, 1, function(x) codyn::community_diversity(
   data.frame(Value = x), abundance.var = "Value", metric = "Shannon")
 ))))
 benthos_DSHA <- rep(1,70)
 for (i in 1:nrow(mite)){
-  benthos_DSHA[i] <- benthos::shannon(taxon = names(mite[i,]), count = mite[i,])
+  benthos_DSHA[i] <- benthos::shannon(taxon = names(mite_relat[i,]), count = mite_relat[i,])
 }
 triversity_DSHA <- rep(1,70) 
 for (i in 1:nrow(mite)){
-  triversity_DSHA[i] <- triversity::get_diversity_from_distribution(mite_relat[i,])
+  triversity_DSHA[i] <- triversity::get_diversity_from_distribution(mite_relat[i,])[6]
 } #FALSE
 forestmangr_DSHA <- rep(1,70) 
 for (i in 1:nrow(mite)){
@@ -664,6 +653,11 @@ for (i in 1:nrow(mite)){
   mite_long <- mite_long[1:35,]
   forestmangr_DSHA[i] <- forestmangr::species_diversity(mite_long,species = "Esp",index = "H")
 }
+
+entropart_DSHA <- rep(1,70) 
+for (i in 1:nrow(mite)){
+  entropart_DSHA[i] <- entropart::Shannon(as.numeric(mite[i,]),Correction = "None")
+} #FALSE
 
 # Put all the values in a single dataframe
 DSHA <- ls(pattern = "_DSHA$")
@@ -693,10 +687,6 @@ for (i in seq_len(nrow(mite))) {
   )
 }
 
-wiqid_DSP <- rep(1,70)
-for (i in 1:nrow(mite)){
-  wiqid_DSP[i] <- wiqid::biodSimpson(abVec=as.numeric(mite[i,]))
-}#FALSE
 abdiv_DSP <- rep(1,70)
 for (i in 1:nrow(mite)){
   abdiv_DSP[i] <- abdiv::dominance(mite[i,])
@@ -764,7 +754,7 @@ for (i in 1:nrow(mite)){
 }
 abdiv_D1SP <- apply(mite,1,abdiv::simpson )
 ecodive_D1SP <- ecodive::simpson(mite)
-MCPAN_D1SP <- apply(mite,1,MCPAN::Simpson)
+MCPAN_D1SP <- apply(mite_relat,1,MCPAN::Simpson)
 entropart_D1SP <- rep(1,70)
 for (i in 1:nrow(mite)){
   entropart_D1SP[i] <- entropart::Simpson(as.numeric(mite[i,]),Correction = "None")
@@ -772,7 +762,7 @@ for (i in 1:nrow(mite)){
 BiodiversityR_D1SP <- BiodiversityR::diversityresult(mite,y=NULL,index="Simpson",method = "each site")$Simpson
 simboot_D1SP <- rep(1,70)
 for (i in 1:nrow(mite)){
-  simboot_D1SP[i] <- simboot::Simpson(mite[i,])
+  simboot_D1SP[i] <- simboot::Simpson(mite_relat[i,])
 }
 concstats_D1SP <- rep(1,70)
 for (i in 1:nrow(mite)){
@@ -788,7 +778,7 @@ asbio_D1SP <- asbio::alpha.div(mite,"simp")
 
 agricolae_D1SP <- rep(1,70)
 for (i in seq_len(nrow(mite))) {
-  asbio_D1SP[i] <- tryCatch(
+  agricolae_D1SP[i] <- tryCatch(
     {agricolae::index.bio(mite[i,],method = "Simpson.Div")$index},
     error = function(e) NA
   )
@@ -854,7 +844,10 @@ for (i in 1:nrow(mite)){
   mite_long <- mite_long[1:35,]
   codyn_DINVSP[i] <- codyn::community_diversity(mite_long,abundance.var = "Value",metric = "InverseSimpson")$InverseSimpson # OK
 }
-
+wiqid_DINVSP <- rep(1,70)
+for (i in 1:nrow(mite)){
+  wiqid_DINVSP[i] <- wiqid::biodSimpson(abVec=as.numeric(mite[i,]),correct = F)
+}#FALSE
 # Put all the values in a single dataframe
 DINVSP <- ls(pattern = "_DINVSP$")
 DINVSP <- mget(DINVSP)
@@ -902,13 +895,6 @@ for (i in 1:nrow(mite)){
 EntropyEstimation_QHIL_3 <- rep(1,70) 
 for (i in 1:nrow(mite)){
   EntropyEstimation_QHIL_3[i] <- EntropyEstimation::Hill.z(as.numeric(mite[i,]),r=3)
-}
-
-extremefit_QHIL <- rep(1,70) 
-for (i in 1:nrow(mite)){
-  mite_long <- tidyr::pivot_longer(mite[i,],cols = colnames(mite)[1]:colnames(mite)[35],names_to = "Esp",values_to = "Value")
-  mite_long <- mite_long[1:35,]
-  extremefit_QHIL[i] <- extremefit::hill(mite_long$Value,weights = rep(1,nrow(mite_long)),grid = mite_long$Value)$hill
 }
 
 BAT_QHIL_0 <- BAT::hill(mite,q=0)[,1]
@@ -1616,7 +1602,7 @@ write.csv(alpha_combined,"data/alpha/a_combined_all.csv",row.names = F)
 
 # Same but with a long version
 alpha_combined$Sample <- c(1:nrow(alpha_combined))
-alpha_combined_long <- pivot_longer(alpha_combined,cols = colnames(alpha_combined)[1:362],names_to = "package_index",values_to = "value")
+alpha_combined_long <- pivot_longer(alpha_combined,cols = colnames(alpha_combined)[1:358],names_to = "package_index",values_to = "value")
 alpha_combined_long <- alpha_combined_long |>
   separate(package_index, into = c("package", "index"), sep = "_",extra = "merge")
 write.csv(alpha_combined_long,"data/alpha/a_combined_long_all.csv",row.names = F)
