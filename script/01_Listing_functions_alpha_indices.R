@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 01_Listing_functions_alpha_indices.r
-# Date               : 22/01/2025
+# Date               : 27/01/2025
 # Object             : Script to create dataset of values from functions that 
 #                      calculate alpha diversity indices
 # Authors            : Jean-Yves Dias
@@ -1555,13 +1555,6 @@ ESP <- ls(pattern = "_ESP")
 ESP <- mget(ESP)
 ESP <- as.data.frame(ESP)
 
-# Gini Simpson Evenness ####
-adiv_EGSP <- adiv::specieseve(mite,method = "GiniSimpson")[,1] #Gini
-# Put all the values in a single dataframe
-EGSP <- ls(pattern = "_EGSP")
-EGSP <- mget(EGSP)
-EGSP <- as.data.frame(EGSP)
-
 # Strong ####
 abdiv_EST <- rep(1,70) 
 for (i in 1:nrow(mite)){
@@ -1618,4 +1611,31 @@ data <- read_csv("data/alpha/a_combined_long_all.csv")
 data <- left_join(data,correspondance_codes_names)
 write.csv(data,"data/alpha/a_combined_long_all_withnames.csv",row.names = F)
 
+################################################################################
+
+# Prepare data to have only good values per index ####
+data <- read_csv("data/alpha/a_combined_long_all.csv")
+data$selection <- paste0(data$index,"_",data$package)
+
+dataindex <- filter(data,selection %in% c("D1SP_vegan","DBRI_abdiv","DFIS_vegan",
+                                      "DINVSP_vegan","DMC_abdiv","DMG_abdiv",
+                                      "DMN_abdiv","DSHA_vegan",
+                                      "DSP_abdiv","EBP_abdiv","EBRI_tabula","EBU_BAT",
+                                      "EEVAR_adiv","EGIN_microbiome","EHEI_abdiv",
+                                      "EHURE_vegan","EMC_tabula","EMN_microbiome",
+                                      "EPIE_abdiv","ESP_tabula","EST_abdiv",
+                                      "QHIL_0_vegan","QHIL_1_vegan","QHIL_2_vegan","QHIL_3_vegan",
+                                      "QREN_0_vegan","QREN_1_vegan","QREN_2_vegan","QREN_3_vegan",
+                                      "QTSA_0_vegan","QTSA_1_vegan","QTSA_2_vegan","QTSA_3_vegan",
+                                      "RACE_vegan","RC1_vegan","RC1M_entropart","RCA2_tabula",
+                                      "RHUR_2_vegan","RHUR_3_vegan","RICE_tabula","RJA1_entropart",
+                                      "RJA2_wiqid","RSQ_tabula","RICH_custom"))
+dataindex <- dataindex |>
+  select(-c(package,selection)) 
+
+dataindex_wide <- dataindex|>
+  pivot_wider(names_from = index,values_from = value)
+
+write.csv(dataindex,"data/alpha/alpha_values_mite_long.csv",row.names = F)
+write.csv(dataindex_wide,"data/alpha/alpha_values_mite_wide.csv",row.names = F)
 

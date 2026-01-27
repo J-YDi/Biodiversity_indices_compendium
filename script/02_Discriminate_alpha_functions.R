@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 02_Discriminate_alpha_functions.r
-# Date               : 22/01/2025
+# Date               : 27/01/2025
 # Object             : Script to discrimate functions that return a false value
 #                      of alpha diverisity indices
 # Authors            : Jean-Yves Dias
