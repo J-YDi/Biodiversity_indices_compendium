@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 03_Alpha_index_analysis.r
-# Date               : 27/01/2025
+# Date               : 29/01/2025
 # Object             : Script to analyze alpha biodiversity index
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
@@ -23,7 +23,8 @@ loadpackages <- function(packages){
 
 packages_needed <- c("readr","dplyr","tidyr","stringr","dendextend","ggplot2",
                      "tidyverse","dendextend","circlize","corrplot","cowplot",
-                     "factoextra","FactoMineR","viridis","GGally","cluster")
+                     "factoextra","FactoMineR","viridis","GGally","cluster",
+                     "clValid","vegan","ggrepel")
 
 loadpackages(packages_needed)
 
@@ -211,12 +212,8 @@ corrplot(cor(data_pca),
          insig = "blank",sig.level = 0.05,p.mat = p.mat
 )
 
-#______________________Clusterings______________________________________________####
-
-hc <- hclust(dist(t(data_pca),method = "euclidean"),method = "ward")
-plot(hc)
-
-library(cluster)
+cordata <- cor(data_pca)
+dist_alpha <- as.data.frame(dist(1 - cordata))
 
 cluster_quality <- function(data, k_min = 2, k_max = 8,
                             indices = c("silhouette", "dunn", "elbow"),
@@ -280,6 +277,48 @@ cluster_quality <- function(data, k_min = 2, k_max = 8,
   invisible(NULL)
 }
 
+cluster_quality(dist_alpha, return_table = TRUE)
+
+nmds <- metaMDS(dist(t(data_pca)), k = 3, trymax = 999)
+
+scores_df <- as.data.frame(scores(nmds))  # x,y
+scores_df$Sample <- rownames(scores_df)
+
+clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 3)
+scores_df$Cluster <- factor(clusters)
+
+ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
+  geom_point(size = 3) +
+  geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
+  theme_minimal() +
+  theme(legend.position = "none")+
+  labs(title = NULL,
+       x = "NMDS1", y = "NMDS2",subtitle = paste("Stress:",round(nmds$stress,4)))+
+  scale_color_discrete(palette = c("red", "blue", "darkgreen", "orange","magenta"))
+
+nmds <- metaMDS(dist(t(data_pca)), k = 7, trymax = 999)
+
+scores_df <- as.data.frame(scores(nmds))  # x,y
+scores_df$Sample <- rownames(scores_df)
+
+clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 7)
+scores_df$Cluster <- factor(clusters)
+
+ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
+  geom_point(size = 3) +
+  geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
+  theme_minimal() +
+  theme(legend.position = "none")+
+  labs(title = NULL,
+       x = "NMDS1", y = "NMDS2",subtitle = paste("Stress:",round(nmds$stress,4)))+
+  scale_color_discrete(palette = c("red", "blue", "darkgreen", "orange","magenta"))
+
+#______________________Clusterings______________________________________________####
+
+hc <- hclust(dist(t(data_pca),method = "euclidean"),method = "ward")
+plot(hc)
+
+library(cluster)
 
 cluster_quality(data_pca, return_table = TRUE)
 k=3
@@ -325,7 +364,7 @@ dend <- dendrapply(dend, function(n) {
 dend <- color_branches(dend,k = k )
 dend <- color_labels(dend,k = k )
 dend <- set(dend, "branches_lwd", k)
-plot(dend, horiz = T,dLeaf = -0.1,axes=T)cl 
+plot(dend, horiz = T,dLeaf = -0.1,axes=T)
 
 # Kmeans
 
@@ -600,3 +639,362 @@ ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
   labs(title = NULL,
        x = "NMDS1", y = "NMDS2",subtitle = paste("Stress:",round(nmds$stress,4)))+
   scale_color_discrete(palette = c("red", "blue", "darkgreen", "orange","magenta"))
+
+
+
+# E group ####
+
+#________________________________________PCA____________________________________####
+data_pca <- select(data,names(data)[startsWith(names(data), "E")])
+PCA_results <- PCA(data_pca)
+PCA_results_t <- PCA(t(data_pca))
+
+fviz_screeplot(PCA_results) # Screeplot
+
+# PCA viz with colour arrows
+
+fviz_pca_var(PCA_results, axes = c(1, 2), repel = T ,col.var = "darkmagenta", legend = "none",title="", ggtheme = theme_minimal()) +
+  theme(
+    axis.title.x = element_text(size = 12),
+    axis.title.y = element_text(size = 12)
+  )
+
+#ggsave('PCA_1_V2.png', path = "output/graphs/networks/", dpi = 600, width = 100, height = 100, units = 'mm')
+
+fviz_contrib(PCA_results, choice = "var", axes = 1)
+fviz_contrib(PCA_results, choice = "var", axes = 2)
+
+corrplot(t(PCA_results$var$contrib),
+         is.corr = FALSE,
+         method = "pie",col = viridis(200),number.cex = 0.5)
+
+# To check for a spatial dissimilarity we check by see the individuals position by region
+fviz_pca_ind(PCA_results_t,addEllipses = F,repel = T,col.ind = "darkmagenta",
+             ,title="", ggtheme = theme_minimal(),legend = "none")
+
+#_______________________Correlations____________________________________________####
+ggpairs(data_pca)
+
+p.mat <- cor.mtest(data_pca)
+
+corrplot(cor(data_pca),
+         method = "shade",col = viridis(200),number.cex = 0.5,order = "alphabet",
+         addCoef.col = NULL,tl.col = "black",
+         diag = F,type = "full",addgrid.col = "black",addCoefasPercent = T,
+         insig = "blank",sig.level = 0.05,p.mat = p.mat
+)
+
+#______________________Clusterings______________________________________________####
+
+hc <- hclust(dist(t(data_pca),method = "euclidean"),method = "ward")
+plot(hc)
+
+cluster_quality(data_pca, return_table = TRUE)
+k=3
+clusters <- cutree(hc, k = k)
+cluster_cols <- c("red", "blue", "darkgreen", "orange")
+label_cols <- cluster_cols[clusters]
+dend <- as.dendrogram(hc)
+
+dend <- color_branches(dend,k = k )
+dend <- color_labels(dend,k = k )
+dend <- set(dend, "branches_lwd", 3)
+plot(dend, horiz = T,dLeaf = -0.1,axes=T)
+
+k=5
+clusters <- cutree(hc, k = k)
+cluster_cols <- c("red", "blue", "darkgreen", "orange")
+label_cols <- cluster_cols[clusters]
+dend <- as.dendrogram(hc)
+
+dend <- color_branches(dend,k = k )
+dend <- color_labels(dend,k = k )
+dend <- set(dend, "branches_lwd", 3)
+plot(dend, horiz = T,dLeaf = -0.1,axes=T)
+
+k=6
+clusters <- cutree(hc, k = k)
+cluster_cols <- c("red", "blue", "darkgreen", "orange")
+label_cols <- cluster_cols[clusters]
+dend <- as.dendrogram(hc)
+
+dend <- color_branches(dend,k = k )
+dend <- color_labels(dend,k = k )
+dend <- set(dend, "branches_lwd", 3)
+plot(dend, horiz = T,dLeaf = -0.1,axes=T)
+
+k=4
+clusters <- cutree(hc, k = k)
+cluster_cols <- c("red", "blue", "darkgreen", "orange")
+label_cols <- cluster_cols[clusters]
+dend <- as.dendrogram(hc)
+
+dend <- color_branches(dend,k = k )
+dend <- color_labels(dend,k = k )
+dend <- set(dend, "branches_lwd", 3)
+plot(dend, horiz = T,dLeaf = -0.1,axes=T)
+
+# Kmeans
+
+km <- kmeans(x=scale(t(data_pca)),centers = 3,nstart = 100)
+fviz_cluster(km, data = t(data_pca),
+             palette = c("red", "blue", "darkgreen", "orange"),
+             legend = "none",ellipse=F,repel = T,
+             ggtheme = theme_bw()
+)
+
+km <- kmeans(x=scale(t(data_pca)),centers = 4,nstart = 100)
+fviz_cluster(km, data = t(data_pca),
+             palette = c("red", "blue", "darkgreen", "orange"),
+             legend = "none",ellipse=F,repel = T,
+             ggtheme = theme_bw()
+)
+
+km <- kmeans(x=scale(t(data_pca)),centers = 5,nstart = 100)
+fviz_cluster(km, data = t(data_pca),
+             palette = c("red", "blue", "darkgreen", "orange","magenta"),
+             legend = "none",ellipse=F,repel = T,
+             ggtheme = theme_bw()
+)
+
+km <- kmeans(x=scale(t(data_pca)),centers = 6,nstart = 100)
+fviz_cluster(km, data = t(data_pca),
+             palette = c("red", "blue", "darkgreen", "orange","magenta","green"),
+             legend = "none",ellipse=F,repel = T,
+             ggtheme = theme_bw()
+)
+
+# NMDS 
+k=3
+nmds <- metaMDS(dist(t(data_pca)), k = k, trymax = 999)
+
+scores_df <- as.data.frame(scores(nmds))  # x,y
+scores_df$Sample <- rownames(scores_df)
+
+clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = k)
+scores_df$Cluster <- factor(clusters)
+
+ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
+  geom_point(size = 3) +
+  geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
+  theme_minimal() +
+  theme(legend.position = "none")+
+  labs(title = NULL,
+       x = "NMDS1", y = "NMDS2",subtitle = paste("Stress:",round(nmds$stress,4)))+
+  scale_color_discrete(palette = c("red", "blue", "darkgreen", "orange","magenta"))
+
+k=4
+nmds <- metaMDS(dist(t(data_pca)), k = k, trymax = 999)
+
+scores_df <- as.data.frame(scores(nmds))  # x,y
+scores_df$Sample <- rownames(scores_df)
+
+clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = k)
+scores_df$Cluster <- factor(clusters)
+
+ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
+  geom_point(size = 3) +
+  geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
+  theme_minimal() +
+  theme(legend.position = "none")+
+  labs(title = NULL,
+       x = "NMDS1", y = "NMDS2",subtitle = paste("Stress:",round(nmds$stress,4)))+
+  scale_color_discrete(palette = c("red", "blue", "darkgreen", "orange","magenta"))
+
+k=5
+nmds <- metaMDS(dist(t(data_pca)), k = k, trymax = 999)
+
+scores_df <- as.data.frame(scores(nmds))  # x,y
+scores_df$Sample <- rownames(scores_df)
+
+clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = k)
+scores_df$Cluster <- factor(clusters)
+
+ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
+  geom_point(size = 3) +
+  geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
+  theme_minimal() +
+  theme(legend.position = "none")+
+  labs(title = NULL,
+       x = "NMDS1", y = "NMDS2",subtitle = paste("Stress:",round(nmds$stress,4)))+
+  scale_color_discrete(palette = c("red", "blue", "darkgreen", "orange","magenta"))
+
+k=6
+nmds <- metaMDS(dist(t(data_pca)), k = k, trymax = 999)
+
+scores_df <- as.data.frame(scores(nmds))  # x,y
+scores_df$Sample <- rownames(scores_df)
+
+clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = k)
+scores_df$Cluster <- factor(clusters)
+
+ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
+  geom_point(size = 3) +
+  geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
+  theme_minimal() +
+  theme(legend.position = "none")+
+  labs(title = NULL,
+       x = "NMDS1", y = "NMDS2",subtitle = paste("Stress:",round(nmds$stress,4)))+
+  scale_color_discrete(palette = c("red", "blue", "darkgreen", "orange","magenta","green"))
+
+
+# Q group ####
+
+#________________________________________PCA____________________________________####
+data_pca <- select(data,names(data)[startsWith(names(data), "Q")])
+PCA_results <- PCA(data_pca)
+PCA_results_t <- PCA(t(data_pca))
+
+fviz_screeplot(PCA_results) # Screeplot
+
+# PCA viz with colour arrows
+
+fviz_pca_var(PCA_results, axes = c(1, 2), repel = T ,col.var = "darkgreen", legend = "none",title="", ggtheme = theme_minimal()) +
+  theme(
+    axis.title.x = element_text(size = 12),
+    axis.title.y = element_text(size = 12)
+  )
+
+#ggsave('PCA_1_V2.png', path = "output/graphs/networks/", dpi = 600, width = 100, height = 100, units = 'mm')
+
+fviz_contrib(PCA_results, choice = "var", axes = 1)
+fviz_contrib(PCA_results, choice = "var", axes = 2)
+
+corrplot(t(PCA_results$var$contrib),
+         is.corr = FALSE,
+         method = "pie",col = viridis(200),number.cex = 0.5)
+
+# To check for a spatial dissimilarity we check by see the individuals position by region
+fviz_pca_ind(PCA_results_t,addEllipses = F,repel = T,col.ind = "darkgreen",
+             ,title="", ggtheme = theme_minimal(),legend = "none")
+
+#_______________________Correlations____________________________________________####
+ggpairs(data_pca)
+
+p.mat <- cor.mtest(data_pca)
+
+corrplot(cor(data_pca),
+         method = "shade",col = viridis(200),number.cex = 0.5,order = "alphabet",
+         addCoef.col = NULL,tl.col = "black",
+         diag = F,type = "full",addgrid.col = "black",addCoefasPercent = T,
+         insig = "blank",sig.level = 0.05,p.mat = p.mat
+)
+
+#______________________Clusterings______________________________________________####
+
+hc <- hclust(dist(t(data_pca),method = "euclidean"),method = "ward")
+plot(hc)
+
+cluster_quality(data_pca, return_table = TRUE)
+k=3
+clusters <- cutree(hc, k = k)
+cluster_cols <- c("red", "blue", "darkgreen", "orange")
+label_cols <- cluster_cols[clusters]
+dend <- as.dendrogram(hc)
+
+dend <- color_branches(dend,k = k )
+dend <- color_labels(dend,k = k )
+dend <- set(dend, "branches_lwd", 3)
+plot(dend, horiz = T,dLeaf = -0.1,axes=T)
+
+k=7
+clusters <- cutree(hc, k = k)
+cluster_cols <- c("red", "blue", "darkgreen", "orange")
+label_cols <- cluster_cols[clusters]
+dend <- as.dendrogram(hc)
+
+dend <- color_branches(dend,k = k )
+dend <- color_labels(dend,k = k )
+dend <- set(dend, "branches_lwd", 3)
+plot(dend, horiz = T,dLeaf = -0.1,axes=T)
+
+k=5
+clusters <- cutree(hc, k = k)
+cluster_cols <- c("red", "blue", "darkgreen", "orange")
+label_cols <- cluster_cols[clusters]
+dend <- as.dendrogram(hc)
+
+dend <- color_branches(dend,k = k )
+dend <- color_labels(dend,k = k )
+dend <- set(dend, "branches_lwd", 3)
+plot(dend, horiz = T,dLeaf = -0.1,axes=T)
+
+
+# Kmeans
+
+km <- kmeans(x=scale(t(data_pca)),centers = 3,nstart = 100)
+fviz_cluster(km, data = t(data_pca),
+             palette = c("red", "blue", "darkgreen", "orange"),
+             legend = "none",ellipse=F,repel = T,
+             ggtheme = theme_bw()
+)
+
+km <- kmeans(x=scale(t(data_pca)),centers = 7,nstart = 100)
+fviz_cluster(km, data = t(data_pca),
+             palette = c("red", "blue", "darkgreen", "orange","magenta","green","black"),
+             legend = "none",ellipse=F,repel = T,
+             ggtheme = theme_bw()
+)
+
+km <- kmeans(x=scale(t(data_pca)),centers = 5,nstart = 100)
+fviz_cluster(km, data = t(data_pca),
+             palette = c("red", "blue", "darkgreen", "orange","magenta"),
+             legend = "none",ellipse=F,repel = T,
+             ggtheme = theme_bw()
+)
+
+# NMDS 
+k=3
+nmds <- metaMDS(dist(t(data_pca)), k = k, trymax = 999)
+
+scores_df <- as.data.frame(scores(nmds))  # x,y
+scores_df$Sample <- rownames(scores_df)
+
+clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = k)
+scores_df$Cluster <- factor(clusters)
+
+ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
+  geom_point(size = 3) +
+  geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
+  theme_minimal() +
+  theme(legend.position = "none")+
+  labs(title = NULL,
+       x = "NMDS1", y = "NMDS2",subtitle = paste("Stress:",round(nmds$stress,4)))+
+  scale_color_discrete(palette = c("red", "blue", "darkgreen", "orange","magenta"))
+
+k=5
+nmds <- metaMDS(dist(t(data_pca)), k = k, trymax = 999)
+
+scores_df <- as.data.frame(scores(nmds))  # x,y
+scores_df$Sample <- rownames(scores_df)
+
+clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = k)
+scores_df$Cluster <- factor(clusters)
+
+ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
+  geom_point(size = 3) +
+  geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
+  theme_minimal() +
+  theme(legend.position = "none")+
+  labs(title = NULL,
+       x = "NMDS1", y = "NMDS2",subtitle = paste("Stress:",round(nmds$stress,4)))+
+  scale_color_discrete(palette = c("red", "blue", "darkgreen", "orange","magenta"))
+
+k=7
+nmds <- metaMDS(dist(t(data_pca)), k = k, trymax = 999)
+
+scores_df <- as.data.frame(scores(nmds))  # x,y
+scores_df$Sample <- rownames(scores_df)
+
+clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = k)
+scores_df$Cluster <- factor(clusters)
+
+ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
+  geom_point(size = 3) +
+  geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
+  theme_minimal() +
+  theme(legend.position = "none")+
+  labs(title = NULL,
+       x = "NMDS1", y = "NMDS2",subtitle = paste("Stress:",round(nmds$stress,4)))+
+  scale_color_discrete(palette = c("red", "blue", "darkgreen", "orange","magenta","green","black"))
+

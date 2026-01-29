@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 02_Discriminate_alpha_functions.r
-# Date               : 27/01/2025
+# Date               : 29/01/2025
 # Object             : Script to discrimate functions that return a false value
 #                      of alpha diverisity indices
 # Authors            : Jean-Yves Dias
@@ -144,7 +144,10 @@ ggplot(results_E) +
     legend.position = "bottom",
     panel.background = NULL
   ) +
-  facet_wrap(~Index, scales = "free_x", ncol = 50)
+  facet_wrap(~Index, scales = "free_x", ncol = 50)+
+  theme(strip.text = element_text(face = "bold", color = "white",
+                                  size = 10),
+        strip.background = element_rect(fill = "darkmagenta"))
 ggsave('heatmap_alpha_E_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 900, width = 400, height = 200, units = 'mm')
 
 results_D <- filter(results,startsWith(Index, "D"))
@@ -178,7 +181,10 @@ ggplot(results_D) +
     legend.position = "bottom",
     panel.background = NULL
   ) +
-  facet_wrap(~Index, scales = "free_x", ncol = 50)
+  facet_wrap(~Index, scales = "free_x", ncol = 50)+
+  theme(strip.text = element_text(face = "bold", color = "white",
+                                  size = 10),
+        strip.background = element_rect(fill = "darkblue"))
 ggsave('heatmap_alpha_D_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 900, width = 400, height = 200, units = 'mm')
 
 results_R <- filter(results,startsWith(Index, "R"))
@@ -212,7 +218,10 @@ ggplot(results_R) +
     legend.position = "bottom",
     panel.background = NULL
   ) +
-  facet_wrap(~Index, scales = "free_x", ncol = 50)
+  facet_wrap(~Index, scales = "free_x", ncol = 50)+
+  theme(strip.text = element_text(face = "bold", color = "white",
+                                  size = 10),
+        strip.background = element_rect(fill = "darkgoldenrod4"))
 ggsave('heatmap_alpha_R_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 900, width = 400, height = 200, units = 'mm')
 
 
@@ -247,7 +256,10 @@ ggplot(results_Q) +
     legend.position = "bottom",
     panel.background = NULL
   ) +
-  facet_wrap(~Index, scales = "free_x", ncol = 50)
+  facet_wrap(~Index, scales = "free_x", ncol = 50)+
+  theme(strip.text = element_text(face = "bold", color = "white",
+                                  size = 10),
+        strip.background = element_rect(fill = "darkgreen"))
 ggsave('heatmap_alpha_Q_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 900, width = 400, height = 200, units = 'mm')
 
 
