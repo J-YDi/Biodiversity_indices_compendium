@@ -973,20 +973,6 @@ NST::beta.g(x12,dist.method = "raup") #0.002291751
 
 
 
-#### Binomial ####--------------------------------------------------------------
-
-vegan::vegdist(x11,method = "binomial") # 11.30918
-vegan::vegdist(x11,method = "binomial",binary = T) #7.624619
-pctax::mat_dist(t((x11)),method = "binomial") # 11.30918
-
-abdiv::binomial_deviance(as.numeric(x1),as.numeric(x1)) # 11.30918
-
-coda.base::dist(x12,"binary") #0.333333 ne sait pas a quoi correspond
-
-NST::beta.g(x11,dist.method = "binomial") #11.30918
-
-#### Binomial co-occurence assessment ####--------------------------------------
-?tabula::index_binomial(as.numeric(x1),as.numeric(x1)) #1.503646
 
 #### Chao ####------------------------------------------------------------------
 
@@ -1138,24 +1124,6 @@ philentropy::hellinger(as.numeric(x1),as.numeric(x2)) #NA
 
 Rfast::Dist(x12,method = "hellinger") #1152.608
 Rfast::Dist(x12,method = "hellinger",square = T) #20.18684
-
-
-#### Aitchison ####-------------------------------------------------------------
-
-vegan::vegdist(x12,method = "aitchison") # marche pas
-pctax::mat_dist(t((x12)),method = "aitchison") # marche pas
-
-?vegan::vegdist(x12,method = "robust.aitchison") #10.3258
-vegan::vegdist(x11,method = "robust.aitchison",binary = T) #2.645751
-pctax::mat_dist(t((x12)),method = "robust.aitchison") #10.3258
-
-?ecodive::aitchison(x12) # 10.68875
-
-coda.base::dist(x12,"aitchison")#NA
-
-robCompositions::aDist(x1_pos,x2_pos) #NA
-
-QFASA::AIT.dist(x1_pos,x2_pos) #NA
 
 #### Ochiai ####----------------------------------------------------------------
 
@@ -1363,15 +1331,6 @@ BAT::beta(x12,func = "sorensen",abund = F)$Bgain #0.07272727
 ?BAT::beta(x12,func = "sorensen",abund = F)$Bloss #0.1272727
 BAT::beta(x12_pa,func = "sorensen",abund = T)$Bgain #0.2672327
 BAT::beta(x12_pa,func = "sorensen",abund = T)$Bloss #0.2637694
-
-#### Bhattacharyya distance ####
-ecodive::bhattacharyya(x11,rescale = F) #-4.223818 
-proxy::dist(x11,method = "Bhjattacharyya") #6.514023 le bon car = 0 si identique
-philentropy::bhattacharyya(as.numeric(x1),as.numeric(x1)) #-4.223818
-EnvNJ::metrics(t(x11),method = "bhattacharyya") #0.2705261
-Rfast::Dist(x11,method = "bhattacharyya") #-4.223818
-ICGE::dbhatta(x11) #NA
-
 
 ### Autres beta ####------------------------------------------------------------
 ?ecodist::distance(x12,method = "difference") # 0.12
@@ -1711,13 +1670,6 @@ MultBiplotR::BinaryDistances(as.matrix(x12_pa),coefficient = 15) #0.45542
 
 PERMANOVA::DistBinary(x12_pa,coefficient = 15,transformation = 1)$D #0.7925926
 
-#### Brainerd-Robinson ####
-?tabula::similarity(x11,method = "brainerd") #93.60678
-tabula::index_brainerd(as.numeric(x1),as.numeric(x1)) #93.6067
-
-brsim::brsim(x12)$BR.similarity.matrix
-
-
 #### Autres turnover ####
 tabula::turnover(x12,"whittaker")
 tabula::turnover(x12,"cody")
@@ -1814,13 +1766,6 @@ cor(t(x1),t(x2),method = "kendall") #0.563432
 fAssets::kendallDist(t(x12)) #0.436568
 
 analogue::distance(x1,x2,method = "kendall") #95.06
-
-#### Anderberg ####
-?MultBiplotR::BinaryDistances(as.matrix(test_pa),coefficient = 5) #0.7071068 sim
-MultBiplotR::BinaryDistances(as.matrix(test_pa),coefficient = 11) #0.5125381 sim
-
-PERMANOVA::DistBinary(test_pa,coefficient = 5,transformation = 1)$D #0.5 dsim
-?PERMANOVA::DistBinary(test_pa,coefficient = 11,transformation = 1)$D #0.7373047 dsim
 
 ### Kullback Leibler 
 Rfast::Dist(x12,method = "kullback_leibler") #172.0308 # non coherent avec formule mais correspond avec Jeffreys
