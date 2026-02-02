@@ -248,62 +248,6 @@ abdiv::rms_distance(as.numeric(x11_pa[1,]),as.numeric(x11_pa[2,])) #6.086561
 
 ?EnvNJ::metrics(t(x11),method = "avg") #64.07 surement pas normalisé
 
-#### Bray-Curtis distance ####--------------------------------------------------
-
-ecodist::distance(x11,method = "bray-curtis") #0.5310021
-ecodist::bcdist(x11) # 0.5310021
-vegan::vegdist(x11,method = "bray") #0.5310021
-
-provenance::bray.diss(x1,x1) #0.5310021
-
-otuSummary::calc_bc(x11) #0.5310021
-
-vegan::vegdist(x11,method = "bray",binary = T) #0.2
-
-analogue::distance(x1,x1,method = "bray") #0.5310021
-
-pctax::mat_dist(t((x12)),method = "bray") #0.5310021
-
-bioregion::dissimilarity(as.matrix(x12),metric = "Bray") #0.5310021
-
-bioregion::dissimilarity(as.matrix(x12),metric = "Brayturn") #0.5293722
-
-fAssets::braycurtisDist(t(x12)) # 0.5310021
-
-vegan::designdist(x12,method = "(A+B-2*J)/(A+B)",terms = "minimum") # 0.5310021
-
-ecodive::bray(x12,rescale = F) #0.5310021
-
-abdiv::bray_curtis(as.numeric(x1),as.numeric(x2)) #0.5310021
-
-tabula::index_bray(as.numeric(x1),as.numeric(x1)) #0.4689979
-
-tabula::similarity(x12,method = "bray") #0.4689979
-
-diverse::dis_entities(t(x12),method = "Bray",category_row = T)[1,2] #marche pas
-
-benthos::bray_curtis(x1,x2) #0.5310021
-
-chemodiv::sampDis(x12,type = "BrayCurtis")$BrayCurtis[1,2] ##0.5310021
-
-wiqid::distBrayCurtis(x1,x2) ##0.5310021
-
-fossil::bray.curtis(x1,x1) #0.4689979
-
-proxy::dist(x12,method = "Bray") #0.5310021
-
-labdsv::dsvdis(x12, index = "bray/curtis") #0.5310021
-
-rnndescent::brute_force_knn(varespec,1,metric = "braycurtis")
-
-PERMANOVA::DistContinuous(x12,coef = 8)$D #0.5310021
-
-ClusterR::distance_matrix(x12,method = "braycurtis") #0.5310021
-
-provenance::bray.diss(x1,x2) #0.5310021
-
-NST::beta.g(x12,dist.method = "bray") #0.5310021
-
 #### Manhattan distance ####----------------------------------------------------
 ecodist::distance(x12,method = "manhattan") #95.06
 dist(x12,method = "manhattan") #95.06
@@ -749,65 +693,7 @@ NST::beta.g(x12,dist.method = "gower") #0.7045455
 NST::beta.g(x12,dist.method = "altGower") #2.880606
 
 NST::beta.g(x12,dist.method = "mGower") #0.5731683 modif par Andersen et al. 2006
-#### Canberra ####--------------------------------------------------------------
-dist(x11,method = "canberra") #27.50188
-vegan::vegdist(x12,method = "canberra") #0.6250428  
-# Canberra index is divided by the number of variables in vegdist, but not in dist. So these differ by a constant multiplier, and the alternative in vegdist is in range (0,1).
-vegan::vegdist(x11,method = "canberra",binary = T) #0.3333333
 
-pctax::mat_dist(t((x12)),method = "canberra") #0.6250428
-
-ecodive::canberra(x12,rescale = F) #20.62641
-
-mgc::mgc.distance(x12,method = "canberra") #27.50188
-
-LearnClust::canberradistance(as.numeric(x1),as.numeric(x2)) #1.068272
-
-ChemoSpecUtils::rowDist(as.matrix(x12),method = "canberra") #27.50188
-
-adespatial::beta.div(x12,method = "canberra",save.D = T)$D #0.6250428
-
-fAssets::canberraDist(t(x12)) #27.50188
-
-abdiv::canberra(as.numeric(x1),as.numeric(x1)) #20.62641
-
-diverse::dis_entities(t(x12),method = "Canberra",category_row = T)[1,2] #27.50188
-
-proxy::dist(x12,method = "Canberra") #27.50188
-
-proxyC::dist(as.matrix(x12),method = "canberra") ##20.62641
-
-BoutrosLab.plotting.general::dist(x12,method = "canberra") #27.50188
-
-phm::canberra(as.numeric(x1),as.numeric(x2)) #20.62641
-
-amap::Dist(x12,method = "canberra") #27.50188
-
-PERMANOVA::DistContinuous(x12,coef = 7)$D #NA
-
-Mercator::binaryDistance(t(x12),metric = "canberra") #13.75094
-
-dynutils::calculate_distance(x12,method = "canberra") #20.62641
-
-philentropy::canberra(as.numeric(x1),as.numeric(x2)) #20.62641
-
-EnvNJ::metrics(t(x12),method = "canberra") #27.50188
-
-Rfast::Dist(x12,method = "canberra") #NA
-
-Rlof::distmc(x12,method = "canberra") #27.50188
-
-ClusterR::distance_matrix(x12,method = "canberra") #31.62625
-
-rdist::rdist(x12,metric = "canberra") #NA
-
-coda.base::dist(x12,"canberra") #27.50188
-
-NST::beta.g(x12,dist.method = "canberra") #0.6250428 correspond pas
-
-fda.usc::metric.dist(x12,method = "canberra") #27.50188
-
-flexclust::dist2(x1,x2,method = "canberra") #27.50188
 #### Minkowski ####-------------------------------------------------------------
 dist(x12,method = "minkowski",p=2) #40.37368
 
@@ -1502,12 +1388,6 @@ print(adespatial::dist.ldc(x12,method = "wishart"))#0.6569256
 
 
 wiqid::distSimRatio(x1,x2) # Similarity ratio 0.6569256
-
-#### Percentage difference ####
-adespatial::beta.div(x12,method = "percentdiff",save.D = T)$D #0.5310021
-
-print(adespatial::dist.ldc(x12,method = "percentdiff"))
-
 #### Permet de calculer BDtot, SCBD, LCBD, en fonction de l'indice choisi ####
 adespatial::beta.div(x12,method = "",save.D = T)
 
@@ -1690,11 +1570,6 @@ CommEcol::dis.goodall(x12,p.simi = "steinhaus",approach = "chisquare") #1
 
 #### Preston's coefficient of faunal dissimilarity ####
 ?wiqid::distPreston(x1,x1) #0.2568745
-
-#### Braun Blanquet ####
-?fossil::braun.blanquet(x1,x2) #0.7586207
-
-?proxy::dist(test,method = "Braun-Blanquet") #0.2413793
 
 #### Roberts ####
 ?labdsv::dsvdis(x11, index = "roberts") #0.6496285
