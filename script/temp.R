@@ -109,115 +109,6 @@ x1int <- as.integer(varespec[1,])
 x2int <- as.integer(varespec[2,])
 x12int <- rbind(x1int,x2int)
 
-#### Euclidean distance ####----------------------------------------------------
-
-ecodist::distance(x12,method = "euclidean") #40.37368
-dist(x12,method = "euclidean") #40.37368
-vegan::vegdist(x12,method = "euclidean") # 40.37368
-
-epca::dist.matrix(as.matrix(x1),as.matrix(x2),method = "euclidean") #marche pas contraignant
-
-RobustGaSP::euclidean_distance(as.numeric(x1),as.numeric(x2)) # sortie bizarre
-
-cluster::daisy(x12,metric = "euclidean") # 40.37368
-
-mgc::mgc.distance(x12) #40.37368
-
-distances::distances(x12) #40.37368
-
-analogue::distance(x1,x2,method = "euclidean") # 40.37368
-
-LearnClust::edistance(as.numeric(x1),as.numeric(x2)) #10.96
-
-comparator::Euclidean()(as.numeric(x1),as.numeric(x2)) # 40.37368
-
-SNFtool::dist2(as.numeric(x1),as.numeric(x2)) # non fonctionnel
-
-hmsr::euclidean_distance(as.numeric(x1),as.numeric(x2)) #40.37368
-
-ldt::s.distance(t(x12),distance = "euclidean") # 40.37368
-
-ChemoSpecUtils::rowDist(x12,method = "euclidean") # 40.37368
-
-fAssets::euclideanDist(t(x12)) #40.37368
-
-vegan::vegdist(x12,method = "euclidean",binary = T) # 3.316625
-
-ecodive::euclidean(x12,rescale = F) #40.37368
-
-proxyC::dist(as.matrix(x12),method = "euclidean") #40.37368
-
-adespatial::beta.div(x12,method = "euclidean",save.D = T)$D #40.37368
-print(adespatial::dist.ldc(x12,method = "euclidean")) ##40.37368
-
-abdiv::euclidean(as.numeric(x1),as.numeric(x2)) #40.37368
-
-diverse::dis_entities(t(x12),method = "euclidean",category_row = T)[1,2] #40.37368
-
-pctax::mat_dist(t((x12)),method = "euclidean") #40.37368
-
-fossil::euclidean(x1,x2) #40.37368
-
-proxy::dist(x12,method = "Euclidean") #40.37368
-
-amap::Dist(x12,method = "euclidean") #40.37368
-
-MultivariateAnalysis::Distancia(x12,Metodo = 1)[1] #40.37368
-
-Mercator::binaryDistance(t(x12),metric = "euclid") #1
-
-arules::dissimilarity(as.matrix(x12_pa),method = "euclidean") #3.316625 oui avec PA
-
-?dynutils::calculate_distance(x12,method = "euclidean") #40.37368
-
-?philentropy::euclidean(as.numeric(x1),as.numeric(x2)) #40.37368
-
-fda.usc::metric.dist(x12,method = "euclidean") #40.37368
-
-EnvNJ::metrics(t(x12),method = "euclidean") #40.37368
-
-Rfast::Dist(x12,method = "euclidean") #40.37368
-
-comparator::Euclidean()(as.numeric(x1),as.numeric(x2)) #40.37368
-
-ClusterR::distance_matrix(x12,method = "euclidean") #40.37368
-
-rdist::rdist(x12,metric = "euclidean") #40.37368
-
-coda.base::dist(x12,"euclidean") #40.37368
-
-NST::beta.g(x12,dist.method = "euclidean") #40.37368
-
-?NST::beta.g(x12,dist.method = "mEuclidean") #1.223445 modif par Andersen et al. 2006
-
-TSdist::LPDistance(as.numeric(x1),as.numeric(x2),method = "euclidean") #40.37368
-
-Rlof::distmc(x12,method = "euclidean") #40.37368
-
-BoutrosLab.plotting.general::dist(x12,method = "euclidean") #40.37368
-
-flexclust::dist2(x1,x2,method = "euclidean") #40.37368
-
-qkerntool::Eucdist(as.matrix(x1),as.matrix(x2),sEuclidean = T) #40.37368
-
-codep::Euclid(x1,x2,squared = F) #40.37368
-
-ptm::pairwise.dist(as.matrix(x1),as.matrix(x2),squared = F) #40.37368
-
-RprobitB::euc_dist(as.numeric(x1),as.numeric(x2)) #non fonctionnel
-
-freesurferformats::euclidean.dist(as.numeric(x1),as.numeric(x2)) #marche pas
-
-nnspat::euc.dist(x1,x2) #40.37368
-
-CEGO::distanceRealEuclidean(x1,x2) #40.37368
-
-RnavGraphImageData::L2Distance(as.matrix(t(x1)),as.matrix(t(x2))) #40.37368
-
-statisfactory::euclid(x1,x2) #40.37368
-
-neighbr::distance(as.numeric(x1),as.numeric(x2),measure = "euclidean") #40.37368
-
 #### Squared euclidean distance ####--------------------------------------------
 ecodive::squared_euclidean(x12,rescale = F) #1630.034
 
@@ -1095,17 +986,6 @@ adespatial::beta.div(test,method = "profiles",save.D = T)$D #0.4505909
 
 print(adespatial::dist.ldc(x12,method = "profiles")) #0.4505909
 
-#### Divergence ####------------------------------------------------------------
-?ecodive::divergence(x12,rescale = F) #34.81281
-
-diverse::dis_entities(t(x12),method = "divergence",category_row = T)[1,2] #marche pas
-
-?proxy::dist(x12,method = "divergence") #17.4064
-
-PERMANOVA::DistContinuous(x12,coef = 5)$D #NA
-
-philentropy::divergence_sq(as.numeric(x1),as.numeric(x2)) #34.81281
-
 #### Jenson-Shannon distance ####
 ecodive::jensen(x12,rescale = F) #4.330852 distance
 
@@ -1415,17 +1295,13 @@ CommEcol::dis.goodall(x12,p.simi = "steinhaus",approach = "chisquare") #1
 ?labdsv::dsvdis(x11, index = "roberts") #0.6496285
 
 #### Pearson ####
-amap::Dist(x12,method = "pearson") #0.4833802
 
-amap::Dist(x11,method = "abspearson") #0.4833802 absolute pearson
 
 amap::Dist(x12,method = "correlation") #0.54278 centered pearson
 
 amap::Dist(x12,method = "abscorrelation") #0.54278 absolute centered pearson
 
-ChemoSpecUtils::rowDist(as.matrix(x12),method = "pearson") #0.4833802
 
-ChemoSpecUtils::rowDist(as.matrix(x12),method = "abspearson") #0.4833802
 
 ChemoSpecUtils::rowDist(as.matrix(x11),method = "correlation") ##0.54278
 

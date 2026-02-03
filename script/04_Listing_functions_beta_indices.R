@@ -669,29 +669,200 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 # cosine ####
-vegan::designdist(x12,method = "1-J/sqrt(A*B)",terms = "quadratic") #0.4833802
+vegan_29 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_29[i] <- vegan::designdist(mite_beta,method = "1-J/sqrt(A*B)",terms = "quadratic")
+}
+dynutils_29 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  dynutils_29[i] <- dynutils::calculate_distance(mite_beta,method = "cosine")[1,2]
+}
+SemNeT_29 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  SemNeT_29[i] <- SemNeT::similarity(t(mite_beta),method = "cosine")[1,2]
+}
+EnvNJ_29 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_29[i] <- EnvNJ::metrics(t(mite_beta),method = "cosine")[1,2]
+}
+ChemoSpecUtils_29 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ChemoSpecUtils_29[i] <- ChemoSpecUtils::rowDist(as.matrix(mite_beta),method = "cosine")
+}
+Rfast_29 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_29[i] <- Rfast::Dist(mite_beta,method = "cosine")[1,2]
+}
+ClusterR_29 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ClusterR_29[i] <- ClusterR::distance_matrix(mite_beta,method = "cosine")[2,1]
+}
+svs_29 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  svs_29[i] <- svs::dist_cosine(as.matrix(mite_beta))
+}
+proxyC_29 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  proxyC_29[i] <- proxyC::simil(as.matrix(mite[i,]),as.matrix(mite[i+1,]),method = "cosine")
+}
+abdiv_29 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_29[i] <- abdiv::cosine_distance(mite[i,],mite[i+1,])
+}
+amap_29 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  amap_29[i] <- amap::Dist(mite_beta,method = "pearson")
+}
 
-dynutils::calculate_distance(x12,method = "cosine") #0.3456198
+# Absolute Pearson ####
+ChemoSpecUtils_30 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ChemoSpecUtils_30[i] <- ChemoSpecUtils::rowDist(as.matrix(mite_beta),method = "abspearson")
+}
+amap_30 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  amap_30[i] <- amap::Dist(mite_beta,method = "abspearson")
+}
 
-SemNeT::similarity(t(x12),method = "cosine") #0.5166198 #ok
+# Divergence ####
+ecodive_31 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_31[i] <- ecodive::divergence(mite_beta,rescale = F) 
+}
+proxy_31 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_31[i] <- proxy::dist(mite_beta,method = "divergence")
+}
+philentropy_31 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  philentropy_31[i] <- philentropy::divergence_sq(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
 
-EnvNJ::metrics(t(x12),method = "cosine") #0.2764125
+# Euclidean distance ####
 
-?ChemoSpecUtils::rowDist(as.matrix(x12),method = "cosine") #0.4833802
+ecodist::distance(x12,method = "euclidean") #40.37368
+dist(x12,method = "euclidean") #40.37368
+vegan::vegdist(x12,method = "euclidean") # 40.37368
 
-Rfast::Dist(x12,method = "cosine") #0.9667605
+epca::dist.matrix(as.matrix(x1),as.matrix(x2),method = "euclidean") #marche pas contraignant
 
-?ClusterR::distance_matrix(x12,method = "cosine") #0.4833802
+RobustGaSP::euclidean_distance(as.numeric(x1),as.numeric(x2)) # sortie bizarre
 
-?proxyC::simil(as.matrix(x1),as.matrix(x2),method = "cosine") #0.5166198
+cluster::daisy(x12,metric = "euclidean") # 40.37368
 
-svs::dist_cosine(as.matrix(x12)) #0.4833802
+mgc::mgc.distance(x12) #40.37368
 
-?abdiv::cosine_distance(x1,x1) #0.4833802
+distances::distances(x12) #40.37368
+
+analogue::distance(x1,x2,method = "euclidean") # 40.37368
+
+LearnClust::edistance(as.numeric(x1),as.numeric(x2)) #10.96
+
+comparator::Euclidean()(as.numeric(x1),as.numeric(x2)) # 40.37368
+
+SNFtool::dist2(as.numeric(x1),as.numeric(x2)) # non fonctionnel
+
+hmsr::euclidean_distance(as.numeric(x1),as.numeric(x2)) #40.37368
+
+ldt::s.distance(t(x12),distance = "euclidean") # 40.37368
+
+ChemoSpecUtils::rowDist(x12,method = "euclidean") # 40.37368
+
+fAssets::euclideanDist(t(x12)) #40.37368
+
+vegan::vegdist(x12,method = "euclidean",binary = T) # 3.316625
+
+ecodive::euclidean(x12,rescale = F) #40.37368
+
+proxyC::dist(as.matrix(x12),method = "euclidean") #40.37368
+
+adespatial::beta.div(x12,method = "euclidean",save.D = T)$D #40.37368
+print(adespatial::dist.ldc(x12,method = "euclidean")) ##40.37368
+
+abdiv::euclidean(as.numeric(x1),as.numeric(x2)) #40.37368
+
+diverse::dis_entities(t(x12),method = "euclidean",category_row = T)[1,2] #40.37368
+
+pctax::mat_dist(t((x12)),method = "euclidean") #40.37368
+
+fossil::euclidean(x1,x2) #40.37368
+
+proxy::dist(x12,method = "Euclidean") #40.37368
+
+amap::Dist(x12,method = "euclidean") #40.37368
+
+MultivariateAnalysis::Distancia(x12,Metodo = 1)[1] #40.37368
+
+Mercator::binaryDistance(t(x12),metric = "euclid") #1
+
+arules::dissimilarity(as.matrix(x12_pa),method = "euclidean") #3.316625 oui avec PA
+
+?dynutils::calculate_distance(x12,method = "euclidean") #40.37368
+
+?philentropy::euclidean(as.numeric(x1),as.numeric(x2)) #40.37368
+
+fda.usc::metric.dist(x12,method = "euclidean") #40.37368
+
+EnvNJ::metrics(t(x12),method = "euclidean") #40.37368
+
+Rfast::Dist(x12,method = "euclidean") #40.37368
+
+comparator::Euclidean()(as.numeric(x1),as.numeric(x2)) #40.37368
+
+ClusterR::distance_matrix(x12,method = "euclidean") #40.37368
+
+rdist::rdist(x12,metric = "euclidean") #40.37368
+
+coda.base::dist(x12,"euclidean") #40.37368
+
+NST::beta.g(x12,dist.method = "euclidean") #40.37368
+
+TSdist::LPDistance(as.numeric(x1),as.numeric(x2),method = "euclidean") #40.37368
+
+Rlof::distmc(x12,method = "euclidean") #40.37368
+
+BoutrosLab.plotting.general::dist(x12,method = "euclidean") #40.37368
+
+flexclust::dist2(x1,x2,method = "euclidean") #40.37368
+
+qkerntool::Eucdist(as.matrix(x1),as.matrix(x2),sEuclidean = T) #40.37368
+
+codep::Euclid(x1,x2,squared = F) #40.37368
+
+ptm::pairwise.dist(as.matrix(x1),as.matrix(x2),squared = F) #40.37368
+
+RprobitB::euc_dist(as.numeric(x1),as.numeric(x2)) #non fonctionnel
+
+freesurferformats::euclidean.dist(as.numeric(x1),as.numeric(x2)) #marche pas
+
+nnspat::euc.dist(x1,x2) #40.37368
+
+CEGO::distanceRealEuclidean(x1,x2) #40.37368
+
+RnavGraphImageData::L2Distance(as.matrix(t(x1)),as.matrix(t(x2))) #40.37368
+
+statisfactory::euclid(x1,x2) #40.37368
+
+neighbr::distance(as.numeric(x1),as.numeric(x2),measure = "euclidean") #40.37368
+
+# Anderson's modified Euclidean distance ####
+?NST::beta.g(x12,dist.method = "mEuclidean") #1.223445 modif par Andersen et al. 2006
 
 
-
-# manque pearson a mettre avec cosine
 
 # Autres
 bioregion::dissimilarity(as.matrix(x12),metric = "Brayturn") #0.5293722
