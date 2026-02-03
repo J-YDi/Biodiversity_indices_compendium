@@ -740,17 +740,7 @@ Rlof::distmc(x12,method = "minkowski",p=2) #40.37368
 fda.usc::metric.dist(x12,method = "minkowski",p=2) #40.37368
 
 BoutrosLab.plotting.general::dist(x12,method = "minkowski",p=2) #40.37368
-#### Clark ####-----------------------------------------------------------------
-vegan::vegdist(x12,method = "clark") #0.7262691
-?vegan::vegdist(x12,method = "clark",binary = T) #0.5773503
 
-pctax::mat_dist(t((x12)),method = "clark") #0.7262691
-
-ecodive::clark(x12,rescale = F) # 4.172098 idem sans division par n Clark's divergence distance
-
-abdiv::clark_coefficient_of_divergence(as.numeric(x1),as.numeric(x2)) #0.7262691
-
-?philentropy::clark_sq(as.numeric(x1),as.numeric(x2)) #4.17098
 #### Kulczynski ####-----------------------------------------------------------------
 vegan::vegdist(x12,method = "kulczynski") #0.5309965
 vegan::vegdist(x12,method = "kulczynski",binary = T) #0.1976127
@@ -868,65 +858,6 @@ vegan::vegdist(x11,method = "chao") #0.05012367
 
 NST::beta.g(x11,dist.method = "chao") #0.05012367
 
-
-#### Cao ####-------------------------------------------------------------------
-
-vegan::vegdist(x11,method = "cao") # Cao et al. (1997) used log 10 but the current function uses natural logarithms 0.5159614
-vegan::vegdist(x11,method = "cao",binary = T) #0.4984741
-pctax::mat_dist(t((x11)),method = "cao") #0.5159614
-abdiv::cy_dissimilarity(as.numeric(x1),as.numeric(x1),base = 10) #0.2240792 # Par defaut utilise le log 10 mais peut etre modifie 0.2240792
-NST::beta.g(x11,dist.method = "cao")#0.5159614
-
-#### Chi2 ####------------------------------------------------------------------
-
-vegan::vegdist(x12,method = "chisq") #1.197533
-vegan::vegdist(x12,method = "chisq",binary = T) #3.316625
-pctax::mat_dist(t((x12)),method = "chisq") #1.197533
-
-svs::dist_chisquare(as.matrix(x12)) #1.382792
-
-analogue::distance(x1,x2,method = "chi.square") #8.011437
-
-analogue::distance(x1,x2,method = "chi.distance") #NA
-
-adespatial::beta.div(x12,method = "chisquare",save.D = T)$D #1.197533
-
-SNFtool::chiDist2(x12) #NA
-
-GDAtools::dist.chi2(x12) #marche pas
-
-colordistance::chisqDistance(x1,x2) # fonction n'existe plus
-
-print(adespatial::dist.ldc(x12,method = "chisquare")) #1.197533
-
-proxy::dist(x12,method = "Chi-squared") #-612.7185
-
-labdsv::dsvdis(x12, index = "chisq") #Na
-
-Rfast::Dist(x12,method = "chi_square") #Na
-
-spaa::sp.pair(t(as.matrix(x12)))$chisq #9.573626
-
-proxyC::dist(as.matrix(x12),method = "chisquared") #NA
-
-QFASA::chisq.dist(x1,x2) # marche pas
-
-#### Squared chi2 distance ####
-ecodive::squared_chisq(x12,rescale = F) #64.18313
-
-diverse::dis_entities(t(x12),method = "Chi-squared",category_row = T)[1,2] # marche pas
-
-dynutils::calculate_distance(x12,method = "chisquared") #0
-
-analogue::distance(x1,x2,method = "SQchi.square") #64.18313
-
-philentropy::squared_chi_sq(as.numeric(x1),as.numeric(x2)) #64.18313
-
-EnvNJ::metrics(t(x12),method = "squared_chi") #64.18313
-
-#### Probabilistic symmetric chi2 distance ####
-?ecodive::psym_chisq(x12,rescale = F) #128.3663
-
 #### Soergel distance ####
 ecodive::soergel(x12,rescale = F) #0.6936661
 
@@ -942,42 +873,6 @@ EnvNJ::metrics(t(x12),method = "soergel") #0.6936661
 
 Rfast::Dist(x12,method = "soergel") #0.6936661
 
-#### Chord ####-----------------------------------------------------------------
-
-vegan::vegdist(x12,method = "chord") #0.9832398
-vegan::vegdist(x12,method = "chord",binary = T) #0.6305668
-
-pctax::mat_dist(t((x12)),method = "chord") #0.9832398
-
-analogue::distance(x1,x2,method = "chord") #6.514023
-
-ecodive::chord(x12) #0.9832398
-
-adespatial::beta.div(x12_pa,method = "chord",save.D = T)$D #0.9832398
-
-print(adespatial::dist.ldc(x12,method = "chord")) #0.9832398
-
-abdiv::chord(as.numeric(x1),as.numeric(x2)) #0.9832398
-
-diverse::dis_entities(t(x12),method = "Chord",category_row = T)[1,2] # marche pas
-
-wiqid::distChord(x1,x2) #0.9832398
-
-proxy::dist(x12,method = "Chord") #0.9832398
-#### Squared chord distance ####
-
-ecodive::squared_chord(x12,rescale = F) # 42.4325
-
-analogue::distance(x1,x1,method = "SQchord") #42.4325
-
-philentropy::squared_chord(as.numeric(x1),as.numeric(x2)) #42.4325
-
-EnvNJ::metrics(t(x12),method = "squared_chord") #42.4325
-
-#### Log chord ####
-adespatial::beta.div(x12_pa,method = "log.chord",save.D = T)$D #0.6607558
-
-print(adespatial::dist.ldc(x12,method = "log.chord")) #0.6607558
 
 #### Hellinger ####-------------------------------------------------------------
 
@@ -1013,7 +908,7 @@ Rfast::Dist(x12,method = "hellinger",square = T) #20.18684
 
 #### Ochiai ####----------------------------------------------------------------
 
-vegan::chaodist(x12int,method = "1 - sqrt(U*V)") # 0.1111111 ok
+
 
 adespatial::beta.div(x12int,method = "ochiai",save.D = T,sqrt.D = F)$D #0.6408934
 
@@ -1066,29 +961,6 @@ stylo::dist.minmax(x12) #0.6936661
 
 #### Dissimilarity ratio ####---------------------------------------------------
 vegan::designdist(x12,method = "(A+B-2*J)/(A+B-J)",terms = "quadratic") # 0.6569256
-
-#### Cosine complement ####
-vegan::designdist(x12,method = "1-J/sqrt(A*B)",terms = "quadratic") #0.4833802
-
-dynutils::calculate_distance(x12,method = "cosine") #0.3456198
-
-SemNeT::similarity(t(x12),method = "cosine") #0.5166198 #ok
-
-EnvNJ::metrics(t(x12),method = "cosine") #0.2764125
-
-?ChemoSpecUtils::rowDist(as.matrix(x12),method = "cosine") #0.4833802
-
-Rfast::Dist(x12,method = "cosine") #0.9667605
-
-?ClusterR::distance_matrix(x12,method = "cosine") #0.4833802
-
-?proxyC::simil(as.matrix(x1),as.matrix(x2),method = "cosine") #0.5166198
-
-svs::dist_cosine(as.matrix(x12)) #0.4833802
-
-?abdiv::cosine_distance(x1,x1) #0.4833802
-
-resemble::f_diss(as.matrix(x12),diss_method = "cosine") #marche pas
 
 #### Koleff beta-3 Williams index ####------------------------------------------
 vegan::betadiver(x12,method = "-3") # 0.1212121
@@ -1151,9 +1023,6 @@ vegan::betadiver(x12,"l") #5.5
 
 #### Koleff betae Routledge ####------------------------------------------------
 ?vegan::betadiver(x12,"e") #0.14699
-
-#### Koleff betacc Colwell & Coddington ####------------------------------------
-vegan::betadiver(x12,"cc") #0.33333
 
 #### Koleff betasim Lennon ####-------------------------------------------------
 vegan::betadiver(x12,"sim") #0.1538462
@@ -1226,37 +1095,8 @@ adespatial::beta.div(test,method = "profiles",save.D = T)$D #0.4505909
 
 print(adespatial::dist.ldc(x12,method = "profiles")) #0.4505909
 
-#### chebyshev ####-------------------------------------------------------------
-ecodive::chebyshev(x11,rescale = F) #33.08
-
-abdiv::chebyshev(as.numeric(x1),as.numeric(x2)) #33.08
-
-philentropy::chebyshev(as.numeric(x1),as.numeric(x2)) #33.08
-
-EnvNJ::metrics(t(x12),method = "chebyshev") #33.08
-
-LearnClust::chebyshevDistance(as.numeric(x1),as.numeric(x2)) #0.12
-
-comparator::Chebyshev()(as.numeric(x1),as.numeric(x2)) #33.08
-
-print(SBCK::chebyshev(as.matrix(x1),as.matrix(x2))) #1
-
-Trading::Chebyshev_distance(x1,x2) #33.08
-
-beadplexr::dist_chebyshev(x12) #33.08
-
-LearnClust::chebyshevDistance(x1,x2) #0.12
-
-ClusterR::distance_matrix(x12,method = "chebyshev") #33.08
-
-rdist::rdist(x12,metric = "chebyshev") #33.08
-
 #### Divergence ####------------------------------------------------------------
 ?ecodive::divergence(x12,rescale = F) #34.81281
-
-?adespatial::beta.div(x12,method = "divergence",save.D = T)$D #0.7262691 = Clark
-
-print(adespatial::dist.ldc(x12,method = "divergence")) #0.7262691 = Clark
 
 diverse::dis_entities(t(x12),method = "divergence",category_row = T)[1,2] #marche pas
 

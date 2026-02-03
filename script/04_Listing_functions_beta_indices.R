@@ -35,7 +35,7 @@ detach(package:vegan)
 # It is possible to work on sipoo data for presence/absence and varespec for abundance/not integer data
 
 # Relative abundances data to allow some functions working
-mite_relat <- mite/rowSums(mite)
+mite <- mite/rowSums(mite)
 
 # Distance matrix to allow some functions working
 mite_dist <- as.matrix(dist(t(mite),method = "euclidean",diag = T,upper = T))
@@ -216,7 +216,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 chemodiv_9 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_relat[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   chemodiv_9[i] <- chemodiv::sampDis(mite_beta,type = "BrayCurtis")$BrayCurtis[1,2]
 }
 wiqid_9 <- rep(NA,69)
@@ -229,22 +229,22 @@ for (i in 1:(nrow(mite)-1)){
 }
 proxy_9 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_relat[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   proxy_9[i] <- proxy::dist(mite_beta,method = "Bray")
 }
 labdsv_9 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_relat[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   labdsv_9[i] <- labdsv::dsvdis(mite_beta, index = "bray/curtis")
 }
 PERMANOVA_9 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_relat[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   PERMANOVA_9[i] <- PERMANOVA::DistContinuous(mite_beta,coef = 8)$D[1,2]
 }
 ClusterR_9 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_relat[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   ClusterR_9[i] <- ClusterR::distance_matrix(mite_beta,method = "braycurtis")[2,1]
 }
 provenance_9 <- rep(NA,69)
@@ -253,78 +253,445 @@ for (i in 1:(nrow(mite)-1)){
 }
 NST_9 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_relat[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   NST_9[i] <- NST::beta.g(mite_beta,dist.method = "bray")
 }
 adespatial_9 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_relat[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   adespatial_9[i] <- adespatial::beta.div(mite_beta,method = "percentdiff",save.D = T)$D
 }
 
 # Manque les Sorensen quanti ##
 
 # Canberra ####
+stats_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  stats_10[i] <- dist(mite_beta,method = "canberra")
+}
 
-dist(x11,method = "canberra") #27.50188
+mgc_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  mgc_10[i] <- mgc::mgc.distance(mite_beta,method = "canberra")[1,2]
+}
+LearnClust_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  LearnClust_10[i] <- LearnClust::canberradistance(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+ChemoSpecUtils_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ChemoSpecUtils_10[i] <- ChemoSpecUtils::rowDist(as.matrix(mite_beta),method = "canberra")
+}
+fAssets_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  fAssets_10[i] <- fAssets::canberraDist(t(mite_beta))
+}
 
-ecodive::canberra(x12,rescale = F) #20.62641
+diverse_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  diverse_10[i] <- diverse::dis_entities(t(mite_beta),method = "Canberra",category_row = T)[1,2]
+}
+proxy_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_10[i] <- proxy::dist(mite_beta,method = "Canberra")
+}
 
-mgc::mgc.distance(x12,method = "canberra") #27.50188
+BoutrosLab.plotting.general_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BoutrosLab.plotting.general_10[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "canberra")
+}
 
-LearnClust::canberradistance(as.numeric(x1),as.numeric(x2)) #1.068272
+amap_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  amap_10[i] <- amap::Dist(mite_beta,method = "canberra")
+}
+Mercator_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Mercator_10[i] <- Mercator::binaryDistance(t(mite_beta),metric = "canberra") 
+}
 
-ChemoSpecUtils::rowDist(as.matrix(x12),method = "canberra") #27.50188
 
-fAssets::canberraDist(t(x12)) #27.50188
+EnvNJ_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_10[i] <- EnvNJ::metrics(t(mite_beta),method = "canberra")[1,2]
+}
+Rlof_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rlof_10[i] <- Rlof::distmc(mite_beta,method = "canberra")
+}
+ClusterR_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ClusterR_10[i] <- ClusterR::distance_matrix(mite_beta,method = "canberra")[2,1]
+}
+coda.base_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  coda.base_10[i] <- coda.base::dist(mite_beta,"canberra")
+}
+fda.usc_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  fda.usc_10[i] <- fda.usc::metric.dist(mite_beta,method = "canberra")[1,2]
+}
+flexclust_10 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  flexclust_10[i] <- flexclust::dist2(mite[i,],mite[i+1,],method = "canberra")
+}
 
-abdiv::canberra(as.numeric(x1),as.numeric(x1)) #20.62641
-
-diverse::dis_entities(t(x12),method = "Canberra",category_row = T)[1,2] #27.50188
-
-proxy::dist(x12,method = "Canberra") #27.50188
-
-proxyC::dist(as.matrix(x12),method = "canberra") ##20.62641
-
-BoutrosLab.plotting.general::dist(x12,method = "canberra") #27.50188
-
-phm::canberra(as.numeric(x1),as.numeric(x2)) #20.62641
-
-amap::Dist(x12,method = "canberra") #27.50188
-
-PERMANOVA::DistContinuous(x12,coef = 7)$D #NA
-
-Mercator::binaryDistance(t(x12),metric = "canberra") #13.75094
-
-dynutils::calculate_distance(x12,method = "canberra") #20.62641
-
-philentropy::canberra(as.numeric(x1),as.numeric(x2)) #20.62641
-
-EnvNJ::metrics(t(x12),method = "canberra") #27.50188
-
-Rfast::Dist(x12,method = "canberra") #NA
-
-Rlof::distmc(x12,method = "canberra") #27.50188
-
-ClusterR::distance_matrix(x12,method = "canberra") #31.62625
-
-rdist::rdist(x12,metric = "canberra") #NA
-
-coda.base::dist(x12,"canberra") #27.50188
-
-fda.usc::metric.dist(x12,method = "canberra") #27.50188
-
-flexclust::dist2(x1,x2,method = "canberra") #27.50188
 
 # Canberra 2 ####
+NST_11 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_11[i] <- NST::beta.g(mite_beta,dist.method = "canberra")
+}
+adespatial_11 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_11[i] <- adespatial::beta.div(mite_beta,method = "canberra",save.D = T)$D
+}
+vegan_11 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_11[i] <- vegan::vegdist(mite_beta,method = "canberra")
+}
+pctax_11 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_11[i] <- pctax::mat_dist(t((mite_beta)),method = "canberra")
+}
 
-NST::beta.g(x12,dist.method = "canberra") #0.6250428 correspond pas
-adespatial::beta.div(x12,method = "canberra",save.D = T)$D #0.6250428
-vegan::vegdist(x12,method = "canberra") #0.6250428  
-# Canberra index is divided by the number of variables in vegdist, but not in dist. So these differ by a constant multiplier, and the alternative in vegdist is in range (0,1).
+# Canberra 3 ####
+abdiv_12 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_12[i] <- abdiv::canberra(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+dynutils_12 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  dynutils_12[i] <- dynutils::calculate_distance(mite_beta,method = "canberra")[1,2]
+}
+ecodive_12 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_12[i] <- ecodive::canberra(mite_beta,rescale = F)
+}
+philentropy_12 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_12[i] <- philentropy::canberra(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+phm_12 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  phm_12[i] <- phm::canberra(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+proxyC_12 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxyC_12[i] <- proxyC::dist(as.matrix(mite_beta),method = "canberra")[1,2]
+}
 
-pctax::mat_dist(t((x12)),method = "canberra") #0.6250428
+# Cao ####
+abdiv_13 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_13[i] <- abdiv::cy_dissimilarity(as.numeric(mite[i,]),as.numeric(mite[i+1,]),base = 10) # base can be modified
+}
 
+# Cao 2 ####
+vegan_14 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_14[i] <- vegan::vegdist(mite_beta,method = "cao")
+}
+pctax_14 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_14[i] <- pctax::mat_dist(t((mite_beta)),method = "cao")
+}
+NST_14 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_14[i] <- NST::beta.g(mite_beta,dist.method = "cao")#0.5159614
+}
+
+# Chao-Jaccard à faire ####
+
+# Chao-Ochiai ####
+vegan_16 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_16[i] <- vegan::chaodist(mite_beta,method = "1 - sqrt(U*V)")
+}
+
+# Chao-Sorensen à faire ####
+
+# Chebyshev ####
+ecodive_19 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_19[i] <- ecodive::chebyshev(mite_beta,rescale = F)
+}
+abdiv_19 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_19[i] <- abdiv::chebyshev(as.numeric(mite[i,]),as.numeric(mite[i+1,])) 
+}
+philentropy_19 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_19[i] <- philentropy::chebyshev(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+EnvNJ_19 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_19[i] <- EnvNJ::metrics(t(mite_beta),method = "chebyshev")[1,2]
+}
+LearnClust_19 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  LearnClust_19[i] <- LearnClust::chebyshevDistance(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+comparator_19 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  comparator_19[i] <- comparator::Chebyshev()(as.numeric(mite[i,]),as.numeric(mite[i+1,])) 
+}
+SBCK_19 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  SBCK_19[i] <- print(SBCK::chebyshev(as.matrix(mite[i,]),as.matrix(mite[i+1,]))) 
+}
+Trading_19 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  Trading_19[i] <- Trading::Chebyshev_distance(mite[i,],mite[i+1,])
+}
+beadplexr_19 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  beadplexr_19[i] <- beadplexr::dist_chebyshev(mite_beta)
+}
+ClusterR_19 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ClusterR_19[i] <- ClusterR::distance_matrix(mite_beta,method = "chebyshev")[2,1]
+}
+rdist_19 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  rdist_19[i] <- rdist::rdist(mite_beta,metric = "chebyshev")
+}
+
+# Chi2 ####
+vegan_20 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_20[i] <- vegan::vegdist(mite_beta,method = "chisq")
+}
+pctax_20 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_20[i] <- pctax::mat_dist(t((mite_beta)),method = "chisq")
+}
+svs_20 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  svs_20[i] <- svs::dist_chisquare(as.matrix(mite_beta))
+}
+analogue_20 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  analogue_20[i] <- analogue::distance(mite[i,],mite[i+1,],method = "chi.square")
+}
+adespatial_20 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_20[i] <- adespatial::beta.div(mite_beta,method = "chisquare",save.D = T)$D
+}
+SNFtool_20 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_20[i] <- adespatial::beta.div(mite_beta,method = "chisquare",save.D = T)$D
+}
+proxy_20 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_20[i] <- proxy::dist(mite_beta,method = "Chi-squared")
+}
+spaa_20 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  spaa_20[i] <- spaa::sp.pair(t(as.matrix(mite_beta)))$chisq
+}
+
+# Squared chi square ####
+ecodive_21 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_21[i] <- ecodive::squared_chisq(mite_beta,rescale = F)
+}
+dynutils_21 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  dynutils_21[i] <- dynutils::calculate_distance(mite_beta,method = "chisquared")[1,2] #0
+}
+EnvNJ_21 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_21[i] <- EnvNJ::metrics(t(mite_beta),method = "squared_chi")
+}
+analogue_21 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  analogue_21[i] <- analogue::distance(mite[i,],mite[i+1,],method = "SQchi.square")
+}
+philentropy_21 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_21[i] <- philentropy::squared_chi_sq(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+
+# Probabilistic Symmetric chi square distance ####
+ecodive_22 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_22[i] <- ecodive::psym_chisq(mite_beta,rescale = F)
+}
+
+# Chord ####
+vegan_23 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_23[i] <- vegan::vegdist(mite_beta,method = "chord")
+}
+pctax_23 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_23[i] <- pctax::mat_dist(t((mite_beta)),method = "chord")
+}
+analogue_23 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  analogue_23[i] <- analogue::distance(mite[i,],mite[i+1,],method = "chord")
+}
+ecodive_23 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_23[i] <- ecodive::chord(mite_beta)
+}
+adespatial_23 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_23[i] <- adespatial::beta.div(mite_beta,method = "chord",save.D = T)$D
+}
+proxy_23 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_23[i] <- proxy::dist(mite_beta,method = "Chord")
+}
+abdiv_23 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_23[i] <- abdiv::chord(as.numeric(mite[i,]),as.numeric(mite[i+1,])) 
+}
+wiqid_23 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  wiqid_23[i] <- wiqid::distChord(mite[i,],mite[i+1,])
+}
+
+# Squared chord distance ####
+ecodive_24 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_24[i] <- ecodive::squared_chord(mite_beta,rescale = F)
+}
+analogue_24 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  analogue_24[i] <- analogue::distance(mite[i,],mite[i+1,],method = "SQchord") 
+}
+philentropy_24 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_24[i] <- philentropy::squared_chord(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+EnvNJ_24 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_24[i] <- EnvNJ::metrics(t(mite_beta),method = "squared_chord")
+}
+
+# Log chord distance ####
+adespatial_25 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_25[i] <- adespatial::beta.div(mite_beta,method = "log.chord",save.D = T)$D
+}
+
+# Clark ####
+vegan_26 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_26[i] <- vegan::vegdist(mite_beta,method = "clark") 
+}
+pctax_26 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_26[i] <- pctax::mat_dist(t((mite_beta)),method = "clark")
+}
+adespatial_26 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_26[i] <- adespatial::beta.div(mite_beta,method = "divergence",save.D = T)$D
+}
+abdiv_26 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  abdiv_26[i] <- abdiv::clark_coefficient_of_divergence(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+
+
+
+# Clark 2 ####
+ecodive_27 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_27[i] <- ecodive::clark(mite_beta,rescale = F)
+}
+philentropy_27 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_27[i] <- philentropy::clark_sq(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+
+# beta cc ####
+vegan_28 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_28[i] <- vegan::betadiver(mite_beta,"cc")
+}
+
+# cosine ####
+vegan::designdist(x12,method = "1-J/sqrt(A*B)",terms = "quadratic") #0.4833802
+
+dynutils::calculate_distance(x12,method = "cosine") #0.3456198
+
+SemNeT::similarity(t(x12),method = "cosine") #0.5166198 #ok
+
+EnvNJ::metrics(t(x12),method = "cosine") #0.2764125
+
+?ChemoSpecUtils::rowDist(as.matrix(x12),method = "cosine") #0.4833802
+
+Rfast::Dist(x12,method = "cosine") #0.9667605
+
+?ClusterR::distance_matrix(x12,method = "cosine") #0.4833802
+
+?proxyC::simil(as.matrix(x1),as.matrix(x2),method = "cosine") #0.5166198
+
+svs::dist_cosine(as.matrix(x12)) #0.4833802
+
+?abdiv::cosine_distance(x1,x1) #0.4833802
+
+
+
+# manque pearson a mettre avec cosine
 
 # Autres
 bioregion::dissimilarity(as.matrix(x12),metric = "Brayturn") #0.5293722
