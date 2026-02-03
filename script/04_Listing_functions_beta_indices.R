@@ -27,6 +27,24 @@ packages_needed <- c("readr","dplyr","tidyr","stringr")
 loadpackages(packages_needed)
 
 #_______________________________________________________________________________####
+convert_to_presence_absence <- function(data) {
+  # Vérifie si data est un data.frame ou une matrice
+  if (!is.data.frame(data) && !is.matrix(data)) {
+    stop("L'entrée doit être un data.frame ou une matrice.")
+  }
+  
+  # Convertir en présence (1) / absence (0)
+  presence_absence <- apply(data, c(1, 2), function(x) {
+    if (is.na(x) || x == 0 || x == "") {
+      return(0)
+    } else {
+      return(1)
+    }
+  })
+  
+  # Retourner sous forme de data.frame
+  return(as.data.frame(presence_absence))
+}
 #________________________________Loading data___________________________________####
 library(vegan)
 # We choose the mite data from vegan as the dataset for abundance/count data
@@ -41,6 +59,8 @@ mite <- mite/rowSums(mite)
 mite_dist <- as.matrix(dist(t(mite),method = "euclidean",diag = T,upper = T))
 rownames(mite_dist) <- rownames(t(mite))
 colnames(mite_dist) <- rownames(t(mite))
+
+mite_pa <- convert_to_presence_absence(mite)
 
 #___________________________ Alpha diversity indices ___________________________####
 
@@ -753,119 +773,503 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 # Euclidean distance ####
-
-ecodist::distance(x12,method = "euclidean") #40.37368
-dist(x12,method = "euclidean") #40.37368
-vegan::vegdist(x12,method = "euclidean") # 40.37368
-
-epca::dist.matrix(as.matrix(x1),as.matrix(x2),method = "euclidean") #marche pas contraignant
-
-RobustGaSP::euclidean_distance(as.numeric(x1),as.numeric(x2)) # sortie bizarre
-
-cluster::daisy(x12,metric = "euclidean") # 40.37368
-
-mgc::mgc.distance(x12) #40.37368
-
-distances::distances(x12) #40.37368
-
-analogue::distance(x1,x2,method = "euclidean") # 40.37368
-
-LearnClust::edistance(as.numeric(x1),as.numeric(x2)) #10.96
-
-comparator::Euclidean()(as.numeric(x1),as.numeric(x2)) # 40.37368
-
-SNFtool::dist2(as.numeric(x1),as.numeric(x2)) # non fonctionnel
-
-hmsr::euclidean_distance(as.numeric(x1),as.numeric(x2)) #40.37368
-
-ldt::s.distance(t(x12),distance = "euclidean") # 40.37368
-
-ChemoSpecUtils::rowDist(x12,method = "euclidean") # 40.37368
-
-fAssets::euclideanDist(t(x12)) #40.37368
-
-vegan::vegdist(x12,method = "euclidean",binary = T) # 3.316625
-
-ecodive::euclidean(x12,rescale = F) #40.37368
-
-proxyC::dist(as.matrix(x12),method = "euclidean") #40.37368
-
-adespatial::beta.div(x12,method = "euclidean",save.D = T)$D #40.37368
-print(adespatial::dist.ldc(x12,method = "euclidean")) ##40.37368
-
-abdiv::euclidean(as.numeric(x1),as.numeric(x2)) #40.37368
-
-diverse::dis_entities(t(x12),method = "euclidean",category_row = T)[1,2] #40.37368
-
-pctax::mat_dist(t((x12)),method = "euclidean") #40.37368
-
-fossil::euclidean(x1,x2) #40.37368
-
-proxy::dist(x12,method = "Euclidean") #40.37368
-
-amap::Dist(x12,method = "euclidean") #40.37368
-
-MultivariateAnalysis::Distancia(x12,Metodo = 1)[1] #40.37368
-
-Mercator::binaryDistance(t(x12),metric = "euclid") #1
-
-arules::dissimilarity(as.matrix(x12_pa),method = "euclidean") #3.316625 oui avec PA
-
-?dynutils::calculate_distance(x12,method = "euclidean") #40.37368
-
-?philentropy::euclidean(as.numeric(x1),as.numeric(x2)) #40.37368
-
-fda.usc::metric.dist(x12,method = "euclidean") #40.37368
-
-EnvNJ::metrics(t(x12),method = "euclidean") #40.37368
-
-Rfast::Dist(x12,method = "euclidean") #40.37368
-
-comparator::Euclidean()(as.numeric(x1),as.numeric(x2)) #40.37368
-
-ClusterR::distance_matrix(x12,method = "euclidean") #40.37368
-
-rdist::rdist(x12,metric = "euclidean") #40.37368
-
-coda.base::dist(x12,"euclidean") #40.37368
-
-NST::beta.g(x12,dist.method = "euclidean") #40.37368
-
-TSdist::LPDistance(as.numeric(x1),as.numeric(x2),method = "euclidean") #40.37368
-
-Rlof::distmc(x12,method = "euclidean") #40.37368
-
-BoutrosLab.plotting.general::dist(x12,method = "euclidean") #40.37368
-
-flexclust::dist2(x1,x2,method = "euclidean") #40.37368
-
-qkerntool::Eucdist(as.matrix(x1),as.matrix(x2),sEuclidean = T) #40.37368
-
-codep::Euclid(x1,x2,squared = F) #40.37368
-
-ptm::pairwise.dist(as.matrix(x1),as.matrix(x2),squared = F) #40.37368
-
-RprobitB::euc_dist(as.numeric(x1),as.numeric(x2)) #non fonctionnel
-
-freesurferformats::euclidean.dist(as.numeric(x1),as.numeric(x2)) #marche pas
-
-nnspat::euc.dist(x1,x2) #40.37368
-
-CEGO::distanceRealEuclidean(x1,x2) #40.37368
-
-RnavGraphImageData::L2Distance(as.matrix(t(x1)),as.matrix(t(x2))) #40.37368
-
-statisfactory::euclid(x1,x2) #40.37368
-
-neighbr::distance(as.numeric(x1),as.numeric(x2),measure = "euclidean") #40.37368
+ecodist_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodist_32[i] <- ecodist::distance(mite_beta,method = "euclidean")
+}
+stats_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  stats_32[i] <- dist(mite_beta,method = "euclidean")
+}
+vegan_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_32[i] <- vegan::vegdist(mite_beta,method = "euclidean")
+}
+cluster_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  cluster_32[i] <- cluster::daisy(mite_beta,metric = "euclidean")
+}
+mgc_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  mgc_32[i] <- mgc::mgc.distance(mite_beta)[1,2]
+}
+distances_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  distances_32[i] <- distances::distances(mite_beta)[1,2]
+}
+ldt_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ldt_32[i] <- ldt::s.distance(t(mite_beta),distance = "euclidean")
+}
+ChemoSpecUtils_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ChemoSpecUtils_32[i] <- ChemoSpecUtils::rowDist(mite_beta,method = "euclidean")
+}
+fAssets_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  fAssets_32[i] <- fAssets::euclideanDist(t(mite_beta))
+}
+ecodive_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_32[i] <- ecodive::euclidean(mite_beta,rescale = F)
+}
+proxyC_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxyC_32[i] <- proxyC::dist(as.matrix(mite_beta),method = "euclidean")[2,1]
+}
+adespatial_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_32[i] <- adespatial::beta.div(mite_beta,method = "euclidean",save.D = T)$D
+}
+diverse_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  diverse_32[i] <- diverse::dis_entities(t(mite_beta),method = "euclidean",category_row = T)[1,2]
+}
+pctax_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_32[i] <- pctax::mat_dist(t((mite_beta)),method = "euclidean")
+}
+proxy_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_32[i] <- proxy::dist(mite_beta,method = "Euclidean") 
+}
+amap_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  amap_32[i] <- amap::Dist(mite_beta,method = "euclidean") 
+}
+MultivariateAnalysis_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  MultivariateAnalysis_32[i] <- MultivariateAnalysis::Distancia(mite_beta,Metodo = 1)[1]$Distancia 
+}
+Mercator_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Mercator_32[i] <- Mercator::binaryDistance(t(mite_beta),metric = "euclid")
+}
+dynutils_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  dynutils_32[i] <- dynutils::calculate_distance(mite_beta,method = "euclidean")[1,2]
+}
+fda.usc_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  fda.usc_32[i] <- fda.usc::metric.dist(mite_beta,method = "euclidean")[1,2]
+}
+EnvNJ_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_32[i] <- EnvNJ::metrics(t(mite_beta),method = "euclidean")[1,2]
+}
+Rfast_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_32[i] <- Rfast::Dist(mite_beta,method = "euclidean")[1,2]
+}
+ClusterR_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ClusterR_32[i] <- ClusterR::distance_matrix(mite_beta,method = "euclidean")[2,1]
+}
+rdist_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  rdist_32[i] <- rdist::rdist(mite_beta,metric = "euclidean")
+}
+coda.base_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  coda.base_32[i] <- coda.base::dist(mite_beta,"euclidean")
+}
+NST_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_32[i] <- NST::beta.g(mite_beta,dist.method = "euclidean")
+}
+Rlof_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rlof_32[i] <- Rlof::distmc(mite_beta,method = "euclidean")
+}
+BoutrosLab.plotting.general_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BoutrosLab.plotting.general_32[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "euclidean")
+}
+fossil_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  fossil_32[i] <- fossil::euclidean(mite[i,],mite[i+1,])
+}
+abdiv_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_32[i] <- abdiv::euclidean(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+philentropy_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_32[i] <- philentropy::euclidean(as.numeric(mite[i,]),as.numeric(mite[i+1,])) 
+}
+comparator_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  comparator_32[i] <- comparator::Euclidean()(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+TSdist_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  TSdist_32[i] <- TSdist::LPDistance(as.numeric(mite[i,]),as.numeric(mite[i+1,]),method = "euclidean")
+}
+flexclust_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  flexclust_32[i] <- flexclust::dist2(mite[i,],mite[i+1,],method = "euclidean")
+}
+qkerntool_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  qkerntool_32[i] <- qkerntool::Eucdist(as.matrix(mite[i,]),as.matrix(mite[i+1,]),sEuclidean = T) 
+}
+codep_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  codep_32[i] <- codep::Euclid(mite[i,],mite[i+1,],squared = F) 
+}
+ptm_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  ptm_32[i] <- ptm::pairwise.dist(as.matrix(mite[i,]),as.matrix(mite[i+1,]),squared = F)
+}
+nnspat_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  nnspat_32[i] <- nnspat::euc.dist(mite[i,],mite[i+1,])
+}
+CEGO_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  CEGO_32[i] <- CEGO::distanceRealEuclidean(mite[i,],mite[i+1,])
+}
+RnavGraphImageData_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  RnavGraphImageData_32[i] <- RnavGraphImageData::L2Distance(as.matrix(t(mite[i,])),as.matrix(t(mite[i+1,]))) 
+}
+statisfactory_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  statisfactory_32[i] <- statisfactory::euclid(mite[i,],mite[i+1,])
+}
+neighbr_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  neighbr_32[i] <- neighbr::distance(as.numeric(mite[i,]),as.numeric(mite[i+1,]),measure = "euclidean")
+}
+analogue_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  analogue_32[i] <- analogue::distance(mite[i,],mite[i+1,],method = "euclidean")
+}
+LearnClust_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  LearnClust_32[i] <- LearnClust::edistance(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+comparator_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  comparator_32[i] <- comparator::Euclidean()(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+hmsr_32 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  hmsr_32[i] <- hmsr::euclidean_distance(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
 
 # Anderson's modified Euclidean distance ####
-?NST::beta.g(x12,dist.method = "mEuclidean") #1.223445 modif par Andersen et al. 2006
+NST_33 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_33[i] <- NST::beta.g(mite_beta,dist.method = "mEuclidean")
+}
+
+# Average euclidean distance ####
+abdiv_34 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_34[i] <- abdiv::rms_distance(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+
+# Squared euclidean distance ####
+ecodive_35 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_35[i] <- ecodive::squared_euclidean(mite_beta,rescale = F)
+}
+MultivariateAnalysis_35 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  MultivariateAnalysis_35[i] <- MultivariateAnalysis::Distancia(mite_beta,Metodo = 3)[1]$Distancia
+}
+neighbr_35 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  neighbr_35[i] <- neighbr::distance(as.numeric(mite[i,]),as.numeric(mite[i+1,]),measure = "squared_euclidean")
+}
+NMFN_35 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  NMFN_35[i] <- NMFN::distance2(mite[i,],mite[i+1,])
+}
+ptm_35 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  ptm_35[i] <- ptm::pairwise.dist(as.matrix(mite[i,]),as.matrix(mite[i+1,]),squared = T)
+}
+codep_35 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  codep_35[i] <- codep::Euclid(mite[i,],mite[i+1,],squared = T)
+}
+M2SMJF_35 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  M2SMJF_35[i] <- M2SMJF::dist2eu(mite[i,],mite[i+1,])
+}
+philentropy_35 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_35[i] <- philentropy::squared_euclidean(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+analogue_35 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  analogue_35[i] <- analogue::distance(mite[i,],mite[i+1],method = "SQeuclidean")
+}
+qkerntool_35 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  qkerntool_35[i] <- qkerntool::Eucdist(as.matrix(mite[i,]),as.matrix(mite[i+1,]),sEuclidean = F)
+}
+laGP_35 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  laGP_35[i] <- laGP::distance(mite[i,],mite[i+1,])
+}
+Rfast_35 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_35[i] <- Rfast::Dist(mite_beta,method = "euclidean",square = T)[1,2]
+}
+
+# Gower ####
+cluster_36 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  cluster_36[i] <- cluster::daisy(mite_beta,metric = "gower")
+}
+StatMatch_36 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  StatMatch_36[i] <- StatMatch::gower.dist(mite[i,],mite[i+1,])#0.7045455
+}
+vegan_36 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_36[i] <- vegan::vegdist(mite_beta,method = "gower")
+}
+pctax_36 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_36[i] <- pctax::mat_dist(t((mite_beta)),method = "gower")
+}
+ecodive_36 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_36[i] <- ecodive::gower(mite_beta,rescale = F)
+}
+diverse_36 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  diverse_36[i] <- diverse::dis_entities(t(mite_beta),method = "Gower",category_row = T)[1,2]
+}
+shipunov_36 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  shipunov_36[i] <- shipunov::Gower.dist(mite[i,],mite[i+1,])
+}
+proxy_36 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_36[i] <- proxy::dist(mite_beta,method = "Gower") 
+}
+NST_36 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_36[i] <- NST::beta.g(mite_beta,dist.method = "gower")
+}
+
+# Anderson's modified Gower distance ####
+NST_37 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_37[i] <- NST::beta.g(mite_beta,dist.method = "mGower")
+}
+
+# Gower 2 ####
+NST_38 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_38[i] <- NST::beta.g(mite_beta,dist.method = "altGower")
+}
+vegan_38 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_38[i] <- vegan::vegdist(mite_beta,method = "altGower")
+}
+pctax_38 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_38[i] <- pctax::mat_dist(t(mite_beta),method = "altGower")
+}
+philentropy_38 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  philentropy_38[i] <- philentropy::gower(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+Rfast_38 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_38[i] <- Rfast::Dist(mite_beta,method = "gower")[2,1]
+}
+gower_38 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  gower_38[i] <- gower::gower_dist(mite[i,],mite[i+1,])
+}
+
+# Gower 3 ####
+ecodist_39 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodist_39[i] <- ecodist::distance(mite_beta,method = "modgower10")
+}
+
+# Hamman coefficient ####
+ade4_40 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ade4_40[i] <- ade4::dist.binary(mite_beta,method = 6)
+}
+proxy_40 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_40[i] <- proxy::dist(mite_beta,method = "Hamman")
+}
+MultivariateAnalysis_40 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  MultivariateAnalysis_40[i] <- MultivariateAnalysis::Distancia(mite_beta,Metodo = 19)[1]$Distancia
+}
+MultBiplotR_40 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  MultBiplotR_40[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 9)[1,2]
+}
+PERMANOVA_40 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  PERMANOVA_40[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 9,transformation = 1)$D[1,2]
+}
+proxyC_40 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  proxyC_40[i] <- proxyC::simil(as.matrix(mite[i,]),as.matrix(mite[i+1,]),method = "hamann") #0.5 ok
+}
+
+# Hamming distance ####
+ecodive_41 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_41[i] <- ecodive::hamming(mite_beta) #11
+}
+abdiv_41 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_41[i] <- abdiv::hamming(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+Rankcluster_41 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  Rankcluster_41[i] <- Rankcluster::distHamming(mite[i,],mite[i+1,])
+}
+Mercator_41 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Mercator_41[i] <- Mercator::binaryDistance(t(mite_beta),metric = "hamming")
+}
+pegas_41 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pegas_41[i] <- pegas::dist.hamming(mite_beta)
+}
+proxyC_41 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxyC_41[i] <- proxyC::dist(as.matrix(mite_beta),method = "hamming")[2,1]
+}
+bingat_41 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  bingat_41[i] <- bingat::calcDistance(mite[i,],mite[i+1,]) 
+}
+genMCMCDiag_41 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  genMCMCDiag_41[i] <- genMCMCDiag::hammingDist(mite[i,],mite[i+1,]) #11 
+}
+
+# Hamming distance 2 ####
+CEGO_42 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  CEGO_42[i] <- CEGO::distanceNumericHamming(mite[i,],mite[i+1,])
+}
+EnvNJ_42 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_42[i] <- EnvNJ::metrics(t(mite_beta),method = "hamming")[2,1]
+}
+ClusterR_42 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ClusterR_42[i] <- ClusterR::distance_matrix(mite_beta,method = "hamming")[2,1]
+}
+rdist_42 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  rdist_42[i] <- rdist::rdist(mite_beta,metric = "hamming")
+}
+CEGO_42 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  CEGO_42[i] <- CEGO::distanceNumericHamming(mite[i,],mite[i+1,])
+}
+EnsCat_42 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnsCat_42[i] <- EnsCat::hammingD(mite_beta)[2,1]
+}
+
+# beta -1 ####
+vegan_43 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_43[i] <- vegan::betadiver(mite_beta,"-1")
+}
+
+# beta -2 ####
+vegan_44 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_44[i] <- vegan::betadiver(mite_beta,"-2") 
+}
+
+# beta hk ####
+vegan_45 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_45[i] <- vegan::betadiver(mite_beta,"hk") #0.2
+}
 
 
 
 # Autres
-bioregion::dissimilarity(as.matrix(x12),metric = "Brayturn") #0.5293722
+bioregion::dissimilarity(as.matrix(mite[i,]),metric = "Brayturn") #0.5293722
 
 
 

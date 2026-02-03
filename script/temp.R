@@ -14,26 +14,6 @@ data(varespec)
 detach(package:vegan)
 
 
-convert_to_presence_absence <- function(data) {
-  # Vérifie si data est un data.frame ou une matrice
-  if (!is.data.frame(data) && !is.matrix(data)) {
-    stop("L'entrée doit être un data.frame ou une matrice.")
-  }
-  
-  # Convertir en présence (1) / absence (0)
-  presence_absence <- apply(data, c(1, 2), function(x) {
-    if (is.na(x) || x == 0 || x == "") {
-      return(0)
-    } else {
-      return(1)
-    }
-  })
-  
-  # Retourner sous forme de data.frame
-  return(as.data.frame(presence_absence))
-}
-
-
 x <- varespec[1,]
 x_relative <- varespec[1,]/sum(varespec[1,])
 x_entier <- round(x,digits = 0)
@@ -108,36 +88,6 @@ x11_pa <-ifelse(x11 != 0, 1, 0)
 x1int <- as.integer(varespec[1,])
 x2int <- as.integer(varespec[2,])
 x12int <- rbind(x1int,x2int)
-
-#### Squared euclidean distance ####--------------------------------------------
-ecodive::squared_euclidean(x12,rescale = F) #1630.034
-
-neighbr::distance(as.numeric(x1),as.numeric(x2),measure = "squared_euclidean") #1630.034
-
-NMFN::distance2(x1,x2) #1630.034 squared, pas indiqué comme tel
-
-MultivariateAnalysis::Distancia(x12,Metodo = 3)[1] #37.04623
-
-ptm::pairwise.dist(as.matrix(x1),as.matrix(x2),squared = T) #1630.034
-
-codep::Euclid(x1,x2,squared = T) #1630.034
-
-M2SMJF::dist2eu(x1,x2) #squared, ce qui nest pas indique
-
-philentropy::squared_euclidean(as.numeric(x1),as.numeric(x2)) #1630.034
-
-Rfast::Dist(x12,method = "euclidean",square = T) #1630.034
-
-analogue::distance(x1,x2,method = "SQeuclidean") # 1630.034
-
-qkerntool::Eucdist(as.matrix(x1),as.matrix(x2),sEuclidean = F) #1630.034
-
-laGP::distance(x1,x2) # 1630.034
-
-#### Root mean square/average distance ####
-abdiv::rms_distance(as.numeric(x11_pa[1,]),as.numeric(x11_pa[2,])) #6.086561
-
-?EnvNJ::metrics(t(x11),method = "avg") #64.07 surement pas normalisé
 
 #### Manhattan distance ####----------------------------------------------------
 ecodist::distance(x12,method = "manhattan") #95.06
@@ -525,66 +475,6 @@ prabclus::dicedist(t(x12)) #0.4375 ???
 
 fAssets::sorensenDist(t(x12)) #0.2
 
-#### Gower ##dice_dist()#### Gower ####-----------------------------------------------------------------
-
-?ecodist::distance(x12,method = "gower") # 95.06 # correspond a rien
-
-ecodist::distance(x12,method = "modgower10") # (modified Gower, base 10) # 23.03452
-
-ecodist::distance(x12,method = "modgower2") # (modified Gower, base 2) # 76.51902
-
-gower::gower_dist(x1,x2) #1
-
-cluster::daisy(x12,metric = "gower") #0.7045455
-
-FD::gowdis(as.matrix(x12)) #NA
-
-StatMatch::gower.dist(x1,x2)#0.7045455
-
-analogue::distance(x1,x2,method = "gower") #marche pas
-analogue::distance(x1,x2,method = "alt.gower") #marche pas
-
-vegan::vegdist(x12,method = "gower") #0.7045455
-#vegan::vegdist(x12,method = "gower",binary = T) #0.7045455
-
-pctax::mat_dist(t((x12)),method = "gower") #0.7045455
-
-vegan::vegdist(x12,method = "altGower") #2.880606
-
-FD::gowdis(as.numeric(x12),w = NULL) #marche pas
-
-pctax::mat_dist(t((x12)),method = "altGower") #2.880606
-# There are two versions of Gower distance in vegan ("gower", "altGower") which differ in scaling: "gower" divides all distances by the number of observations (rows) and scales each column to unit range, but "altGower" omits double-zeros and divides by the number of pairs with at least one above-zero value, and does not scale columns
-# pctax reprend la fonction vegan donc la distinction aussi
-
-ecodive::gower(x12,rescale = F) #0.7045455
-
-diverse::dis_entities(t(x12),method = "Gower",category_row = T)[1,2] #0.7045455
-
-BAT::gower(x12) # pas adapte
-
-shipunov::Gower.dist(x1,x2) #0.7045455
-
-proxy::dist(x12,method = "Gower") #0.7045455
-
-CommEcol::dis.goodall(x12,p.simi = "gower",approach = "proportion") #marche pas
-CommEcol::dis.goodall(x12,p.simi = "gower",approach = "chisquare") # marche pas
-
-MultivariateAnalysis::Distancia(x12,Metodo = 21)[1] #NA
-MultivariateAnalysis::Distancia(x12,Metodo = 22)[1] #NA
-
-philentropy::gower(as.numeric(x1),as.numeric(x2)) #2.160455
-
-Rfast::Dist(x12,method = "gower") #2.160455
-
-shipunov::Gower.dist(x12) #0.70455455
-
-NST::beta.g(x12,dist.method = "gower") #0.7045455
-
-NST::beta.g(x12,dist.method = "altGower") #2.880606
-
-NST::beta.g(x12,dist.method = "mGower") #0.5731683 modif par Andersen et al. 2006
-
 #### Minkowski ####-------------------------------------------------------------
 dist(x12,method = "minkowski",p=2) #40.37368
 
@@ -884,8 +774,6 @@ adiv::betastatsor(x12)[2] # Ricotta & Pavoine  0.07272727
 BAT::beta(x12,func = "sorensen",abund = F)$Brepl #0.1454545 ne correspond pas
 BAT::beta(x12,func = "sorensen",abund = T)$Brepl #0.5275388 ne correspond pas
 
-#### Koleff beta-2 Harrison1 ####-----------------------------------------------
-vegan::betadiver(x12,"-2") # 0.137931
 
 #### Koleff betaw Whittaker ####------------------------------------------------
 vegan::betadiver(x11,"w") # 0.2 ???
@@ -944,14 +832,9 @@ vegan::betadiver(x12,"g") #0.3333333
 #### Koleff betal Lande ####----------------------------------------------------
 vegan::betadiver(x12,"l") #5.5
 
-#### Koleff betahk Harte & Kinzig ####------------------------------------------
-vegan::betadiver(x12,"hk") #0.2
-
 #### Koleff betarlb Ruggiero ####-----------------------------------------------
 1-vegan::betadiver(x12,"rlb") #0.2413793 # Conversion en dissimalirite
 
-#### Koleff beta-1 Harrison 1 ####----------------------------------------------
-vegan::betadiver(x12,"-1") #0.2
 
 #### Koleff 19 Sans nom ####----------------------------------------------------
 vegan::betadiver(x12,"19") #0.05492424
@@ -1066,41 +949,6 @@ EnvNJ::metrics(t(x12),method = "wavehedges") #22.84192
 
 Rfast::Dist(x12,method = "wave_hedges") #NA
 
-#### Hamming distance ####------------------------------------------------------
-ecodive::hamming(x11_pa) #11
-
-abdiv::hamming(as.numeric(x1),as.numeric(x2)) #31
-
-CEGO::distanceNumericHamming(x12_pa[1,],x12_pa[2,]) #0.25
-
-Rankcluster::distHamming(x12_pa[1,],x12_pa[2,]) #11
-
-Mercator::binaryDistance(t(x12_pa),metric = "hamming") #11
-
-e1071::hamming.distance(x12_pa) #11
-
-pegas::dist.hamming(x12_pa) #11
-
-tfaddons::metric_hamming_distance(x12_pa[1,],x12_pa[2,]) # marche pas
-
-SID::hammingDist(x12_pa[1,],x12_pa[2,]) # marche pas
-
-EnsCat::hammingD(x12_pa) #0.25
-
-genMCMCDiag::hammingDist(x12_pa[1,],x12_pa[2,]) #11
-
-CEGO::distanceNumericHamming(x12_pa[1,],x12_pa[2,]) #0.25
-
-proxyC::dist(as.matrix(x12_pa),method = "hamming") #11
-
-bingat::calcDistance(x1,x2) #11
-
-EnvNJ::metrics(t(x12_pa),method = "hamming") #0.25 -> 11/44
-
-ClusterR::distance_matrix(x12_pa,method = "hamming") #0.25
-
-rdist::rdist(x12_pa,metric = "hamming") #0.25
-
 #### Wishart ####---------------------------------------------------------------
 adespatial::beta.div(x12,method = "wishart",save.D = T)$D #0.6569256
 
@@ -1203,21 +1051,6 @@ PERMANOVA::DistBinary(x11_pa,coefficient = 6,transformation = 1)$D #0.6
 philentropy::tanimoto(as.numeric(x1),as.numeric(x2)) #0.6936661
 
 shipunov::SM.dist(x12) #0.70455455
-
-#### Hamann coefficient ####
-ade4::dist.binary(test_pa,method = 6) #0.7071068 non
-
-diverse::dis_entities(t(x12),method = "Hamman",category_row = T)[1,2] #marche pas
-
-proxy::dist(test_pa,method = "Hamman") #0.5 ok
-
-MultivariateAnalysis::Distancia(test_pa,Metodo = 19)[1] #0 non
-
-MultBiplotR::BinaryDistances(as.matrix(test_pa),coefficient = 9) #0.7071068 non
-
-PERMANOVA::DistBinary(test_pa,coefficient = 9,transformation = 1)$D #70.25116 ok
-
-proxyC::simil(as.matrix(test_pa[1,]),as.matrix(test_pa[2,]),method = "hamann") #0.5 ok
 
 #### Phi of Pearson ####
 ade4::dist.binary(x12,method = 9) #0.7250569 P/A
