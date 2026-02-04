@@ -200,142 +200,6 @@ NST::beta.g(x12,dist.method = "mahalanobis")#1.414214
 
 fAssets::mahalanobisDist(t(x12)) # marche pas
 
-#### Jaccard ####---------------------------------------------------------------
-ecodist::distance(x12,method = "jaccard") # 0.3333333
-dist(x12,method = "binary") # 0.3333333 
-vegan::vegdist(x12,method = "jaccard",binary = F) # 0.6936661
-vegan::vegdist(x12,method = "jaccard",binary = T) # 0.3333333
-
-neighbr::similarity(x12_pa[1,],x12_pa[2,],measure = "jaccard") #0.6666667
-
-ChemoSpecUtils::rowDist(as.matrix(x12),method = "binary") #0.33333
-
-mgc::mgc.distance(x12,method = "binary") #0.33333
-
-jaccard::jaccard(x1int,x2int) #fonctione pas
-
-statisfactory::fuzzyJaccard(x1,x2) #0.3063339
-
-arulesSequences::similarity(as.numeric(x1),as.numeric(x2),method = "jaccard") # marche pas
-
-SemNeT::similarity(t(x12),method = "jaccard") # marche pas
-
-ConNEcT::funClassJacc(as.numeric(x1),as.numeric(x2)) #marche pas
-ConNEcT::funCorrJacc(as.numeric(x1),as.numeric(x2)) #0.9834216
-
-picante::species.dist(t(x12),metric = "jaccard") #0.3063339
-
-iTOP::jaccard(x12_pa[1,],x12_pa[2,]) #0.666667
-
-Signac::Jaccard(x1,x2) #marche pas
-
-geocmeans::calc_jaccard_idx(as.numeric(x1),as.numeric(x2)) #0.3063339
-
-OTclust::jaccard(x1,x2) #marche pas
-
-?BoutrosLab.plotting.general::dist(x12,method = "jaccard") # 0.6936661
-
-BoutrosLab.plotting.general::dist(x12,method = "binary") # 0.33
-
-bioregion::dissimilarity(as.matrix(x12),metric = "Jaccard") # 0.33
-
-fAssets::jaccardDist(t(x12)) #0.33
-
-?pctax::mat_dist(t((x12)),method = "jaccard") # # 0.6936661
-
-vegan::designdist(x12,method = "(A+B-2*J)/(A+B-J)",terms = "binary") #0.3333333
-
-1- vegan::betadiver(x12,"j") #0.3333333 # conversion en dissim
-
-vegan::nestedbetajac(x12)[3] #0.333333
-
-proxyC::simil(as.matrix(x1),as.matrix(x2),method = "jaccard") #0.6666
-proxyC::simil(as.matrix(x1),as.matrix(x2),method = "ejaccard") #0.3430744
-proxyC::simil(as.matrix(x1),as.matrix(x2),method = "fjaccard") #NA
-
-ecodive::jaccard(x12)#0.333333
-
-betapart::beta.pair(x12_pa,index.family = "jaccard")$beta.jac #0.3333333
-
-?adespatial::beta.div(x12,method = "ab.jaccard",save.D = T,sqrt.D = F) #0.05012367
-
-adespatial::beta.div.comp(x12,coef = "J",quant = F)$D #0.3333333
-adespatial::beta.div.comp(x12,coef = "J",quant = T)$D #0.6936661
-adespatial::beta.div.comp(x12,coef = "BJ")$D #0.3333333
-?adespatial::beta.div.comp(x12,coef = "BJ",quant = T) #0.6936661
-
-print(adespatial::dist.ldc(x12,method = "jaccard")) #0.5773503
-print(adespatial::dist.ldc(x12,method = "ab.jaccard")) #0.05012367
-
-ade4::dist.binary(x11,method = 1) #0.5773503
-
-abdiv::jaccard(as.numeric(x1),as.numeric(x2)) #0.3333333
-
-tabula::index_jaccard(as.numeric(x1),as.numeric(x2)) #0.6666667
-
-tabula::similarity(x12,method = "jaccard") #0.6666667
-
-adiv::betastatjac(x12)[1] #0.3333333 
-
-diverse::dis_entities(t(x12),method = "Jaccard",category_row = T)[1,2] #0.3333333
-
-diverse::dis_entities(t(x12),method = "fJaccard",category_row = T)[1,2] #marche pas
-
-BAT::beta(x12,func = "jaccard",abund = F)$Btotal #0.3333333
-BAT::beta(x12,func = "jaccard",abund = T)$Btotal #0.6936661
-
-?wiqid::distChaoJaccCorr(x1,x1) #0.05012367
-wiqid::distChaoJaccNaive(x1,x2) #0.05148794
-
-wiqid::distJaccard(x1,x2) #0.3333333
-
-fossil::jaccard(x1,x2) #0.6666667
-
-proxy::dist(x12,method = "Jaccard") #0.3333333
-
-proxy::dist(x12,method = "fJaccard") # marche pas
-
-CommEcol::dis.chao(x12int,index = "jaccard",version = "rare") #0.05012367
-CommEcol::dis.chao(x11,index = "jaccard",version = "probability") #0.05148794
-vegan::chaodist(x12int,method = "1 - U*V/(U+V-U*V)") # 0.2098765 
-
-adiv::dsimcom(x12,method = "2",type = "similarity",option = "absolute") #0.6564616
-diverse::dis_entities(t(x12),method = "eJaccard",category_row = T) #0.6569256
-?proxy::dist(x12,method = "eJaccard") #0.6569256
-
-MultivariateAnalysis::Distancia(x12,Metodo = 12)[1] #NA
-
-?MultBiplotR::BinaryDistances(as.matrix(x12_pa),coefficient = 3) #0.5773503 
-
-PERMANOVA::DistBinary(x12_pa,coefficient = 3,transformation = 1)$D #0.6666667
-
-Mercator::binaryDistance(t(x12),metric = "jaccard") #2.266299
-
-arules::dissimilarity(as.matrix(x12_pa),method = "dice") #0.2
-
-philentropy::jaccard(as.numeric(x1),as.numeric(x2)) #0.6569256
-
-EnvNJ::metrics(t(x12),method = "jaccard") #0.6569256
-
-ClusterR::distance_matrix(x12,method = "jaccard_coefficient") #0.6666667
-
-rdist::rdist(x12,metric = "jaccard") #0.9393939
-
-spaa::sp.pair(t(as.matrix(x12)))$Jaccard #0.7142857
-
-NST::beta.g(x12,dist.method = "jaccard") #0.6936661
-
-?NST::beta.g(x12,dist.method = "chao.jaccard") #0.0478141 Chao-Jaccard
-
-prabclus::jaccard(t(x12_pa)) #0.3333333
-
-flexclust::dist2(x1,x2,method = "binary")#0.3333333
-
-# Sans comprehension du calcul :
-adespatial::beta.div(x12,method = "jaccard",save.D = T,sqrt.D = F,)$D #0.7637626 # ne correspond pas
-
-
-
 #### Turnover component of Jaccard dissimilarity ####---------------------------
 vegan::nestedbetajac(x12)[1] #0.26666667 
 
@@ -639,57 +503,7 @@ vegan::vegdist(x11,method = "chao") #0.05012367
 
 NST::beta.g(x11,dist.method = "chao") #0.05012367
 
-#### Soergel distance ####
-ecodive::soergel(x12,rescale = F) #0.6936661
-
-diverse::dis_entities(t(x12),method = "Soergel",category_row = T)[1,2] # marche pas
-
-proxy::dist(x12,method = "Soergel") #2.518146
-
-PERMANOVA::DistContinuous(x12,coef = 9)$D #0.6936661
-
-philentropy::soergel(as.numeric(x1),as.numeric(x2)) #0.6936661
-
-EnvNJ::metrics(t(x12),method = "soergel") #0.6936661
-
-Rfast::Dist(x12,method = "soergel") #0.6936661
-
-
-#### Hellinger ####-------------------------------------------------------------
-
-vegan::vegdist(x12,method = "hellinger") #0.6885085
-vegan::vegdist(x12,method = "hellinger",binary = T) #0.6305668
-
-pctax::mat_dist(t((x12)),method = "hellinger") #0.6885085
-
-topicmodels::distHellinger(x1,x2) # marche pas
-
-?ecodive::hellinger(x12,rescale = T) # 0.6885085
-
-statip::hellinger(as.numeric(x1),as.numeric(x2)) #non fonctionnel
-
-textmineR::CalcHellingerDist(as.numeric(x1),as.numeric(x2)) #0.48962385
-
-dad::hellinger(x1,x2) #non fonctionnel NA
-
-adespatial::beta.div(x12,method = "hellinger",save.D = T)$D #0.6885085
-
-print(adespatial::dist.ldc(x12,method = "hellinger")) #0.6885085
-
-abdiv::hellinger(as.numeric(x1),as.numeric(x2)) #0.6885085
-
-diverse::dis_entities(t(x12),method = "Hellinger",category_row = T)[1,2] # ne marche pas
-
-proxy::dist(x12,method = "Hellinger") #0.6885085
-
-philentropy::hellinger(as.numeric(x1),as.numeric(x2)) #NA
-
-Rfast::Dist(x12,method = "hellinger") #1152.608
-Rfast::Dist(x12,method = "hellinger",square = T) #20.18684
-
 #### Ochiai ####----------------------------------------------------------------
-
-
 
 adespatial::beta.div(x12int,method = "ochiai",save.D = T,sqrt.D = F)$D #0.6408934
 
@@ -724,21 +538,6 @@ proxy::dist(x12,method = "Ochiai") #0.1988073
 labdsv::dsvdis(x12, index = "ochiai") #0.1988073
 
 vegan::designdist(x12,method = "1-J/sqrt(A*B)",terms = "binary") # 0.1988073
-
-#### Ruzicka ####----------------------------------------------------------------
-vegan::designdist(x12,method = "(A+B-2*J)/(A+B-J)",terms = "minimum") # 0.6936661
-
-adespatial::beta.div(x12,method = "ruzicka",save.D = T)$D #0.6936661
-
-print(adespatial::dist.ldc(x12,method = "ruzicka")) #0.6936661
-
-abdiv::ruzicka(as.numeric(x1),as.numeric(x2)) #0.6936661
-
-labdsv::dsvdis(x12, index = "ruzicka") #0.6936661
-
-philentropy::ruzicka(as.numeric(x1),as.numeric(x1)) #0.3063339
-
-stylo::dist.minmax(x12) #0.6936661
 
 #### Dissimilarity ratio ####---------------------------------------------------
 vegan::designdist(x12,method = "(A+B-2*J)/(A+B-J)",terms = "quadratic") # 0.6569256
@@ -1112,14 +911,6 @@ tabula::turnover(x12,"routledge3")
 tabula::turnover(x12,"wilson")
 
 proxy::dist(x12,method = "Podani") # Ne sait pas a quoi ca correspond
-
-#### Marczewski-Steinhaus ####
-adiv::distMS(x12) #0.6936661
-
-labdsv::dsvdis(x12, index = "steinhaus") #0.333333
-
-CommEcol::dis.goodall(x12,p.simi = "steinhaus",approach = "proportion") #non
-CommEcol::dis.goodall(x12,p.simi = "steinhaus",approach = "chisquare") #1
 
 #### Preston's coefficient of faunal dissimilarity ####
 ?wiqid::distPreston(x1,x1) #0.2568745

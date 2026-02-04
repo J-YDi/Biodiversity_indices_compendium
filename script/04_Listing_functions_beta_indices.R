@@ -62,7 +62,7 @@ colnames(mite_dist) <- rownames(t(mite))
 
 mite_pa <- convert_to_presence_absence(mite)
 
-#___________________________ Alpha diversity indices ___________________________####
+#___________________________ Beta diversity indices ___________________________####
 
 # Anderberg ####
 PERMANOVA_1 <- rep(NA,69)
@@ -1265,6 +1265,313 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   vegan_45[i] <- vegan::betadiver(mite_beta,"hk") #0.2
 }
+
+# Hellinger ####
+vegan_46 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_46[i] <- vegan::vegdist(mite_beta,method = "hellinger")
+}
+pctax_46 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_46[i] <- pctax::mat_dist(t((mite_beta)),method = "hellinger")
+}
+ecodive_46 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_46[i] <- ecodive::hellinger(mite_beta,rescale = T)
+}
+adespatial_46 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_46[i] <- adespatial::beta.div(mite_beta,method = "hellinger",save.D = T)$D
+}
+proxy_46 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_46[i] <- proxy::dist(mite_beta,method = "Hellinger")
+}
+Rfast_46 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_46[i] <- Rfast::Dist(mite_beta,method = "hellinger")[2,1]
+}
+abdiv_46 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_46[i] <- abdiv::hellinger(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+
+# Jaccard (Abondance) ####
+vegan_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_47A[i] <- vegan::vegdist(mite_beta,method = "jaccard",binary = F) # 0.6936661
+}
+adespatial_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_47A[i] <- adespatial::beta.div(mite_beta,method = "ruzicka",save.D = T)$D
+}
+abdiv_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_47A[i] <- abdiv::ruzicka(as.numeric(mite[i,]),as.numeric(mite[i+1,])) 
+}
+labdsv_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  labdsv_47A[i] <- labdsv::dsvdis(mite_beta, index = "ruzicka")
+}
+philentropy_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_47A[i] <- abdiv::ruzicka(as.numeric(mite[i,]),as.numeric(mite[i+1,])) 
+}
+stylo_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  stylo_47A[i] <- stylo::dist.minmax(mite_beta)
+}
+adiv_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adiv_47A[i] <- adiv::distMS(mite_beta)
+}
+ecodive_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_47A[i] <- ecodive::soergel(mite_beta,rescale = F) 
+}
+proxy_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_47A[i] <- proxy::dist(mite_beta,method = "Soergel")
+}
+PERMANOVA_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  PERMANOVA_47A[i] <- PERMANOVA::DistContinuous(mite_beta,coef = 9)$D[2,1]
+}
+EnvNJ_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_47A[i] <- EnvNJ::metrics(t(mite_beta),method = "soergel")
+}
+Rfast_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_47A[i] <- Rfast::Dist(mite_beta,method = "soergel")[2,1]
+}
+NST_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_47A[i] <- NST::beta.g(mite_beta,dist.method = "jaccard")
+}
+picante_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  picante_47A[i] <- picante::species.dist(t(mite_beta),metric = "jaccard")
+}
+BoutrosLab.plotting.general_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BoutrosLab.plotting.general_47A[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "jaccard") 
+}
+statisfactory_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  statisfactory_47A[i] <- statisfactory::fuzzyJaccard(mite[i,],mite[i+1,]) 
+}
+geocmeans_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  geocmeans_47A[i] <- geocmeans::calc_jaccard_idx(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+adespatial_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_47A[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = T)$D 
+}
+pctax_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_47A[i] <- pctax::mat_dist(t((mite_beta)),method = "jaccard")
+}
+BAT_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_47A[i] <- BAT::beta(mite_beta,func = "jaccard",abund = T)$Btotal
+}
+prabclus_47A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  prabclus_47A[i] <- prabclus::jaccard(t(mite_beta)) 
+}
+
+# Jaccard P/A ####
+labdsv_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  labdsv_47P[i] <- labdsv::dsvdis(mite_beta, index = "steinhaus")
+}
+ecodist_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodist_47P[i] <- ecodist::distance(mite_beta,method = "jaccard")
+}
+stats_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  stats_47P[i] <- dist(mite_beta,method = "binary")
+}
+vegan_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_47P[i] <- vegan::vegdist(mite_beta,method = "jaccard",binary = T)
+}
+neighbr_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  neighbr_47P[i] <- neighbr::similarity(mite_pa[i,],mite_pa[i+1,],measure = "jaccard") #0.6666667
+}
+ChemoSpecUtils_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ChemoSpecUtils_47P[i] <- ChemoSpecUtils::rowDist(as.matrix(mite_beta),method = "binary") #0.33333
+}
+mgc_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  mgc_47P[i] <- mgc::mgc.distance(mite_beta,method = "binary")[1,2] #0.33333
+}
+BoutrosLab.plotting.general_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BoutrosLab.plotting.general_47P[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "binary")
+}
+bioregion_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  bioregion_47P[i] <- bioregion::dissimilarity(as.matrix(mite_beta),metric = "Jaccard")$Jaccard
+}
+fAssets_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  fAssets_47P[i] <- fAssets::jaccardDist(t(mite_beta))
+}
+vegan_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_47P[i] <- vegan::betadiver(mite_beta,"j")
+}
+ecodive_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_47P[i] <- ecodive::jaccard(mite_beta)
+}
+betapart_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  betapart_47P[i] <- betapart::beta.pair(mite_beta,index.family = "jaccard")$beta.jac 
+}
+adespatial_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_47P[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = F)$D 
+}
+tabula_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  tabula_47P[i] <- tabula::similarity(mite_beta,method = "jaccard")
+}
+adiv_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adiv_47P[i] <- adiv::betastatjac(mite_beta)[1]
+}
+diverse_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  diverse_47P[i] <-diverse::dis_entities(t(mite_beta),method = "Jaccard",category_row = T)[1,2]
+}
+BAT_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_47P[i] <- BAT::beta(mite_beta,func = "jaccard",abund = F)$Btotal
+}
+proxy_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_47P[i] <- proxy::dist(mite_beta,method = "Jaccard")
+}
+PERMANOVA_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  PERMANOVA_47P[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 3,transformation = 1)$D[1,2]
+}
+ClusterR_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ClusterR_47P[i] <- ClusterR::distance_matrix(mite_beta,method = "jaccard_coefficient")[2,1]
+}
+flexclust_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  flexclust_47P[i] <- flexclust::dist2(mite[i,],mite[i+1,],method = "binary")
+}
+iTOP_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  iTOP_47P[i] <- iTOP::jaccard(mite_pa[i,],mite_pa[i+1,])
+}
+proxyC_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  proxyC_47P[i] <- proxyC::simil(as.matrix(mite[i,]),as.matrix(mite[i+1,]),method = "jaccard")
+}
+abdiv_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_47P[i] <- abdiv::jaccard(as.numeric(mite[i,]),as.numeric(mite[i+1,])) #0.3333333
+}
+wiqid_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  wiqid_47P[i] <- wiqid::distJaccard(mite[i,],mite[i+1,]) #0.3333333
+}
+fossil_47P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  fossil_47P[i] <- fossil::jaccard(mite[i,],mite[i+1,]) #0.6666667
+}
+
+
+
+
+
+
+
+
+
+# Autres a voir #
+?wiqid::distChaoJaccCorr(x1,x1) #0.05012367
+wiqid::distChaoJaccNaive(x1,x2) #0.05148794
+ConNEcT::funCorrJacc(as.numeric(x1),as.numeric(x2)) #0.9834216
+proxyC::simil(as.matrix(x1),as.matrix(x2),method = "ejaccard") #0.3430744
+adespatial::beta.div(mite_beta,method = "ab.jaccard",save.D = T,sqrt.D = F) #0.05012367
+print(adespatial::dist.ldc(mite_beta,method = "jaccard")) #0.5773503
+print(adespatial::dist.ldc(mite_beta,method = "ab.jaccard")) #0.05012367
+ade4::dist.binary(x11,method = 1) #0.5773503
+CommEcol::dis.chao(mite_betaint,index = "jaccard",version = "rare") #0.05012367
+CommEcol::dis.chao(x11,index = "jaccard",version = "probability") #0.05148794
+vegan::chaodist(mite_betaint,method = "1 - U*V/(U+V-U*V)") # 0.2098765 
+adiv::dsimcom(mite_beta,method = "2",type = "similarity",option = "absolute") #0.6564616
+diverse::dis_entities(t(mite_beta),method = "eJaccard",category_row = T) #0.6569256
+?proxy::dist(mite_beta,method = "eJaccard") #0.6569256
+
+?MultBiplotR::BinaryDistances(as.matrix(mite_beta_pa),coefficient = 3) #0.5773503 
+
+Mercator::binaryDistance(t(mite_beta),metric = "jaccard") #2.266299
+
+philentropy::jaccard(as.numeric(x1),as.numeric(x2)) #0.6569256
+
+EnvNJ::metrics(t(mite_beta),method = "jaccard") #0.6569256
+
+rdist::rdist(mite_beta,metric = "jaccard") #0.9393939
+
+spaa::sp.pair(t(as.matrix(mite_beta)))$Jaccard #0.7142857
+
+?NST::beta.g(mite_beta,dist.method = "chao.jaccard") #0.0478141 Chao-Jaccard
 
 
 
