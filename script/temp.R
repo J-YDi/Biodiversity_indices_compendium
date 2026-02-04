@@ -166,82 +166,6 @@ fda.usc::metric.dist(x12,method = "manhattan") #95.06
 
 flexclust::dist2(x1,x2,method = "manhattan") #95.06
 
-#### Mahalanobis distance ####--------------------------------------------------
-ecodist::distance(x12,method = "mahalanobis") # (squared Mahalanobis distance) # Matrice singuliere ne fonctionne pas
-vegan::vegdist(x12,method = "mahalanobis") #1.414214
-
-vegan::vegdist(x12,method = "mahalanobis",binary = T) #5.567764
-
-ade4::dist.quant(x12,method = "3") #2
-
-distances::distances(x12,normalize = "mahalanobize") #marche pas
-
-assertr::maha_dist(x12) #sortie bizarre 0.5
-
-nipnTK::outliersMD(x1,x2) #NA
-
-diverse::dis_entities(t(x12),method = "Mahalanobis",category_row = T)[1,2] # marche pas
-
-FD::mahaldis(as.matrix(x12)) #1.414214
-
-pctax::mat_dist(t((x12)),method = "mahalanobis") #1.414214
-
-StatMatch::mahalanobis.dist(x1,x2)#marche pas
-
-asbio::D.sq(t(x1),t(x2)) # ???
-
-proxy::dist(x12,method = "Mahalanobis") #marche pas
-
-MultivariateAnalysis::Distancia(x12,Metodo = 7)[1] #marche pas
-
-ClusterR::distance_matrix(x12,method = "mahalanobis") #1.414214
-
-NST::beta.g(x12,dist.method = "mahalanobis")#1.414214
-
-fAssets::mahalanobisDist(t(x12)) # marche pas
-
-#### Turnover component of Jaccard dissimilarity ####---------------------------
-vegan::nestedbetajac(x12)[1] #0.26666667 
-
-betapart::beta.pair(x12_pa,index.family = "jaccard")$beta.jtu #0.2666667
-
-adespatial::beta.div.comp(x12,coef = "BJ")$repl #0.2666667 baselga
-adespatial::beta.div.comp(x12,coef = "BJ",quant = T)$repl # baselga 0.6922739
-
-bioregion::dissimilarity(as.matrix(x12),metric = "Jaccardturn") # 0.2666667
-
-abdiv::jaccard_turnover(as.numeric(x1),as.numeric(x2)) #0.2666667
-
-adiv::betastatjac(x12)[2] # Ricotta & Pavoine 2015 0.1212121 
-
-#### Replacement index of Jaccard, Podani family ####
-?adespatial::beta.div.comp(x12,coef = "J")$repl #0.2424242
-adespatial::beta.div.comp(x12,coef = "J",quant = T)$repl #0.6891419
-
-?BAT::beta(x12,func = "jaccard",abund = F)$Brepl #0.2424242
-BAT::beta(x12,func = "jaccard",abund = T)$Brepl # 0.6891419
-
-
-#### Nestedness component of Jaccard dissimilarity ####-------------------------
-vegan::nestedbetajac(x12)[2] # 0.06666667
-
-betapart::beta.pair(x12_pa,index.family = "jaccard")$beta.jne #0.06666667
-
-adespatial::beta.div.comp(x12,coef = "J")$rich # Podani 0.09090909
-adespatial::beta.div.comp(x12_pa,coef = "J",quant=T)$rich # 0.004524227 Podani 
-adespatial::beta.div.comp(x12,coef = "BJ")$rich #0.06666667 baselga
-adespatial::beta.div.comp(x12,coef = "BJ",quant = T)$rich #0.001392223 baselga
-abdiv::jaccard_nestedness(as.numeric(x1),as.numeric(x2)) #0.06666667
-
-BAT::beta(x12,func = "jaccard",abund = F)$Brich #0.09090909 podani
-BAT::beta(test,func = "jaccard",abund = F)$Bgain #0.1212121
-BAT::beta(x12,func = "jaccard",abund = F)$Bloss #0.2121212
-
-BAT::beta(x12_pa,func = "jaccard",abund = T)$Brich #0.004524227 podani
-BAT::beta(x12_pa,func = "jaccard",abund = T)$Bgain #0.3490952
-BAT::beta(x12_pa,func = "jaccard",abund = T)$Bloss #0.3445709
-
-?adiv::betastatjac(x12)[3]# Ricotta & Pavoine 2015 0.2121212
 #### Sorensen ####--------------------------------------------------------------
 vegan::betadiver(x11,"sor") # 0.8 # COnversion en dissim
 
@@ -386,51 +310,6 @@ fda.usc::metric.dist(x12,method = "minkowski",p=2) #40.37368
 
 BoutrosLab.plotting.general::dist(x12,method = "minkowski",p=2) #40.37368
 
-#### Kulczynski ####-----------------------------------------------------------------
-vegan::vegdist(x12,method = "kulczynski") #0.5309965
-vegan::vegdist(x12,method = "kulczynski",binary = T) #0.1976127
-
-pctax::mat_dist(t((x12)),method = "kulczynski") #0.5309965
-
-adespatial::beta.div(x12,method = "kulczynski",save.D = T)$D #0.5309965
-
-print(adespatial::dist.ldc(x12,method = "kulczynski")) #0.5309965
-
-abdiv::kulczynski_first(as.numeric(x1),as.numeric(x2)) # Kulczynski -1
-
-?abdiv::kulczynski_second(as.numeric(x1),as.numeric(x2)) # Kulczynski-Cody = vegdist avec kulczynski et binary = T 0.1976127
-
-abdiv::weighted_kulczynski_second(as.numeric(x1),as.numeric(x2)) #Weighted Kulczynski distance 0.5309965
-
-diverse::dis_entities(t(x12),method = "Kulczynski1",category_row = T)[1,2] # marche pas
-diverse::dis_entities(t(x12),method = "Kulczynski2",category_row = T)[1,2] # marche pas
-
-fossil::kulczynski(x1,x2) #0.8023873
-
-proxy::dist(x12,method = "Kulczynski1") #-1
-proxy::dist(x12,method = "Kulczynski2") #0.1976127
-
-vegan::betadiver(x12,"co") #0.1976127
-abdiv::kulczynski_second(as.numeric(x1),as.numeric(x2)) # Kulczynski-Cody 0.1976127
-
-MultBiplotR::BinaryDistances(as.matrix(x12_pa),coefficient = 1) # marche pas
-MultBiplotR::BinaryDistances(as.matrix(x12_pa),coefficient = 10) # marche pas
-
-PERMANOVA::DistBinary(x12_pa,coefficient = 1,transformation = 1)$D #marche pas
-PERMANOVA::DistBinary(x12_pa,coefficient = 10,transformation = 1)$D #marche pas
-
-philentropy::kulczynski_d(as.numeric(x1),as.numeric(x2)) #2.2644
-
-EnvNJ::metrics(t(x12),method = "kulczynski") #2.2644
-
-Rfast::Dist(x12,method = "kulczynski") #2.2644
-
-NST::beta.g(x12,dist.method = "kulczynski") #0.5309965
-
-prabclus::kulczynski(t(x12_pa)) #0.1976127
-
-prabclus::qkulczynski(t(x12)) #0.5309965
-
 #### Morisita ####--------------------------------------------------------------
 
 vegan::vegdist(x12int,method = "morisita") # 0.4806241
@@ -491,17 +370,6 @@ pctax::mat_dist(t((x12)),method = "raup") #0.002291751^
 iCAMP::RC.pc(x12)$index #louche
 
 NST::beta.g(x12,dist.method = "raup") #0.002291751
-
-
-
-
-#### Chao ####------------------------------------------------------------------
-
-vegan::vegdist(x11,method = "chao") #0.05012367
-
-?pctax::mat_dist(t((x11)),method = "chao") #0.05012367
-
-NST::beta.g(x11,dist.method = "chao") #0.05012367
 
 #### Ochiai ####----------------------------------------------------------------
 
@@ -596,20 +464,8 @@ tabula::index_routledge1(as.matrix(x12)) # 0.05421104
 tabula::index_routledge2(as.matrix(x12)) #NA
 tabula::index_routledge3(as.matrix(x12)) #NA
 
-#### Koleff betal Routledge ####------------------------------------------------
-vegan::betadiver(x12,"l") #5.5
-
 #### Koleff betae Routledge ####------------------------------------------------
 ?vegan::betadiver(x12,"e") #0.14699
-
-#### Koleff betasim Lennon ####-------------------------------------------------
-vegan::betadiver(x12,"sim") #0.1538462
-
-#### Koleff betagl Lennon ####--------------------------------------------------
-vegan::betadiver(x12,"gl") #0.1090909
-
-#### Koleff betaz Lennon ####---------------------------------------------------
-vegan::betadiver(x12,"z") #0.2630344
 
 #### Koleff betat Wilson and Shmida ####----------------------------------------
 vegan::betadiver(x12,"t") #0.2
@@ -621,9 +477,6 @@ vegan::betadiver(x12,"me") #0.2
 
 #### Koleff betawb Wieher & Boylen ####-----------------------------------------
 vegan::betadiver(x12,"wb") #11
-
-#### Koleff betam Magurran ####-------------------------------------------------
-vegan::betadiver(x12,"m") #18.33333
 
 #### Koleff betag Gaston ####---------------------------------------------------
 vegan::betadiver(x12,"g") #0.3333333
@@ -668,46 +521,6 @@ adespatial::beta.div(test,method = "profiles",save.D = T)$D #0.4505909
 
 print(adespatial::dist.ldc(x12,method = "profiles")) #0.4505909
 
-#### Jenson-Shannon distance ####
-ecodive::jensen(x12,rescale = F) #4.330852 distance
-
-priorsense::cjs_dist(as.numeric(x1),as.numeric(x2)) #0.3056077
-
-proxyC::dist(as.matrix(x12),method = "jensen") #NA
-
-philentropy::jensen_shannon(as.numeric(x1),as.numeric(x2),unit = "log10") #18.75628 #jensen shannon divergence
-
-philentropy::jensen_difference(as.numeric(x1),as.numeric(x2)) # 18.75628
-
-EnvNJ::metrics(t(x12),method = "jensen-shannon") #0.2095511 divergence avant racine carré avec les proportions
-
-Rfast::Dist(x12,method = "jensen_shannon") #34.28249
-
-sccore::jsDist(as.matrix(x12)) # marche pas
-
-#### Jenson-Shannon divergence ####
-ecodive::jsd(x12,rescale = F) #18.75628 divergence
-
-philentropy::JSD(as.matrix(y12)) #27.05959 divergence log 2
-
-textmineR::CalcJSDivergence(as.numeric(y1),as.numeric(y2)) #0.2094943
-
-philentropy::gJSD(as.numeric(y1),as.numeric(y2)) #marche pas
-
-EnvNJ::metrics(t(y12),method = "jensen_difference") #0.2095511
-
-dlookr::jsd(as.numeric(x1),as.numeric(x2)) # marche pas
-
-Tmisc::jsd(as.matrix(x12),normalizeCounts = T) # marche pas
-
-Compositional::divergence(y12,type = "jensen_shannon") #34.28249
-
-#### Lorentzian distance ####
-ecodive::lorentzian(x12,rescale = F) #23.05264
-
-philentropy::lorentzian(as.numeric(x1),as.numeric(x2)) #23.05264
-
-EnvNJ::metrics(t(x12),method = "lorentzian") #23.05264
 
 #### Matusita distance ####
 ecodive::matusita(x12,rescale = F) #6.514023
@@ -757,11 +570,6 @@ print(adespatial::dist.ldc(x12,method = "wishart"))#0.6569256
 wiqid::distSimRatio(x1,x2) # Similarity ratio 0.6569256
 #### Permet de calculer BDtot, SCBD, LCBD, en fonction de l'indice choisi ####
 adespatial::beta.div(x12,method = "",save.D = T)
-
-#### Podani & Schmera 2011 Jaccard ####
-adespatial::beta.div.comp(test,coef = "N")$repl # 0.2424242
-?adespatial::beta.div.comp(x12,coef = "N")$rich # 0.7575758
-adespatial::beta.div.comp(x12,coef = "N")$D # 0.3333333
 
 diverse::dis_entities(t(x12),method = "Podani",category_row = T)[1,2] #marche
 
