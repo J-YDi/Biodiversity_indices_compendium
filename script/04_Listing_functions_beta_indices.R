@@ -2087,6 +2087,10 @@ LearnClust_69 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   LearnClust_69[i] <- LearnClust::mdistance(as.numeric(mite[i,]),as.numeric(mite[i+1,])) #11.08
 }
+flexclust_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  flexclust_69[i] <- flexclust::dist2(mite[i,],mite[i+1,],method = "manhattan")
+}
 
 # Manhattan modified ####
 NST_70 <- rep(NA,69)
@@ -2230,9 +2234,6 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   Rfast_72_3[i] <- Rfast::Dist(mite_beta,method = "minkowski",p = 3)[1,2] #95.06
 }
-
-philentropy::minkowski(as.numeric(x1),as.numeric(x2),n=2) #40.37368
-
 fAssets_72_2 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
@@ -2253,31 +2254,85 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   proxyC_72_3[i] <- proxyC::dist(as.matrix(mite_beta),method = "minkowski",p=3)[1,2]
 }
+ClusterR_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ClusterR_72_1[i] <- ClusterR::distance_matrix(mite_beta,method = "minkowski",minkowski_p = 1)[2,1]
+}
+ClusterR_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ClusterR_72_2[i] <- ClusterR::distance_matrix(mite_beta,method = "minkowski",minkowski_p = 2)[2,1]
+}
+ClusterR_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ClusterR_72_3[i] <- ClusterR::distance_matrix(mite_beta,method = "minkowski",minkowski_p = 3)[2,1]
+}
+rdist_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  rdist_72_1[i] <- rdist::rdist(mite_beta,metric = "minkowski",p = 1)
+}
+rdist_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  rdist_72_2[i] <- rdist::rdist(mite_beta,metric = "minkowski",p = 2)
+}
+rdist_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  rdist_72_3[i] <- rdist::rdist(mite_beta,metric = "minkowski",p = 3)
+}
+coda.base_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  coda.base_72_1[i] <- coda.base::dist(mite_beta,"minkowski",p=1)
+}
+coda.base_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  coda.base_72_2[i] <- coda.base::dist(mite_beta,"minkowski",p=2) 
+}
+coda.base_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  coda.base_72_3[i] <- coda.base::dist(mite_beta,"minkowski",p=3)
+}
+fda.usc_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  fda.usc_72_1[i] <- fda.usc::metric.dist(mite_beta,method = "minkowski",p=1)[1,2]
+}
+fda.usc_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  fda.usc_72_2[i] <- fda.usc::metric.dist(mite_beta,method = "minkowski",p=2)[1,2]
+}
+fda.usc_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  fda.usc_72_3[i] <- fda.usc::metric.dist(mite_beta,method = "minkowski",p=3)[1,2]
+}
+BoutrosLab.plotting.general_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BoutrosLab.plotting.general_72_1[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "minkowski",p=1)
+}
+BoutrosLab.plotting.general_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BoutrosLab.plotting.general_72_2[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "minkowski",p=2)
+}
+BoutrosLab.plotting.general_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BoutrosLab.plotting.general_72_3[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "minkowski",p=3)
+}
 
 comparator::Minkowski(p=2)(as.numeric(x1),as.numeric(x2)) #40.37368
-
-ClusterR::distance_matrix(mite_beta,method = "minkowski",minkowski_p = 2) #40.37368
-
-rdist::rdist(mite_beta,metric = "minkowski",p = 2) #40.37368
-
-coda.base::dist(mite_beta,"minkowski",p=2) #40.37368
-
+philentropy::minkowski(as.numeric(x1),as.numeric(x2),n=2) #40.37368
 TSdist::MinkowskiDistance(as.numeric(x1),as.numeric(x2),p=2) #40.37368
-
-TSdist::LPDistance(as.numeric(x1),as.numeric(x2),p=2,method = "minkowski") #40.37368
-
-Rlof::distmc(mite_beta,method = "minkowski",p=2) #40.37368
-
-fda.usc::metric.dist(mite_beta,method = "minkowski",p=2) #40.37368
-
-BoutrosLab.plotting.general::dist(mite_beta,method = "minkowski",p=2) #40.37368
-
-
-
-flexclust::dist2(x1,x2,method = "manhattan") #95.06
-
-
-
 
 
 
