@@ -1924,7 +1924,120 @@ for (i in 1:(nrow(mite)-1)){
   NST_68[i] <- NST::beta.g(mite_beta,dist.method = "mahalanobis")
 }
 
+# Manhattan ####
+ecodist_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodist_69[i] <- ecodist::distance(mite_beta,method = "manhattan")
+}
+stats_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  stats_69[i] <- dist(mite_beta,method = "manhattan")
+}
+vegan_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_69[i] <- vegan::vegdist(mite_beta,method = "manhattan")
+}
+proxyC_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxyC_69[i] <- proxyC::dist(as.matrix(mite_beta),method = "manhattan")[1,2]
+}
+mgc_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  mgc_69[i] <- mgc::mgc.distance(mite_beta,method = "manhattan")[1,2]
+}
+cluster_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  cluster_69[i] <- cluster::daisy(mite_beta,metric = "manhattan")
+}
+ChemoSpecUtils_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ChemoSpecUtils_69[i] <- ChemoSpecUtils::rowDist(as.matrix(mite_beta),method = "manhattan")
+}
+ldt_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ldt_69[i] <- ldt::s.distance(t(mite_beta),distance = "manhattan")
+}
+fAssets_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  fAssets_69[i] <- fAssets::manhattanDist(t(mite_beta))
+}
+ecodive_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_69[i] <- ecodive::manhattan(mite_beta,rescale = F)
+}
+adespatial_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_69[i] <- print(adespatial::dist.ldc(mite_beta,method = "manhattan")) 
+}
+diverse_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  diverse_69[i] <- diverse::dis_entities(t(mite_beta),method = "Manhattan",category_row = T)[1,2]
+}
+pctax_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_69[i] <- pctax::mat_dist(t((mite_beta)),method = "manhattan")
+}
+proxy_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_69[i] <- proxy::dist(mite_beta,method = "Manhattan") #95.06
+}
 
+analogue::distance(x1,x2,method = "manhattan") #95.06
+hmsr::manhattan_distance(as.numeric(x1),as.numeric(x2)) #95.06
+abdiv::manhattan(as.numeric(x1),as.numeric(x2)) #95.06
+fossil::manhattan(x1,x2) #95.06
+
+
+
+amap::Dist(mite_beta,method = "manhattan") #95.06
+
+Mercator::binaryDistance(t(mite_beta),metric = "manhattan") #1
+
+dynutils::calculate_distance(mite_beta,method = "manhattan") #95.06
+
+philentropy::manhattan(as.numeric(x1),as.numeric(x2)) #95.06
+
+EnvNJ::metrics(t(mite_beta),method = "manhattan") #95.06
+
+Rfast::Dist(mite_beta,method = "manhattan") #95.06
+
+comparator::Manhattan()(as.numeric(x1),as.numeric(x2)) #95.06
+
+ClusterR::distance_matrix(mite_beta,method = "manhattan") #95.06
+
+rdist::rdist(mite_beta,metric = "manhattan") #95.06
+
+BoutrosLab.plotting.general::dist(mite_beta,method = "manhattan") #95.06
+
+TSdist::LPDistance(as.numeric(x1),as.numeric(x2),method = "manhattan") #95.06
+
+coda.base::dist(mite_beta,"manhattan") #95.06
+
+LearnClust::mdistance(as.numeric(x1),as.numeric(x2)) #11.08
+
+NST::beta.g(mite_beta,dist.method = "manhattan") #95.06
+
+Rlof::distmc(mite_beta,method = "manhattan") #95.06
+
+?NST::beta.g(mite_beta,dist.method = "mManhattan") #2.880606 modif par Andersen et al. 2006
+
+fda.usc::metric.dist(mite_beta,method = "manhattan") #95.06
+
+flexclust::dist2(x1,x2,method = "manhattan") #95.06
 
 
 
