@@ -1993,49 +1993,286 @@ for (i in 1:(nrow(mite)-1)){
 proxy_69 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  proxy_69[i] <- proxy::dist(mite_beta,method = "Manhattan") #95.06
+  proxy_69[i] <- proxy::dist(mite_beta,method = "Manhattan") 
+}
+amap_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  amap_69[i] <- amap::Dist(mite_beta,method = "manhattan")
+}
+Mercator_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Mercator_69[i] <- Mercator::binaryDistance(t(mite_beta),metric = "manhattan")
+}
+dynutils_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  dynutils_69[i] <- dynutils::calculate_distance(mite_beta,method = "manhattan")[1,2]
+}
+EnvNJ_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_69[i] <- EnvNJ::metrics(t(mite_beta),method = "manhattan")[1,2]
+}
+Rfast_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_69[i] <- Rfast::Dist(mite_beta,method = "manhattan")[1,2] #95.06
+}
+comparator_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  comparator_69[i] <- comparator::Manhattan()(as.numeric(mite[i,]),as.numeric(mite[i+1,])) #95.06
+}
+ClusterR_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ClusterR_69[i] <- ClusterR::distance_matrix(mite_beta,method = "manhattan")[2,1]
+}
+rdist_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  rdist_69[i] <- rdist::rdist(mite_beta,metric = "manhattan")
+}
+BoutrosLab.plotting.general_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BoutrosLab.plotting.general_69[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "manhattan")
+}
+coda.base_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  coda.base_69[i] <- coda.base::dist(mite_beta,"manhattan")
+}
+NST_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_69[i] <- NST::beta.g(mite_beta,dist.method = "manhattan")
+}
+Rlof_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rlof_69[i] <- Rlof::distmc(mite_beta,method = "manhattan")
+}
+fda.usc_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  fda.usc_69[i] <- fda.usc::metric.dist(mite_beta,method = "manhattan")[1,2]
+}
+analogue_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  analogue_69[i] <- analogue::distance(mite[i,],mite[i+1,],method = "manhattan") 
+}
+hmsr_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  hmsr_69[i] <- hmsr::manhattan_distance(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+abdiv_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_69[i] <- abdiv::manhattan(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+fossil_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  fossil_69[i] <- fossil::manhattan(mite[i,],mite[i+1,])
+}
+philentropy_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_69[i] <- philentropy::manhattan(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+TSdist_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  TSdist_69[i] <- TSdist::LPDistance(as.numeric(mite[i,]),as.numeric(mite[i+1,]),method = "manhattan") #95.06
+}
+LearnClust_69 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  LearnClust_69[i] <- LearnClust::mdistance(as.numeric(mite[i,]),as.numeric(mite[i+1,])) #11.08
 }
 
-analogue::distance(x1,x2,method = "manhattan") #95.06
-hmsr::manhattan_distance(as.numeric(x1),as.numeric(x2)) #95.06
-abdiv::manhattan(as.numeric(x1),as.numeric(x2)) #95.06
-fossil::manhattan(x1,x2) #95.06
+# Manhattan modified ####
+NST_70 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_70[i] <- NST::beta.g(mite_beta,dist.method = "mManhattan")
+}
+
+# Matusita ####
+ecodive_71 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_71[i] <- ecodive::matusita(mite_beta,rescale = F) #6.514023
+}
+
+#### Minkowski ####-------------------------------------------------------------
+stats_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  stats_72_1[i] <- dist(mite_beta,method = "minkowski",p=1)
+}
+stats_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  stats_72_2[i] <- dist(mite_beta,method = "minkowski",p=2)
+}
+stats_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  stats_72_3[i] <- dist(mite_beta,method = "minkowski",p=3)
+}
+flexclust_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  flexclust_72_1[i] <- flexclust::dist2(mite[i,],mite[i+1,],method = "minkowski",p=1) #40.37368
+}
+flexclust_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  flexclust_72_2[i] <- flexclust::dist2(mite[i,],mite[i+1,],method = "minkowski",p=2)
+}
+flexclust_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  flexclust_72_3[i] <- flexclust::dist2(mite[i,],mite[i+1,],method = "minkowski",p=3)
+}
+mgc_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  mgc_72_2[i] <- mgc::mgc.distance(mite_beta,method = "minkowski")[1,2]
+}
+ecodive_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_72_1[i] <- ecodive::minkowski(mite_beta,rescale = F,power = 1)
+}
+ecodive_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_72_2[i] <- ecodive::minkowski(mite_beta,rescale = F,power = 2)
+}
+ecodive_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_72_3[i] <- ecodive::minkowski(mite_beta,rescale = F,power = 3)
+}
+abdiv_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  abdiv_72_1[i] <- abdiv::minkowski(as.numeric(mite[i,]),as.numeric(mite[i+1,]),p=1)
+}
+abdiv_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  abdiv_72_2[i] <- abdiv::minkowski(as.numeric(mite[i,]),as.numeric(mite[i+1,]),p=2)
+}
+abdiv_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  abdiv_72_3[i] <- abdiv::minkowski(as.numeric(mite[i,]),as.numeric(mite[i+1,]),p=3)
+}
+proxy_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_72_1[i] <- proxy::dist(mite_beta,method = "Minkowski",p=1)
+}
+proxy_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_72_2[i] <- proxy::dist(mite_beta,method = "Minkowski",p=2)
+}
+proxy_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_72_3[i] <- proxy::dist(mite_beta,method = "Minkowski",p=3)
+}
+PERMANOVA_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  PERMANOVA_72_1[i] <- PERMANOVA::DistContinuous(mite_beta,coef = 4,r=1)$D[1,2]
+}
+PERMANOVA_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  PERMANOVA_72_2[i] <- PERMANOVA::DistContinuous(mite_beta,coef = 4,r=2)$D[1,2]
+}
+PERMANOVA_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  PERMANOVA_72_3[i] <- PERMANOVA::DistContinuous(mite_beta,coef = 4,r=3)$D[1,2]
+}
+dynutils_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  dynutils_72_2[i] <- dynutils::calculate_distance(mite_beta,method = "minkowski")[1,2]
+}
+EnvNJ_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_72_1[i] <- EnvNJ::metrics(t(mite_beta),method = "minkowski",p=1)[1,2]
+}
+EnvNJ_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_72_2[i] <- EnvNJ::metrics(t(mite_beta),method = "minkowski",p=2)[1,2]
+}
+EnvNJ_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_72_3[i] <- EnvNJ::metrics(t(mite_beta),method = "minkowski",p=3)[1,2]
+}
+Rfast_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_72_1[i] <- Rfast::Dist(mite_beta,method = "minkowski",p = 1)[1,2] #95.06
+}
+Rfast_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_72_2[i] <- Rfast::Dist(mite_beta,method = "minkowski",p = 2)[1,2] #95.06
+}
+Rfast_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_72_3[i] <- Rfast::Dist(mite_beta,method = "minkowski",p = 3)[1,2] #95.06
+}
+
+philentropy::minkowski(as.numeric(x1),as.numeric(x2),n=2) #40.37368
+
+fAssets_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  fAssets_72_2[i] <- fAssets::minkowskiDist(t(mite_beta)) #40.37368
+}
+proxyC_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxyC_72_1[i] <- proxyC::dist(as.matrix(mite_beta),method = "minkowski",p=1)[1,2]
+}
+proxyC_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxyC_72_2[i] <- proxyC::dist(as.matrix(mite_beta),method = "minkowski",p=2)[1,2]
+}
+proxyC_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxyC_72_3[i] <- proxyC::dist(as.matrix(mite_beta),method = "minkowski",p=3)[1,2]
+}
+
+comparator::Minkowski(p=2)(as.numeric(x1),as.numeric(x2)) #40.37368
+
+ClusterR::distance_matrix(mite_beta,method = "minkowski",minkowski_p = 2) #40.37368
+
+rdist::rdist(mite_beta,metric = "minkowski",p = 2) #40.37368
+
+coda.base::dist(mite_beta,"minkowski",p=2) #40.37368
+
+TSdist::MinkowskiDistance(as.numeric(x1),as.numeric(x2),p=2) #40.37368
+
+TSdist::LPDistance(as.numeric(x1),as.numeric(x2),p=2,method = "minkowski") #40.37368
+
+Rlof::distmc(mite_beta,method = "minkowski",p=2) #40.37368
+
+fda.usc::metric.dist(mite_beta,method = "minkowski",p=2) #40.37368
+
+BoutrosLab.plotting.general::dist(mite_beta,method = "minkowski",p=2) #40.37368
 
 
-
-amap::Dist(mite_beta,method = "manhattan") #95.06
-
-Mercator::binaryDistance(t(mite_beta),metric = "manhattan") #1
-
-dynutils::calculate_distance(mite_beta,method = "manhattan") #95.06
-
-philentropy::manhattan(as.numeric(x1),as.numeric(x2)) #95.06
-
-EnvNJ::metrics(t(mite_beta),method = "manhattan") #95.06
-
-Rfast::Dist(mite_beta,method = "manhattan") #95.06
-
-comparator::Manhattan()(as.numeric(x1),as.numeric(x2)) #95.06
-
-ClusterR::distance_matrix(mite_beta,method = "manhattan") #95.06
-
-rdist::rdist(mite_beta,metric = "manhattan") #95.06
-
-BoutrosLab.plotting.general::dist(mite_beta,method = "manhattan") #95.06
-
-TSdist::LPDistance(as.numeric(x1),as.numeric(x2),method = "manhattan") #95.06
-
-coda.base::dist(mite_beta,"manhattan") #95.06
-
-LearnClust::mdistance(as.numeric(x1),as.numeric(x2)) #11.08
-
-NST::beta.g(mite_beta,dist.method = "manhattan") #95.06
-
-Rlof::distmc(mite_beta,method = "manhattan") #95.06
-
-?NST::beta.g(mite_beta,dist.method = "mManhattan") #2.880606 modif par Andersen et al. 2006
-
-fda.usc::metric.dist(mite_beta,method = "manhattan") #95.06
 
 flexclust::dist2(x1,x2,method = "manhattan") #95.06
 

@@ -444,14 +444,6 @@ adespatial::beta.div(test,method = "profiles",save.D = T)$D #0.4505909
 
 print(adespatial::dist.ldc(x12,method = "profiles")) #0.4505909
 
-
-#### Matusita distance ####
-ecodive::matusita(x12,rescale = F) #6.514023
-
-philentropy::matusita(as.numeric(x1),as.numeric(x2)) #NA
-
-Rfast::Dist(x12,method = "jeffries_matusita") #NA
-
 #### Motyka dissimilarity ####
 ecodive::motyka(x12,rescale = F) #0.7655011
 
