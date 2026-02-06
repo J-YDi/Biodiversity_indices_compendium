@@ -261,23 +261,6 @@ abdiv::modified_mean_character_difference(as.numeric(x1),as.numeric(x2)) #2.8806
 #### S2 coeff Gower & Legendre ####
 ade4::dist.binary(x12,method = 10) #0.7071068
 
-#### Yule ####
-abdiv::yule_dissimilarity(as.numeric(x1),as.numeric(x1)) #0.2074074
-
-diverse::dis_entities(t(x12),method = "Yule",category_row = T)[1,2]
-diverse::dis_entities(t(x12),method = "Yule2",category_row = T)[1,2]
-
-proxy::dist(x11,method = "Yule") #0.2074074
-proxy::dist(x11,method = "Yule2") #0.5076305
-
-MultivariateAnalysis::Distancia(x12,Metodo = 20) # marche pas
-
-psych::Yule(varespec) #marche pas
-
-MultBiplotR::BinaryDistances(as.matrix(x12_pa),coefficient = 15) #0.45542
-
-PERMANOVA::DistBinary(x12_pa,coefficient = 15,transformation = 1)$D #0.7925926
-
 #### Roberts ####
 ?labdsv::dsvdis(x11, index = "roberts") #0.6496285
 
@@ -286,9 +269,6 @@ Rfast::Dist(x12,method = "kullback_leibler") #172.0308 # non coherent avec formu
 proxyC::dist(as.matrix(x12),method = "kullback") #NA
 EnvNJ::metrics(t(x12),method = "kullback_leibler") #marche pas
 bapred::kldist(x12) #marche pas
-
-#### Harvesine
-Rfast::Dist(x12_pa,method = "haversine") #non fonctionnel
 
 #### Harmonic mean
 Rfast::Dist(x12,method = "harmonic_mean") #9.510365

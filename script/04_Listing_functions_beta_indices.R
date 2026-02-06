@@ -2954,16 +2954,34 @@ for (i in 1:(nrow(mite)-1)){
   tabula_XXX[i] <- tabula::index_wilson(as.matrix(mite_beta)) #ne sait pas a quoi ca correspond
 }
 
+# Yule ####
+abdiv_113 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  abdiv_113[i] <- abdiv::yule_dissimilarity(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+proxy_113 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_113[i] <- proxy::dist(mite_beta,method = "Yule")
+}
+MultBiplotR_113 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  MultBiplotR_113[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 15)[1,2]
+}
+PERMANOVA_113 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  PERMANOVA_113[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 15,transformation = 1)$D[1,2]
+}
 
-
-
-
-
-
-
-
-
-
+# Yule 2 ####
+proxy_114<- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_114[i] <- proxy::dist(mite_beta,method = "Yule2")
+}
 
 
 # beta g ####
