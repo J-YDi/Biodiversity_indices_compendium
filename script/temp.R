@@ -186,100 +186,6 @@ prabclus::dicedist(t(x12)) #0.4375 ???
 
 fAssets::sorensenDist(t(x12)) #0.2
 
-#### Minkowski ####-------------------------------------------------------------
-dist(x12,method = "minkowski",p=2) #40.37368
-
-flexclust::dist2(x1,x2,method = "minkowski") #40.37368
-
-mgc::mgc.distance(x12,method = "minkowski") #40.37368
-
-ecodive::minkowski(x12,rescale = F,power = 2) # 40.37368
-
-abdiv::minkowski(as.numeric(x1),as.numeric(x2),p=2) #p modifiable -> p=1 = Manhattan 40.37368
-
-diverse::dis_entities(t(x12),method = "Minkowski",category_row = T)[1,2] # marhe pas
-
-proxy::dist(x12,method = "Minkowski",p=2) #p modifiable -> p=1 = Manhattan 40.37368
-
-PERMANOVA::DistContinuous(x12,coef = 4,r=2)$D # 40.37368
-
-dynutils::calculate_distance(x12,method = "minkowski") #40.37368
-
-philentropy::minkowski(as.numeric(x1),as.numeric(x2),n=2) #40.37368
-
-EnvNJ::metrics(t(x12),method = "minkowski") #40.37368
-
-Rfast::Dist(x12,method = "minkowski",p = 2) #95.06
-
-fAssets::minkowskiDist(t(x12)) #40.37368
-
-proxyC::dist(as.matrix(x12),method = "minkowski",p=2) #40.37368
-
-comparator::Minkowski(p=2)(as.numeric(x1),as.numeric(x2)) #40.37368
-
-ClusterR::distance_matrix(x12,method = "minkowski",minkowski_p = 2) #40.37368
-
-rdist::rdist(x12,metric = "minkowski",p = 2) #40.37368
-
-coda.base::dist(x12,"minkowski",p=2) #40.37368
-
-TSdist::MinkowskiDistance(as.numeric(x1),as.numeric(x2),p=2) #40.37368
-
-TSdist::LPDistance(as.numeric(x1),as.numeric(x2),p=2,method = "minkowski") #40.37368
-
-Rlof::distmc(x12,method = "minkowski",p=2) #40.37368
-
-fda.usc::metric.dist(x12,method = "minkowski",p=2) #40.37368
-
-BoutrosLab.plotting.general::dist(x12,method = "minkowski",p=2) #40.37368
-
-#### Morisita ####--------------------------------------------------------------
-
-vegan::vegdist(x12int,method = "morisita") # 0.4806241
-vegan::vegdist(x12int,method = "morisita",binary = T) #0
-
-pctax::mat_dist(t((x12int)),method = "morisita") #0.4806241
-
-ecodive::morisita(x12int) #0.4806241
-
-abdiv::morisita(as.numeric(x1int),as.numeric(x2int)) #0.4806241
-
-NST::beta.g(x12int,dist.method = "morisita") #0.4806241
-
-#### Morisita-Horn ####---------------------------------------------------------
-
-vegan::vegdist(x12,method = "horn") #0.4886065
-NST::beta.g(x12,dist.method = "horn") #0.4886065
-
-?vegan::vegdist(x12,method = "horn",binary = T) #0.2
-
-pctax::mat_dist(t((x12)),method = "horn") #0.4886065
-
-ecodive::horn(x12,rescale = F) #0.4886065
-
-?abdiv::horn_morisita(as.numeric(x1),as.numeric(x2)) #0.4886065
-
-1-tabula::index_morisita(as.numeric(x1),as.numeric(x2)) #0.5113935
-
-tabula::similarity(x12,method = "morisita") #0.5113935
-
-wiqid::distMorisitaHorn(x1,x2) #0.4886065
-
-fossil::morisita.horn(x1,x2) #0.5113935
-
-
-#### Mountford ####-------------------------------------------------------------
-
-vegan::vegdist(x12,method = "mountford") #  the proper index is defined as the root of the equation above 0.5666415
-vegan::vegdist(x12,method = "mountford",binary = T) #0.5666415
-
-pctax::mat_dist(t((x12)),method = "mountford") #0.5666415
-diverse::dis_entities(t(x12),method = "Mountford",category_row = T)[1,2]  #marche pas
-
-?proxy::dist(x12,method = "Mountford") #0.852349 # ne correspond pas
-
-NST::beta.g(x12,dist.method = "mountford") #0.5666415
-
 #### Raup ####-----------------------------------------------------------------
 
 ?vegan::vegdist(x12,method = "raup")# 0.002291751 #The index uses equal occurrence probabilities for all species, but Raup and Crick originally suggested that sampling probabilities should be proportional to species frequencies 
@@ -293,42 +199,6 @@ pctax::mat_dist(t((x12)),method = "raup") #0.002291751^
 iCAMP::RC.pc(x12)$index #louche
 
 NST::beta.g(x12,dist.method = "raup") #0.002291751
-
-#### Ochiai ####----------------------------------------------------------------
-
-adespatial::beta.div(x12int,method = "ochiai",save.D = T,sqrt.D = F)$D #0.6408934
-
-adespatial::beta.div(adespatial::beta.div(x12int,method = "ab.ochiai",save.D = T,sqrt.D = F)$D) #0.02555303 ok avec integer
-
-print(adespatial::dist.ldc(x12int,method = "ochiai")) #0.4458781 ok avec présence absence
-print(adespatial::dist.ldc(x12int,method = "ab.ochiai")) #0.02555303 ok avec integer
-
-ade4::dist.binary(x12int,method = 7) #0.4458781 ok avec présence absence
-
-adiv::dsimcom(x12int,method = "4",type = "similarity",option = "absolute") #0.4833802
-
-diverse::dis_entities(t(x12int),method = "Ochiai",category_row = T)[1,2] #marche pas
-
-MultivariateAnalysis::Distancia(x12int,Metodo = 17)[1] #NA
-MultivariateAnalysis::Distancia(x12int,Metodo = 18)[1] #NA
-
-MultBiplotR::BinaryDistances(as.matrix(x12int),coefficient = 12) #0.4458781 avec présence absence
-
-spaa::sp.pair(t(as.matrix(x12int)))$Ochiai #0.8451543
-
-
-#### Otsuka-Ochiai ####---------------------------------------------------------
-?ecodive::ochiai(x12) #0.1988073
-
-wiqid::distOchiai(x1,x2) #0.1988073
-
-fossil::ochiai(x1,x2) #0.8011927
-PERMANOVA::DistBinary(x12_pa,coefficient = 12,transformation = 1)$D #0.8011927
-proxy::dist(x12,method = "Ochiai") #0.1988073
-
-labdsv::dsvdis(x12, index = "ochiai") #0.1988073
-
-vegan::designdist(x12,method = "1-J/sqrt(A*B)",terms = "binary") # 0.1988073
 
 #### Dissimilarity ratio ####---------------------------------------------------
 vegan::designdist(x12,method = "(A+B-2*J)/(A+B-J)",terms = "quadratic") # 0.6569256
@@ -395,9 +265,6 @@ vegan::betadiver(x12,"t") #0.2
 
 tabula::index_wilson(as.matrix(x12_pa)) #0.4 ne sait pas a quoi ca correspond
 
-#### Koleff betame Mourelle & Ezcurra ####--------------------------------------
-vegan::betadiver(x12,"me") #0.2
-
 #### Koleff betawb Wieher & Boylen ####-----------------------------------------
 vegan::betadiver(x12,"wb") #11
 
@@ -443,15 +310,6 @@ BAT::beta(x12_pa,func = "sorensen",abund = T)$Bloss #0.2637694
 adespatial::beta.div(test,method = "profiles",save.D = T)$D #0.4505909
 
 print(adespatial::dist.ldc(x12,method = "profiles")) #0.4505909
-
-#### Motyka dissimilarity ####
-ecodive::motyka(x12,rescale = F) #0.7655011
-
-philentropy::motyka(as.numeric(x1),as.numeric(x2)) #0.7655011
-
-EnvNJ::metrics(t(x12),method = "motyka") #0.7655011
-
-Rfast::Dist(x12,method = "motyka") #0.7655011
 
 #### Jeffreys ####
 

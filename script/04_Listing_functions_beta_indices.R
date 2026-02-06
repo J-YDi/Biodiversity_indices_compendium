@@ -53,7 +53,7 @@ detach(package:vegan)
 # It is possible to work on sipoo data for presence/absence and varespec for abundance/not integer data
 
 # Relative abundances data to allow some functions working
-mite <- mite/rowSums(mite)
+mite_relat <- mite/rowSums(mite)
 
 # Distance matrix to allow some functions working
 mite_dist <- as.matrix(dist(t(mite),method = "euclidean",diag = T,upper = T))
@@ -2329,13 +2329,220 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   BoutrosLab.plotting.general_72_3[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "minkowski",p=3)
 }
+comparator_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  comparator_72_1[i] <- comparator::Minkowski(p=1)(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+comparator_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  comparator_72_2[i] <- comparator::Minkowski(p=2)(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+comparator_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  comparator_72_3[i] <- comparator::Minkowski(p=3)(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+TSdist_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  TSdist_72_1[i] <- TSdist::MinkowskiDistance(as.numeric(mite[i,]),as.numeric(mite[i+1,]),p=2)
+}
+TSdist_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  TSdist_72_2[i] <- TSdist::MinkowskiDistance(as.numeric(mite[i,]),as.numeric(mite[i+1,]),p=2)
+}
+TSdist_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  TSdist_72_3[i] <- TSdist::MinkowskiDistance(as.numeric(mite[i,]),as.numeric(mite[i+1,]),p=2)
+}
+philentropy_72_1 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_72_1[i] <- philentropy::minkowski(as.numeric(mite[i,]),as.numeric(mite[i+1,]),n=1) 
+}
+philentropy_72_2 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_72_2[i] <- philentropy::minkowski(as.numeric(mite[i,]),as.numeric(mite[i+1,]),n=2) 
+}
+philentropy_72_3 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_72_3[i] <- philentropy::minkowski(as.numeric(mite[i,]),as.numeric(mite[i+1,]),n=3)
+}
 
-comparator::Minkowski(p=2)(as.numeric(x1),as.numeric(x2)) #40.37368
-philentropy::minkowski(as.numeric(x1),as.numeric(x2),n=2) #40.37368
-TSdist::MinkowskiDistance(as.numeric(x1),as.numeric(x2),p=2) #40.37368
+# Morisita ####
+abdiv_73 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_73[i] <- abdiv::morisita(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+vegan_73 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_73[i] <- vegan::vegdist(mite_beta,method = "morisita")
+}
+pctax_73 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_73[i] <- pctax::mat_dist(t((mite_beta)),method = "morisita")
+}
+ecodive_73 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_73[i] <- ecodive::morisita(mite_beta)
+}
+NST_73 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_73[i] <- NST::beta.g(mite_beta,dist.method = "morisita")
+}
 
+# Morisita-Horn ####
+vegan_74 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_74[i] <- vegan::vegdist(mite_beta,method = "horn")
+}
+NST_74 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_74[i] <- NST::beta.g(mite_beta,dist.method = "horn")
+}
+pctax_74 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_74[i] <- pctax::mat_dist(t((mite_beta)),method = "horn")
+}
+ecodive_74 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_74[i] <- ecodive::horn(mite_beta,rescale = F)
+}
+tabula_74 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  tabula_74[i] <- tabula::similarity(mite_beta,method = "morisita")
+}
+abdiv_74 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_74[i] <- abdiv::horn_morisita(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+wiqid_74 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  wiqid_74[i] <- wiqid::distMorisitaHorn(mite[i,],mite[i+1,])
+}
+fossil_74 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  fossil_74[i] <- fossil::morisita.horn(mite[i,],mite[i+1,])
+}
 
+# Motyka ####
+pctax_75 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_75[i] <- ecodive::motyka(mite_beta,rescale = F)
+}
+EnvNJ_75 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_75[i] <- EnvNJ::metrics(t(mite_beta),method = "motyka")
+}
+Rfast_75 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_75[i] <- Rfast::Dist(mite_beta,method = "motyka")[1,2]
+}
+philentropy_75 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  philentropy_75[i] <- philentropy::motyka(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
 
+# Mountford ####
+vegan_76 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_76[i] <- vegan::vegdist(mite_beta,method = "mountford")
+}
+pctax_76 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_76[i] <- pctax::mat_dist(t((mite_beta)),method = "mountford")
+}
+proxy_76 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_76[i] <- proxy::dist(mite_beta,method = "Mountford")
+}
+NST_76 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_76[i] <- NST::beta.g(mite_beta,dist.method = "mountford")
+}
+
+# beta me ####
+vegan_77 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_77[i] <- vegan::betadiver(mite_beta,"me")
+}
+
+# Ochiai ####
+adespatial_78 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_78[i] <- adespatial::beta.div(mite_beta,method = "ochiai",save.D = T,sqrt.D = F)$D
+}
+ade4_78 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ade4_78[i] <- ade4::dist.binary(mite_beta,method = 7)
+}
+adiv_78 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adiv_78[i] <- adiv::dsimcom(mite_beta,method = "4",type = "similarity",option = "absolute")[1,2]
+}
+MultBiplotR_78 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  MultBiplotR_78[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 12)[1,2]
+}
+spaa_78 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  spaa_78[i] <- spaa::sp.pair(t(as.matrix(mite_beta)))$Ochiai
+}
+
+# Otsuka-Ochiai ####
+ecodive_79 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  ecodive_79[i] <- ecodive::ochiai(mite_beta)
+}
+PERMANOVA_79 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  PERMANOVA_79[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 12,transformation = 1)$D[1,2]
+}
+proxy_79 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  proxy_79[i] <- proxy::dist(mite_beta,method = "Ochiai")
+}
+vegan_79 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  vegan_79[i] <- vegan::designdist(mite_beta,method = "1-J/sqrt(A*B)",terms = "binary")
+}
+labdsv_79 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  labdsv_79[i] <- labdsv::dsvdis(mite_beta, index = "ochiai")
+}
+wiqid_79 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  wiqid_79[i] <- wiqid::distOchiai(mite[i,],mite[i+1,])
+}
+fossil_79 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  fossil_79[i] <- fossil::ochiai(mite[i,],mite[i+1,])
+}
 
 
 # Autres
