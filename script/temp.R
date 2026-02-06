@@ -186,30 +186,10 @@ prabclus::dicedist(t(x12)) #0.4375 ???
 
 fAssets::sorensenDist(t(x12)) #0.2
 
-#### Raup ####-----------------------------------------------------------------
 
-?vegan::vegdist(x12,method = "raup")# 0.002291751 #The index uses equal occurrence probabilities for all species, but Raup and Crick originally suggested that sampling probabilities should be proportional to species frequencies 
-vegan::vegdist(x12,method = "raup",binary = T)# 0.002291751 #The index uses equal occurrence probabilities for all species, but Raup and Crick originally suggested that sampling probabilities should be proportional to species frequencies 
-
-vegan::designdist(x12,method = "1-phyper(J-1, A, P-A, B)",terms = "binary") #0.002291751
-vegan::raupcrick(x12,"r0") #0.003
-
-pctax::mat_dist(t((x12)),method = "raup") #0.002291751^
-
-iCAMP::RC.pc(x12)$index #louche
-
-NST::beta.g(x12,dist.method = "raup") #0.002291751
 
 #### Dissimilarity ratio ####---------------------------------------------------
 vegan::designdist(x12,method = "(A+B-2*J)/(A+B-J)",terms = "quadratic") # 0.6569256
-
-#### Koleff beta-3 Williams index ####------------------------------------------
-vegan::betadiver(x12,method = "-3") # 0.1212121
-
-#### Koleff betaC Cody ####-----------------------------------------------------
-vegan::betadiver(x12,"c") # 5.5
-
-tabula::index_cody(as.matrix(x12)) #11
 
 #### Koleff betasor Simpson dissimilarity turnover sorensen ####----------------
 
@@ -233,50 +213,6 @@ adiv::betastatsor(x12)[2] # Ricotta & Pavoine  0.07272727
 
 BAT::beta(x12,func = "sorensen",abund = F)$Brepl #0.1454545 ne correspond pas
 BAT::beta(x12,func = "sorensen",abund = T)$Brepl #0.5275388 ne correspond pas
-
-
-#### Koleff betaw Whittaker ####------------------------------------------------
-vegan::betadiver(x11,"w") # 0.2 ???
-
-?adespatial::beta.div(x11,method = "whittaker",save.D = T)$D #0.5319661
-
-print(adespatial::dist.ldc(x12,method = "whittaker"))#0.5319661
-
-tabula::index_whittaker(as.matrix(x11)) #0.2 ???
-
-?diverse::dis_entities(t(x12),method = "Whittaker",category_row = T)[1,2] # marche pas
-
-?wiqid::distWhittaker(x1,x1) #0.5319661
-
-?proxy::dist(x12,method = "Whittaker") #0.5319661
-
-#### Koleff betar Routledge ####------------------------------------------------
-vegan::betadiver(x12,"r") # 0.05421104
-
-tabula::index_routledge1(as.matrix(x12)) # 0.05421104
-tabula::index_routledge2(as.matrix(x12)) #NA
-tabula::index_routledge3(as.matrix(x12)) #NA
-
-#### Koleff betae Routledge ####------------------------------------------------
-?vegan::betadiver(x12,"e") #0.14699
-
-#### Koleff betat Wilson and Shmida ####----------------------------------------
-vegan::betadiver(x12,"t") #0.2
-
-tabula::index_wilson(as.matrix(x12_pa)) #0.4 ne sait pas a quoi ca correspond
-
-#### Koleff betawb Wieher & Boylen ####-----------------------------------------
-vegan::betadiver(x12,"wb") #11
-
-#### Koleff betag Gaston ####---------------------------------------------------
-vegan::betadiver(x12,"g") #0.3333333
-
-#### Koleff betal Lande ####----------------------------------------------------
-vegan::betadiver(x12,"l") #5.5
-
-#### Koleff betarlb Ruggiero ####-----------------------------------------------
-1-vegan::betadiver(x12,"rlb") #0.2413793 # Conversion en dissimalirite
-
 
 #### Koleff 19 Sans nom ####----------------------------------------------------
 vegan::betadiver(x12,"19") #0.05492424
@@ -303,48 +239,16 @@ BAT::beta(x12,func = "sorensen",abund = F)$Bgain #0.07272727
 BAT::beta(x12_pa,func = "sorensen",abund = T)$Bgain #0.2672327
 BAT::beta(x12_pa,func = "sorensen",abund = T)$Bloss #0.2637694
 
-### Autres beta ####------------------------------------------------------------
-?ecodist::distance(x12,method = "difference") # 0.12
-
-### Species profile distance ####
-adespatial::beta.div(test,method = "profiles",save.D = T)$D #0.4505909
-
-print(adespatial::dist.ldc(x12,method = "profiles")) #0.4505909
-
 #### Jeffreys ####
 
 EnvNJ::metrics(t(x12),method = "jeffreys") #2.341993
-#### Topsoe distance ####-------------------------------------------------------
-ecodive::topsoe(x11,rescale = F) #37.51256
-
-philentropy::topsoe(as.numeric(x1),as.numeric(x2)) #37.51256
-
-#### Wave Hedges distance ####--------------------------------------------------
-ecodive::wave_hedges(x12,rescale = F) #22.84192
-
-diverse::dis_entities(t(x12),method = "Wave",category_row = T)[1,2] # marche pas
-
-proxy::dist(x12,method = "Wave") #1
-
-PERMANOVA::DistContinuous(x12,coef = 10)$D #NA
-
-philentropy::wave_hedges(as.numeric(x1),as.numeric(x1)) #22.84192
-
-EnvNJ::metrics(t(x12),method = "wavehedges") #22.84192
-
-Rfast::Dist(x12,method = "wave_hedges") #NA
 
 #### Wishart ####---------------------------------------------------------------
 adespatial::beta.div(x12,method = "wishart",save.D = T)$D #0.6569256
 
 print(adespatial::dist.ldc(x12,method = "wishart"))#0.6569256
 
-
 wiqid::distSimRatio(x1,x2) # Similarity ratio 0.6569256
-#### Permet de calculer BDtot, SCBD, LCBD, en fonction de l'indice choisi ####
-adespatial::beta.div(x12,method = "",save.D = T)
-
-diverse::dis_entities(t(x12),method = "Podani",category_row = T)[1,2] #marche
 
 #### Mean character difference ####
 ?abdiv::mean_character_difference(as.numeric(x1),as.numeric(x2)) #2.160455
@@ -354,117 +258,8 @@ print(adespatial::dist.ldc(x12,method = "modmeanchardiff")) #2.880606
 
 abdiv::modified_mean_character_difference(as.numeric(x1),as.numeric(x2)) #2.880606
 
-#### Rao dissimilarity coefficient ####
-?ade4::disc(as.data.frame(t(test_pa))) #0.4505909
-
-ClusterR::distance_matrix(test_pa,method = "Rao_coefficient") #1
-
-#### Sokal & Sneath ####
-adiv::dsimcom(x12_pa,method = "1",type = "dissimilarity") #0.7926071
-
-MultivariateAnalysis::Distancia(x12_pa,Metodo = 14)[1] #0
-
-MultBiplotR::BinaryDistances(as.matrix(x12_pa),coefficient = 8) #0.3779645
-
-PERMANOVA::DistBinary(x12_pa,coefficient = 8,transformation = 3)$D #0.8571429
-
-Mercator::binaryDistance(t(x12_pa),metric = "sokalMichener") #-34.62558
-
-#### Sokal & Sneath 1963 S5####
-ade4::dist.binary(x11,method = 3) #0.7071068
-
-
-#### Sokal & Sneath 1963 S13####
-ade4::dist.binary(x12,method = 8) #0.6809189
-
-MultBiplotR::BinaryDistances(as.matrix(x12_pa),coefficient = 13) #0.6809189
-
-PERMANOVA::DistBinary(x12_pa,coefficient = 13,transformation = 1)$D #0.5363494 marche pas
-
-#### Sokal & Sneath ####
-abdiv::sokal_sneath(as.numeric(x1),as.numeric(x2)) #0.5
-
-#### Simple match ####
-ade4::dist.binary(x12,method = 2) #0.5
-
-neighbr::similarity(x12_pa[1,],x12_pa[2,],measure = "simple_matching") #0.75
-
-diverse::dis_entities(t(x12),method = "simple matching",category_row = T)[1,2] #marche pas
-
-proxyC::simil(as.matrix(x1),as.matrix(x1),method = "simple matching") #0.75
-
-shipunov::SM.dist(x12) #0.7045455
-
-nomclust::sm(x12) #0.7045455
-
-wiqid::distMatching(x1,x2) #0.25
-
-proxy::dist(x12,method = "simple matching") #0.25
-
-MultBiplotR::BinaryDistances(as.matrix(x12_pa),coefficient = 4) #0.5
-
-PERMANOVA::DistBinary(x12_pa,coefficient = 4,transformation = 1)$D #0.75
-
-ClusterR::distance_matrix(x12,method = "simple_matching_coefficient") #0.75
-
-arules::dissimilarity(as.matrix(x12_pa),method = "matching") #0.25 Sokal & Michener 1958
-
-#### Rogers & Tanimoto 1960 ####
-?ade4::dist.binary(x12,method = 4) #0.6324555
-
-abdiv::rogers_tanimoto(as.numeric(x1),as.numeric(x1)) #0.4
-abdiv::sokal_michener(as.numeric(x1),as.numeric(x2)) #0.4
-
-diverse::dis_entities(t(x12),method = "Tanimoto",category_row = T)[1,2] #marche pas
-proxy::dist(x12,method = "Tanimoto") #0.4
-
-neighbr::similarity(x12_pa[1,],x12_pa[2,],measure = "tanimoto") #0.6
-
-wiqid::distRogersTanimoto(x1,x1) #0.4
-
-MultivariateAnalysis::Distancia(x12,Metodo = 15)[1] #0
-
-MultBiplotR::BinaryDistances(as.matrix(x12_pa),coefficient = 6) #0.6324555
-
-PERMANOVA::DistBinary(x11_pa,coefficient = 6,transformation = 1)$D #0.6
-
-philentropy::tanimoto(as.numeric(x1),as.numeric(x2)) #0.6936661
-
-shipunov::SM.dist(x12) #0.70455455
-
-#### Phi of Pearson ####
-ade4::dist.binary(x12,method = 9) #0.7250569 P/A
-
-diverse::dis_entities(t(x12),method = "Phi",category_row = T)[1,2] # marche pas
-diverse::dis_entities(t(x12),method = "Pearson",category_row = T)[1,2] # marche pas
-
-proxy::dist(x12_pa,method = "Phi") #0.5257075 P/A et sans sqrt : transformation pas bonne voir permanova
-
-proxy::dist(x12,method = "Phi-squared") #-12.94815 oui car ² = 0.5257075 P/A et sans sqrt : transformation pas bonne
-
-MultBiplotR::BinaryDistances(as.matrix(x12_pa),coefficient = 14) #0.7250569 P/A
-
-PERMANOVA::DistBinary(x12_pa,coefficient = 14,transformation = 3)$D # 0.7250569 P/A
-
-philentropy::pearson_chi_sq(as.numeric(x1),as.numeric(x2)) #687532.4
-
 #### S2 coeff Gower & Legendre ####
 ade4::dist.binary(x12,method = 10) #0.7071068
-
-#### Russel-Rao ####
-abdiv::russel_rao(as.numeric(x1),as.numeric(x2)) #0.5
-
-diverse::dis_entities(t(x12),method = "Russel",category_row = T)[1,2] #marche pas
-
-proxy::dist(x12,method = "Russel") #0.5
-
-MultivariateAnalysis::Distancia(x12,Metodo = 16)[1] #1
-
-MultBiplotR::BinaryDistances(as.matrix(x12_pa),coefficient = 2) #0.7071068 correspond pas
-
-PERMANOVA::DistBinary(x12_pa,coefficient = 2,transformation = 1)$D #0.50
-
-Mercator::binaryDistance(t(x12),metric = "russellRao") #-18.34711
 
 #### Yule ####
 abdiv::yule_dissimilarity(as.numeric(x1),as.numeric(x1)) #0.2074074
@@ -483,85 +278,8 @@ MultBiplotR::BinaryDistances(as.matrix(x12_pa),coefficient = 15) #0.45542
 
 PERMANOVA::DistBinary(x12_pa,coefficient = 15,transformation = 1)$D #0.7925926
 
-#### Autres turnover ####
-tabula::turnover(x12,"whittaker")
-tabula::turnover(x12,"cody")
-tabula::turnover(x12,"routledge1")
-tabula::turnover(x12,"routledge2")
-tabula::turnover(x12,"routledge3")
-tabula::turnover(x12,"wilson")
-
-proxy::dist(x12,method = "Podani") # Ne sait pas a quoi ca correspond
-
-#### Preston's coefficient of faunal dissimilarity ####
-?wiqid::distPreston(x1,x1) #0.2568745
-
 #### Roberts ####
 ?labdsv::dsvdis(x11, index = "roberts") #0.6496285
-
-#### Pearson ####
-
-
-amap::Dist(x12,method = "correlation") #0.54278 centered pearson
-
-amap::Dist(x12,method = "abscorrelation") #0.54278 absolute centered pearson
-
-
-
-ChemoSpecUtils::rowDist(as.matrix(x11),method = "correlation") ##0.54278
-
-ChemoSpecUtils::rowDist(as.matrix(x12),method = "abscorrelation") #0.54278 
-
-Mercator::binaryDistance(t(x12),metric = "pearson") #-2254.882
-
-proxyC::simil(as.matrix(x1),as.matrix(x2),method = "correlation") #0.45722
-
-arules::dissimilarity(as.matrix(x12_pa),method = "pearson") #1
-
-arules::dissimilarity(as.matrix(x12_pa),method = "phi") #1
-
-ClusterR::distance_matrix(x12,method = "pearson_correlation") #0.54278
-
-rdist::rdist(x12,metric = "correlation") #0.520951
-rdist::rdist(x11,metric = "absolute_correlation") #0.8893536
-
-spaa::sp.pair(t(as.matrix(x12)))$Pearson #0.45722
-
-hyperSpec::pearson.dist(x12) #0.27139
-
-ldt::s.distance(t(x12),distance = "correlation",correlation = "pearson") #0.520951
-ldt::s.distance(t(x12),distance = "absCorrelation",correlation = "pearson") #0.8893536
-
-cor(t(x1),t(x2),method = "pearson")  #0.45722
-
-#### Spearman ####
-amap::Dist(x12,method = "spearman") #4104
-dynutils::calculate_similarity(x12,method = "spearman") #0.1643567
-
-spaa::sp.pair(t(as.matrix(x12)))$Spearman #0.6712866
-cor(t(x1),t(x2),method = "spearman") #0.6712866
-
-ldt::s.distance(t(x12),distance = "correlation",correlation = "spearman") #0.3811327
-ldt::s.distance(t(x12),distance = "absCorrelation",correlation = "spearman") #0.7047299
-
-ChemoSpecUtils::rowDist(as.matrix(x12),method = "spearman") #4104
-
-fAssets::spearmanDist(t(x12)) #0.3287134
-
-Rankcluster::distSpearman(x1,x2) #1630.034
-
-#### Kendall ####
-amap::Dist(x12,method = "kendall") #0.2114165
-
-Rankcluster::distKendall(x1,x2) #marche pas
-
-ChemoSpecUtils::rowDist(as.matrix(x12),method = "kendall") #0.2114165
-
-cor(t(x1),t(x2),method = "kendall") #0.563432
-
-fAssets::kendallDist(t(x12)) #0.436568
-
-analogue::distance(x1,x2,method = "kendall") #95.06
 
 ### Kullback Leibler 
 Rfast::Dist(x12,method = "kullback_leibler") #172.0308 # non coherent avec formule mais correspond avec Jeffreys
@@ -575,5 +293,3 @@ Rfast::Dist(x12_pa,method = "haversine") #non fonctionnel
 #### Harmonic mean
 Rfast::Dist(x12,method = "harmonic_mean") #9.510365
 
-
-bioregion::dissimilarity(as.matrix(x12),metric = "Simpson") #0.1538462

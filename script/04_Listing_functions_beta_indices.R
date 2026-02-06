@@ -60,7 +60,7 @@ mite_dist <- as.matrix(dist(t(mite),method = "euclidean",diag = T,upper = T))
 rownames(mite_dist) <- rownames(t(mite))
 colnames(mite_dist) <- rownames(t(mite))
 
-mite_pa <- convert_to_presence_absence(mite)
+mite <- convert_to_presence_absence(mite)
 
 #___________________________ Beta diversity indices ___________________________####
 
@@ -1190,7 +1190,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 MultBiplotR_40 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_pa[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   MultBiplotR_40[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 9)[1,2]
 }
 PERMANOVA_40 <- rep(NA,69)
@@ -1471,7 +1471,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 neighbr_47P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  neighbr_47P[i] <- neighbr::similarity(mite_pa[i,],mite_pa[i+1,],measure = "jaccard") 
+  neighbr_47P[i] <- neighbr::similarity(mite[i,],mite[i+1,],measure = "jaccard") 
 }
 ChemoSpecUtils_47P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -1559,7 +1559,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 iTOP_47P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  iTOP_47P[i] <- iTOP::jaccard(mite_pa[i,],mite_pa[i+1,])
+  iTOP_47P[i] <- iTOP::jaccard(mite[i,],mite[i+1,])
 }
 proxyC_47P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -1586,7 +1586,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 MultBiplotR_48 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_pa[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   MultBiplotR_48[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 3)[1,2] 
 }
 ade4_48 <- rep(NA,69)
@@ -1603,7 +1603,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 betapart_49 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_pa[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   betapart_49[i] <- betapart::beta.pair(mite_beta,index.family = "jaccard")$beta.jtu
 }
 adespatial_49 <- rep(NA,69)
@@ -1633,12 +1633,12 @@ for (i in 1:(nrow(mite)-1)){
 }
 betapart_50 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_pa[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   betapart_50[i] <- betapart::beta.pair(mite_beta,index.family = "jaccard")$beta.jne
 }
 adespatial_50 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_pa[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   adespatial_50[i] <- adespatial::beta.div.comp(mite_beta,coef = "BJ")$rich
 }
 # Extended Jaccard Similarity ####
@@ -1785,7 +1785,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 prabclus_59 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_pa[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   prabclus_59[i] <- prabclus::kulczynski(t(mite_beta))[2,1] 
 }
 fossil_59 <- rep(NA,69)
@@ -2500,39 +2500,39 @@ for (i in 1:(nrow(mite)-1)){
 }
 MultBiplotR_78 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_pa[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   MultBiplotR_78[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 12)[1,2]
 }
 spaa_78 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_pa[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   spaa_78[i] <- spaa::sp.pair(t(as.matrix(mite_beta)))$Ochiai
 }
 
 # Otsuka-Ochiai ####
 ecodive_79 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_pa[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   ecodive_79[i] <- ecodive::ochiai(mite_beta)
 }
 PERMANOVA_79 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_pa[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   PERMANOVA_79[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 12,transformation = 1)$D[1,2]
 }
 proxy_79 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_pa[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   proxy_79[i] <- proxy::dist(mite_beta,method = "Ochiai")
 }
 vegan_79 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_pa[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   vegan_79[i] <- vegan::designdist(mite_beta,method = "1-J/sqrt(A*B)",terms = "binary")
 }
 labdsv_79 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_pa[c(i,i+1),]
+  mite_beta <- mite[c(i,i+1),]
   labdsv_79[i] <- labdsv::dsvdis(mite_beta, index = "ochiai")
 }
 wiqid_79 <- rep(NA,69)
@@ -2544,10 +2544,446 @@ for (i in 1:(nrow(mite)-1)){
   fossil_79[i] <- fossil::ochiai(mite[i,],mite[i+1,])
 }
 
+# Phi-squared ####
+ade4_80 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ade4_80[i] <- ade4::dist.binary(mite_beta,method = 9)
+}
+proxy_80 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_80[i] <- proxy::dist(mite_beta,method = "Phi-squared")
+}
+MultBiplotR_80 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  MultBiplotR_80[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 14)[1,2]
+}
+PERMANOVA_80 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  PERMANOVA_80[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 14,transformation = 3)$D[1,2]
+}
+philentropy_80 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  philentropy_80[i] <- philentropy::pearson_chi_sq(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
 
-# Autres
-bioregion::dissimilarity(as.matrix(mite[i,]),metric = "Brayturn") #0.5293722
+# Preston's coefficient of faunal dissimilarity ####
+wiqid_81 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  wiqid_81[i] <- wiqid::distPreston(mite[i,],mite[i+1,])
+}
 
+# Raup ####
+vegan_82 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_82[i] <- vegan::vegdist(mite_beta,method = "raup")
+}
+pctax_82 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_82[i] <- pctax::mat_dist(t((mite_beta)),method = "raup")
+}
+iCAMP_82 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  iCAMP_82[i] <- iCAMP::RC.pc(mite_beta)$index[1,2]
+}
+NST_82 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_82[i] <- NST::beta.g(mite_beta,dist.method = "raup")
+}
+
+# Rogers & Tanimoto ####
+ade4_83 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ade4_83[i] <- ade4::dist.binary(mite_beta,method = 4)
+}
+abdiv_83 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_83[i] <- abdiv::rogers_tanimoto(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+proxy_83 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_83[i] <- proxy::dist(mite_beta,method = "Tanimoto") 
+}
+neighbr_83 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  neighbr_83[i] <- neighbr::similarity(mite[i,],mite[i+1,],measure = "tanimoto")
+}
+wiqid_83 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  wiqid_83[i] <- wiqid::distRogersTanimoto(mite[i,],mite[i+1,])
+}
+philentropy_83 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_83[i] <- philentropy::tanimoto(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+MultivariateAnalysis_83 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  MultivariateAnalysis_83[i] <- MultivariateAnalysis::Distancia(mite_beta,Metodo = 15)[1]$Distancia 
+}
+MultBiplotR_83 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  MultBiplotR_83[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 6)[1,2]
+}
+PERMANOVA_83 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  PERMANOVA_83[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 6,transformation = 1)$D[1,2]
+}
+shipunov_83 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  shipunov_83[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 6,transformation = 1)$D[1,2]
+}
+
+# Root mean square ####
+EnvNJ_84 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_84[i] <- EnvNJ::metrics(t(mite_beta),method = "avg")
+}
+abdiv_84 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_84[i] <- abdiv::rms_distance(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+
+# beta e ####
+vegan_85 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_85[i] <- vegan::betadiver(mite_beta,"e")
+}
+
+# beta l ####
+vegan_86 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_86[i] <- vegan::betadiver(mite_beta,"l")
+}
+
+# beta r ####
+vegan_87 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_87[i] <- vegan::betadiver(mite_beta,"r")
+}
+tabula_87 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  tabula_87[i] <- tabula::index_routledge1(as.matrix(mite_beta)) 
+}
+
+# beta rlb ####
+vegan_88 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_88[i] <- vegan::betadiver(mite_beta,"rlb")
+}
+
+# Russel-Rao ####
+abdiv_89 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  abdiv_89[i] <- abdiv::russel_rao(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+proxy_89 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_89[i] <- proxy::dist(mite_beta,method = "Russel")
+}
+MultivariateAnalysis_89 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  MultivariateAnalysis_89[i] <- MultivariateAnalysis::Distancia(mite_beta,Metodo = 16)[1]$Distancia
+}
+MultBiplotR_89 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  MultBiplotR_89[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 2)
+}
+PERMANOVA_89 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  PERMANOVA_89[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 2,transformation = 1)$D[1,2]
+}
+Mercator_89 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Mercator_89[i] <- Mercator::binaryDistance(t(mite_beta),metric = "russellRao")
+}
+
+# Simple match ####
+ade4_90 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ade4_90[i] <- ade4::dist.binary(mite_beta,method = 2)
+}
+neighbr_90 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  neighbr_90[i] <- neighbr::similarity(mite_beta[i,],mite_beta[i+1,],measure = "simple_matching")
+}
+proxyC_90 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  proxyC_90[i] <- proxyC::simil(as.matrix(mite[i,]),as.matrix(mite[i+1,]),method = "simple matching")
+}
+shipunov_90 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  shipunov_90[i] <- shipunov::SM.dist(mite_beta)
+}
+nomclust_90 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  nomclust_90[i] <- nomclust::sm(mite_beta)
+}
+proxy_90 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_90[i] <- proxy::dist(mite_beta,method = "simple matching")
+}
+ClusterR_90 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ClusterR_90[i] <- ClusterR::distance_matrix(mite_beta,method = "simple_matching_coefficient")[2,1]
+}
+PERMANOVA_90 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  PERMANOVA_90[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 4,transformation = 1)$D[1,2]
+}
+wiqid_90 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  wiqid_90[i] <- wiqid::distMatching(mite[i,],mite[i+1,])
+}
+MultBiplotR_90 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  MultBiplotR_90[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 4)
+}
+arules_90 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  arules_90[i] <- arules::dissimilarity(as.matrix(mite_beta),method = "matching")
+}
+
+# Sokal & Sneath ####
+abdiv_91 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_91[i] <- abdiv::sokal_sneath(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+
+# Sokal & Sneath 2 ####
+adiv_92 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adiv_92[i] <- adiv::dsimcom(mite_beta,method = "1",type = "dissimilarity",option="absolute")
+}
+
+# Sokal & Sneath 3 ####
+MultivariateAnalysis_93 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  MultivariateAnalysis_93[i] <- MultivariateAnalysis::Distancia(mite_beta,Metodo = 14)[1]$Distancia
+}
+MultBiplotR_93 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  MultBiplotR_93[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 8)
+}
+PERMANOVA_93 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  PERMANOVA_93[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 8,transformation = 3)$D[2,1]
+}
+Mercator_93 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Mercator_93[i] <- Mercator::binaryDistance(t(mite_beta),metric = "sokalMichener")
+}
+
+# Sokal & Sneath S5 ####
+ade4_94 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ade4_94[i] <- ade4::dist.binary(mite_beta,method = 3)
+}
+
+# Sokal & Sneath S13 ####
+ade4_95 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ade4_95[i] <- ade4::dist.binary(mite_beta,method = 8)
+}
+MultBiplotR_95 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  MultBiplotR_95[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 13)
+}
+PERMANOVA_95 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  PERMANOVA_95[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 13,transformation = 1)$D
+}
+
+# Sorensen à faire ####
+
+# Species profile distance ####
+adespatial_105 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_105[i] <- adespatial::beta.div(mite_beta,method = "profiles",save.D = T)$D #0.4505909
+}
+ade4_105 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ade4_105[i] <- ade4::disc(as.data.frame(t(mite_beta)))
+}
+ClusterR_105 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ClusterR_105[i] <- ClusterR::distance_matrix(mite_beta,method = "Rao_coefficient")[2,1]
+}
+
+# Topsoe ####
+ecodive_106 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_106[i] <- ecodive::topsoe(mite_beta,rescale = F)
+}
+philentropy_106 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  philentropy_106[i] <- philentropy::topsoe(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+
+# Wave Hedges distance ####
+ecodive_107 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_107[i] <- ecodive::wave_hedges(mite_beta,rescale = F) #22.84192
+}
+proxy_107 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_107[i] <- proxy::dist(mite_beta,method = "Wave")
+}
+PERMANOVA_107 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  PERMANOVA_107[i] <- PERMANOVA::DistContinuous(mite_beta,coef = 10)$D[2,1]
+}
+EnvNJ_107 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_107[i] <- EnvNJ::metrics(t(mite_beta),method = "wavehedges")
+}
+philentropy_107 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  philentropy_107[i] <- philentropy::wave_hedges(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+Rfast_107 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_107[i] <- Rfast::Dist(mite_beta,method = "wave_hedges")[2,1]
+}
+
+# Whittaker's index of association ####
+wiqid_108 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  wiqid_108[i] <- wiqid::distWhittaker(mite[i,],mite[i+1,])
+}
+proxy_108 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_108[i] <- proxy::dist(mite_beta,method = "Whittaker")
+}
+adespatial_108 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_108[i] <- adespatial::beta.div(mite_beta,method = "whittaker",save.D = T)$D
+}
+
+# beta w ####
+vegan_109 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_109[i] <- vegan::betadiver(mite_beta,"w")
+}
+tabula_109 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  tabula_109[i] <- tabula::index_whittaker(as.matrix(mite_beta))
+}
+# beta wb ####
+vegan_110 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_110[i] <- vegan::betadiver(mite_beta,"wb")
+}
+
+# beta -3 ####
+vegan_111 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_111[i] <- vegan::betadiver(mite_beta,"-3")
+}
+
+# beta t ####
+vegan_112 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_112[i] <- vegan::betadiver(mite_beta,"t")
+}
+
+tabula_XXX <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  tabula_XXX[i] <- tabula::index_wilson(as.matrix(mite_beta)) #ne sait pas a quoi ca correspond
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+# beta g ####
+vegan_X <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_X[i] <- vegan::betadiver(mite_beta,"g")
+}
+
+# beta c ####
+vegan_X <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_X[i] <- vegan::betadiver(mite_beta,"c")
+}
+tabula_X <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  tabula_X[i] <- tabula::index_cody(as.matrix(mite_beta)) 
+}
 
 
 
