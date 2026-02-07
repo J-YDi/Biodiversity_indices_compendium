@@ -104,12 +104,6 @@ bioregion::dissimilarity(as.matrix(x11),metric = "Sorensen") #0.2
 
 ecodive::sorensen(x11) #0.2
 
-forestmangr::similarity_matrix(x12,index = "Sorensen") # non fonctionnel
-
-divo::li(t(x12)) #sorties pas adequate
-
-superbiclust::sorensenMat(x1,x2) #non fonctionnel
-
 betapart::beta.pair(x11_pa,index.family = "sorensen")$beta.sor #0.2
 
 adespatial::beta.div(x12,method = "ab.sorensen",save.D = T,sqrt.D = F)$D #0.02570608
@@ -134,8 +128,6 @@ tabula::similarity(x11,method = "sorensen") #0.8
 
 adiv::betastatsor(x11)[1] #0.2
 adiv::dsimcom(x12,method = "3",type = "dissimilarity",option = "absolute") #0.4891208 
-
-diverse::dis_entities(t(x12),method = "Dice",category_row = T)[1,2] # marche pas
 
 diverse::dis_entities(t(x12),method = "eDice",category_row = T)[1,2] #0.4891208
 
@@ -162,7 +154,7 @@ CommEcol::dis.chao(x12,index = "sorensen",version = "probability") #0.02642424
 
 adespatial::beta.div(x12,method = "sorensen",save.D = T,sqrt.D = F)$D #0.6416889 ne correspond pas
 
-MultivariateAnalysis::Distancia(x12,Metodo = 13)[1] #NA
+
 
 MultBiplotR::BinaryDistances(as.matrix(x12_pa),coefficient = 7) #0.4472136
 
@@ -185,11 +177,6 @@ NST::beta.g(x12,dist.method = "chao.sorensen") #0.0244926
 prabclus::dicedist(t(x12)) #0.4375 ???
 
 fAssets::sorensenDist(t(x12)) #0.2
-
-
-
-#### Dissimilarity ratio ####---------------------------------------------------
-vegan::designdist(x12,method = "(A+B-2*J)/(A+B-J)",terms = "quadratic") # 0.6569256
 
 #### Koleff betasor Simpson dissimilarity turnover sorensen ####----------------
 
@@ -236,26 +223,5 @@ BAT::beta(x12,func = "sorensen",abund = F)$Bgain #0.07272727
 BAT::beta(x12_pa,func = "sorensen",abund = T)$Bgain #0.2672327
 BAT::beta(x12_pa,func = "sorensen",abund = T)$Bloss #0.2637694
 
-### Mean character difference ####
-?abdiv::mean_character_difference(as.numeric(x1),as.numeric(x2)) #2.160455
 
-#### Modified mean character difference ####
-print(adespatial::dist.ldc(x12,method = "modmeanchardiff")) #2.880606
-
-abdiv::modified_mean_character_difference(as.numeric(x1),as.numeric(x2)) #2.880606
-
-#### S2 coeff Gower & Legendre ####
-ade4::dist.binary(x12,method = 10) #0.7071068
-
-#### Roberts ####
-?labdsv::dsvdis(x11, index = "roberts") #0.6496285
-
-### Kullback Leibler 
-Rfast::Dist(x12,method = "kullback_leibler") #172.0308 # non coherent avec formule mais correspond avec Jeffreys
-proxyC::dist(as.matrix(x12),method = "kullback") #NA
-EnvNJ::metrics(t(x12),method = "kullback_leibler") #marche pas
-bapred::kldist(x12) #marche pas
-
-#### Harmonic mean
-Rfast::Dist(x12,method = "harmonic_mean") #9.510365
 

@@ -1679,6 +1679,11 @@ wiqid_51 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   wiqid_51[i] <- wiqid::distSimRatio(mite[i,],mite[i+1,])
 }
+vegan_51 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_51[i] <- vegan::designdist(mite_beta,method = "(A+B-2*J)/(A+B-J)",terms = "quadratic")
+}
 
 # Replacement index of Jaccard defined by Podani ####
 adespatial_52 <- rep(NA,69)
@@ -3026,4 +3031,43 @@ for (i in 1:(nrow(mite)-1)){
   EnvNJ_116[i] <- EnvNJ::metrics(t(mite_beta),method = "jeffreys")
 }
 
+# Mean character difference ####
+abdiv_XX <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  abdiv_XX[i] <- abdiv::mean_character_difference(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+
+# Modified mean character difference ####
+adespatial_XX <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_XX[i] <- print(adespatial::dist.ldc(mite_beta,method = "modmeanchardiff")) 
+}
+abdiv_XX <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  abdiv_XX[i] <- abdiv::modified_mean_character_difference(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+
+# Roberts ####
+labdsv_XX <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  labdsv_XX[i] <- labdsv::dsvdis(mite_beta, index = "roberts")
+}
+
+# S2 coeff Gower & Legendre ####
+ade4_XX <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ade4_XX[i] <- ade4::dist.binary(mite_beta,method = 10)
+}
+
+# Harmonic mean ####
+Rfast_XX <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_XX[i] <- Rfast::Dist(mite_beta,method = "harmonic_mean")
+}
 
