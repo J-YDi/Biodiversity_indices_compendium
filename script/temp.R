@@ -214,9 +214,6 @@ adiv::betastatsor(x12)[2] # Ricotta & Pavoine  0.07272727
 BAT::beta(x12,func = "sorensen",abund = F)$Brepl #0.1454545 ne correspond pas
 BAT::beta(x12,func = "sorensen",abund = T)$Brepl #0.5275388 ne correspond pas
 
-#### Koleff 19 Sans nom ####----------------------------------------------------
-
-
 #### Nestedness-resultant component of Sørensen dissimilarity ####--------------
 vegan::nestedbetasor(x12)[2] #0.04615385 
 
@@ -239,18 +236,7 @@ BAT::beta(x12,func = "sorensen",abund = F)$Bgain #0.07272727
 BAT::beta(x12_pa,func = "sorensen",abund = T)$Bgain #0.2672327
 BAT::beta(x12_pa,func = "sorensen",abund = T)$Bloss #0.2637694
 
-#### Jeffreys ####
-
-EnvNJ::metrics(t(x12),method = "jeffreys") #2.341993
-
-#### Wishart ####---------------------------------------------------------------
-adespatial::beta.div(x12,method = "wishart",save.D = T)$D #0.6569256
-
-print(adespatial::dist.ldc(x12,method = "wishart"))#0.6569256
-
-wiqid::distSimRatio(x1,x2) # Similarity ratio 0.6569256
-
-#### Mean character difference ####
+### Mean character difference ####
 ?abdiv::mean_character_difference(as.numeric(x1),as.numeric(x2)) #2.160455
 
 #### Modified mean character difference ####

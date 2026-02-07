@@ -1670,6 +1670,15 @@ proxyC_51 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   proxyC_51[i] <- proxyC::simil(as.matrix(mite[i,]),as.matrix(mite[i+1,]),method = "ejaccard") 
 }
+adespatial_51 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_51[i] <- adespatial::beta.div(mite_beta,method = "wishart",save.D = T)$D 
+}
+wiqid_51 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  wiqid_51[i] <- wiqid::distSimRatio(mite[i,],mite[i+1,])
+}
 
 # Replacement index of Jaccard defined by Podani ####
 adespatial_52 <- rep(NA,69)
@@ -3010,5 +3019,11 @@ for (i in 1:(nrow(mite)-1)){
   vegan_115[i] <- vegan::betadiver(mite_beta,"19")
 }
 
+# Jeffreys ####
+EnvNJ_116 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_116[i] <- EnvNJ::metrics(t(mite_beta),method = "jeffreys")
+}
 
 
