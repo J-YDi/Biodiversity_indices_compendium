@@ -3003,6 +3003,12 @@ for (i in 1:(nrow(mite)-1)){
   tabula_X[i] <- tabula::index_cody(as.matrix(mite_beta)) 
 }
 
+# Sans nom ####
+vegan_115 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_115[i] <- vegan::betadiver(mite_beta,"19")
+}
 
 
 

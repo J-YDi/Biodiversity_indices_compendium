@@ -215,7 +215,7 @@ BAT::beta(x12,func = "sorensen",abund = F)$Brepl #0.1454545 ne correspond pas
 BAT::beta(x12,func = "sorensen",abund = T)$Brepl #0.5275388 ne correspond pas
 
 #### Koleff 19 Sans nom ####----------------------------------------------------
-vegan::betadiver(x12,"19") #0.05492424
+
 
 #### Nestedness-resultant component of Sørensen dissimilarity ####--------------
 vegan::nestedbetasor(x12)[2] #0.04615385 
