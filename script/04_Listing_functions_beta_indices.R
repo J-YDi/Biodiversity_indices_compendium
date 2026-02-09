@@ -60,7 +60,7 @@ mite_dist <- as.matrix(dist(t(mite),method = "euclidean",diag = T,upper = T))
 rownames(mite_dist) <- rownames(t(mite))
 colnames(mite_dist) <- rownames(t(mite))
 
-mite <- convert_to_presence_absence(mite)
+mite_pa <- convert_to_presence_absence(mite)
 
 #___________________________ Beta diversity indices ___________________________####
 
@@ -281,8 +281,21 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   adespatial_9[i] <- adespatial::beta.div(mite_beta,method = "percentdiff",save.D = T)$D
 }
-
-# Manque les Sorensen quanti ##
+BAT_9 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_9[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Btotal
+}
+EnvNJ_9 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_9[i] <- EnvNJ::metrics(t(mite_beta),method = "sorensen")
+}
+philentropy_9 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  philentropy_9[i] <- philentropy::sorensen(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
 
 # Canberra ####
 stats_10 <- rep(NA,69)
@@ -445,7 +458,7 @@ for (i in 1:(nrow(mite)-1)){
   NST_14[i] <- NST::beta.g(mite_beta,dist.method = "cao")
 }
 
-# Chao-Jaccard à faire ####
+# Chao-Jaccard ####
 NST_15 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
@@ -483,7 +496,45 @@ for (i in 1:(nrow(mite)-1)){
   vegan_16[i] <- vegan::chaodist(mite_beta,method = "1 - sqrt(U*V)")
 }
 
-# Chao-Sorensen à faire ####
+# Chao-Sorensen ####
+vegan_17 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_17[i] <- vegan::chaodist(mite_beta,method = "1 - 2*U*V/(U+V)")
+}
+adespatial_17 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_17[i] <- adespatial::beta.div(mite_beta,method = "ab.sorensen",save.D = T,sqrt.D = F)$D
+}
+CommEcol_17 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  CommEcol_17[i] <- CommEcol::dis.chao(mite_beta,index = "sorensen",version = "rare")
+}
+wiqid_17 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  wiqid_17[i] <- Cwiqid::distChaoSorCorr(mite[i,],mite[i+1,])
+}
+
+# Chao-Sorensen ####
+
+wiqid_18 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  wiqid_18[i] <- wiqid::distChaoSorNaive(mite[i,],mite[i+1,])
+} 
+NST_18 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_18[i] <- NST::beta.g(mite_beta,dist.method = "chao.sorensen")
+} 
+CommEcol_18 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  CommEcol_18[i] <- CommEcol::dis.chao(mite_beta,index = "sorensen",version = "probability") #0.02642424
+} 
 
 # Chebyshev ####
 ecodive_19 <- rep(NA,69)
@@ -2933,6 +2984,16 @@ fossil_96 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   fossil_96[i] <- fossil::sorenson(mite[i,],mite[i+1,])
 }
+prabclus_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  prabclus_96[i] <- prabclus::dicedist(t(mite_beta))
+}
+spaa_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  spaa_96[i] <- spaa::sp.pair(t(as.matrix(mite_beta)))$Dice
+}
 
 # Square-root Sorensen ####
 abdiv_97 <- rep(NA,69)
@@ -2993,7 +3054,7 @@ for (i in 1:(nrow(mite)-1)){
   fossil_98[i] <- fossil::simpson(mite[i,],mite[i+1,])
 }
 
-#### Nestedness-resultant component of Sørensen dissimilarity ####--------------
+# Nestedness-resultant component of Sørensen dissimilarity ####
 vegan_99 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
@@ -3020,8 +3081,73 @@ for (i in 1:(nrow(mite)-1)){
   adespatial_99_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "BS",quant=T)$rich
 }
 
+# Sorensen richness gain ####
+BAT_100_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_100_A[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Bgain
+}
+BAT_100_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_100_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Bgain
+}
+adiv_100 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adiv_100[i] <- adiv::betastatsor(mite_beta)[3]
+}
 
+# Sorensen richness loss ####
+BAT_101_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_101_A[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Bloss
+}
+BAT_101_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_101_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Bloss
+}
+adiv_101 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adiv_101[i] <- adiv::betastatsor(mite_beta)[2]
+}
 
+# Legendre replacement index ####
+adespatial_102_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_102_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = F)$repl
+}
+adespatial_102_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_102_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = T)$repl
+}
+
+# Legendre richness difference index ####
+adespatial_103_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_103_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = F)$rich
+}
+adespatial_103_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_103_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = T)$rich
+}
+BAT_103_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_103_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Brich
+}
+BAT_103_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_103_A[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Brich
+}
 
 # Extended Sorensen Similarity ####
 adiv_104 <- rep(NA,69)
@@ -3249,13 +3375,6 @@ abdiv_XX <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   abdiv_XX[i] <- abdiv::modified_mean_character_difference(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
-}
-
-# Roberts ####
-labdsv_XX <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  labdsv_XX[i] <- labdsv::dsvdis(mite_beta, index = "roberts")
 }
 
 # S2 coeff Gower & Legendre ####
