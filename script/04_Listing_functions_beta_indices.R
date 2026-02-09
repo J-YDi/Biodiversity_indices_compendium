@@ -2120,7 +2120,7 @@ for (i in 1:(nrow(mite)-1)){
   ecodive_71[i] <- ecodive::matusita(mite_beta,rescale = F) #6.514023
 }
 
-#### Minkowski ####-------------------------------------------------------------
+# Minkowski ####-------------------------------------------------------------
 stats_72_1 <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
@@ -2851,6 +2851,207 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 # Sorensen à faire ####
+vegan_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_96[i] <- vegan::betadiver(mite_beta,"sor")
+}
+ecodist_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodist_96[i] <- ecodist::distance(mite_beta,method = "sorensen")
+}
+bioregion_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  bioregion_96[i] <- bioregion::dissimilarity(as.matrix(mite_beta),metric = "Sorensen")$Sorensen
+}
+ecodive_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_96[i] <- ecodive::sorensen(mite_beta)
+}
+betapart_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  betapart_96[i] <- betapart::beta.pair(mite_beta,index.family = "sorensen")$beta.sor
+}
+tabula_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  tabula_96[i] <- tabula::similarity(mite_beta,method = "sorensen")
+}
+adiv_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adiv_96[i] <- adiv::betastatsor(mite_beta)[1] #0.2
+}
+adespatial_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_96[i] <- adespatial::beta.div.comp(mite_beta,coef = "S",quant = F)$D #0.2
+}
+BAT_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_96[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Btotal #0.2
+}
+proxy_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_96[i] <- proxy::dist(mite_beta,method = "Dice") #0.2
+}
+labdsv_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  labdsv_96[i] <- labdsv::dsvdis(mite_beta, index = "sorensen")
+}
+PERMANOVA_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  PERMANOVA_96[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 7,transformation = 1)$D[1,2]
+}
+fAssets_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  fAssets_96[i] <- fAssets::sorensenDist(t(mite_beta))
+}
+abdiv_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  abdiv_96[i] <- abdiv::sorenson(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+proxyC_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  proxyC_96[i] <- proxyC::simil(as.matrix(mite[i,]),as.matrix(mite[i+1,]),method = "dice")
+}
+wiqid_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  wiqid_96[i] <- wiqid::distSorensen(mite[i,],mite[i+1,])
+}
+fossil_96 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  fossil_96[i] <- fossil::sorenson(mite[i,],mite[i+1,])
+}
+
+# Square-root Sorensen ####
+abdiv_97 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  abdiv_97[i] <- ade4::dist.binary(mite_beta,method = 5)
+}
+adespatial_97 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_97[i] <- print(adespatial::dist.ldc(mite_beta,method = "sorensen")) #0.4472136
+}
+MultBiplotR_97 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  MultBiplotR_97[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 7)[1,2]
+}
+
+# Turnover component of Sorensen dissimilarity ####
+BAT_98_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_98_A[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Brepl #0.5275388
+}
+adespatial_98_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_98_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "BS",quant = T)$repl
+}
+adespatial_98_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_98_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "BS")$repl # Baselga 0.1538462
+}
+BAT_98_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_98_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Brepl
+}
+betapart_98 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  betapart_98[i] <- betapart::beta.pair(mite_beta,index.family = "sorensen")$beta.sim 
+}
+proxy_98 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_98[i] <- proxy::dist(mite_beta,method = "Simpson")
+}
+vegan_98 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_98[i] <- vegan::nestedbetasor(mite_beta)[1]
+}
+fossil_98 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  fossil_98[i] <- fossil::simpson(mite[i,],mite[i+1,])
+}
+
+#### Nestedness-resultant component of Sørensen dissimilarity ####--------------
+vegan_99 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_99[i] <- vegan::nestedbetasor(mite_beta)[2]
+}
+betapart_99 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  betapart_99[i] <- betapart::beta.pair(mite_beta,index.family = "sorensen")$beta.sne
+}
+abdiv_99 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  abdiv_99 [i] <- abdiv::sorenson_nestedness(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+adespatial_99_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_99_P [i] <- adespatial::beta.div.comp(mite_beta,coef = "BS")$rich
+}
+adespatial_99_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_99_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "BS",quant=T)$rich
+}
+
+
+
+
+# Extended Sorensen Similarity ####
+adiv_104 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adiv_104[i] <- adiv::dsimcom(mite_beta,method = "3",type = "dissimilarity",option = "absolute")
+}
+diverse_104 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  diverse_104[i] <- diverse::dis_entities(t(mite_beta),method = "eDice",category_row = T)[1,2]
+}
+proxy_104 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_104[i] <- proxy::dist(mite_beta,method = "eDice")
+}
+philentropy_104 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_104[i] <- philentropy::dice_dist(as.numeric(mite[i,]),as.numeric(mite[i+1,])) 
+}
+proxyC_104 <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  proxyC_104[i] <- proxyC::simil(as.matrix(mite[i,]),as.matrix(mite[i+1,]),method = "edice")  #0.5108792 
+}
+
+
+
+vegan::chaodist(mite_betaint,method = "1 - 2*U*V/(U+V)") # 0.1172414 faux
+abdiv::jaccard_turnover(as.numeric(x1),as.numeric(x2)) #0.2666667
 
 # Species profile distance ####
 adespatial_105 <- rep(NA,69)

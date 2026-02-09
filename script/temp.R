@@ -90,85 +90,23 @@ x2int <- as.integer(varespec[2,])
 x12int <- rbind(x1int,x2int)
 
 #### Sorensen ####--------------------------------------------------------------
-vegan::betadiver(x11,"sor") # 0.8 # COnversion en dissim
-
-ecodist::distance(x11,method = "sorensen") # 0.2
-
-vegan::designdist(x11,method = "(A+B-2*J)/(A+B)",terms = "binary") #0.2
-
-vegan::chaodist(x12int,method = "1 - 2*U*V/(U+V)") # 0.1172414 faux
-
-vegan::nestedbetasor(x11)[3] #0.2
-
-bioregion::dissimilarity(as.matrix(x11),metric = "Sorensen") #0.2
-
-ecodive::sorensen(x11) #0.2
-
-betapart::beta.pair(x11_pa,index.family = "sorensen")$beta.sor #0.2
-
 adespatial::beta.div(x12,method = "ab.sorensen",save.D = T,sqrt.D = F)$D #0.02570608
-
-adespatial::beta.div.comp(x12,coef = "S",quant = F)$D #0.2
 
 adespatial::beta.div.comp(x12,coef = "S",quant = T)$D #0.5310021
 
-adespatial::beta.div.comp(x11,coef = "BS",quant = F)$D #0.2
-adespatial::beta.div.comp(x12,coef = "BS",quant = T)$D #0.5310021
-
-print(adespatial::dist.ldc(x12,method = "sorensen")) #0.4472136
-print(adespatial::dist.ldc(x12,method = "ab.sorensen")) #0.02570608
-
-ade4::dist.binary(x12,method = 5) #0.4472136 Sorensen Dice
-
-abdiv::sorenson(as.numeric(x1),as.numeric(x1)) #0.2
-
-tabula::index_sorensen(as.numeric(x1),as.numeric(x1)) #0.8
-
-tabula::similarity(x11,method = "sorensen") #0.8
-
-adiv::betastatsor(x11)[1] #0.2
-adiv::dsimcom(x12,method = "3",type = "dissimilarity",option = "absolute") #0.4891208 
-
-diverse::dis_entities(t(x12),method = "eDice",category_row = T)[1,2] #0.4891208
-
-proxyC::simil(as.matrix(x1),as.matrix(x1),method = "dice")#0.8
-proxyC::simil(as.matrix(x1),as.matrix(x2),method = "edice")  #0.5108792
-
-BAT::beta(x11,func = "sorensen",abund = F)$Btotal #0.2
 BAT::beta(x11,func = "sorensen",abund = T)$Btotal #0.5310021
 
 wiqid::distChaoSorCorr(x1,x2) #0.02570608
 wiqid::distChaoSorNaive(x1,x2) #0.02642424
-
-wiqid::distSorensen(x1,x1) #0.2
-
-fossil::sorenson(x1,x1) #0.8
-
-proxy::dist(x11,method = "Dice") #0.2
-proxy::dist(x11,method = "eDice") #0.4891208
-
-labdsv::dsvdis(x11, index = "sorensen") #0.2
 
 CommEcol::dis.chao(x11,index = "sorensen",version = "rare") #0.02570608
 CommEcol::dis.chao(x12,index = "sorensen",version = "probability") #0.02642424
 
 adespatial::beta.div(x12,method = "sorensen",save.D = T,sqrt.D = F)$D #0.6416889 ne correspond pas
 
-
-
-MultBiplotR::BinaryDistances(as.matrix(x12_pa),coefficient = 7) #0.4472136
-
-PERMANOVA::DistBinary(x11_pa,coefficient = 7,transformation = 1)$D #0.8
-PERMANOVA::DistBinary(x12_pa,coefficient = 16,transformation = 1)$D #0.8
-PERMANOVA::DistBinary(x12_pa,coefficient = 17,transformation = 1)$D #0.8
-
-philentropy::dice_dist(as.numeric(x1),as.numeric(x1)) #0.4891208
-
 philentropy::sorensen(as.numeric(x1),as.numeric(x1)) #0.5310021
 
 EnvNJ::metrics(t(x11),method = "sorensen") #0.5310021
-
-Rfast::Dist(x12,method = "sorensen") #NA
 
 spaa::sp.pair(t(as.matrix(x12)))$Dice #0.833333
 
@@ -176,17 +114,9 @@ NST::beta.g(x12,dist.method = "chao.sorensen") #0.0244926
 
 prabclus::dicedist(t(x12)) #0.4375 ???
 
-fAssets::sorensenDist(t(x12)) #0.2
+
 
 #### Koleff betasor Simpson dissimilarity turnover sorensen ####----------------
-
-fossil::simpson(x1,x2) #0.8461538
-vegan::nestedbetasor(x12)[1] #0.1538462 
-betapart::beta.pair(x12_pa,index.family = "sorensen")$beta.sim #0.1538462
-proxy::dist(x12,method = "Simpson") #0.1538462
-adespatial::beta.div.comp(x11,coef = "BS")$repl # Baselga 0.1538462
-
-adespatial::beta.div.comp(x12,coef = "BS",quant = T)$repl # Baselga 0.5293722
 
 adespatial::beta.div(x12,method = "ab.simpson",save.D = T)$D #0.008127366 correspond a rien
 print(adespatial::dist.ldc(x12,method = "ab.simpson")) #0.008127366 correspond a rien
@@ -194,32 +124,21 @@ print(adespatial::dist.ldc(x12,method = "ab.simpson")) #0.008127366 correspond a
 adespatial::beta.div.comp(x12,coef = "J",quant = F)$repl # Podani 0.2424242
 adespatial::beta.div.comp(x12,coef = "J",quant =T)$repl # Podani 0.6891419
 
-abdiv::jaccard_turnover(as.numeric(x1),as.numeric(x2)) #0.2666667
-
 adiv::betastatsor(x12)[2] # Ricotta & Pavoine  0.07272727
 
-BAT::beta(x12,func = "sorensen",abund = F)$Brepl #0.1454545 ne correspond pas
-BAT::beta(x12,func = "sorensen",abund = T)$Brepl #0.5275388 ne correspond pas
+
 
 #### Nestedness-resultant component of Sørensen dissimilarity ####--------------
-vegan::nestedbetasor(x12)[2] #0.04615385 
-
-betapart::beta.pair(x12_pa,index.family = "sorensen")$beta.sne #0.04615385
 
 adespatial::beta.div.comp(x12_pa,coef = "S",quant = F)$rich #Podani 0.05454545
 adespatial::beta.div.comp(x12_pa,coef = "S",quant = T)$rich #Podani 0.0034633
-adespatial::beta.div.comp(x12,coef = "BS")$rich #Baselga 0.04615385
-adespatial::beta.div.comp(x12,coef = "BS",quant=T)$rich #Baselga 0.001629925
-
-abdiv::sorenson_nestedness(as.numeric(x1),as.numeric(x2)) #0.04615385 
-
-?adiv::betastatsor(x12)[3] #Ricotta & Pavoine 0.1272727
 
 BAT::beta(x12,func = "sorensen",abund = F)$Brich #0.05454545
 BAT::beta(x12,func = "sorensen",abund = T)$Brich #0.0034633
 
 BAT::beta(x12,func = "sorensen",abund = F)$Bgain #0.07272727
-?BAT::beta(x12,func = "sorensen",abund = F)$Bloss #0.1272727
+BAT::beta(x12,func = "sorensen",abund = F)$Bloss #0.1272727
+adiv::betastatsor(mite_beta)[3] #Ricotta & Pavoine 0.1272727
 BAT::beta(x12_pa,func = "sorensen",abund = T)$Bgain #0.2672327
 BAT::beta(x12_pa,func = "sorensen",abund = T)$Bloss #0.2637694
 
