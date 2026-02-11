@@ -1382,6 +1382,16 @@ P37_A <- ls(pattern = "_37_A$")
 P37_A <- mget(P37_A)
 P37_A <- as.data.frame(P37_A)
 
+# S2 coeff Gower & Legendre ####
+ade4_XX_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ade4_XX_P[i] <- ade4::dist.binary(mite_beta,method = 10)
+}
+PXX_P <- ls(pattern = "_XX_P$")
+PXX_P <- mget(PXX_P)
+PXX_P <- as.data.frame(PXX_P)
+
 # Hamman coefficient ####
 ade4_38_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -1993,6 +2003,18 @@ for (i in 1:(nrow(mite)-1)){
 P51_P <- ls(pattern = "_51_P$")
 P51_P <- mget(P51_P)
 P51_P <- as.data.frame(P51_P)
+
+# Jeffreys ####
+EnvNJ_XX_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_XX_A[i] <- EnvNJ::metrics(t(mite_beta),method = "jeffreys")
+}
+
+PXX_A <- ls(pattern = "_XX_A$")
+PXX_A <- mget(PXX_A)
+PXX_A <- as.data.frame(PXX_A)
+
 
 # Jensen-Shannon distance ####
 adiv_52_A <- rep(NA,69)
@@ -3185,576 +3207,642 @@ P82_P <- ls(pattern = "_82_P$")
 P82_P <- mget(P82_P)
 P82_P <- as.data.frame(P82_P)
 
-
 # Sorensen ####
-vegan_96 <- rep(NA,69)
+vegan_83_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_96[i] <- vegan::betadiver(mite_beta,"sor")
+  vegan_83_P[i] <- 1-vegan::betadiver(mite_beta,"sor")
 }
-ecodist_96 <- rep(NA,69)
+ecodist_83_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  ecodist_96[i] <- ecodist::distance(mite_beta,method = "sorensen")
+  ecodist_83_P[i] <- ecodist::distance(mite_beta,method = "sorensen")
 }
-bioregion_96 <- rep(NA,69)
+bioregion_83_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  bioregion_96[i] <- bioregion::dissimilarity(as.matrix(mite_beta),metric = "Sorensen")$Sorensen
+  bioregion_83_P[i] <- bioregion::dissimilarity(as.matrix(mite_beta),metric = "Sorensen")$Sorensen
 }
-ecodive_96 <- rep(NA,69)
+ecodive_83_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  ecodive_96[i] <- ecodive::sorensen(mite_beta)
+  ecodive_83_P[i] <- ecodive::sorensen(mite_beta)
 }
-betapart_96 <- rep(NA,69)
+betapart_83_P <- rep(NA,69) # Besoin de PA
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  betapart_83_P[i] <- betapart::beta.pair(mite_beta,index.family = "sorensen")$beta.sor
+}
+tabula_83_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  betapart_96[i] <- betapart::beta.pair(mite_beta,index.family = "sorensen")$beta.sor
+  tabula_83_P[i] <- 1-tabula::similarity(mite_beta,method = "sorensen")
 }
-tabula_96 <- rep(NA,69)
+adiv_83_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  tabula_96[i] <- tabula::similarity(mite_beta,method = "sorensen")
+  adiv_83_P[i] <- adiv::betastatsor(mite_beta)[1] #0.2
 }
-adiv_96 <- rep(NA,69)
+adespatial_83_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  adiv_96[i] <- adiv::betastatsor(mite_beta)[1] #0.2
+  adespatial_83_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "S",quant = F)$D #0.2
 }
-adespatial_96 <- rep(NA,69)
+BAT_83_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  adespatial_96[i] <- adespatial::beta.div.comp(mite_beta,coef = "S",quant = F)$D #0.2
+  BAT_83_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Btotal #0.2
 }
-BAT_96 <- rep(NA,69)
+proxy_83_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  BAT_96[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Btotal #0.2
+  proxy_83_P[i] <- proxy::dist(mite_beta,method = "Dice") #0.2
 }
-proxy_96 <- rep(NA,69)
+labdsv_83_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  proxy_96[i] <- proxy::dist(mite_beta,method = "Dice") #0.2
+  labdsv_83_P[i] <- labdsv::dsvdis(mite_beta, index = "sorensen")
 }
-labdsv_96 <- rep(NA,69)
+PERMANOVA_83_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  labdsv_96[i] <- labdsv::dsvdis(mite_beta, index = "sorensen")
+  PERMANOVA_83_P[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 7,transformation = 1)$D[1,2]
 }
-PERMANOVA_96 <- rep(NA,69)
+fAssets_83_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  PERMANOVA_96[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 7,transformation = 1)$D[1,2]
+  fAssets_83_P[i] <- fAssets::sorensenDist(t(mite_beta))
 }
-fAssets_96 <- rep(NA,69)
+abdiv_83_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  fAssets_96[i] <- fAssets::sorensenDist(t(mite_beta))
+  abdiv_83_P[i] <- abdiv::sorenson(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
 }
-abdiv_96 <- rep(NA,69)
+proxyC_83_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  proxyC_83_P[i] <- 1-proxyC::simil(as.matrix(mite[i,]),as.matrix(mite[i+1,]),method = "dice")
+}
+wiqid_83_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  wiqid_83_P[i] <- wiqid::distSorensen(mite[i,],mite[i+1,])
+}
+fossil_83_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  fossil_83_P[i] <- 1-fossil::sorenson(mite[i,],mite[i+1,])
+}
+prabclus_83_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  abdiv_96[i] <- abdiv::sorenson(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+  prabclus_83_P[i] <- prabclus::dicedist(t(mite_beta))[1,2]
 }
-proxyC_96 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  proxyC_96[i] <- proxyC::simil(as.matrix(mite[i,]),as.matrix(mite[i+1,]),method = "dice")
-}
-wiqid_96 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  wiqid_96[i] <- wiqid::distSorensen(mite[i,],mite[i+1,])
-}
-fossil_96 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  fossil_96[i] <- fossil::sorenson(mite[i,],mite[i+1,])
-}
-prabclus_96 <- rep(NA,69)
+spaa_83_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  prabclus_96[i] <- prabclus::dicedist(t(mite_beta))
+  spaa_83_P[i] <- 1-spaa::sp.pair(t(as.matrix(mite_beta)))$Dice
 }
-spaa_96 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  spaa_96[i] <- spaa::sp.pair(t(as.matrix(mite_beta)))$Dice
-}
+
+P83_P <- ls(pattern = "_83_P$")
+P83_P <- mget(P83_P)
+P83_P <- as.data.frame(P83_P)
 
 # Square-root Sorensen ####
-abdiv_97 <- rep(NA,69)
+abdiv_84_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  abdiv_97[i] <- ade4::dist.binary(mite_beta,method = 5)
+  abdiv_84_P[i] <- ade4::dist.binary(mite_beta,method = 5)
 }
-adespatial_97 <- rep(NA,69)
+adespatial_84_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  adespatial_97[i] <- print(adespatial::dist.ldc(mite_beta,method = "sorensen")) #0.4472136
+  adespatial_84_P[i] <- print(adespatial::dist.ldc(mite_beta,method = "sorensen")) #0.4472136
 }
-MultBiplotR_97 <- rep(NA,69)
+MultBiplotR_84_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  MultBiplotR_97[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 7)[1,2]
+  mite_beta <- mite_pa[c(i,i+1),]
+  MultBiplotR_84_P[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 7)[1,2]
 }
+P84_P <- ls(pattern = "_84_P$")
+P84_P <- mget(P84_P)
+P84_P <- as.data.frame(P84_P)
 
 # Turnover component of Sorensen dissimilarity ####
-BAT_98_A <- rep(NA,69)
+adespatial_85_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  BAT_98_A[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Brepl #0.5275388
+  adespatial_85_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "BS")$repl # Baselga 0.1538462
 }
-adespatial_98_A <- rep(NA,69)
+BAT_85_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  adespatial_98_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "BS",quant = T)$repl
+  BAT_85_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Brepl
 }
-adespatial_98_P <- rep(NA,69)
+betapart_85_P <- rep(NA,69) # Besoin de PA pour fonctionner
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  betapart_85_P[i] <- betapart::beta.pair(mite_beta,index.family = "sorensen")$beta.sim 
+}
+proxy_85_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  adespatial_98_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "BS")$repl # Baselga 0.1538462
+  proxy_85_P[i] <- proxy::dist(mite_beta,method = "Simpson")
 }
-BAT_98_P <- rep(NA,69)
+vegan_85_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  BAT_98_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Brepl
+  vegan_85_P[i] <- vegan::nestedbetasor(mite_beta)[1]
 }
-betapart_98 <- rep(NA,69)
+fossil_85_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  betapart_98[i] <- betapart::beta.pair(mite_beta,index.family = "sorensen")$beta.sim 
+  fossil_85_P[i] <- 1-fossil::simpson(mite[i,],mite[i+1,])
 }
-proxy_98 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  proxy_98[i] <- proxy::dist(mite_beta,method = "Simpson")
-}
-vegan_98 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  vegan_98[i] <- vegan::nestedbetasor(mite_beta)[1]
-}
-fossil_98 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  fossil_98[i] <- fossil::simpson(mite[i,],mite[i+1,])
-}
+
+P85_P <- ls(pattern = "_85_P$")
+P85_P <- mget(P85_P)
+P85_P <- as.data.frame(P85_P)
+
 
 # Nestedness-resultant component of Sørensen dissimilarity ####
-vegan_99 <- rep(NA,69)
+vegan_86_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_99[i] <- vegan::nestedbetasor(mite_beta)[2]
+  vegan_86_P[i] <- vegan::nestedbetasor(mite_beta)[2]
 }
-betapart_99 <- rep(NA,69)
+betapart_86_P <- rep(NA,69) # Besoin de PA pour fonctionner
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  betapart_86_P[i] <- betapart::beta.pair(mite_beta,index.family = "sorensen")$beta.sne
+}
+abdiv_86_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  betapart_99[i] <- betapart::beta.pair(mite_beta,index.family = "sorensen")$beta.sne
+  abdiv_86_P [i] <- abdiv::sorenson_nestedness(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
 }
-abdiv_99 <- rep(NA,69)
+adespatial_86_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  abdiv_99 [i] <- abdiv::sorenson_nestedness(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+  adespatial_86_P [i] <- adespatial::beta.div.comp(mite_beta,coef = "BS")$rich
 }
-adespatial_99_P <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  adespatial_99_P [i] <- adespatial::beta.div.comp(mite_beta,coef = "BS")$rich
-}
-adespatial_99_A <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  adespatial_99_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "BS",quant=T)$rich
-}
+
+P86_P <- ls(pattern = "_86_P$")
+P86_P <- mget(P86_P)
+P86_P <- as.data.frame(P86_P)
 
 # Sorensen richness gain ####
-BAT_100_A <- rep(NA,69)
+BAT_87_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  BAT_100_A[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Bgain
+  BAT_87_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Bgain
 }
-BAT_100_P <- rep(NA,69)
+adiv_87_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  BAT_100_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Bgain
+  adiv_87_P[i] <- adiv::betastatsor(mite_beta)[3]
 }
-adiv_100 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  adiv_100[i] <- adiv::betastatsor(mite_beta)[3]
-}
+
+P87_P <- ls(pattern = "_87_P$")
+P87_P <- mget(P87_P)
+P87_P <- as.data.frame(P87_P)
 
 # Sorensen richness loss ####
-BAT_101_A <- rep(NA,69)
+BAT_88_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  BAT_101_A[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Bloss
+  BAT_88_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Bloss
 }
-BAT_101_P <- rep(NA,69)
+adiv_88_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  BAT_101_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Bloss
+  adiv_88_P[i] <- adiv::betastatsor(mite_beta)[2]
 }
-adiv_101 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  adiv_101[i] <- adiv::betastatsor(mite_beta)[2]
-}
+
+P88_P <- ls(pattern = "_88_P$")
+P88_P <- mget(P88_P)
+P88_P <- as.data.frame(P88_P)
 
 # Legendre replacement index ####
-adespatial_102_P <- rep(NA,69)
+adespatial_89_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  adespatial_102_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = F)$repl
+  adespatial_89_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = F)$repl
 }
-adespatial_102_A <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  adespatial_102_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = T)$repl
-}
+
+P89_P <- ls(pattern = "_89_P$")
+P89_P <- mget(P89_P)
+P89_P <- as.data.frame(P89_P)
 
 # Legendre richness difference index ####
-adespatial_103_P <- rep(NA,69)
+adespatial_90_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  adespatial_103_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = F)$rich
+  adespatial_90_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = F)$rich
 }
-adespatial_103_A <- rep(NA,69)
+BAT_90_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  adespatial_103_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = T)$rich
+  BAT_90_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Brich
 }
-BAT_103_P <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  adespatial_103_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Brich
-}
-BAT_103_A <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  adespatial_103_A[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Brich
-}
+
+P90_P <- ls(pattern = "_90_P$")
+P90_P <- mget(P90_P)
+P90_P <- as.data.frame(P90_P)
 
 # Extended Sorensen Similarity ####
-adiv_104 <- rep(NA,69)
+adiv_91_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  adiv_104[i] <- adiv::dsimcom(mite_beta,method = "3",type = "dissimilarity",option = "absolute")
+  adiv_91_A[i] <- adiv::dsimcom(mite_beta,method = "3",type = "dissimilarity",option = "absolute")
 }
-diverse_104 <- rep(NA,69)
+diverse_91_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  diverse_104[i] <- diverse::dis_entities(t(mite_beta),method = "eDice",category_row = T)[1,2]
+  diverse_91_A[i] <- diverse::dis_entities(t(mite_beta),method = "eDice",category_row = T)[1,2]
 }
-proxy_104 <- rep(NA,69)
+proxy_91_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  proxy_104[i] <- proxy::dist(mite_beta,method = "eDice")
+  proxy_91_A[i] <- proxy::dist(mite_beta,method = "eDice")
 }
-philentropy_104 <- rep(NA,69)
+philentropy_91_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  philentropy_104[i] <- philentropy::dice_dist(as.numeric(mite[i,]),as.numeric(mite[i+1,])) 
+  philentropy_91_A[i] <- philentropy::dice_dist(as.numeric(mite[i,]),as.numeric(mite[i+1,])) 
 }
-proxyC_104 <- rep(NA,69)
+proxyC_91_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  proxyC_104[i] <- proxyC::simil(as.matrix(mite[i,]),as.matrix(mite[i+1,]),method = "edice")  #0.5108792 
+  proxyC_91_A[i] <- 1-proxyC::simil(as.matrix(mite[i,]),as.matrix(mite[i+1,]),method = "edice")  #0.5108792 
 }
 
-
-
-vegan::chaodist(mite_betaint,method = "1 - 2*U*V/(U+V)") # 0.1172414 faux
-abdiv::jaccard_turnover(as.numeric(x1),as.numeric(x2)) #0.2666667
+P91_A <- ls(pattern = "_91_A$")
+P91_A <- mget(P91_A)
+P91_A <- as.data.frame(P91_A)
 
 # Species profile distance ####
-adespatial_105 <- rep(NA,69)
+adespatial_92_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  adespatial_105[i] <- adespatial::beta.div(mite_beta,method = "profiles",save.D = T)$D #0.4505909
+  adespatial_92_A[i] <- adespatial::beta.div(mite_beta,method = "profiles",save.D = T)$D #0.4505909
 }
-ade4_105 <- rep(NA,69)
+ade4_92_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  ade4_105[i] <- ade4::disc(as.data.frame(t(mite_beta)))
+  ade4_92_A[i] <- ade4::disc(as.data.frame(t(mite_beta)))
 }
-ClusterR_105 <- rep(NA,69)
+ClusterR_92_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  ClusterR_105[i] <- ClusterR::distance_matrix(mite_beta,method = "Rao_coefficient")[2,1]
+  ClusterR_92_A[i] <- ClusterR::distance_matrix(mite_beta,method = "Rao_coefficient")[2,1]
 }
+
+P92_A <- ls(pattern = "_92_A$")
+P92_A <- mget(P92_A)
+P92_A <- as.data.frame(P92_A)
 
 # Topsoe ####
-ecodive_106 <- rep(NA,69)
+ecodive_93_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  ecodive_106[i] <- ecodive::topsoe(mite_beta,rescale = F)
+  ecodive_93_A[i] <- ecodive::topsoe(mite_beta,rescale = F)
 }
-philentropy_106 <- rep(NA,69)
+philentropy_93_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  philentropy_106[i] <- philentropy::topsoe(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
-}
-
-# Wave Hedges distance ####
-ecodive_107 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  ecodive_107[i] <- ecodive::wave_hedges(mite_beta,rescale = F) #22.84192
-}
-proxy_107 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  proxy_107[i] <- proxy::dist(mite_beta,method = "Wave")
-}
-PERMANOVA_107 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  PERMANOVA_107[i] <- PERMANOVA::DistContinuous(mite_beta,coef = 10)$D[2,1]
-}
-EnvNJ_107 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  EnvNJ_107[i] <- EnvNJ::metrics(t(mite_beta),method = "wavehedges")
-}
-philentropy_107 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  philentropy_107[i] <- philentropy::wave_hedges(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
-}
-Rfast_107 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  Rfast_107[i] <- Rfast::Dist(mite_beta,method = "wave_hedges")[2,1]
+  philentropy_93_A[i] <- philentropy::topsoe(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
 }
 
-# Whittaker's index of association ####
-wiqid_108 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  wiqid_108[i] <- wiqid::distWhittaker(mite[i,],mite[i+1,])
-}
-proxy_108 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  proxy_108[i] <- proxy::dist(mite_beta,method = "Whittaker")
-}
-adespatial_108 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  adespatial_108[i] <- adespatial::beta.div(mite_beta,method = "whittaker",save.D = T)$D
-}
-
-# beta w ####
-vegan_109 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  vegan_109[i] <- vegan::betadiver(mite_beta,"w")
-}
-tabula_109 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  tabula_109[i] <- tabula::index_whittaker(as.matrix(mite_beta))
-}
-# beta wb ####
-vegan_110 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  vegan_110[i] <- vegan::betadiver(mite_beta,"wb")
-}
-
-# beta -3 ####
-vegan_111 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  vegan_111[i] <- vegan::betadiver(mite_beta,"-3")
-}
-
-# beta t ####
-vegan_112 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  vegan_112[i] <- vegan::betadiver(mite_beta,"t")
-}
-
-tabula_XXX <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  tabula_XXX[i] <- tabula::index_wilson(as.matrix(mite_beta)) #ne sait pas a quoi ca correspond
-}
+P93_A <- ls(pattern = "_93_A$")
+P93_A <- mget(P93_A)
+P93_A <- as.data.frame(P93_A)
 
 # Yule ####
-abdiv_113 <- rep(NA,69)
+abdiv_94_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  abdiv_113[i] <- abdiv::yule_dissimilarity(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+  abdiv_94_P[i] <- abdiv::yule_dissimilarity(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
 }
-proxy_113 <- rep(NA,69)
+proxy_94_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  proxy_113[i] <- proxy::dist(mite_beta,method = "Yule")
+  proxy_94_P[i] <- proxy::dist(mite_beta,method = "Yule")
 }
-MultBiplotR_113 <- rep(NA,69)
+MultBiplotR_94_P <- rep(NA,69) # besoin de PA
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  MultBiplotR_113[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 15)[1,2]
+  mite_beta <- mite_pa[c(i,i+1),]
+  MultBiplotR_94_P[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 15)[1,2]
 }
-PERMANOVA_113 <- rep(NA,69)
+PERMANOVA_94_P <- rep(NA,69) # besoin de PA pour etre correct
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  PERMANOVA_113[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 15,transformation = 1)$D[1,2]
+  mite_beta <- mite_pa[c(i,i+1),]
+  PERMANOVA_94_P[i] <- 1-PERMANOVA::DistBinary(mite_beta,coefficient = 15,transformation = 1)$D[1,2]
 }
+
+P94_P <- ls(pattern = "_94_P$")
+P94_P <- mget(P94_P)
+P94_P <- as.data.frame(P94_P)
 
 # Yule 2 ####
-proxy_114<- rep(NA,69)
+proxy_95_P<- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  proxy_114[i] <- proxy::dist(mite_beta,method = "Yule2")
+  proxy_95_P[i] <- proxy::dist(mite_beta,method = "Yule2")
 }
 
+P95_P <- ls(pattern = "_95_P$")
+P95_P <- mget(P95_P)
+P95_P <- as.data.frame(P95_P)
 
-# beta g ####
-vegan_X <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  vegan_X[i] <- vegan::betadiver(mite_beta,"g")
-}
 
-# beta c ####
-vegan_X <- rep(NA,69)
+# Wave Hedges distance ####
+ecodive_96_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_X[i] <- vegan::betadiver(mite_beta,"c")
+  ecodive_96_A[i] <- ecodive::wave_hedges(mite_beta,rescale = F) #22.84192
 }
-tabula_X <- rep(NA,69)
+proxy_96_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  tabula_X[i] <- tabula::index_cody(as.matrix(mite_beta)) 
+  proxy_96_A[i] <- proxy::dist(mite_beta,method = "Wave")
 }
-
-# Sans nom ####
-vegan_115 <- rep(NA,69)
+PERMANOVA_96_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_115[i] <- vegan::betadiver(mite_beta,"19")
+  PERMANOVA_96_A[i] <- PERMANOVA::DistContinuous(mite_beta,coef = 10)$D[2,1]
 }
-
-# Jeffreys ####
-EnvNJ_116 <- rep(NA,69)
+EnvNJ_96_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  EnvNJ_116[i] <- EnvNJ::metrics(t(mite_beta),method = "jeffreys")
+  EnvNJ_96_A[i] <- EnvNJ::metrics(t(mite_beta),method = "wavehedges")
 }
-
-# S2 coeff Gower & Legendre ####
-ade4_XX <- rep(NA,69)
+philentropy_96_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  ade4_XX[i] <- ade4::dist.binary(mite_beta,method = 10)
+  philentropy_96_A[i] <- philentropy::wave_hedges(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+Rfast_96_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_96_A[i] <- Rfast::Dist(mite_beta,method = "wave_hedges")[2,1]
 }
 
-# Harmonic mean ####
-Rfast_XX <- rep(NA,69)
+P96_A <- ls(pattern = "_96_A$")
+P96_A <- mget(P96_A)
+P96_A <- as.data.frame(P96_A)
+
+# Whittaker's index of association ####
+wiqid_97_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  Rfast_XX[i] <- Rfast::Dist(mite_beta,method = "harmonic_mean")
+  wiqid_97_A[i] <- wiqid::distWhittaker(mite[i,],mite[i+1,])
+}
+proxy_97_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_97_A[i] <- proxy::dist(mite_beta,method = "Whittaker")
+}
+adespatial_97_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_97_A[i] <- adespatial::beta.div(mite_beta,method = "whittaker",save.D = T)$D
 }
 
-# beta cc ####
-vegan_28 <- rep(NA,69)
+P97_A <- ls(pattern = "_97_A$")
+P97_A <- mget(P97_A)
+P97_A <- as.data.frame(P97_A)
+
+# beta -3 ####
+vegan_98_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_28[i] <- vegan::betadiver(mite_beta,"cc")
+  vegan_98_P[i] <- vegan::betadiver(mite_beta,"-3")
 }
+P98_P <- ls(pattern = "_98_P$")
+P98_P <- mget(P98_P)
+P98_P <- as.data.frame(P98_P)
 
 # beta -1 ####
-vegan_43 <- rep(NA,69)
+vegan_99_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_43[i] <- vegan::betadiver(mite_beta,"-1")
+  vegan_99_P[i] <- vegan::betadiver(mite_beta,"-1")
 }
+P99_P <- ls(pattern = "_99_P$")
+P99_P <- mget(P99_P)
+P99_P <- as.data.frame(P99_P)
 
 # beta -2 ####
-vegan_44 <- rep(NA,69)
+vegan_100_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_44[i] <- vegan::betadiver(mite_beta,"-2") 
+  vegan_100_P[i] <- vegan::betadiver(mite_beta,"-2") 
 }
+P100_P <- ls(pattern = "_100_P$")
+P100_P <- mget(P100_P)
+P100_P <- as.data.frame(P100_P)
 
-# beta hk ####
-vegan_45 <- rep(NA,69)
+# beta c ####
+vegan_101_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_45[i] <- vegan::betadiver(mite_beta,"hk") #0.2
+  vegan_101_P[i] <- vegan::betadiver(mite_beta,"c")
 }
+tabula_101_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  tabula_101_P[i] <- tabula::index_cody(as.matrix(mite_beta)) 
+}
+P101_P <- ls(pattern = "_101_P$")
+P101_P <- mget(P101_P)
+P101_P <- as.data.frame(P101_P)
 
-# beta l  ####
-vegan_62 <- rep(NA,69)
+# beta cc ####
+vegan_102_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_62[i] <- vegan::betadiver(mite_beta,"l") 
+  vegan_102_P[i] <- vegan::betadiver(mite_beta,"cc")
 }
-# beta gl  ####
-vegan_63 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  vegan_63[i] <- vegan::betadiver(mite_beta,"gl") 
-}
-
-# beta sim  ####
-vegan_64 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  vegan_64[i] <- vegan::betadiver(mite_beta,"sim") 
-}
-
-# beta z ####
-vegan_65 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  vegan_65[i] <- vegan::betadiver(mite_beta,"z") 
-}
-
-# beta m ####
-vegan_67 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  vegan_67[i] <- vegan::betadiver(mite_beta,"m")
-}
-
-# beta me ####
-vegan_77 <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  vegan_77[i] <- vegan::betadiver(mite_beta,"me")
-}
+P102_P <- ls(pattern = "_102_P$")
+P102_P <- mget(P102_P)
+P102_P <- as.data.frame(P102_P)
 
 # beta e ####
-vegan_85 <- rep(NA,69)
+vegan_103_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_85[i] <- vegan::betadiver(mite_beta,"e")
+  vegan_103_P[i] <- vegan::betadiver(mite_beta,"e")
+}
+P103_P <- ls(pattern = "_103_P$")
+P103_P <- mget(P103_P)
+P103_P <- as.data.frame(P103_P)
+
+# beta g ####
+vegan_104_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_104_P[i] <- vegan::betadiver(mite_beta,"g")
 }
 
-# beta l ####
-vegan_86 <- rep(NA,69)
+P104_P <- ls(pattern = "_104_P$")
+P104_P <- mget(P104_P)
+P104_P <- as.data.frame(P104_P)
+
+# beta gl  ####
+vegan_105_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_86[i] <- vegan::betadiver(mite_beta,"l")
+  vegan_105_P[i] <- vegan::betadiver(mite_beta,"gl") 
 }
+
+P105_P <- ls(pattern = "_105_P$")
+P105_P <- mget(P105_P)
+P105_P <- as.data.frame(P105_P)
+
+# beta hk ####
+vegan_106_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_106_P[i] <- vegan::betadiver(mite_beta,"hk") #0.2
+}
+
+P106_P <- ls(pattern = "_106_P$")
+P106_P <- mget(P106_P)
+P106_P <- as.data.frame(P106_P)
+
+# beta l  ####
+vegan_107_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_107_P[i] <- vegan::betadiver(mite_beta,"l") 
+}
+
+P107_P <- ls(pattern = "_107_P$")
+P107_P <- mget(P107_P)
+P107_P <- as.data.frame(P107_P)
+
+# beta i  ####
+vegan_108_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_108_P[i] <- vegan::betadiver(mite_beta,"I") 
+}
+
+P108_P <- ls(pattern = "_108_P$")
+P108_P <- mget(P108_P)
+P108_P <- as.data.frame(P108_P)
+
+# beta m ####
+vegan_109_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_109_P[i] <- vegan::betadiver(mite_beta,"m")
+}
+P109_P <- ls(pattern = "_109_P$")
+P109_P <- mget(P109_P)
+P109_P <- as.data.frame(P109_P)
+
+# beta me ####
+vegan_110_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_110_P[i] <- vegan::betadiver(mite_beta,"me")
+}
+P110_P <- ls(pattern = "_110_P$")
+P110_P <- mget(P110_P)
+P110_P <- as.data.frame(P110_P)
 
 # beta r ####
-vegan_87 <- rep(NA,69)
+vegan_111_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_87[i] <- vegan::betadiver(mite_beta,"r")
+  vegan_111_P[i] <- vegan::betadiver(mite_beta,"r")
 }
-tabula_87 <- rep(NA,69)
+tabula_111_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  tabula_87[i] <- tabula::index_routledge1(as.matrix(mite_beta)) 
+  tabula_111_P[i] <- tabula::index_routledge1(as.matrix(mite_beta)) 
 }
 
+P111_P <- ls(pattern = "_111_P$")
+P111_P <- mget(P111_P)
+P111_P <- as.data.frame(P111_P)
+
 # beta rlb ####
-vegan_88 <- rep(NA,69)
+vegan_112_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_88[i] <- vegan::betadiver(mite_beta,"rlb")
+  vegan_112_P[i] <- vegan::betadiver(mite_beta,"rlb")
 }
+P112_P <- ls(pattern = "_112_P$")
+P112_P <- mget(P112_P)
+P112_P <- as.data.frame(P112_P)
+
+
+# beta sim  ####
+vegan_113_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_113_P[i] <- vegan::betadiver(mite_beta,"sim") 
+}
+P113_P <- ls(pattern = "_113_P$")
+P113_P <- mget(P113_P)
+P113_P <- as.data.frame(P113_P)
+
+# beta t  ####
+vegan_114_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_114_P[i] <- vegan::betadiver(mite_beta,"t") 
+}
+P114_P <- ls(pattern = "_114_P$")
+P114_P <- mget(P114_P)
+P114_P <- as.data.frame(P114_P)
+
+
+# beta w ####
+vegan_115_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_115_P[i] <- vegan::betadiver(mite_beta,"w")
+}
+tabula_115_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  tabula_115_P[i] <- tabula::index_whittaker(as.matrix(mite_beta))
+}
+P115_P <- ls(pattern = "_115_P$")
+P115_P <- mget(P115_P)
+P115_P <- as.data.frame(P115_P)
+
+
+# beta wb ####
+vegan_116_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_116_P[i] <- vegan::betadiver(mite_beta,"wb")
+}
+P116_P <- ls(pattern = "_116_P$")
+P116_P <- mget(P116_P)
+P116_P <- as.data.frame(P116_P)
+
+# beta z ####
+vegan_117_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_117_P[i] <- vegan::betadiver(mite_beta,"z") 
+}
+
+P117_P <- ls(pattern = "_117_P$")
+P117_P <- mget(P117_P)
+P117_P <- as.data.frame(P117_P)
+
+# Sans nom ####
+vegan_118_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_118_P[i] <- vegan::betadiver(mite_beta,"19")
+}
+P118_P <- ls(pattern = "_118_P$")
+P118_P <- mget(P118_P)
+P118_P <- as.data.frame(P118_P)
+
+
+
+x
