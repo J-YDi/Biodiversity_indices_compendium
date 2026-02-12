@@ -278,7 +278,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 chemodiv_8_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
+  mite_beta <- mite_relat[c(i,i+1),]
   chemodiv_8_A[i] <- chemodiv::sampDis(mite_beta,type = "BrayCurtis")$BrayCurtis[1,2]
 }
 wiqid_8_A <- rep(NA,69)
@@ -394,7 +394,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 Mercator_9_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
+  mite_beta <- mite_pa[c(i,i+1),]
   Mercator_9_A[i] <- Mercator::binaryDistance(t(mite_beta),metric = "canberra") 
 }
 
@@ -767,7 +767,8 @@ for (i in 1:(nrow(mite)-1)){
 }
 analogue_22_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  analogue_22_A[i] <- analogue::distance(mite[i,],mite[i+1,],method = "chord")
+  mite_beta <- mite[c(i,i+1),]
+  analogue_22_A[i] <- analogue::distance(mite_beta,method = "chord")[1,2]
 }
 ecodive_22_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){

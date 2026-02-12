@@ -37,7 +37,7 @@ data <- read_csv("data/alpha/a_combined_long_all.csv")
 # On indique pas les fonctions custom car ce n'est pas le but du graphe
 data <- filter(data,package != "custom")
 
-count_same_values_by_col <- function(df, digits = NULL, exclude_self = TRUE,treat_NA_as_value = FALSE) {
+count_same_values_by_col <- function(df, digits = 3, exclude_self = TRUE,treat_NA_as_value = FALSE) {
   out <- lapply(df, function(col) {
     g <- col
     if (!is.null(digits) && is.numeric(g)) g <- round(g, digits)
