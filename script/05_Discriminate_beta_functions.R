@@ -150,7 +150,7 @@ ggplot(results_P) +
     legend.position = "bottom",
     panel.background = NULL
   ) +
-  facet_wrap(~Index, scales = "free_x", ncol = 31)+
+  facet_wrap(~Index, scales = "free_x", ncol = 32)+
   theme(strip.text = element_text(face = "bold", color = "white",
                                   size = 10),
         strip.background = element_rect(fill = "indianred1"))
@@ -251,6 +251,3 @@ ggplot(results_A_120) +
                                   size = 10),
         strip.background = element_rect(fill = "royalblue"))
 ggsave('heatmap_beta_A_P2_packages_TF.png', path = "output/fig/beta/packages/", dpi = 900, width = 500, height = 250, units = 'mm')
-
-
-withNAorInf <- unique(select(filter(data,is.na(value) | value == Inf),-Sample))
