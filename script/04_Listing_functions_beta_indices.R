@@ -3864,3 +3864,27 @@ dataindex_wide_P <- dataindex_P|>
 
 write.csv(dataindex,"data/beta/beta_values_mite_long_mite_P.csv",row.names = F)
 write.csv(dataindex_wide,"data/beta/beta_values_mite_wide_mite_P.csv",row.names = F)
+
+
+dataindex_A <- filter(data,selection %in% c("2_A_vegan","3_A_EnvNJ","4_A_ecodive","5_A_vegan","6_A_tabula",
+                                            "7_A_tabula","9_A_vegan","10_A_stats","11_A_vegan","12_A_abdiv",
+                                            "12_A_abdiv","13_A_abdiv","14_A_pctax","15_A_vegan","16_A_vegan",
+                                            "17_A_vegan","18_A_wiqid","19_A_abdiv","20_A_vegan","21_A_ecodive",
+                                            "22_A_ecodive","23_A_vegan","24_A_analogue","25_A_adespatial",
+                                            "27_A_ecodive","28_A_vegan","29_A_ecodive","30_A_vegan","31_A_NST",
+                                            "32_A_abdiv","33_A_ecodive","34_A_vegan","35_A_vegan","36_A_ecodist",
+                                            "37_A_NST","40_A_proxyC","41_A_EnvNJ","42_A_vegan","43_A_vegan","47_A_vegan",
+                                            "53_A_EnvNJ","54_A_adiv","55_A_adiv","57_A_vegan","58_A_pctax","59_A_EnvNJ",
+                                            "61_A_vegan","62_A_NST","64_A_adespatial","65_A_ecodive","66_1_A_ecodive",
+                                            "66_2_A_ecodive","66_3_A_ecodive","67_A_vegan","68_A_vegan","69_A_pctax",
+                                            "75_A_vegan","77_A_abdiv","81_A_adiv","93_A_adiv","94_A_ade4","95_A_ecodive",
+                                            "99_A_ecodive","100_A_proxy"
+))
+dataindex_A <- dataindex_A |>
+  select(-c(package,selection)) 
+
+dataindex_wide_A <- dataindex_A|>
+  pivot_wider(names_from = index,values_from = value)
+
+write.csv(dataindex_A,"data/beta/beta_values_mite_long_mite_A.csv",row.names = F)
+write.csv(dataindex_wide_A,"data/beta/beta_values_mite_wide_mite_A.csv",row.names = F)
