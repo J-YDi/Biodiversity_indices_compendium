@@ -1222,3 +1222,63 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # NMDS
 # ggsave('NMDS_distrib_k6_alpha_all.png', path = "output/fig/alpha/indices/BCI/", dpi = 1200, width = 250, height = 150, units = 'mm')
 # 
+
+
+# Some analysis with indices that have order ####
+
+#________________________________Loading data___________________________________####
+library(vegan)
+# We choose the mite data from vegan as the dataset for abundance/count data
+data("mite")
+detach(package:vegan)
+# It is possible to work on sipoo data for presence/absence and varespec for abundance/not integer data
+
+# Relative abundances data to allow some functions working
+mite_relat <- mite/rowSums(mite)
+
+# Distance matrix to allow some functions working
+mite_dist <- as.matrix(dist(t(mite),method = "euclidean",diag = T,upper = T))
+rownames(mite_dist) <- rownames(t(mite))
+colnames(mite_dist) <- rownames(t(mite))
+
+
+QTSA <- rep(NA,10)
+for (i in seq(0,10,1)){
+  i_pos <- i+1
+  QTSA[i_pos] <- vegan::tsallis(mite[1,],scales = i,hill = F)
+}
+
+QREN <- rep(NA,10)
+for (i in seq(0,10,1)){
+  i_pos <- i+1
+  QREN[i_pos] <- vegan::renyi(mite[1,],scales = i,hill = F)
+}
+
+QHIL <- rep(NA,10)
+for (i in seq(0,10,1)){
+  i_pos <- i+1
+  QHIL[i_pos] <- vegan::renyi(mite[1,],scales = i,hill = T)
+}
+
+data_order <- as.data.frame(cbind(QHIL,QREN,QTSA))
+data_order$Order <- seq(0,10,1)
+
+data_order <-pivot_longer(data_order,cols = c(QHIL,QREN,QTSA),names_to = "Index",values_to = "VALUE")
+
+ggplot(data_order)+
+  geom_hline(aes(yintercept = vegan::diversity(mite[1,],index = "shannon")))+
+  geom_hline(aes(yintercept = vegan::diversity(mite[1,],index = "invsimpson")))+
+  geom_hline(aes(yintercept = tabula::index_berger(as.numeric(mite[1,]))))+
+  geom_hline(aes(yintercept = 20))+
+  
+  geom_text(aes(x=6,y = tabula::index_berger(as.numeric(mite[1,]))+0.2,label = "Berger-Parker"),size = 3)+
+  geom_text(aes(x=6,y = vegan::diversity(mite[1,],index = "invsimpson")+0.2,label = "Simpson inverse"),size = 3)+
+  geom_text(aes(x=6,y = vegan::diversity(mite[1,],index = "shannon")+0.2,label = "Shannon"),size = 3)+
+  geom_text(aes(x=6,y = 20+0.2,label = "Richness"),size = 3)+
+  
+  geom_point(aes(Order,VALUE,colour = Index),size = 3)+
+  geom_line(aes(Order,VALUE,colour = Index),size=1)+
+  labs(x="Order",y="Index value")+ 
+  scale_x_continuous(breaks = 0:10, limits = c(0, 10))+
+  theme(legend.position = c(0.975, 0.94))
+

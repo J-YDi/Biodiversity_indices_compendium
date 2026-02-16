@@ -257,3 +257,130 @@ ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
 ggsave('NMDS_k7_beta_P_all.png', path = "output/fig/beta/indices/", dpi = 1200, width = 250, height = 150, units = 'mm')
 
 
+# Indices A #####
+#__________________________________Loading data_________________________________####
+
+data <- read_csv("data/beta/beta_values_mite_wide_mite_A.csv")
+data_long <- read_csv("data/beta/beta_values_mite_long_mite_A.csv")
+
+#______________________Some basic representations of the data___________________####
+
+# # All
+# ggplot(data_long)+
+#   geom_line(aes(x=Sample,y=value))+
+#   facet_wrap(~index,scale = "free_y")
+
+# Calculate some stats to the plot
+data_stats <- data_long |> 
+  group_by(index) |> 
+  summarise(mean_value = mean(value),
+            sd_value = sd(value))
+
+# A indices
+
+levels_index <- data_long$index %>%
+  unique() %>%
+  .[order(as.numeric(str_extract(., "\\d+")))]
+
+data_long$index <- factor(data_long$index, levels = levels_index)
+
+levels_index <- data_stats$index %>%
+  unique() %>%
+  .[order(as.numeric(str_extract(., "\\d+")))]
+
+data_stats$index <- factor(data_stats$index, levels = levels_index)
+
+ggplot(data_long) +
+  geom_segment(aes(x = Sample,y=0, yend = value), col = "royalblue",
+               linewidth = 1, alpha = 0.4) +
+  geom_point(aes(x = Sample, y = value), col = "royalblue", size = 1.7) +
+  geom_label(data = filter(data_stats),
+             aes(x = 69/2, y = 0.01, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
+             color = "black", size = 4,alpha=0.5,linewidth=0) +
+  facet_wrap(~ index,scale = "free_y",ncol = 9) +
+  labs(x = "Sample", y = "Index value") +
+  theme(strip.text = element_text(face = "bold", color = "white",
+                                  hjust = 0, size = 10),
+        strip.background = element_rect(fill = "royalblue"),
+        axis.title = element_text(size = 15),
+        axis.text.y = element_text(size = 12,face = "bold"),
+        axis.text.x = element_text(size = 3.7,angle=90,hjust = 1,vjust = 0.5))
+ggsave('values_beta_A_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 600, height = 300, units = 'mm')
+
+# ALL VARIABLES SELECT #############____________________________________________
+#________________________________________PCA____________________________________####
+data_pca <- select(data,-Sample)
+PCA_results <- PCA(data_pca)
+PCA_results_t <- PCA(t(data_pca))
+
+fviz_screeplot(PCA_results) # Screeplot
+
+# PCA viz with colour arrows
+
+PCA <- fviz_pca_var(PCA_results, axes = c(1, 2), repel = T ,col.var = "royalblue",title="", ggtheme = theme_minimal()) +
+  theme(
+    axis.title.x = element_text(size = 12),
+    axis.title.y = element_text(size = 12)
+  )
+PCA
+ggsave('PCA_beta_P_all.png', path = "output/fig/beta/indices/", dpi = 1200, width = 250, height = 250, units = 'mm')
+
+fviz_contrib(PCA_results, choice = "var", axes = 1)
+fviz_contrib(PCA_results, choice = "var", axes = 2)
+fviz_contrib(PCA_results, choice = "var", axes = 3)
+
+corrplot(t(PCA_results$var$contrib),
+         is.corr = FALSE,
+         method = "pie",col = viridis(200),number.cex = 0.5)
+
+# To check for a spatial dissimilarity we check by see the individuals position by region
+fviz_pca_ind(PCA_results_t,addEllipses = F,repel = T,col.ind = "royalblue"
+             ,title="", ggtheme = theme_minimal(),legend = "none")
+
+#______________________Clusterings______________________________________________####
+# 
+hc <- hclust(dist(t(data_pca),method = "euclidean"),method = "ward")
+plot(hc)
+
+library(cluster)
+
+cluster_quality(data_pca, return_table = TRUE)
+k=3
+clusters <- cutree(hc, k = k)
+cluster_cols <- c("red", "blue", "darkgreen", "orange")
+label_cols <- cluster_cols[clusters]
+dend <- as.dendrogram(hc)
+dend <- dendrapply(dend, function(n) {
+  if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
+  n
+})
+
+dend <- color_branches(dend,k = k )
+dend <- color_labels(dend,k = k )
+dend <- set(dend, "branches_lwd", k)
+plot(dend, horiz = T,dLeaf = -0.1,axes=T)
+
+
+# NMDS 
+cluster_quality(data_pca, return_table = TRUE)
+nmds <- metaMDS(dist(t(data_pca)), k = 3, trymax = 999)
+
+scores_df <- as.data.frame(scores(nmds))  # x,y
+scores_df$Sample <- rownames(scores_df)
+
+clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 3)
+scores_df$Cluster <- factor(clusters)
+
+NMDS <- ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
+  geom_point(size = 3) +
+  geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
+  theme_minimal() +
+  geom_label(aes(x=4e+05,y=905,label = paste("Stress:",round(nmds$stress,4))),
+             color = "black",linewidth = 0)+
+  theme(legend.position = "none")+
+  labs(title = NULL,
+       x = "NMDS1", y = "NMDS2")+
+  scale_color_discrete(palette = c("red", "blue", "green2", "orange","magenta"))
+NMDS
+ggsave('NMDS_k3_beta_A_all.png', path = "output/fig/beta/indices/", dpi = 1200, width = 250, height = 150, units = 'mm')
+
