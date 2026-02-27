@@ -24,7 +24,7 @@ loadpackages <- function(packages){
 packages_needed <- c("readr","dplyr","tidyr","stringr","dendextend","ggplot2",
                      "tidyverse","dendextend","circlize","corrplot","cowplot",
                      "factoextra","FactoMineR","viridis","GGally","cluster",
-                     "clValid","vegan","ggrepel")
+                     "clValid","vegan","ggrepel","forcats")
 
 loadpackages(packages_needed)
 
@@ -123,6 +123,12 @@ levels_index <- data_stats$index %>%
 
 data_stats$index <- factor(data_stats$index, levels = levels_index)
 
+data_long <- data_long %>%
+  mutate(
+    Sample_num = as.numeric(str_extract(Sample, "^[0-9]+")),
+    Sample = fct_reorder(Sample, Sample_num)
+  )
+
 ggplot(data_long) +
   geom_segment(aes(x = Sample,y=0, yend = value), col = "indianred1",
                linewidth = 1, alpha = 0.4) +
@@ -171,12 +177,13 @@ fviz_pca_ind(PCA_results_t,addEllipses = F,repel = T,col.ind = "indianred1"
 
 #______________________Clusterings______________________________________________####
 # 
-hc <- hclust(dist(t(data_pca),method = "euclidean"),method = "ward")
+data_pca_scaled <- scale(data_pca,T,T)
+hc <- hclust(dist(t(data_pca_scaled),method = "euclidean"),method = "ward")
 plot(hc)
 
 library(cluster)
 
-cluster_quality(data_pca, return_table = TRUE)
+cluster_quality(data_pca_scaled, return_table = TRUE)
 k=3
 clusters <- cutree(hc, k = k)
 cluster_cols <- c("red", "blue", "darkgreen", "orange")
@@ -194,20 +201,20 @@ plot(dend, horiz = T,dLeaf = -0.1,axes=T)
 
 
 # NMDS 
-cluster_quality(data_pca, return_table = TRUE)
-nmds <- metaMDS(dist(t(data_pca)), k = 3, trymax = 999)
+cluster_quality(data_pca_scaled, return_table = TRUE)
+nmds <- metaMDS(dist(t(data_pca_scaled)), k = 3, trymax = 999)
 
 scores_df <- as.data.frame(scores(nmds))  # x,y
 scores_df$Sample <- rownames(scores_df)
 
-clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 3)
+clusters <- cutree(hclust(dist(t(data_pca_scaled)), method = "ward.D2"), k = 3)
 scores_df$Cluster <- factor(clusters)
 
 NMDS <- ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
   geom_point(size = 3) +
   geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
   theme_minimal() +
-  geom_label(aes(x=40,y=-15,label = paste("Stress:",round(nmds$stress,4))),
+  geom_label(aes(x=-5,y=-10,label = paste("Stress:",round(nmds$stress,4))),
              color = "black",linewidth = 0)+
   theme(legend.position = "none")+
   labs(title = NULL,
@@ -215,46 +222,6 @@ NMDS <- ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
   scale_color_discrete(palette = c("red", "blue", "green2", "orange","magenta"))
 NMDS
 ggsave('NMDS_k3_beta_P_all.png', path = "output/fig/beta/indices/", dpi = 1200, width = 250, height = 150, units = 'mm')
-
-nmds <- metaMDS(dist(t(data_pca)), k = 4, trymax = 999)
-
-scores_df <- as.data.frame(scores(nmds))  # x,y
-scores_df$Sample <- rownames(scores_df)
-
-clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 4)
-scores_df$Cluster <- factor(clusters)
-
-ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
-  geom_point(size = 3) +
-  geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
-  theme_minimal() +
-  geom_label(aes(x=40,y=-15,label = paste("Stress:",round(nmds$stress,4))),
-             color = "black",linewidth = 0)+
-  theme(legend.position = "none")+
-  labs(title = NULL,
-       x = "NMDS1", y = "NMDS2",subtitle = paste("Stress:",round(nmds$stress,4)))+
-  scale_color_discrete(palette = c("red", "blue", "green2", "orange","magenta"))
-ggsave('NMDS_k4_beta_P_all.png', path = "output/fig/beta/indices/", dpi = 1200, width = 250, height = 150, units = 'mm')
-
-nmds <- metaMDS(dist(t(data_pca)), k = 7, trymax = 999)
-
-scores_df <- as.data.frame(scores(nmds))  # x,y
-scores_df$Sample <- rownames(scores_df)
-
-clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 7)
-scores_df$Cluster <- factor(clusters)
-
-ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
-  geom_point(size = 3) +
-  geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
-  theme_minimal() +
-  geom_label(aes(x=40,y=-15,label = paste("Stress:",round(nmds$stress,4))),
-             color = "black",linewidth = 0)+
-  theme(legend.position = "none")+
-  labs(title = NULL,
-       x = "NMDS1", y = "NMDS2",subtitle = paste("Stress:",round(nmds$stress,4)))+
-  scale_color_discrete(palette = c("red", "blue", "green2", "orange","magenta","cyan","yellow"))
-ggsave('NMDS_k7_beta_P_all.png', path = "output/fig/beta/indices/", dpi = 1200, width = 250, height = 150, units = 'mm')
 
 
 # Indices A #####
@@ -290,6 +257,13 @@ levels_index <- data_stats$index %>%
 
 data_stats$index <- factor(data_stats$index, levels = levels_index)
 
+data_long <- data_long %>%
+  mutate(
+    Sample_num = as.numeric(str_extract(Sample, "^[0-9]+")),
+    Sample = fct_reorder(Sample, Sample_num)
+  )
+
+
 ggplot(data_long) +
   geom_segment(aes(x = Sample,y=0, yend = value), col = "royalblue",
                linewidth = 1, alpha = 0.4) +
@@ -297,7 +271,7 @@ ggplot(data_long) +
   geom_label(data = filter(data_stats),
              aes(x = 69/2, y = 0.01, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
              color = "black", size = 4,alpha=0.5,linewidth=0) +
-  facet_wrap(~ index,scale = "free_y",ncol = 9) +
+  facet_wrap(~ index,scale = "free_y",ncol = 8) +
   labs(x = "Sample", y = "Index value") +
   theme(strip.text = element_text(face = "bold", color = "white",
                                   hjust = 0, size = 10),
@@ -323,7 +297,7 @@ PCA <- fviz_pca_var(PCA_results, axes = c(1, 2), repel = T ,col.var = "royalblue
     axis.title.y = element_text(size = 12)
   )
 PCA
-ggsave('PCA_beta_P_all.png', path = "output/fig/beta/indices/", dpi = 1200, width = 250, height = 250, units = 'mm')
+ggsave('PCA_beta_A_all.png', path = "output/fig/beta/indices/", dpi = 1200, width = 250, height = 250, units = 'mm')
 
 fviz_contrib(PCA_results, choice = "var", axes = 1)
 fviz_contrib(PCA_results, choice = "var", axes = 2)
@@ -339,12 +313,15 @@ fviz_pca_ind(PCA_results_t,addEllipses = F,repel = T,col.ind = "royalblue"
 
 #______________________Clusterings______________________________________________####
 # 
-hc <- hclust(dist(t(data_pca),method = "euclidean"),method = "ward")
+data_pca_scaled <- scale(data_pca,T,T)
+
+
+hc <- hclust(dist(t(data_pca_scaled),method = "euclidean"),method = "ward")
 plot(hc)
 
 library(cluster)
 
-cluster_quality(data_pca, return_table = TRUE)
+cluster_quality(data_pca_scaled, return_table = TRUE)
 k=3
 clusters <- cutree(hc, k = k)
 cluster_cols <- c("red", "blue", "darkgreen", "orange")
@@ -362,20 +339,20 @@ plot(dend, horiz = T,dLeaf = -0.1,axes=T)
 
 
 # NMDS 
-cluster_quality(data_pca, return_table = TRUE)
-nmds <- metaMDS(dist(t(data_pca)), k = 3, trymax = 999)
+cluster_quality(data_pca_scaled, return_table = TRUE)
+nmds <- metaMDS(dist(t(data_pca_scaled)), k = 3, trymax = 999)
 
 scores_df <- as.data.frame(scores(nmds))  # x,y
 scores_df$Sample <- rownames(scores_df)
 
-clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 3)
+clusters <- cutree(hclust(dist(t(data_pca_scaled)), method = "ward.D2"), k = 3)
 scores_df$Cluster <- factor(clusters)
 
 NMDS <- ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
   geom_point(size = 3) +
   geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
   theme_minimal() +
-  geom_label(aes(x=4e+05,y=905,label = paste("Stress:",round(nmds$stress,4))),
+  geom_label(aes(x=-5,y=-8,label = paste("Stress:",round(nmds$stress,4))),
              color = "black",linewidth = 0)+
   theme(legend.position = "none")+
   labs(title = NULL,

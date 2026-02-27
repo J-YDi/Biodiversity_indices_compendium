@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 03_Alpha_index_analysis.r
-# Date               : 12/02/2025
+# Date               : 26/02/2025
 # Object             : Script to analyze alpha biodiversity index
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
@@ -315,42 +315,29 @@ corrplot(t(PCA_results$var$contrib),
 #   scale_color_discrete(palette = c("red", "blue", "darkgreen", "orange","magenta"))
 
 #______________________Clusterings______________________________________________####
-# 
-# hc <- hclust(dist(t(data_pca),method = "euclidean"),method = "ward")
-# plot(hc)
-# 
-# library(cluster)
-# 
-# cluster_quality(data_pca, return_table = TRUE)
-# k=3
-# clusters <- cutree(hc, k = k)
-# cluster_cols <- c("red", "blue", "darkgreen", "orange")
-# label_cols <- cluster_cols[clusters]
-# dend <- as.dendrogram(hc)
-# dend <- dendrapply(dend, function(n) {
-#   if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
-#   n
-# })
-# 
-# dend <- color_branches(dend,k = k )
-# dend <- color_labels(dend,k = k )
-# dend <- set(dend, "branches_lwd", k)
-# plot(dend, horiz = T,dLeaf = -0.1,axes=T)
-# 
-# k=4
-# clusters <- cutree(hc, k = k)
-# cluster_cols <- c("red", "blue", "darkgreen", "orange")
-# label_cols <- cluster_cols[clusters]
-# dend <- as.dendrogram(hc)
-# dend <- dendrapply(dend, function(n) {
-#   if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
-#   n
-# })
-# 
-# dend <- color_branches(dend,k = k )
-# dend <- color_labels(dend,k = k )
-# dend <- set(dend, "branches_lwd", k)
-# plot(dend, horiz = T,dLeaf = -0.1,axes=T)
+data_pca_scaled <- scale(data_pca,center = T,scale = T)
+
+hc <- hclust(dist(t(data_pca_scaled),method = "euclidean"),method = "ward")
+plot(hc)
+
+library(cluster)
+
+cluster_quality(data_pca_scaled, return_table = TRUE)
+
+k=4
+clusters <- cutree(hc, k = k)
+cluster_cols <- c("red", "blue", "darkgreen", "orange")
+label_cols <- cluster_cols[clusters]
+dend <- as.dendrogram(hc)
+dend <- dendrapply(dend, function(n) {
+  if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
+  n
+})
+
+dend <- color_branches(dend,k = k )
+dend <- color_labels(dend,k = k )
+dend <- set(dend, "branches_lwd", k)
+plot(dend, horiz = T,dLeaf = -0.1,axes=T)
 # 
 # k=5
 # clusters <- cutree(hc, k = k)
@@ -375,7 +362,7 @@ corrplot(t(PCA_results$var$contrib),
 #              legend = "none",ellipse=F,repel = T,
 #              ggtheme = theme_bw()
 # )
-#     
+# 
 # km <- kmeans(x=scale(t(data_pca)),centers = 4,nstart = 100)
 # fviz_cluster(km, data = t(data_pca),
 #              palette = c("red", "blue", "darkgreen", "orange"),
@@ -390,21 +377,24 @@ corrplot(t(PCA_results$var$contrib),
 #              ggtheme = theme_bw()
 # )
 
-# NMDS 
-cluster_quality(data_pca, return_table = TRUE)
-nmds <- metaMDS(dist(t(data_pca)), k = 4, trymax = 999)
+# NMDS
+data_pca_scaled <- scale(data_pca,center = T,scale = T)
+
+
+cluster_quality(data_pca_scaled, return_table = TRUE)
+nmds <- metaMDS(dist(t(data_pca_scaled)), k = 4, trymax = 999)
 
 scores_df <- as.data.frame(scores(nmds))  # x,y
 scores_df$Sample <- rownames(scores_df)
 
-clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 4)
+clusters <- cutree(hclust(dist(t(data_pca_scaled)), method = "ward.D2"), k = 4)
 scores_df$Cluster <- factor(clusters)
 
 NMDS <- ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
   geom_point(size = 3) +
   geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
   theme_minimal() +
-  geom_label(aes(x=40,y=-15,label = paste("Stress:",round(nmds$stress,4))),
+  geom_label(aes(x=-10,y=-5,label = paste("Stress:",round(nmds$stress,4))),
              color = "black",linewidth = 0)+
   theme(legend.position = "none")+
   labs(title = NULL,
@@ -412,26 +402,6 @@ NMDS <- ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
   scale_color_discrete(palette = c("red", "blue", "green2", "orange","magenta"))
 NMDS
 ggsave('NMDS_k4_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, width = 250, height = 150, units = 'mm')
-
-nmds <- metaMDS(dist(t(data_pca)), k = 5, trymax = 999)
-
-scores_df <- as.data.frame(scores(nmds))  # x,y
-scores_df$Sample <- rownames(scores_df)
-
-clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 5)
-scores_df$Cluster <- factor(clusters)
-
-ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
-  geom_point(size = 3) +
-  geom_text_repel(aes(label = Sample), max.overlaps = Inf, box.padding = 0.5) +
-  theme_minimal() +
-  geom_label(aes(x=40,y=-15,label = paste("Stress:",round(nmds$stress,4))),
-             color = "black",linewidth = 0)+
-  theme(legend.position = "none")+
-  labs(title = NULL,
-       x = "NMDS1", y = "NMDS2",subtitle = paste("Stress:",round(nmds$stress,4)))+
-  scale_color_discrete(palette = c("red", "blue", "green2", "orange","magenta"))
-ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, width = 250, height = 150, units = 'mm')
 
 
 # # Working with distributions ####
@@ -509,9 +479,9 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # 
 # 
 # #________________________________________PCA____________________________________####
-# data_pca <- select(data_distrib,-x)
-# PCA_results <- PCA(data_pca)
-# PCA_results_t <- PCA(t(data_pca))
+# data_pca_scaled <- select(data_distrib,-x)
+# PCA_results <- PCA(data_pca_scaled)
+# PCA_results_t <- PCA(t(data_pca_scaled))
 # 
 # fviz_screeplot(PCA_results) # Screeplot
 # 
@@ -522,8 +492,8 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # group_R <- names(data)[startsWith(names(data), "R")]
 # 
 # # Distinguishing the dimensions
-# color_vector <- rep("Misrepresented", length(colnames(data_pca)))
-# names(color_vector) <- colnames(data_pca)
+# color_vector <- rep("Misrepresented", length(colnames(data_pca_scaled)))
+# names(color_vector) <- colnames(data_pca_scaled)
 # color_vector[group_D] <- "D"
 # color_vector[group_E] <- "E"
 # color_vector[group_Q] <- "Q"
@@ -552,13 +522,13 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 #              ,title="", ggtheme = theme_minimal(),legend = "none")
 # 
 # # NMDS 
-# cluster_quality(data_pca, return_table = TRUE)
-# nmds <- metaMDS(dist(t(data_pca)), k = 6, trymax = 999)
+# cluster_quality(data_pca_scaled, return_table = TRUE)
+# nmds <- metaMDS(dist(t(data_pca_scaled)), k = 6, trymax = 999)
 # 
 # scores_df <- as.data.frame(scores(nmds))  # x,y
 # scores_df$Sample <- rownames(scores_df)
 # 
-# clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 6)
+# clusters <- cutree(hclust(dist(t(data_pca_scaled)), method = "ward.D2"), k = 6)
 # scores_df$Cluster <- factor(clusters)
 # 
 # NMDS <- ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
@@ -690,9 +660,9 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # 
 # # ALL VARIABLES SELECT #############____________________________________________
 # #________________________________________PCA____________________________________####
-# data_pca <- select(data,-Sample)
-# PCA_results <- PCA(data_pca)
-# PCA_results_t <- PCA(t(data_pca))
+# data_pca_scaled <- select(data,-Sample)
+# PCA_results <- PCA(data_pca_scaled)
+# PCA_results_t <- PCA(t(data_pca_scaled))
 # 
 # fviz_screeplot(PCA_results) # Screeplot
 # 
@@ -703,8 +673,8 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # group_R <- names(data)[startsWith(names(data), "R")]
 # 
 # # Distinguishing the dimensions
-# color_vector <- rep("Misrepresented", length(colnames(data_pca)))
-# names(color_vector) <- colnames(data_pca)
+# color_vector <- rep("Misrepresented", length(colnames(data_pca_scaled)))
+# names(color_vector) <- colnames(data_pca_scaled)
 # color_vector[group_D] <- "D"
 # color_vector[group_E] <- "E"
 # color_vector[group_Q] <- "Q"
@@ -734,7 +704,7 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # #              ,title="", ggtheme = theme_minimal(),legend = "none")
 # 
 # #_______________________Correlations____________________________________________####
-# # ggpairs(data_pca)
+# # ggpairs(data_pca_scaled)
 # # 
 # # cor.mtest <- function(mat, method = "pearson") {
 # #   mat <- as.matrix(mat)
@@ -752,26 +722,26 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # #   return(p.mat)
 # # }
 # # 
-# # p.mat <- cor.mtest(data_pca)
+# # p.mat <- cor.mtest(data_pca_scaled)
 # # 
-# # corrplot(cor(data_pca),
+# # corrplot(cor(data_pca_scaled),
 # #          method = "shade",col = viridis(200),number.cex = 0.5,order = "alphabet",
 # #          addCoef.col = NULL,tl.col = "black",
 # #          diag = F,type = "full",addgrid.col = "black",addCoefasPercent = T,
 # #          insig = "blank",sig.level = 0.05,p.mat = p.mat
 # # )
 # # 
-# # cordata <- cor(data_pca)
+# # cordata <- cor(data_pca_scaled)
 # # dist_alpha <- as.data.frame(dist(1 - cordata))
 # # 
 # # cluster_quality(dist_alpha, return_table = TRUE)
 # # 
-# # nmds <- metaMDS(dist(t(data_pca)), k = 3, trymax = 999)
+# # nmds <- metaMDS(dist(t(data_pca_scaled)), k = 3, trymax = 999)
 # # 
 # # scores_df <- as.data.frame(scores(nmds))  # x,y
 # # scores_df$Sample <- rownames(scores_df)
 # # 
-# # clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 3)
+# # clusters <- cutree(hclust(dist(t(data_pca_scaled)), method = "ward.D2"), k = 3)
 # # scores_df$Cluster <- factor(clusters)
 # # 
 # # ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
@@ -783,12 +753,12 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # #        x = "NMDS1", y = "NMDS2",subtitle = paste("Stress:",round(nmds$stress,4)))+
 # #   scale_color_discrete(palette = c("red", "blue", "darkgreen", "orange","magenta"))
 # # 
-# # nmds <- metaMDS(dist(t(data_pca)), k = 7, trymax = 999)
+# # nmds <- metaMDS(dist(t(data_pca_scaled)), k = 7, trymax = 999)
 # # 
 # # scores_df <- as.data.frame(scores(nmds))  # x,y
 # # scores_df$Sample <- rownames(scores_df)
 # # 
-# # clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 7)
+# # clusters <- cutree(hclust(dist(t(data_pca_scaled)), method = "ward.D2"), k = 7)
 # # scores_df$Cluster <- factor(clusters)
 # # 
 # # ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
@@ -802,12 +772,12 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # 
 # #______________________Clusterings______________________________________________####
 # # 
-# # hc <- hclust(dist(t(data_pca),method = "euclidean"),method = "ward")
+# # hc <- hclust(dist(t(data_pca_scaled),method = "euclidean"),method = "ward")
 # # plot(hc)
 # # 
 # # library(cluster)
 # # 
-# # cluster_quality(data_pca, return_table = TRUE)
+# # cluster_quality(data_pca_scaled, return_table = TRUE)
 # # k=3
 # # clusters <- cutree(hc, k = k)
 # # cluster_cols <- c("red", "blue", "darkgreen", "orange")
@@ -855,35 +825,35 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # # 
 # # # Kmeans
 # # 
-# # km <- kmeans(x=scale(t(data_pca)),centers = 3,nstart = 100)
-# # fviz_cluster(km, data = t(data_pca),
+# # km <- kmeans(x=scale(t(data_pca_scaled)),centers = 3,nstart = 100)
+# # fviz_cluster(km, data = t(data_pca_scaled),
 # #              palette = c("red", "blue", "darkgreen", "orange"),
 # #              legend = "none",ellipse=F,repel = T,
 # #              ggtheme = theme_bw()
 # # )
 # #     
-# # km <- kmeans(x=scale(t(data_pca)),centers = 4,nstart = 100)
-# # fviz_cluster(km, data = t(data_pca),
+# # km <- kmeans(x=scale(t(data_pca_scaled)),centers = 4,nstart = 100)
+# # fviz_cluster(km, data = t(data_pca_scaled),
 # #              palette = c("red", "blue", "darkgreen", "orange"),
 # #              legend = "none",ellipse=F,repel = T,
 # #              ggtheme = theme_bw()
 # # )
 # # 
-# # km <- kmeans(x=scale(t(data_pca)),centers = 5,nstart = 100)
-# # fviz_cluster(km, data = t(data_pca),
+# # km <- kmeans(x=scale(t(data_pca_scaled)),centers = 5,nstart = 100)
+# # fviz_cluster(km, data = t(data_pca_scaled),
 # #              palette = c("red", "blue", "darkgreen", "orange","magenta"),
 # #              legend = "none",ellipse=F,repel = T,
 # #              ggtheme = theme_bw()
 # # )
 # 
 # # NMDS 
-# cluster_quality(data_pca, return_table = TRUE)
-# nmds <- metaMDS(dist(t(data_pca)), k = 4, trymax = 999)
+# cluster_quality(data_pca_scaled, return_table = TRUE)
+# nmds <- metaMDS(dist(t(data_pca_scaled)), k = 4, trymax = 999)
 # 
 # scores_df <- as.data.frame(scores(nmds))  # x,y
 # scores_df$Sample <- rownames(scores_df)
 # 
-# clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 4)
+# clusters <- cutree(hclust(dist(t(data_pca_scaled)), method = "ward.D2"), k = 4)
 # scores_df$Cluster <- factor(clusters)
 # 
 # NMDS <- ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
@@ -899,12 +869,12 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # NMDS
 # ggsave('NMDS_k4_alpha_all.png', path = "output/fig/alpha/indices/BCI/", dpi = 1200, width = 250, height = 150, units = 'mm')
 # 
-# nmds <- metaMDS(dist(t(data_pca)), k = 5, trymax = 999)
+# nmds <- metaMDS(dist(t(data_pca_scaled)), k = 5, trymax = 999)
 # 
 # scores_df <- as.data.frame(scores(nmds))  # x,y
 # scores_df$Sample <- rownames(scores_df)
 # 
-# clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 5)
+# clusters <- cutree(hclust(dist(t(data_pca_scaled)), method = "ward.D2"), k = 5)
 # scores_df$Cluster <- factor(clusters)
 # 
 # ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
@@ -995,9 +965,9 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # 
 # 
 # #________________________________________PCA____________________________________####
-# data_pca <- select(data_distrib,-x)
-# PCA_results <- PCA(data_pca)
-# PCA_results_t <- PCA(t(data_pca))
+# data_pca_scaled <- select(data_distrib,-x)
+# PCA_results <- PCA(data_pca_scaled)
+# PCA_results_t <- PCA(t(data_pca_scaled))
 # 
 # fviz_screeplot(PCA_results) # Screeplot
 # 
@@ -1008,8 +978,8 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # group_R <- names(data)[startsWith(names(data), "R")]
 # 
 # # Distinguishing the dimensions
-# color_vector <- rep("Misrepresented", length(colnames(data_pca)))
-# names(color_vector) <- colnames(data_pca)
+# color_vector <- rep("Misrepresented", length(colnames(data_pca_scaled)))
+# names(color_vector) <- colnames(data_pca_scaled)
 # color_vector[group_D] <- "D"
 # color_vector[group_E] <- "E"
 # color_vector[group_Q] <- "Q"
@@ -1038,13 +1008,13 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 #              ,title="", ggtheme = theme_minimal(),legend = "none")
 # 
 # # NMDS 
-# cluster_quality(data_pca, return_table = TRUE)
-# nmds <- metaMDS(dist(t(data_pca)), k = 3, trymax = 999)
+# cluster_quality(data_pca_scaled, return_table = TRUE)
+# nmds <- metaMDS(dist(t(data_pca_scaled)), k = 3, trymax = 999)
 # 
 # scores_df <- as.data.frame(scores(nmds))  # x,y
 # scores_df$Sample <- rownames(scores_df)
 # 
-# clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 3)
+# clusters <- cutree(hclust(dist(t(data_pca_scaled)), method = "ward.D2"), k = 3)
 # scores_df$Cluster <- factor(clusters)
 # 
 # NMDS <- ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
@@ -1060,12 +1030,12 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # NMDS
 # ggsave('NMDS_distrib_k3_alpha_all.png', path = "output/fig/alpha/indices/BCI/", dpi = 1200, width = 250, height = 150, units = 'mm')
 # 
-# nmds <- metaMDS(dist(t(data_pca)), k = 4, trymax = 999)
+# nmds <- metaMDS(dist(t(data_pca_scaled)), k = 4, trymax = 999)
 # 
 # scores_df <- as.data.frame(scores(nmds))  # x,y
 # scores_df$Sample <- rownames(scores_df)
 # 
-# clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 4)
+# clusters <- cutree(hclust(dist(t(data_pca_scaled)), method = "ward.D2"), k = 4)
 # scores_df$Cluster <- factor(clusters)
 # 
 # NMDS <- ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
@@ -1157,9 +1127,9 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # 
 # 
 # #________________________________________PCA____________________________________####
-# data_pca <- select(data_distrib,-x)
-# PCA_results <- PCA(data_pca)
-# PCA_results_t <- PCA(t(data_pca))
+# data_pca_scaled <- select(data_distrib,-x)
+# PCA_results <- PCA(data_pca_scaled)
+# PCA_results_t <- PCA(t(data_pca_scaled))
 # 
 # fviz_screeplot(PCA_results) # Screeplot
 # 
@@ -1170,8 +1140,8 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # group_R <- names(data)[startsWith(names(data), "R")]
 # 
 # # Distinguishing the dimensions
-# color_vector <- rep("Misrepresented", length(colnames(data_pca)))
-# names(color_vector) <- colnames(data_pca)
+# color_vector <- rep("Misrepresented", length(colnames(data_pca_scaled)))
+# names(color_vector) <- colnames(data_pca_scaled)
 # color_vector[group_D] <- "D"
 # color_vector[group_E] <- "E"
 # color_vector[group_Q] <- "Q"
@@ -1200,13 +1170,13 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 #              ,title="", ggtheme = theme_minimal(),legend = "none")
 # 
 # # NMDS 
-# cluster_quality(data_pca, return_table = TRUE)
-# nmds <- metaMDS(dist(t(data_pca)), k = 6, trymax = 999)
+# cluster_quality(data_pca_scaled, return_table = TRUE)
+# nmds <- metaMDS(dist(t(data_pca_scaled)), k = 6, trymax = 999)
 # 
 # scores_df <- as.data.frame(scores(nmds))  # x,y
 # scores_df$Sample <- rownames(scores_df)
 # 
-# clusters <- cutree(hclust(dist(t(data_pca)), method = "ward.D2"), k = 6)
+# clusters <- cutree(hclust(dist(t(data_pca_scaled)), method = "ward.D2"), k = 6)
 # scores_df$Cluster <- factor(clusters)
 # 
 # NMDS <- ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
@@ -1227,58 +1197,58 @@ ggsave('NMDS_k5_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, 
 # Some analysis with indices that have order ####
 
 #________________________________Loading data___________________________________####
-library(vegan)
-# We choose the mite data from vegan as the dataset for abundance/count data
-data("mite")
-detach(package:vegan)
-# It is possible to work on sipoo data for presence/absence and varespec for abundance/not integer data
-
-# Relative abundances data to allow some functions working
-mite_relat <- mite/rowSums(mite)
-
-# Distance matrix to allow some functions working
-mite_dist <- as.matrix(dist(t(mite),method = "euclidean",diag = T,upper = T))
-rownames(mite_dist) <- rownames(t(mite))
-colnames(mite_dist) <- rownames(t(mite))
-
-
-QTSA <- rep(NA,10)
-for (i in seq(0,10,1)){
-  i_pos <- i+1
-  QTSA[i_pos] <- vegan::tsallis(mite[1,],scales = i,hill = F)
-}
-
-QREN <- rep(NA,10)
-for (i in seq(0,10,1)){
-  i_pos <- i+1
-  QREN[i_pos] <- vegan::renyi(mite[1,],scales = i,hill = F)
-}
-
-QHIL <- rep(NA,10)
-for (i in seq(0,10,1)){
-  i_pos <- i+1
-  QHIL[i_pos] <- vegan::renyi(mite[1,],scales = i,hill = T)
-}
-
-data_order <- as.data.frame(cbind(QHIL,QREN,QTSA))
-data_order$Order <- seq(0,10,1)
-
-data_order <-pivot_longer(data_order,cols = c(QHIL,QREN,QTSA),names_to = "Index",values_to = "VALUE")
-
-ggplot(data_order)+
-  geom_hline(aes(yintercept = vegan::diversity(mite[1,],index = "shannon")))+
-  geom_hline(aes(yintercept = vegan::diversity(mite[1,],index = "invsimpson")))+
-  geom_hline(aes(yintercept = tabula::index_berger(as.numeric(mite[1,]))))+
-  geom_hline(aes(yintercept = 20))+
-  
-  geom_text(aes(x=6,y = tabula::index_berger(as.numeric(mite[1,]))+0.2,label = "Berger-Parker"),size = 3)+
-  geom_text(aes(x=6,y = vegan::diversity(mite[1,],index = "invsimpson")+0.2,label = "Simpson inverse"),size = 3)+
-  geom_text(aes(x=6,y = vegan::diversity(mite[1,],index = "shannon")+0.2,label = "Shannon"),size = 3)+
-  geom_text(aes(x=6,y = 20+0.2,label = "Richness"),size = 3)+
-  
-  geom_point(aes(Order,VALUE,colour = Index),size = 3)+
-  geom_line(aes(Order,VALUE,colour = Index),size=1)+
-  labs(x="Order",y="Index value")+ 
-  scale_x_continuous(breaks = 0:10, limits = c(0, 10))+
-  theme(legend.position = c(0.975, 0.94))
-
+# library(vegan)
+# # We choose the mite data from vegan as the dataset for abundance/count data
+# data("mite")
+# detach(package:vegan)
+# # It is possible to work on sipoo data for presence/absence and varespec for abundance/not integer data
+# 
+# # Relative abundances data to allow some functions working
+# mite_relat <- mite/rowSums(mite)
+# 
+# # Distance matrix to allow some functions working
+# mite_dist <- as.matrix(dist(t(mite),method = "euclidean",diag = T,upper = T))
+# rownames(mite_dist) <- rownames(t(mite))
+# colnames(mite_dist) <- rownames(t(mite))
+# 
+# 
+# QTSA <- rep(NA,10)
+# for (i in seq(0,10,1)){
+#   i_pos <- i+1
+#   QTSA[i_pos] <- vegan::tsallis(mite[1,],scales = i,hill = F)
+# }
+# 
+# QREN <- rep(NA,10)
+# for (i in seq(0,10,1)){
+#   i_pos <- i+1
+#   QREN[i_pos] <- vegan::renyi(mite[1,],scales = i,hill = F)
+# }
+# 
+# QHIL <- rep(NA,10)
+# for (i in seq(0,10,1)){
+#   i_pos <- i+1
+#   QHIL[i_pos] <- vegan::renyi(mite[1,],scales = i,hill = T)
+# }
+# 
+# data_order <- as.data.frame(cbind(QHIL,QREN,QTSA))
+# data_order$Order <- seq(0,10,1)
+# 
+# data_order <-pivot_longer(data_order,cols = c(QHIL,QREN,QTSA),names_to = "Index",values_to = "VALUE")
+# 
+# ggplot(data_order)+
+#   geom_hline(aes(yintercept = vegan::diversity(mite[1,],index = "shannon")))+
+#   geom_hline(aes(yintercept = vegan::diversity(mite[1,],index = "invsimpson")))+
+#   geom_hline(aes(yintercept = tabula::index_berger(as.numeric(mite[1,]))))+
+#   geom_hline(aes(yintercept = 20))+
+#   
+#   geom_text(aes(x=6,y = tabula::index_berger(as.numeric(mite[1,]))+0.2,label = "Berger-Parker"),size = 3)+
+#   geom_text(aes(x=6,y = vegan::diversity(mite[1,],index = "invsimpson")+0.2,label = "Simpson inverse"),size = 3)+
+#   geom_text(aes(x=6,y = vegan::diversity(mite[1,],index = "shannon")+0.2,label = "Shannon"),size = 3)+
+#   geom_text(aes(x=6,y = 20+0.2,label = "Richness"),size = 3)+
+#   
+#   geom_point(aes(Order,VALUE,colour = Index),size = 3)+
+#   geom_line(aes(Order,VALUE,colour = Index),size=1)+
+#   labs(x="Order",y="Index value")+ 
+#   scale_x_continuous(breaks = 0:10, limits = c(0, 10))+
+#   theme(legend.position = c(0.975, 0.94))
+# 

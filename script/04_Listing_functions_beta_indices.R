@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 04_Listing_functions_beta_indices.r
-# Date               : 13/02/2025
+# Date               : 26/02/2025
 # Object             : Script to create dataset of values from functions that 
 #                      calculate beta diversity indices
 # Authors            : Jean-Yves Dias
@@ -68,7 +68,7 @@ mite_pa <- convert_to_presence_absence(mite)
 PERMANOVA_1_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite_pa[c(i,i+1),]
-  PERMANOVA_1_P[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 5,transformation = 1)$D[1,2]
+  PERMANOVA_1_P[i] <- 1-PERMANOVA::DistBinary(mite_beta,coefficient = 5,transformation = 1)$D[1,2]
 }
 
 # Put all the values in a single dataframe
@@ -196,12 +196,12 @@ P6_A <- as.data.frame(P6_A)
 # Brainerd-Robinson ####
 tabula_7_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  tabula_7_A[i] <- tabula::index_brainerd(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+  tabula_7_A[i] <- 200-tabula::index_brainerd(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
 }
 brsim_7_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  brsim_7_A[i] <- brsim::brsim(mite_beta)$BR.similarity.matrix[1,2]
+  brsim_7_A[i] <- 200-brsim::brsim(mite_beta)$BR.similarity.matrix[1,2]
 }
 
 P7_A <- ls(pattern = "_7_A$")
@@ -211,12 +211,12 @@ P7_A <- as.data.frame(P7_A)
 # Braun-Blanquet ####
 fossil_8_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  fossil_8_P[i] <- fossil::braun.blanquet(mite[i,],mite[i+1,])
+  fossil_8_P[i] <- 1-fossil::braun.blanquet(mite[i,],mite[i+1,])
 }
 proxy_8_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  proxy_8_P[i] <- 1-proxy::dist(mite_beta,method = "Braun-Blanquet")
+  proxy_8_P[i] <- proxy::dist(mite_beta,method = "Braun-Blanquet")
 }
 
 P8_P <- ls(pattern = "_8_P$")
@@ -1866,44 +1866,44 @@ P46_P <- as.data.frame(P46_P)
 adiv_47_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  adiv_47_A[i] <- adiv::dsimcom(mite_beta,method = "2",type = "similarity",option = "absolute")[1,2] 
+  adiv_47_A[i] <- 1-adiv::dsimcom(mite_beta,method = "2",type = "similarity",option = "absolute")[1,2] 
 }
 diverse_47_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  diverse_47_A[i] <- 1-diverse::dis_entities(t(mite_beta),method = "eJaccard",category_row = T)[1,2] 
+  diverse_47_A[i] <- diverse::dis_entities(t(mite_beta),method = "eJaccard",category_row = T)[1,2] 
 }
 proxy_47_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  proxy_47_A[i] <- 1-proxy::dist(mite_beta,method = "eJaccard")
+  proxy_47_A[i] <- proxy::dist(mite_beta,method = "eJaccard")
 }
 EnvNJ_47_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  EnvNJ_47_A[i] <- 1-EnvNJ::metrics(t(mite_beta),method = "jaccard")
+  EnvNJ_47_A[i] <- EnvNJ::metrics(t(mite_beta),method = "jaccard")
 }
 philentropy_47_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  philentropy_47_A[i] <- 1-philentropy::jaccard(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+  philentropy_47_A[i] <- philentropy::jaccard(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
 }
 proxyC_47_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  proxyC_47_A[i] <- proxyC::simil(as.matrix(mite[i,]),as.matrix(mite[i+1,]),method = "ejaccard") 
+  proxyC_47_A[i] <- 1-proxyC::simil(as.matrix(mite[i,]),as.matrix(mite[i+1,]),method = "ejaccard") 
 }
 adespatial_47_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  adespatial_47_A[i] <- 1-adespatial::beta.div(mite_beta,method = "wishart",save.D = T)$D 
+  adespatial_47_A[i] <- adespatial::beta.div(mite_beta,method = "wishart",save.D = T)$D 
 }
 wiqid_47_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  wiqid_47_A[i] <- 1-wiqid::distSimRatio(mite[i,],mite[i+1,])
+  wiqid_47_A[i] <- wiqid::distSimRatio(mite[i,],mite[i+1,])
 }
 vegan_47_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_47_A[i] <- 1-vegan::designdist(mite_beta,method = "(A+B-2*J)/(A+B-J)",terms = "quadratic")
+  vegan_47_A[i] <- vegan::designdist(mite_beta,method = "(A+B-2*J)/(A+B-J)",terms = "quadratic")
 }
 
 P47_A <- ls(pattern = "_47_A$")
@@ -3726,7 +3726,7 @@ P114_P <- as.data.frame(P114_P)
 vegan_115_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_115_P[i] <- vegan::betadiver(mite_beta,"rlb")
+  vegan_115_P[i] <- 1-vegan::betadiver(mite_beta,"rlb")
 }
 P115_P <- ls(pattern = "_115_P$")
 P115_P <- mget(P115_P)
@@ -3825,7 +3825,7 @@ write.csv(beta_combined,"data/beta/b_combined_all_mite.csv",row.names = F)
 
 # Same but with a long version
 beta_combined$Sample <- paste0(1:69, "-", 2:70)
-beta_combined_long <- pivot_longer(beta_combined,cols = colnames(beta_combined)[1:616],names_to = "package_index",values_to = "value")
+beta_combined_long <- pivot_longer(beta_combined,cols = colnames(beta_combined)[1:615],names_to = "package_index",values_to = "value")
 beta_combined_long <- beta_combined_long |>
   separate(package_index, into = c("package", "index"), sep = "_",extra = "merge")
 write.csv(beta_combined_long,"data/beta/b_combined_long_all_mite.csv",row.names = F)
@@ -3862,19 +3862,19 @@ dataindex_P <- dataindex_P |>
 dataindex_wide_P <- dataindex_P|>
   pivot_wider(names_from = index,values_from = value)
 
-write.csv(dataindex,"data/beta/beta_values_mite_long_mite_P.csv",row.names = F)
-write.csv(dataindex_wide,"data/beta/beta_values_mite_wide_mite_P.csv",row.names = F)
+write.csv(dataindex_P,"data/beta/beta_values_mite_long_mite_P.csv",row.names = F)
+write.csv(dataindex_wide_P,"data/beta/beta_values_mite_wide_mite_P.csv",row.names = F)
 
 
 dataindex_A <- filter(data,selection %in% c("2_A_vegan","3_A_EnvNJ","4_A_ecodive","5_A_vegan","6_A_tabula",
                                             "7_A_tabula","9_A_vegan","10_A_stats","11_A_vegan","12_A_abdiv",
                                             "12_A_abdiv","13_A_abdiv","14_A_pctax","15_A_vegan","16_A_vegan",
                                             "17_A_vegan","18_A_wiqid","19_A_abdiv","20_A_vegan","21_A_ecodive",
-                                            "22_A_ecodive","23_A_vegan","24_A_analogue","25_A_adespatial",
+                                            "22_A_ecodive","23_A_vegan","24_A_analogue","25_A_adespatial","26_A_vegan",
                                             "27_A_ecodive","28_A_vegan","29_A_ecodive","30_A_vegan","31_A_NST",
                                             "32_A_abdiv","33_A_ecodive","34_A_vegan","35_A_vegan","36_A_ecodist",
                                             "37_A_NST","40_A_proxyC","41_A_EnvNJ","42_A_vegan","43_A_vegan","47_A_vegan",
-                                            "53_A_EnvNJ","54_A_adiv","55_A_adiv","57_A_vegan","58_A_pctax","59_A_EnvNJ",
+                                            "53_A_EnvNJ","54_A_adiv","55_A_adiv","57_A_vegan","58_A_EnvNJ","59_A_EnvNJ",
                                             "61_A_vegan","62_A_NST","64_A_adespatial","65_A_ecodive","66_1_A_ecodive",
                                             "66_2_A_ecodive","66_3_A_ecodive","67_A_vegan","68_A_vegan","69_A_pctax",
                                             "75_A_vegan","77_A_abdiv","81_A_adiv","93_A_adiv","94_A_ade4","95_A_ecodive",
