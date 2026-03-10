@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 02_Discriminate_alpha_functions.r
-# Date               : 29/01/2025
+# Date               : 10/03/2025
 # Object             : Script to discrimate functions that return a false value
 #                      of alpha diverisity indices
 # Authors            : Jean-Yves Dias
@@ -264,3 +264,4 @@ ggsave('heatmap_alpha_Q_packages_TF.png', path = "output/fig/alpha/packages/", d
 
 
 withNAorInf <- unique(select(filter(data,is.na(value) | value == Inf),-Sample))
+

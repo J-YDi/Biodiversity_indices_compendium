@@ -137,9 +137,9 @@ ggplot(filter(data_long, startsWith(index, "D"))) +
                linewidth = 1, alpha = 0.4) +
   geom_point(aes(x = Sample, y = value), col = "darkblue", size = 1.7) +
   geom_label(data = filter(data_stats, startsWith(index, "D")),
-             aes(x = 12, y = 0, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
+             aes(x = 14, y = 0, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
              color = "black", size = 4,alpha=0.5,linewidth=0) +
-  facet_wrap(~ index,scales="free_y",ncol=4) +
+  facet_wrap(~ index,scales="free_y",ncol=5) +
   labs(x = "Sample", y = "Index value") +
   theme(strip.text = element_text(face = "bold", color = "white",
                                   hjust = 0, size = 10),

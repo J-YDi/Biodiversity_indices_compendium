@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 01_Listing_functions_alpha_indices.r
-# Date               : 27/01/2025
+# Date               : 10/03/2025
 # Object             : Script to create dataset of values from functions that 
 #                      calculate alpha diversity indices
 # Authors            : Jean-Yves Dias
@@ -513,9 +513,9 @@ for (i in 1:nrow(mite)){
 adiv_DMG <- adiv::speciesdiv(mite,method = "Margalef")[,1]
 tabula_DMG <- tabula::richness(mite,method = "margalef")@.Data
 ecodive_DMG <- ecodive::margalef(mite)
-benthos_DSHA <- rep(1,70)
+benthos_DMG <- rep(1,70)
 for (i in 1:nrow(mite)){
-  benthos_DSHA[i] <- benthos::margalef(taxon = names(mite[i,]), count = mite[i,])
+  benthos_DMG[i] <- benthos::margalef(taxon = names(mite[i,]), count = mite[i,])
 }
 
 # Put all the values in a single dataframe
@@ -604,11 +604,20 @@ for (i in 1:nrow(mite)){
   benthos_DRY[i] <- benthos::rygg(taxon = names(mite[i,]), count = mite[i,],adjusted = F)
 }
 
+# Put all the values in a single dataframe
+DRY <- ls(pattern = "_DRY")
+DRY <- mget(DRY)
+DRY <- as.data.frame(DRY)
+
 # Rygg adjusted ####
 benthos_DRYA <- rep(1,70)
 for (i in 1:nrow(mite)){
   benthos_DRYA[i] <- benthos::rygg(taxon = names(mite[i,]), count = mite[i,],adjusted = T)
 }
+# Put all the values in a single dataframe
+DRYA <- ls(pattern = "_DRYA")
+DRYA <- mget(DRYA)
+DRYA <- as.data.frame(DRYA)
 
 # Shannon
 vegan_DSHA <- vegan::diversity(mite,index = "shannon")
@@ -1595,7 +1604,7 @@ write.csv(alpha_combined,"data/alpha/a_combined_all.csv",row.names = F)
 
 # Same but with a long version
 alpha_combined$Sample <- c(1:nrow(alpha_combined))
-alpha_combined_long <- pivot_longer(alpha_combined,cols = colnames(alpha_combined)[1:358],names_to = "package_index",values_to = "value")
+alpha_combined_long <- pivot_longer(alpha_combined,cols = colnames(alpha_combined)[1:360],names_to = "package_index",values_to = "value")
 alpha_combined_long <- alpha_combined_long |>
   separate(package_index, into = c("package", "index"), sep = "_",extra = "merge")
 write.csv(alpha_combined_long,"data/alpha/a_combined_long_all.csv",row.names = F)
@@ -1619,7 +1628,7 @@ data$selection <- paste0(data$index,"_",data$package)
 
 dataindex <- filter(data,selection %in% c("D1SP_vegan","DBRI_abdiv","DFIS_vegan",
                                       "DINVSP_vegan","DMC_abdiv","DMG_abdiv",
-                                      "DMN_abdiv","DSHA_vegan",
+                                      "DMN_abdiv","DSHA_vegan","DRY_benthos","DRYA_benthos",
                                       "DSP_abdiv","EBP_abdiv","EBRI_tabula","EBU_BAT",
                                       "EEVAR_adiv","EGIN_microbiome","EHEI_abdiv",
                                       "EHURE_vegan","EMC_tabula","EMN_microbiome",
