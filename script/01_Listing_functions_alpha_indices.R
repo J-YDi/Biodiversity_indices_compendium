@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 01_Listing_functions_alpha_indices.r
-# Date               : 10/03/2025
+# Date               : 19/03/2025
 # Object             : Script to create dataset of values from functions that 
 #                      calculate alpha diversity indices
 # Authors            : Jean-Yves Dias
@@ -400,12 +400,12 @@ gleason <- function(x) {
   }
 }
 
-custom_DGLE <- apply(mite,1,gleason)
+custom_TGLE <- apply(mite,1,gleason)
 
 # Put all the values in a single dataframe
-DGLE <- ls(pattern = "_DGLE$")
-DGLE <- mget(DGLE)
-DGLE <- as.data.frame(DGLE)
+TGLE <- ls(pattern = "_TGLE$")
+TGLE <- mget(TGLE)
+TGLE <- as.data.frame(TGLE)
 
 # Good ####
 good_index <- function(p, m, n) {
@@ -505,23 +505,23 @@ RLMD <- mget(RLMD)
 RLMD <- as.data.frame(RLMD)
 
 # Margalef ####
-abdiv_DMG <- apply(mite,1,abdiv::margalef)
-agricolae_DMG <- rep(1,70)
+abdiv_TMG <- apply(mite,1,abdiv::margalef)
+agricolae_TMG <- rep(1,70)
 for (i in 1:nrow(mite)){
-  agricolae_DMG[i] <- agricolae::index.bio(mite[i,],method = "Margalef",nboot=0,console = F)$index
+  agricolae_TMG[i] <- agricolae::index.bio(mite[i,],method = "Margalef",nboot=0,console = F)$index
 } #FALSE
-adiv_DMG <- adiv::speciesdiv(mite,method = "Margalef")[,1]
-tabula_DMG <- tabula::richness(mite,method = "margalef")@.Data
-ecodive_DMG <- ecodive::margalef(mite)
-benthos_DMG <- rep(1,70)
+adiv_TMG <- adiv::speciesdiv(mite,method = "Margalef")[,1]
+tabula_TMG <- tabula::richness(mite,method = "margalef")@.Data
+ecodive_TMG <- ecodive::margalef(mite)
+benthos_TMG <- rep(1,70)
 for (i in 1:nrow(mite)){
-  benthos_DMG[i] <- benthos::margalef(taxon = names(mite[i,]), count = mite[i,])
+  benthos_TMG[i] <- benthos::margalef(taxon = names(mite[i,]), count = mite[i,])
 }
 
 # Put all the values in a single dataframe
-DMG <- ls(pattern = "_DMG$")
-DMG <- mget(DMG)
-DMG <- as.data.frame(DMG)
+TMG <- ls(pattern = "_TMG$")
+TMG <- mget(TMG)
+TMG <- as.data.frame(TMG)
 
 # McIntosh ####
 forestHES_DMC <- forestHES::mcIntosh(mite) #0.6461754 faux
@@ -550,15 +550,15 @@ DMC <- mget(DMC)
 DMC <- as.data.frame(DMC)
 
 # Menhinick ####
-abdiv_DMN <- apply(mite,1,abdiv::menhinick)
-tabula_DMN <- tabula::richness(mite,method = "menhinick")@.Data
-adiv_DMN <- adiv::speciesdiv(mite,method = "Menhinick")[,1]
-ecodive_DMN <- ecodive::menhinick(mite)
+abdiv_TMN <- apply(mite,1,abdiv::menhinick)
+tabula_TMN <- tabula::richness(mite,method = "menhinick")@.Data
+adiv_TMN <- adiv::speciesdiv(mite,method = "Menhinick")[,1]
+ecodive_TMN <- ecodive::menhinick(mite)
 
 # Put all the values in a single dataframe
-DMN <- ls(pattern = "_DMN")
-DMN <- mget(DMN)
-DMN <- as.data.frame(DMN)
+TMN <- ls(pattern = "_TMN")
+TMN <- mget(TMN)
+TMN <- as.data.frame(TMN)
 
 
 # Odum ####
@@ -567,12 +567,12 @@ odum <- function(x) {
   N <- sum(x)           # total d'individus
   (S / N) * 1000
 }
-custom_DOD <- apply(mite,1,odum)
+custom_TOD <- apply(mite,1,odum)
 
 # Put all the values in a single dataframe
-DOD <- ls(pattern = "_DOD$")
-DOD <- mget(DOD)
-DOD <- as.data.frame(DOD)
+TOD <- ls(pattern = "_TOD$")
+TOD <- mget(TOD)
+TOD <- as.data.frame(TOD)
 
 # Q-statistic ####
 abdiv_DQ <- rep(1,70)
@@ -599,25 +599,25 @@ DRAO <- mget(DRAO)
 DRAO <- as.data.frame(DRAO)
 
 # Rygg ####
-benthos_DRY <- rep(1,70)
+benthos_TRY <- rep(1,70)
 for (i in 1:nrow(mite)){
-  benthos_DRY[i] <- benthos::rygg(taxon = names(mite[i,]), count = mite[i,],adjusted = F)
+  benthos_TRY[i] <- benthos::rygg(taxon = names(mite[i,]), count = mite[i,],adjusted = F)
 }
 
 # Put all the values in a single dataframe
-DRY <- ls(pattern = "_DRY")
-DRY <- mget(DRY)
-DRY <- as.data.frame(DRY)
+TRY <- ls(pattern = "_TRY")
+TRY <- mget(TRY)
+TRY <- as.data.frame(TRY)
 
 # Rygg adjusted ####
-benthos_DRYA <- rep(1,70)
+benthos_TRYA <- rep(1,70)
 for (i in 1:nrow(mite)){
-  benthos_DRYA[i] <- benthos::rygg(taxon = names(mite[i,]), count = mite[i,],adjusted = T)
+  benthos_TRYA[i] <- benthos::rygg(taxon = names(mite[i,]), count = mite[i,],adjusted = T)
 }
 # Put all the values in a single dataframe
-DRYA <- ls(pattern = "_DRYA")
-DRYA <- mget(DRYA)
-DRYA <- as.data.frame(DRYA)
+TRYA <- ls(pattern = "_TRYA")
+TRYA <- mget(TRYA)
+TRYA <- as.data.frame(TRYA)
 
 # Shannon
 vegan_DSHA <- vegan::diversity(mite,index = "shannon")
@@ -1627,18 +1627,18 @@ data <- read_csv("data/alpha/a_combined_long_all.csv")
 data$selection <- paste0(data$index,"_",data$package)
 
 dataindex <- filter(data,selection %in% c("D1SP_vegan","DBRI_abdiv","DFIS_vegan",
-                                      "DINVSP_vegan","DMC_abdiv","DMG_abdiv",
-                                      "DMN_abdiv","DSHA_vegan","DRY_benthos","DRYA_benthos",
-                                      "DSP_abdiv","EBP_abdiv","EBRI_tabula","EBU_BAT",
-                                      "EEVAR_adiv","EGIN_microbiome","EHEI_abdiv",
-                                      "EHURE_vegan","EMC_tabula","EMN_microbiome",
-                                      "EPIE_abdiv","ESP_tabula","EST_abdiv",
-                                      "QHIL_0_vegan","QHIL_1_vegan","QHIL_2_vegan","QHIL_3_vegan",
-                                      "QREN_0_vegan","QREN_1_vegan","QREN_2_vegan","QREN_3_vegan",
-                                      "QTSA_0_vegan","QTSA_1_vegan","QTSA_2_vegan","QTSA_3_vegan",
-                                      "RACE_vegan","RC1_vegan","RC1M_entropart","RCA2_tabula",
-                                      "RHUR_2_vegan","RHUR_3_vegan","RICE_tabula","RJA1_entropart",
-                                      "RJA2_wiqid","RSQ_tabula","RICH_custom"))
+                                          "DINVSP_vegan","DMC_abdiv","TMG_abdiv","EEQ_codyn",
+                                          "TMN_abdiv","DSHA_vegan","DQ_abdiv","DRAO_BAT",
+                                          "DSP_abdiv","EBP_abdiv","EBRI_tabula","EBU_BAT",
+                                          "EEVAR_adiv","EGIN_microbiome","EHEI_abdiv",
+                                          "EHURE_vegan","EMC_tabula","EMN_microbiome",
+                                          "EPIE_abdiv","ESP_tabula","EST_abdiv",
+                                          "QHIL_0_vegan","QHIL_1_vegan","QHIL_2_vegan","QHIL_3_vegan",
+                                          "QREN_0_vegan","QREN_1_vegan","QREN_2_vegan","QREN_3_vegan",
+                                          "QTSA_0_vegan","QTSA_1_vegan","QTSA_2_vegan","QTSA_3_vegan",
+                                          "RACE_vegan","RC1_vegan","RC1M_entropart","RCA2_tabula",
+                                          "RHUR_2_vegan","RHUR_3_vegan","RICE_tabula","RJA1_entropart",
+                                          "RJA2_wiqid","RSQ_tabula","RICH_custom"))
 dataindex <- dataindex |>
   select(-c(package,selection)) 
 
@@ -2028,12 +2028,12 @@ gleason <- function(x) {
   }
 }
 
-custom_DGLE <- apply(BCI,1,gleason)
+custom_TGLE <- apply(BCI,1,gleason)
 
 # Put all the values in a single dataframe
-DGLE <- ls(pattern = "_DGLE$")
-DGLE <- mget(DGLE)
-DGLE <- as.data.frame(DGLE)
+TGLE <- ls(pattern = "_TGLE$")
+TGLE <- mget(TGLE)
+TGLE <- as.data.frame(TGLE)
 
 # Good ####
 good_index <- function(p, m, n) {
@@ -2133,23 +2133,23 @@ RLMD <- mget(RLMD)
 RLMD <- as.data.frame(RLMD)
 
 # Margalef ####
-abdiv_DMG <- apply(BCI,1,abdiv::margalef)
-agricolae_DMG <- rep(1,50)
+abdiv_TMG <- apply(BCI,1,abdiv::margalef)
+agricolae_TMG <- rep(1,50)
 for (i in 1:nrow(BCI)){
-  agricolae_DMG[i] <- agricolae::index.bio(BCI[i,],method = "Margalef",nboot=0,console = F)$index
+  agricolae_TMG[i] <- agricolae::index.bio(BCI[i,],method = "Margalef",nboot=0,console = F)$index
 } #FALSE
-adiv_DMG <- adiv::speciesdiv(BCI,method = "Margalef")[,1]
-tabula_DMG <- tabula::richness(BCI,method = "margalef")@.Data
-ecodive_DMG <- ecodive::margalef(BCI)
+adiv_TMG <- adiv::speciesdiv(BCI,method = "Margalef")[,1]
+tabula_TMG <- tabula::richness(BCI,method = "margalef")@.Data
+ecodive_TMG <- ecodive::margalef(BCI)
 benthos_DSHA <- rep(1,50)
 for (i in 1:nrow(BCI)){
   benthos_DSHA[i] <- benthos::margalef(taxon = names(BCI[i,]), count = BCI[i,])
 }
 
 # Put all the values in a single dataframe
-DMG <- ls(pattern = "_DMG$")
-DMG <- mget(DMG)
-DMG <- as.data.frame(DMG)
+TMG <- ls(pattern = "_TMG$")
+TMG <- mget(TMG)
+TMG <- as.data.frame(TMG)
 
 # McIntosh ####
 forestHES_DMC <- forestHES::mcIntosh(BCI) #0.6461754 faux
@@ -2178,15 +2178,15 @@ DMC <- mget(DMC)
 DMC <- as.data.frame(DMC)
 
 # Menhinick ####
-abdiv_DMN <- apply(BCI,1,abdiv::menhinick)
-tabula_DMN <- tabula::richness(BCI,method = "menhinick")@.Data
-adiv_DMN <- adiv::speciesdiv(BCI,method = "Menhinick")[,1]
-ecodive_DMN <- ecodive::menhinick(BCI)
+abdiv_TMN <- apply(BCI,1,abdiv::menhinick)
+tabula_TMN <- tabula::richness(BCI,method = "menhinick")@.Data
+adiv_TMN <- adiv::speciesdiv(BCI,method = "Menhinick")[,1]
+ecodive_TMN <- ecodive::menhinick(BCI)
 
 # Put all the values in a single dataframe
-DMN <- ls(pattern = "_DMN")
-DMN <- mget(DMN)
-DMN <- as.data.frame(DMN)
+TMN <- ls(pattern = "_TMN")
+TMN <- mget(TMN)
+TMN <- as.data.frame(TMN)
 
 
 # Odum ####
@@ -2195,12 +2195,12 @@ odum <- function(x) {
   N <- sum(x)           # total d'individus
   (S / N) * 1000
 }
-custom_DOD <- apply(BCI,1,odum)
+custom_TOD <- apply(BCI,1,odum)
 
 # Put all the values in a single dataframe
-DOD <- ls(pattern = "_DOD$")
-DOD <- mget(DOD)
-DOD <- as.data.frame(DOD)
+TOD <- ls(pattern = "_TOD$")
+TOD <- mget(TOD)
+TOD <- as.data.frame(TOD)
 
 # Q-statistic ####
 abdiv_DQ <- rep(1,50)
@@ -2227,15 +2227,15 @@ DRAO <- mget(DRAO)
 DRAO <- as.data.frame(DRAO)
 
 # Rygg ####
-benthos_DRY <- rep(1,50)
+benthos_TRY <- rep(1,50)
 for (i in 1:nrow(BCI)){
-  benthos_DRY[i] <- benthos::rygg(taxon = names(BCI[i,]), count = BCI[i,],adjusted = F)
+  benthos_TRY[i] <- benthos::rygg(taxon = names(BCI[i,]), count = BCI[i,],adjusted = F)
 }
 
 # Rygg adjusted ####
-benthos_DRYA <- rep(1,50)
+benthos_TRYA <- rep(1,50)
 for (i in 1:nrow(BCI)){
-  benthos_DRYA[i] <- benthos::rygg(taxon = names(BCI[i,]), count = BCI[i,],adjusted = T)
+  benthos_TRYA[i] <- benthos::rygg(taxon = names(BCI[i,]), count = BCI[i,],adjusted = T)
 }
 
 # Shannon
@@ -2950,7 +2950,7 @@ EMC <- as.data.frame(EMC)
 # McNaughton ####
 microbiome_EMN <- rep(1,50) 
 for (i in 1:nrow(BCI)){
-  microbiome_EMN[i] <- microbiome::dominance(as.numeric(BCI[i,]),index = "DMN")$dmn  #OK
+  microbiome_EMN[i] <- microbiome::dominance(as.numeric(BCI[i,]),index = "TMN")$TMN  #OK
 }
 # Put all the values in a single dataframe
 EMN <- ls(pattern = "_EMN")
@@ -3246,8 +3246,8 @@ data <- read_csv("data/alpha/a_combined_long_all_BCI.csv")
 data$selection <- paste0(data$index,"_",data$package)
 
 dataindex <- filter(data,selection %in% c("D1SP_vegan","DBRI_abdiv","DFIS_vegan",
-                                          "DINVSP_vegan","DMC_abdiv","DMG_abdiv",
-                                          "DMN_abdiv","DSHA_vegan",
+                                          "DINVSP_vegan","DMC_abdiv","TMG_abdiv",
+                                          "TMN_abdiv","DSHA_vegan","DQ_abdiv","DRAO_BAT",
                                           "DSP_abdiv","EBP_abdiv","EBRI_tabula","EBU_BAT",
                                           "EEVAR_adiv","EGIN_microbiome","EHEI_abdiv",
                                           "EHURE_vegan","EMC_tabula","EMN_microbiome",

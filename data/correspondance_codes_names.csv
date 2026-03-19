@@ -3,7 +3,7 @@ RICH;Species richness
 D1SP;Simpson's reciprocal
 DBRI;Brillouin
 DFIS;Fisher's alpha
-DGLE;Gleason
+TGLE;Gleason
 DGOO_1_1;Good m1 n1
 DGOO_1_2;Good m1 n2
 DGOO_1_3;Good m1 n3
@@ -17,9 +17,9 @@ DINVSP;Simpson inverse
 DKO;Kothe
 DLMD;Log normal lambda
 DMC;McIntosh
-DMG;Margalef
-DMN;Menhinick
-DOD;Odum
+TMG;Margalef
+TMN;Menhinick
+TOD;Odum
 DQ;Q-statistic
 DRAO;Rao
 DSHA;Shannon

@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 03_Alpha_index_analysis.r
-# Date               : 26/02/2025
+# Date               : 19/03/2025
 # Object             : Script to analyze alpha biodiversity index
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
@@ -121,22 +121,22 @@ ggplot(filter(data_long, startsWith(index, "E"))) +
              aes(x = 12, y = 0, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
              color = "black", size = 4,alpha=0.5,linewidth=0) +
   scale_y_continuous(limits = c(0, 1)) +
-  facet_wrap(~ index) +
+  facet_wrap(~ index,ncol = 3) +
   labs(x = "Sample", y = "Index value") +
   theme(strip.text = element_text(face = "bold", color = "white",
                                   hjust = 0, size = 10),
         strip.background = element_rect(fill = "darkmagenta"),
         axis.title = element_text(size = 15),
         axis.text.y = element_text(size = 12,face = "bold"))
-ggsave('values_alpha_E_indices.png', path = "output/fig/alpha/indices/", dpi = 900, width = 400, height = 200, units = 'mm')
+ggsave('values_alpha_E_indices.png', path = "output/fig/alpha/indices/", dpi = 900, width = 300, height = 200, units = 'mm')
 
 # Heterogeneity indices
 
-ggplot(filter(data_long, startsWith(index, "D"))) +
+ggplot(filter(data_long, startsWith(index, "D") | startsWith(index, "Q"))) +
   geom_segment(aes(x = Sample,y=0, yend = value), col = "darkblue",
                linewidth = 1, alpha = 0.4) +
   geom_point(aes(x = Sample, y = value), col = "darkblue", size = 1.7) +
-  geom_label(data = filter(data_stats, startsWith(index, "D")),
+  geom_label(data = filter(data_stats, startsWith(index, "D") | startsWith(index, "Q")),
              aes(x = 14, y = 0, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
              color = "black", size = 4,alpha=0.5,linewidth=0) +
   facet_wrap(~ index,scales="free_y",ncol=5) +
@@ -146,7 +146,26 @@ ggplot(filter(data_long, startsWith(index, "D"))) +
         strip.background = element_rect(fill = "darkblue"),
         axis.title = element_text(size = 15),
         axis.text.y = element_text(size = 12,face = "bold"))
-ggsave('values_alpha_D_indices.png', path = "output/fig/alpha/indices/", dpi = 900, width = 400, height = 200, units = 'mm')
+ggsave('values_alpha_D_indices.png', path = "output/fig/alpha/indices/", dpi = 600, width = 500, height = 200, units = 'mm')
+
+# Heterogeneity indices
+
+ggplot(filter(data_long, startsWith(index, "T"))) +
+  geom_segment(aes(x = Sample,y=0, yend = value), col = "brown4",
+               linewidth = 1, alpha = 0.4) +
+  geom_point(aes(x = Sample, y = value), col = "brown4", size = 1.7) +
+  geom_label(data = filter(data_stats, startsWith(index, "T")),
+             aes(x = 14, y = 0, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
+             color = "black", size = 4,alpha=0.5,linewidth=0) +
+  facet_wrap(~ index,scales="free_y",ncol=5) +
+  labs(x = "Sample", y = "Index value") +
+  theme(strip.text = element_text(face = "bold", color = "white",
+                                  hjust = 0, size = 10),
+        strip.background = element_rect(fill = "brown4"),
+        axis.title = element_text(size = 15),
+        axis.text.y = element_text(size = 12,face = "bold"))
+ggsave('values_alpha_T_indices.png', path = "output/fig/alpha/indices/", dpi = 600, width = 400, height = 100, units = 'mm')
+
 
 # Estimate of species richness indices
 

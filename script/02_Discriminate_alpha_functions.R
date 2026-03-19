@@ -224,6 +224,43 @@ ggplot(results_R) +
         strip.background = element_rect(fill = "darkgoldenrod4"))
 ggsave('heatmap_alpha_R_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 900, width = 400, height = 200, units = 'mm')
 
+results_T <- filter(results,startsWith(Index, "T"))
+
+line_df_T <- data.frame(
+  package = sort(unique(results_T$package)),
+  col = rep(c("black", "grey70"), length.out = length(unique(results_T$package)))
+)
+
+ggplot(results_T) +
+  aes(x = Index, y = package, fill = Percentage) +
+  geom_segment(
+    data = line_df_T,
+    aes(y = package, yend = package, x = -Inf, xend = Inf, color = col),
+    inherit.aes = FALSE,
+    linewidth = 0.3
+  ) +
+  scale_color_identity() +
+  geom_tile() +
+  geom_text(
+    aes(label = scales::percent(Percentage, accuracy = 1)), 
+    size = 2.5, na.rm = TRUE
+  ) +
+  scale_fill_gradient(low = "darkorchid1", high = "gold", name = "Agreement (%)",
+                      na.value = "darkorchid1") +
+  scale_y_discrete(limits = rev(sort(unique(results_T$package)))) +
+  labs(x = "", y = "") +
+  theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_text(size = 10),
+    legend.position = "bottom",
+    panel.background = NULL
+  ) +
+  facet_wrap(~Index, scales = "free_x", ncol = 50)+
+  theme(strip.text = element_text(face = "bold", color = "white",
+                                  size = 10),
+        strip.background = element_rect(fill = "brown4"))
+ggsave('heatmap_alpha_T_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 900, width = 400, height = 200, units = 'mm')
+
 
 results_Q <- filter(results,startsWith(Index, "Q"))
 
