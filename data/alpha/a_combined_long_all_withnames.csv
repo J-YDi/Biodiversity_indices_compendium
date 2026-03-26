@@ -44,6 +44,18 @@
 1,"custom","DGOO_3_1",0.0563906167690423,"Good m3 n1"
 1,"custom","DGOO_3_2",0.101676226076217,"Good m3 n2"
 1,"custom","DGOO_3_3",1,"Good m3 n3"
+1,"benthos","DHUR_2",1.83473792394654,NA
+1,"benthos","DHUR_3",2.5514321462085,NA
+1,"divent","DHUR_2",6.05101567011729,NA
+1,"divent","DHUR_3",6.33612362875489,NA
+1,"entropart","DHUR_2",1.83473792394654,NA
+1,"entropart","DHUR_3",2.5514321462085,NA
+1,"mobsim","DHUR_2",1.83473792394654,NA
+1,"mobsim","DHUR_3",2.5514321462085,NA
+1,"tabula","DHUR_2",1.83473792394968,NA
+1,"tabula","DHUR_3",2.55143214620969,NA
+1,"vegan","DHUR_2",1.83473792394654,NA
+1,"vegan","DHUR_3",2.5514321462085,NA
 1,"abdiv","DINVSP",5.84028605482718,"Simpson inverse"
 1,"adiv","DINVSP",5.84028605482718,"Simpson inverse"
 1,"asbio","DINVSP",5.84028605482718,"Simpson inverse"
@@ -304,23 +316,11 @@
 1,"OTUtable","RC1M",24.1666666666667,"Chao 1 modified"
 1,"tabula","RC1M",24.1369047619048,"Chao 1 modified"
 1,"wiqid","RC1M",24.1666666666667,"Chao 1 modified"
-1,"BAT","RCA2",133.01,"Chao 2"
+1,"BAT","RCA2",125.87,"Chao 2"
 1,"divDyn","RCA2",22.375,"Chao 2"
 1,"fossil","RCA2",24.1666666666667,"Chao 2"
 1,"tabula","RCA2",20,"Chao 2"
 1,"wiqid","RCA2",20,"Chao 2"
-1,"benthos","RHUR_2",1.83473792394654,"Hurlbert D k=2"
-1,"benthos","RHUR_3",2.5514321462085,"Hurlbert D k=3"
-1,"divent","RHUR_2",6.05101567011729,"Hurlbert D k=2"
-1,"divent","RHUR_3",6.33612362875489,"Hurlbert D k=3"
-1,"entropart","RHUR_2",1.83473792394654,"Hurlbert D k=2"
-1,"entropart","RHUR_3",2.5514321462085,"Hurlbert D k=3"
-1,"mobsim","RHUR_2",1.83473792394654,"Hurlbert D k=2"
-1,"mobsim","RHUR_3",2.5514321462085,"Hurlbert D k=3"
-1,"tabula","RHUR_2",1.83473792394968,"Hurlbert D k=2"
-1,"tabula","RHUR_3",2.55143214620969,"Hurlbert D k=3"
-1,"vegan","RHUR_2",1.83473792394654,"Hurlbert D k=2"
-1,"vegan","RHUR_3",2.5514321462085,"Hurlbert D k=3"
 1,"BAT","RICE",NA,"ICE"
 1,"fossil","RICE",21.6666666666667,"ICE"
 1,"tabula","RICE",20,"ICE"
@@ -404,6 +404,18 @@
 2,"custom","DGOO_3_1",0.0953884023406447,"Good m3 n1"
 2,"custom","DGOO_3_2",0.0720578078519466,"Good m3 n2"
 2,"custom","DGOO_3_3",1,"Good m3 n3"
+2,"benthos","DHUR_2",1.71200178880875,NA
+2,"benthos","DHUR_3",2.2727307115684,NA
+2,"divent","DHUR_2",3.47224633458466,NA
+2,"divent","DHUR_3",3.75925366472269,NA
+2,"entropart","DHUR_2",1.71200178880875,NA
+2,"entropart","DHUR_3",2.2727307115684,NA
+2,"mobsim","DHUR_2",1.71200178880875,NA
+2,"mobsim","DHUR_3",2.2727307115684,NA
+2,"tabula","DHUR_2",1.71200991367424,NA
+2,"tabula","DHUR_3",2.27273226065259,NA
+2,"vegan","DHUR_2",1.71200178880875,NA
+2,"vegan","DHUR_3",2.2727307115684,NA
 2,"abdiv","DINVSP",3.44050584403142,"Simpson inverse"
 2,"adiv","DINVSP",3.44050584403142,"Simpson inverse"
 2,"asbio","DINVSP",3.44050584403142,"Simpson inverse"
@@ -664,24 +676,12 @@
 2,"OTUtable","RC1M",26.6,"Chao 1 modified"
 2,"tabula","RC1M",26.5865671641791,"Chao 1 modified"
 2,"wiqid","RC1M",26.6,"Chao 1 modified"
-2,"BAT","RCA2",36.1578769528115,"Chao 2"
+2,"BAT","RCA2",34.6725541705027,"Chao 2"
 2,"divDyn","RCA2",25.3913043478261,"Chao 2"
 2,"fossil","RCA2",26.6,"Chao 2"
 2,"tabula","RCA2",23,"Chao 2"
 2,"wiqid","RCA2",23,"Chao 2"
-2,"benthos","RHUR_2",1.71200178880875,"Hurlbert D k=2"
-2,"benthos","RHUR_3",2.2727307115684,"Hurlbert D k=3"
-2,"divent","RHUR_2",3.47224633458466,"Hurlbert D k=2"
-2,"divent","RHUR_3",3.75925366472269,"Hurlbert D k=3"
-2,"entropart","RHUR_2",1.71200178880875,"Hurlbert D k=2"
-2,"entropart","RHUR_3",2.2727307115684,"Hurlbert D k=3"
-2,"mobsim","RHUR_2",1.71200178880875,"Hurlbert D k=2"
-2,"mobsim","RHUR_3",2.2727307115684,"Hurlbert D k=3"
-2,"tabula","RHUR_2",1.71200991367424,"Hurlbert D k=2"
-2,"tabula","RHUR_3",2.27273226065259,"Hurlbert D k=3"
-2,"vegan","RHUR_2",1.71200178880875,"Hurlbert D k=2"
-2,"vegan","RHUR_3",2.2727307115684,"Hurlbert D k=3"
-2,"BAT","RICE",62.1234595877978,"ICE"
+2,"BAT","RICE",60.1796605996343,"ICE"
 2,"fossil","RICE",25.25,"ICE"
 2,"tabula","RICE",23,"ICE"
 2,"wiqid","RICE",23,"ICE"
@@ -764,6 +764,18 @@
 3,"custom","DGOO_3_1",0.0865673780931597,"Good m3 n1"
 3,"custom","DGOO_3_2",0.080768617590326,"Good m3 n2"
 3,"custom","DGOO_3_3",1,"Good m3 n3"
+3,"benthos","DHUR_2",1.74530659691947,NA
+3,"benthos","DHUR_3",2.34551097380687,NA
+3,"divent","DHUR_2",3.9262610857701,NA
+3,"divent","DHUR_3",4.22184922058242,NA
+3,"entropart","DHUR_2",1.74530659691947,NA
+3,"entropart","DHUR_3",2.34551097380687,NA
+3,"mobsim","DHUR_2",1.74530659691947,NA
+3,"mobsim","DHUR_3",2.34551097380687,NA
+3,"tabula","DHUR_2",1.74537217905552,NA
+3,"tabula","DHUR_3",2.34553292487564,NA
+3,"vegan","DHUR_2",1.74530659691947,NA
+3,"vegan","DHUR_3",2.34551097380687,NA
 3,"abdiv","DINVSP",3.86547486033519,"Simpson inverse"
 3,"adiv","DINVSP",3.86547486033519,"Simpson inverse"
 3,"asbio","DINVSP",3.86547486033519,"Simpson inverse"
@@ -1024,24 +1036,12 @@
 3,"OTUtable","RC1M",20.5,"Chao 1 modified"
 3,"tabula","RC1M",20.491935483871,"Chao 1 modified"
 3,"wiqid","RC1M",20.5,"Chao 1 modified"
-3,"BAT","RCA2",34.3387385416871,"Chao 2"
+3,"BAT","RCA2",33.5479315006889,"Chao 2"
 3,"divDyn","RCA2",19.7105263157895,"Chao 2"
 3,"fossil","RCA2",20.5,"Chao 2"
 3,"tabula","RCA2",19,"Chao 2"
 3,"wiqid","RCA2",19,"Chao 2"
-3,"benthos","RHUR_2",1.74530659691947,"Hurlbert D k=2"
-3,"benthos","RHUR_3",2.34551097380687,"Hurlbert D k=3"
-3,"divent","RHUR_2",3.9262610857701,"Hurlbert D k=2"
-3,"divent","RHUR_3",4.22184922058242,"Hurlbert D k=3"
-3,"entropart","RHUR_2",1.74530659691947,"Hurlbert D k=2"
-3,"entropart","RHUR_3",2.34551097380687,"Hurlbert D k=3"
-3,"mobsim","RHUR_2",1.74530659691947,"Hurlbert D k=2"
-3,"mobsim","RHUR_3",2.34551097380687,"Hurlbert D k=3"
-3,"tabula","RHUR_2",1.74537217905552,"Hurlbert D k=2"
-3,"tabula","RHUR_3",2.34553292487564,"Hurlbert D k=3"
-3,"vegan","RHUR_2",1.74530659691947,"Hurlbert D k=2"
-3,"vegan","RHUR_3",2.34551097380687,"Hurlbert D k=3"
-3,"BAT","RICE",41.5312600969056,"ICE"
+3,"BAT","RICE",40.6913568543569,"ICE"
 3,"fossil","RICE",19.8421052631579,"ICE"
 3,"tabula","RICE",19,"ICE"
 3,"wiqid","RICE",19,"ICE"
@@ -1124,6 +1124,18 @@
 4,"custom","DGOO_3_1",0.0637955669533059,"Good m3 n1"
 4,"custom","DGOO_3_2",0.102748015540652,"Good m3 n2"
 4,"custom","DGOO_3_3",1,"Good m3 n3"
+4,"benthos","DHUR_2",1.81258741258743,NA
+4,"benthos","DHUR_3",2.49588817409433,NA
+4,"divent","DHUR_2",5.33582147738107,NA
+4,"divent","DHUR_3",5.59662823090853,NA
+4,"entropart","DHUR_2",1.81258741258743,NA
+4,"entropart","DHUR_3",2.49588817409433,NA
+4,"mobsim","DHUR_2",1.81258741258743,NA
+4,"mobsim","DHUR_3",2.49588817409433,NA
+4,"tabula","DHUR_2",1.81258741257599,NA
+4,"tabula","DHUR_3",2.495888174083,NA
+4,"vegan","DHUR_2",1.81258741258743,NA
+4,"vegan","DHUR_3",2.49588817409433,NA
 4,"abdiv","DINVSP",5.25613674334918,"Simpson inverse"
 4,"adiv","DINVSP",5.25613674334918,"Simpson inverse"
 4,"asbio","DINVSP",5.25613674334918,"Simpson inverse"
@@ -1384,24 +1396,12 @@
 4,"OTUtable","RC1M",25.0833333333333,"Chao 1 modified"
 4,"tabula","RC1M",25.0760489510489,"Chao 1 modified"
 4,"wiqid","RC1M",25.0833333333333,"Chao 1 modified"
-4,"BAT","RCA2",34.1039940974059,"Chao 2"
+4,"BAT","RCA2",33.6416266870385,"Chao 2"
 4,"divDyn","RCA2",24.3664596273292,"Chao 2"
 4,"fossil","RCA2",25.0833333333333,"Chao 2"
 4,"tabula","RCA2",23,"Chao 2"
 4,"wiqid","RCA2",23,"Chao 2"
-4,"benthos","RHUR_2",1.81258741258743,"Hurlbert D k=2"
-4,"benthos","RHUR_3",2.49588817409433,"Hurlbert D k=3"
-4,"divent","RHUR_2",5.33582147738107,"Hurlbert D k=2"
-4,"divent","RHUR_3",5.59662823090853,"Hurlbert D k=3"
-4,"entropart","RHUR_2",1.81258741258743,"Hurlbert D k=2"
-4,"entropart","RHUR_3",2.49588817409433,"Hurlbert D k=3"
-4,"mobsim","RHUR_2",1.81258741258743,"Hurlbert D k=2"
-4,"mobsim","RHUR_3",2.49588817409433,"Hurlbert D k=3"
-4,"tabula","RHUR_2",1.81258741257599,"Hurlbert D k=2"
-4,"tabula","RHUR_3",2.495888174083,"Hurlbert D k=3"
-4,"vegan","RHUR_2",1.81258741258743,"Hurlbert D k=2"
-4,"vegan","RHUR_3",2.49588817409433,"Hurlbert D k=3"
-4,"BAT","RICE",39.0875354703814,"ICE"
+4,"BAT","RICE",37.7928224789871,"ICE"
 4,"fossil","RICE",24.5178571428571,"ICE"
 4,"tabula","RICE",23,"ICE"
 4,"wiqid","RICE",23,"ICE"
@@ -1484,6 +1484,18 @@
 5,"custom","DGOO_3_1",0.0318173195830884,"Good m3 n1"
 5,"custom","DGOO_3_2",0.112303252959508,"Good m3 n2"
 5,"custom","DGOO_3_3",1,"Good m3 n3"
+5,"benthos","DHUR_2",1.89010710116237,NA
+5,"benthos","DHUR_3",2.68698205687725,NA
+5,"divent","DHUR_2",9.09976902156165,NA
+5,"divent","DHUR_3",9.23830328629564,NA
+5,"entropart","DHUR_2",1.89010710116237,NA
+5,"entropart","DHUR_3",2.68698205687725,NA
+5,"mobsim","DHUR_2",1.89010710116237,NA
+5,"mobsim","DHUR_3",2.68698205687725,NA
+5,"tabula","DHUR_2",1.89015276737784,NA
+5,"tabula","DHUR_3",2.68699674078288,NA
+5,"vegan","DHUR_2",1.89010710116237,NA
+5,"vegan","DHUR_3",2.68698205687725,NA
 5,"abdiv","DINVSP",8.74387281960698,"Simpson inverse"
 5,"adiv","DINVSP",8.74387281960698,"Simpson inverse"
 5,"asbio","DINVSP",8.74387281960698,"Simpson inverse"
@@ -1744,24 +1756,12 @@
 5,"OTUtable","RC1M",21.25,"Chao 1 modified"
 5,"tabula","RC1M",21.2386934673367,"Chao 1 modified"
 5,"wiqid","RC1M",21.25,"Chao 1 modified"
-5,"BAT","RCA2",34.1338445859696,"Chao 2"
+5,"BAT","RCA2",34.008124986125,"Chao 2"
 5,"divDyn","RCA2",19.9473684210526,"Chao 2"
 5,"fossil","RCA2",21.25,"Chao 2"
 5,"tabula","RCA2",19,"Chao 2"
 5,"wiqid","RCA2",19,"Chao 2"
-5,"benthos","RHUR_2",1.89010710116237,"Hurlbert D k=2"
-5,"benthos","RHUR_3",2.68698205687725,"Hurlbert D k=3"
-5,"divent","RHUR_2",9.09976902156165,"Hurlbert D k=2"
-5,"divent","RHUR_3",9.23830328629564,"Hurlbert D k=3"
-5,"entropart","RHUR_2",1.89010710116237,"Hurlbert D k=2"
-5,"entropart","RHUR_3",2.68698205687725,"Hurlbert D k=3"
-5,"mobsim","RHUR_2",1.89010710116237,"Hurlbert D k=2"
-5,"mobsim","RHUR_3",2.68698205687725,"Hurlbert D k=3"
-5,"tabula","RHUR_2",1.89015276737784,"Hurlbert D k=2"
-5,"tabula","RHUR_3",2.68699674078288,"Hurlbert D k=3"
-5,"vegan","RHUR_2",1.89010710116237,"Hurlbert D k=2"
-5,"vegan","RHUR_3",2.68698205687725,"Hurlbert D k=3"
-5,"BAT","RICE",36.9169364641859,"ICE"
+5,"BAT","RICE",36.2989486090511,"ICE"
 5,"fossil","RICE",19.8571428571429,"ICE"
 5,"tabula","RICE",19,"ICE"
 5,"wiqid","RICE",19,"ICE"
@@ -1844,6 +1844,18 @@
 6,"custom","DGOO_3_1",0.02790591686298,"Good m3 n1"
 6,"custom","DGOO_3_2",0.106715154831076,"Good m3 n2"
 6,"custom","DGOO_3_3",1,"Good m3 n3"
+6,"benthos","DHUR_2",1.90016562384986,NA
+6,"benthos","DHUR_3",2.71440020696311,NA
+6,"divent","DHUR_2",10.0165669159174,NA
+6,"divent","DHUR_3",10.1595706097641,NA
+6,"entropart","DHUR_2",1.90016562384987,NA
+6,"entropart","DHUR_3",2.71440020696311,NA
+6,"mobsim","DHUR_2",1.90016562384986,NA
+6,"mobsim","DHUR_3",2.71440020696311,NA
+6,"tabula","DHUR_2",1.90018853543742,NA
+6,"tabula","DHUR_3",2.71440757454467,NA
+6,"vegan","DHUR_2",1.90016562384986,NA
+6,"vegan","DHUR_3",2.71440020696311,NA
 6,"abdiv","DINVSP",9.60233018245768,"Simpson inverse"
 6,"adiv","DINVSP",9.60233018245768,"Simpson inverse"
 6,"asbio","DINVSP",9.60233018245768,"Simpson inverse"
@@ -2104,24 +2116,12 @@
 6,"OTUtable","RC1M",23.25,"Chao 1 modified"
 6,"tabula","RC1M",23.2392344497608,"Chao 1 modified"
 6,"wiqid","RC1M",23.25,"Chao 1 modified"
-6,"BAT","RCA2",34.2948611666112,"Chao 2"
+6,"BAT","RCA2",34.5571998834499,"Chao 2"
 6,"divDyn","RCA2",21.952380952381,"Chao 2"
 6,"fossil","RCA2",23.25,"Chao 2"
 6,"tabula","RCA2",21,"Chao 2"
 6,"wiqid","RCA2",21,"Chao 2"
-6,"benthos","RHUR_2",1.90016562384986,"Hurlbert D k=2"
-6,"benthos","RHUR_3",2.71440020696311,"Hurlbert D k=3"
-6,"divent","RHUR_2",10.0165669159174,"Hurlbert D k=2"
-6,"divent","RHUR_3",10.1595706097641,"Hurlbert D k=3"
-6,"entropart","RHUR_2",1.90016562384987,"Hurlbert D k=2"
-6,"entropart","RHUR_3",2.71440020696311,"Hurlbert D k=3"
-6,"mobsim","RHUR_2",1.90016562384986,"Hurlbert D k=2"
-6,"mobsim","RHUR_3",2.71440020696311,"Hurlbert D k=3"
-6,"tabula","RHUR_2",1.90018853543742,"Hurlbert D k=2"
-6,"tabula","RHUR_3",2.71440757454467,"Hurlbert D k=3"
-6,"vegan","RHUR_2",1.90016562384986,"Hurlbert D k=2"
-6,"vegan","RHUR_3",2.71440020696311,"Hurlbert D k=3"
-6,"BAT","RICE",35.9288623620146,"ICE"
+6,"BAT","RICE",35.4719225920211,"ICE"
 6,"fossil","RICE",21.7377049180328,"ICE"
 6,"tabula","RICE",21,"ICE"
 6,"wiqid","RICE",21,"ICE"
@@ -2204,6 +2204,18 @@
 7,"custom","DGOO_3_1",0.0380024270501373,"Good m3 n1"
 7,"custom","DGOO_3_2",0.124466889255186,"Good m3 n2"
 7,"custom","DGOO_3_3",1,"Good m3 n3"
+7,"benthos","DHUR_2",1.87416609155739,NA
+7,"benthos","DHUR_3",2.64267454566367,NA
+7,"divent","DHUR_2",7.94698384457518,NA
+7,"divent","DHUR_3",8.04796878586819,NA
+7,"entropart","DHUR_2",1.87416609155738,NA
+7,"entropart","DHUR_3",2.64267454566367,NA
+7,"mobsim","DHUR_2",1.87416609155739,NA
+7,"mobsim","DHUR_3",2.64267454566367,NA
+7,"tabula","DHUR_2",1.87416609155812,NA
+7,"tabula","DHUR_3",2.64267454566387,NA
+7,"vegan","DHUR_2",1.87416609155739,NA
+7,"vegan","DHUR_3",2.64267454566367,NA
 7,"abdiv","DINVSP",7.62020905923345,"Simpson inverse"
 7,"adiv","DINVSP",7.62020905923345,"Simpson inverse"
 7,"asbio","DINVSP",7.62020905923345,"Simpson inverse"
@@ -2464,24 +2476,12 @@
 7,"OTUtable","RC1M",18,"Chao 1 modified"
 7,"tabula","RC1M",17.9876543209877,"Chao 1 modified"
 7,"wiqid","RC1M",18,"Chao 1 modified"
-7,"BAT","RCA2",34.5667101509601,"Chao 2"
+7,"BAT","RCA2",34.160481962482,"Chao 2"
 7,"divDyn","RCA2",16.46875,"Chao 2"
 7,"fossil","RCA2",18,"Chao 2"
 7,"tabula","RCA2",16,"Chao 2"
 7,"wiqid","RCA2",16,"Chao 2"
-7,"benthos","RHUR_2",1.87416609155739,"Hurlbert D k=2"
-7,"benthos","RHUR_3",2.64267454566367,"Hurlbert D k=3"
-7,"divent","RHUR_2",7.94698384457518,"Hurlbert D k=2"
-7,"divent","RHUR_3",8.04796878586819,"Hurlbert D k=3"
-7,"entropart","RHUR_2",1.87416609155738,"Hurlbert D k=2"
-7,"entropart","RHUR_3",2.64267454566367,"Hurlbert D k=3"
-7,"mobsim","RHUR_2",1.87416609155739,"Hurlbert D k=2"
-7,"mobsim","RHUR_3",2.64267454566367,"Hurlbert D k=3"
-7,"tabula","RHUR_2",1.87416609155812,"Hurlbert D k=2"
-7,"tabula","RHUR_3",2.64267454566387,"Hurlbert D k=3"
-7,"vegan","RHUR_2",1.87416609155739,"Hurlbert D k=2"
-7,"vegan","RHUR_3",2.64267454566367,"Hurlbert D k=3"
-7,"BAT","RICE",35.7791184064194,"ICE"
+7,"BAT","RICE",35.1798465700519,"ICE"
 7,"fossil","RICE",16.5789473684211,"ICE"
 7,"tabula","RICE",16,"ICE"
 7,"wiqid","RICE",16,"ICE"
@@ -2564,6 +2564,18 @@
 8,"custom","DGOO_3_1",0.0317965657869053,"Good m3 n1"
 8,"custom","DGOO_3_2",0.10638269919023,"Good m3 n2"
 8,"custom","DGOO_3_3",1,"Good m3 n3"
+8,"benthos","DHUR_2",1.89485714285715,NA
+8,"benthos","DHUR_3",2.70102918586786,NA
+8,"divent","DHUR_2",9.51085391012821,NA
+8,"divent","DHUR_3",9.68921504058781,NA
+8,"entropart","DHUR_2",1.89485714285715,NA
+8,"entropart","DHUR_3",2.70102918586785,NA
+8,"mobsim","DHUR_2",1.89485714285715,NA
+8,"mobsim","DHUR_3",2.70102918586786,NA
+8,"tabula","DHUR_2",1.89485714285496,NA
+8,"tabula","DHUR_3",2.70102918586572,NA
+8,"vegan","DHUR_2",1.89485714285715,NA
+8,"vegan","DHUR_3",2.70102918586786,NA
 8,"abdiv","DINVSP",8.90909090909091,"Simpson inverse"
 8,"adiv","DINVSP",8.90909090909091,"Simpson inverse"
 8,"asbio","DINVSP",8.90909090909091,"Simpson inverse"
@@ -2824,24 +2836,12 @@
 8,"OTUtable","RC1M",25.1666666666667,"Chao 1 modified"
 8,"tabula","RC1M",25.1335978835979,"Chao 1 modified"
 8,"wiqid","RC1M",25.1666666666667,"Chao 1 modified"
-8,"BAT","RCA2",34.6933054723055,"Chao 2"
+8,"BAT","RCA2",34.6611364746365,"Chao 2"
 8,"divDyn","RCA2",23.3809523809524,"Chao 2"
 8,"fossil","RCA2",25.1666666666667,"Chao 2"
 8,"tabula","RCA2",21,"Chao 2"
 8,"wiqid","RCA2",21,"Chao 2"
-8,"benthos","RHUR_2",1.89485714285715,"Hurlbert D k=2"
-8,"benthos","RHUR_3",2.70102918586786,"Hurlbert D k=3"
-8,"divent","RHUR_2",9.51085391012821,"Hurlbert D k=2"
-8,"divent","RHUR_3",9.68921504058781,"Hurlbert D k=3"
-8,"entropart","RHUR_2",1.89485714285715,"Hurlbert D k=2"
-8,"entropart","RHUR_3",2.70102918586785,"Hurlbert D k=3"
-8,"mobsim","RHUR_2",1.89485714285715,"Hurlbert D k=2"
-8,"mobsim","RHUR_3",2.70102918586786,"Hurlbert D k=3"
-8,"tabula","RHUR_2",1.89485714285496,"Hurlbert D k=2"
-8,"tabula","RHUR_3",2.70102918586572,"Hurlbert D k=3"
-8,"vegan","RHUR_2",1.89485714285715,"Hurlbert D k=2"
-8,"vegan","RHUR_3",2.70102918586786,"Hurlbert D k=3"
-8,"BAT","RICE",35.5066110394911,"ICE"
+8,"BAT","RICE",34.9054838340763,"ICE"
 8,"fossil","RICE",22.551724137931,"ICE"
 8,"tabula","RICE",21,"ICE"
 8,"wiqid","RICE",21,"ICE"
@@ -2924,6 +2924,18 @@
 9,"custom","DGOO_3_1",0.0398541976345443,"Good m3 n1"
 9,"custom","DGOO_3_2",0.122515905043604,"Good m3 n2"
 9,"custom","DGOO_3_3",1,"Good m3 n3"
+9,"benthos","DHUR_2",1.87218445954954,NA
+9,"benthos","DHUR_3",2.63825378939338,NA
+9,"divent","DHUR_2",7.82377555522102,NA
+9,"divent","DHUR_3",7.94518307615111,NA
+9,"entropart","DHUR_2",1.87218445954954,NA
+9,"entropart","DHUR_3",2.63825378939338,NA
+9,"mobsim","DHUR_2",1.87218445954954,NA
+9,"mobsim","DHUR_3",2.63825378939338,NA
+9,"tabula","DHUR_2",1.87218445955106,NA
+9,"tabula","DHUR_3",2.63825378939366,NA
+9,"vegan","DHUR_2",1.87218445954954,NA
+9,"vegan","DHUR_3",2.63825378939338,NA
 9,"abdiv","DINVSP",7.4125428711416,"Simpson inverse"
 9,"adiv","DINVSP",7.4125428711416,"Simpson inverse"
 9,"asbio","DINVSP",7.4125428711416,"Simpson inverse"
@@ -3184,24 +3196,12 @@
 9,"OTUtable","RC1M",17.5,"Chao 1 modified"
 9,"tabula","RC1M",17.4878048780488,"Chao 1 modified"
 9,"wiqid","RC1M",17.5,"Chao 1 modified"
-9,"BAT","RCA2",35.2931547619048,"Chao 2"
+9,"BAT","RCA2",35.0897136752137,"Chao 2"
 9,"divDyn","RCA2",16.703125,"Chao 2"
 9,"fossil","RCA2",17.5,"Chao 2"
 9,"tabula","RCA2",16,"Chao 2"
 9,"wiqid","RCA2",16,"Chao 2"
-9,"benthos","RHUR_2",1.87218445954954,"Hurlbert D k=2"
-9,"benthos","RHUR_3",2.63825378939338,"Hurlbert D k=3"
-9,"divent","RHUR_2",7.82377555522102,"Hurlbert D k=2"
-9,"divent","RHUR_3",7.94518307615111,"Hurlbert D k=3"
-9,"entropart","RHUR_2",1.87218445954954,"Hurlbert D k=2"
-9,"entropart","RHUR_3",2.63825378939338,"Hurlbert D k=3"
-9,"mobsim","RHUR_2",1.87218445954954,"Hurlbert D k=2"
-9,"mobsim","RHUR_3",2.63825378939338,"Hurlbert D k=3"
-9,"tabula","RHUR_2",1.87218445955106,"Hurlbert D k=2"
-9,"tabula","RHUR_3",2.63825378939366,"Hurlbert D k=3"
-9,"vegan","RHUR_2",1.87218445954954,"Hurlbert D k=2"
-9,"vegan","RHUR_3",2.63825378939338,"Hurlbert D k=3"
-9,"BAT","RICE",35.1447009759095,"ICE"
+9,"BAT","RICE",35.2792980159563,"ICE"
 9,"fossil","RICE",16.9230769230769,"ICE"
 9,"tabula","RICE",16,"ICE"
 9,"wiqid","RICE",16,"ICE"
@@ -3284,6 +3284,18 @@
 10,"custom","DGOO_3_1",0.0310005903617703,"Good m3 n1"
 10,"custom","DGOO_3_2",0.112146299389361,"Good m3 n2"
 10,"custom","DGOO_3_3",1,"Good m3 n3"
+10,"benthos","DHUR_2",1.89309967141288,NA
+10,"benthos","DHUR_3",2.69478134266552,NA
+10,"divent","DHUR_2",9.35448099546307,NA
+10,"divent","DHUR_3",9.48352607820199,NA
+10,"entropart","DHUR_2",1.89309967141288,NA
+10,"entropart","DHUR_3",2.69478134266552,NA
+10,"mobsim","DHUR_2",1.89309967141288,NA
+10,"mobsim","DHUR_3",2.69478134266552,NA
+10,"tabula","DHUR_2",1.89309967141492,NA
+10,"tabula","DHUR_3",2.69478134266701,NA
+10,"vegan","DHUR_2",1.89309967141288,NA
+10,"vegan","DHUR_3",2.69478134266552,NA
 10,"abdiv","DINVSP",8.90627020038785,"Simpson inverse"
 10,"adiv","DINVSP",8.90627020038785,"Simpson inverse"
 10,"asbio","DINVSP",8.90627020038785,"Simpson inverse"
@@ -3544,24 +3556,12 @@
 10,"OTUtable","RC1M",19.6666666666667,"Chao 1 modified"
 10,"tabula","RC1M",19.6626506024096,"Chao 1 modified"
 10,"wiqid","RC1M",19.6666666666667,"Chao 1 modified"
-10,"BAT","RCA2",35.0173373015873,"Chao 2"
+10,"BAT","RCA2",35.2849920634921,"Chao 2"
 10,"divDyn","RCA2",19.2368421052632,"Chao 2"
 10,"fossil","RCA2",19.6666666666667,"Chao 2"
 10,"tabula","RCA2",19,"Chao 2"
 10,"wiqid","RCA2",19,"Chao 2"
-10,"benthos","RHUR_2",1.89309967141288,"Hurlbert D k=2"
-10,"benthos","RHUR_3",2.69478134266552,"Hurlbert D k=3"
-10,"divent","RHUR_2",9.35448099546307,"Hurlbert D k=2"
-10,"divent","RHUR_3",9.48352607820199,"Hurlbert D k=3"
-10,"entropart","RHUR_2",1.89309967141288,"Hurlbert D k=2"
-10,"entropart","RHUR_3",2.69478134266552,"Hurlbert D k=3"
-10,"mobsim","RHUR_2",1.89309967141288,"Hurlbert D k=2"
-10,"mobsim","RHUR_3",2.69478134266552,"Hurlbert D k=3"
-10,"tabula","RHUR_2",1.89309967141492,"Hurlbert D k=2"
-10,"tabula","RHUR_3",2.69478134266701,"Hurlbert D k=3"
-10,"vegan","RHUR_2",1.89309967141288,"Hurlbert D k=2"
-10,"vegan","RHUR_3",2.69478134266552,"Hurlbert D k=3"
-10,"BAT","RICE",34.9902895792286,"ICE"
+10,"BAT","RICE",35.47212540429,"ICE"
 10,"fossil","RICE",19.5283018867925,"ICE"
 10,"tabula","RICE",19,"ICE"
 10,"wiqid","RICE",19,"ICE"
@@ -3644,6 +3644,18 @@
 11,"custom","DGOO_3_1",0.0310018572793058,"Good m3 n1"
 11,"custom","DGOO_3_2",0.108787030964449,"Good m3 n2"
 11,"custom","DGOO_3_3",1,"Good m3 n3"
+11,"benthos","DHUR_2",1.89341085271313,NA
+11,"benthos","DHUR_3",2.69624477770525,NA
+11,"divent","DHUR_2",9.38183866379891,NA
+11,"divent","DHUR_3",9.53093604513924,NA
+11,"entropart","DHUR_2",1.89341085271313,NA
+11,"entropart","DHUR_3",2.69624477770525,NA
+11,"mobsim","DHUR_2",1.89341085271313,NA
+11,"mobsim","DHUR_3",2.69624477770525,NA
+11,"tabula","DHUR_2",1.89341085271248,NA
+11,"tabula","DHUR_3",2.69624477770148,NA
+11,"vegan","DHUR_2",1.89341085271313,NA
+11,"vegan","DHUR_3",2.69624477770525,NA
 11,"abdiv","DINVSP",9.03135888501742,"Simpson inverse"
 11,"adiv","DINVSP",9.03135888501742,"Simpson inverse"
 11,"asbio","DINVSP",9.03135888501742,"Simpson inverse"
@@ -3904,24 +3916,12 @@
 11,"OTUtable","RC1M",34,"Chao 1 modified"
 11,"tabula","RC1M",33.9583333333333,"Chao 1 modified"
 11,"wiqid","RC1M",34,"Chao 1 modified"
-11,"BAT","RCA2",35.2285714285714,"Chao 2"
+11,"BAT","RCA2",35.1818066378066,"Chao 2"
 11,"divDyn","RCA2",29.8,"Chao 2"
 11,"fossil","RCA2",34,"Chao 2"
 11,"tabula","RCA2",25,"Chao 2"
 11,"wiqid","RCA2",25,"Chao 2"
-11,"benthos","RHUR_2",1.89341085271313,"Hurlbert D k=2"
-11,"benthos","RHUR_3",2.69624477770525,"Hurlbert D k=3"
-11,"divent","RHUR_2",9.38183866379891,"Hurlbert D k=2"
-11,"divent","RHUR_3",9.53093604513924,"Hurlbert D k=3"
-11,"entropart","RHUR_2",1.89341085271313,"Hurlbert D k=2"
-11,"entropart","RHUR_3",2.69624477770525,"Hurlbert D k=3"
-11,"mobsim","RHUR_2",1.89341085271313,"Hurlbert D k=2"
-11,"mobsim","RHUR_3",2.69624477770525,"Hurlbert D k=3"
-11,"tabula","RHUR_2",1.89341085271248,"Hurlbert D k=2"
-11,"tabula","RHUR_3",2.69624477770148,"Hurlbert D k=3"
-11,"vegan","RHUR_2",1.89341085271313,"Hurlbert D k=2"
-11,"vegan","RHUR_3",2.69624477770525,"Hurlbert D k=3"
-11,"BAT","RICE",34.9521838758912,"ICE"
+11,"BAT","RICE",35.3249326022894,"ICE"
 11,"fossil","RICE",26.8461538461538,"ICE"
 11,"tabula","RICE",25,"ICE"
 11,"wiqid","RICE",25,"ICE"
@@ -4004,6 +4004,18 @@
 12,"custom","DGOO_3_1",0.0452787495806889,"Good m3 n1"
 12,"custom","DGOO_3_2",0.122290818689761,"Good m3 n2"
 12,"custom","DGOO_3_3",1,"Good m3 n3"
+12,"benthos","DHUR_2",1.85676322083445,NA
+12,"benthos","DHUR_3",2.59887366765201,NA
+12,"divent","DHUR_2",6.98141737056268,NA
+12,"divent","DHUR_3",7.12925819961428,NA
+12,"entropart","DHUR_2",1.85676322083445,NA
+12,"entropart","DHUR_3",2.59887366765201,NA
+12,"mobsim","DHUR_2",1.85676322083445,NA
+12,"mobsim","DHUR_3",2.59887366765201,NA
+12,"tabula","DHUR_2",1.8567813102999,NA
+12,"tabula","DHUR_3",2.59887883083969,NA
+12,"vegan","DHUR_2",1.85676322083445,NA
+12,"vegan","DHUR_3",2.59887366765201,NA
 12,"abdiv","DINVSP",6.79074988774136,"Simpson inverse"
 12,"adiv","DINVSP",6.79074988774136,"Simpson inverse"
 12,"asbio","DINVSP",6.79074988774136,"Simpson inverse"
@@ -4264,24 +4276,12 @@
 12,"OTUtable","RC1M",25.25,"Chao 1 modified"
 12,"tabula","RC1M",25.2206572769953,"Chao 1 modified"
 12,"wiqid","RC1M",25.25,"Chao 1 modified"
-12,"BAT","RCA2",35.0565595238095,"Chao 2"
+12,"BAT","RCA2",35.0441150793651,"Chao 2"
 12,"divDyn","RCA2",22.1578947368421,"Chao 2"
 12,"fossil","RCA2",25.25,"Chao 2"
 12,"tabula","RCA2",19,"Chao 2"
 12,"wiqid","RCA2",19,"Chao 2"
-12,"benthos","RHUR_2",1.85676322083445,"Hurlbert D k=2"
-12,"benthos","RHUR_3",2.59887366765201,"Hurlbert D k=3"
-12,"divent","RHUR_2",6.98141737056268,"Hurlbert D k=2"
-12,"divent","RHUR_3",7.12925819961428,"Hurlbert D k=3"
-12,"entropart","RHUR_2",1.85676322083445,"Hurlbert D k=2"
-12,"entropart","RHUR_3",2.59887366765201,"Hurlbert D k=3"
-12,"mobsim","RHUR_2",1.85676322083445,"Hurlbert D k=2"
-12,"mobsim","RHUR_3",2.59887366765201,"Hurlbert D k=3"
-12,"tabula","RHUR_2",1.8567813102999,"Hurlbert D k=2"
-12,"tabula","RHUR_3",2.59887883083969,"Hurlbert D k=3"
-12,"vegan","RHUR_2",1.85676322083445,"Hurlbert D k=2"
-12,"vegan","RHUR_3",2.59887366765201,"Hurlbert D k=3"
-12,"BAT","RICE",34.9855981185023,"ICE"
+12,"BAT","RICE",35.4732573648129,"ICE"
 12,"fossil","RICE",21.5,"ICE"
 12,"tabula","RICE",19,"ICE"
 12,"wiqid","RICE",19,"ICE"
@@ -4364,6 +4364,18 @@
 13,"custom","DGOO_3_1",0.0865614388700573,"Good m3 n1"
 13,"custom","DGOO_3_2",0.115751862240977,"Good m3 n2"
 13,"custom","DGOO_3_3",1,"Good m3 n3"
+13,"benthos","DHUR_2",1.7604648176682,NA
+13,"benthos","DHUR_3",2.35786594761172,NA
+13,"divent","DHUR_2",4.17475004584018,NA
+13,"divent","DHUR_3",4.31065203933205,NA
+13,"entropart","DHUR_2",1.76046481766819,NA
+13,"entropart","DHUR_3",2.35786594761172,NA
+13,"mobsim","DHUR_2",1.7604648176682,NA
+13,"mobsim","DHUR_3",2.35786594761172,NA
+13,"tabula","DHUR_2",1.76058649189369,NA
+13,"tabula","DHUR_3",2.35790778530247,NA
+13,"vegan","DHUR_2",1.7604648176682,NA
+13,"vegan","DHUR_3",2.35786594761172,NA
 13,"abdiv","DINVSP",4.10119125539992,"Simpson inverse"
 13,"adiv","DINVSP",4.10119125539992,"Simpson inverse"
 13,"asbio","DINVSP",4.10119125539992,"Simpson inverse"
@@ -4624,24 +4636,12 @@
 13,"OTUtable","RC1M",22.5,"Chao 1 modified"
 13,"tabula","RC1M",22.4745762711864,"Chao 1 modified"
 13,"wiqid","RC1M",22.5,"Chao 1 modified"
-13,"BAT","RCA2",35.2540952380952,"Chao 2"
+13,"BAT","RCA2",35.0788492063492,"Chao 2"
 13,"divDyn","RCA2",20.8333333333333,"Chao 2"
 13,"fossil","RCA2",22.5,"Chao 2"
 13,"tabula","RCA2",18,"Chao 2"
 13,"wiqid","RCA2",18,"Chao 2"
-13,"benthos","RHUR_2",1.7604648176682,"Hurlbert D k=2"
-13,"benthos","RHUR_3",2.35786594761172,"Hurlbert D k=3"
-13,"divent","RHUR_2",4.17475004584018,"Hurlbert D k=2"
-13,"divent","RHUR_3",4.31065203933205,"Hurlbert D k=3"
-13,"entropart","RHUR_2",1.76046481766819,"Hurlbert D k=2"
-13,"entropart","RHUR_3",2.35786594761172,"Hurlbert D k=3"
-13,"mobsim","RHUR_2",1.7604648176682,"Hurlbert D k=2"
-13,"mobsim","RHUR_3",2.35786594761172,"Hurlbert D k=3"
-13,"tabula","RHUR_2",1.76058649189369,"Hurlbert D k=2"
-13,"tabula","RHUR_3",2.35790778530247,"Hurlbert D k=3"
-13,"vegan","RHUR_2",1.7604648176682,"Hurlbert D k=2"
-13,"vegan","RHUR_3",2.35786594761172,"Hurlbert D k=3"
-13,"BAT","RICE",34.9042609532397,"ICE"
+13,"BAT","RICE",35.3454931912355,"ICE"
 13,"fossil","RICE",21,"ICE"
 13,"tabula","RICE",18,"ICE"
 13,"wiqid","RICE",18,"ICE"
@@ -4724,6 +4724,18 @@
 14,"custom","DGOO_3_1",0.030068014415627,"Good m3 n1"
 14,"custom","DGOO_3_2",0.105460452236356,"Good m3 n2"
 14,"custom","DGOO_3_3",1,"Good m3 n3"
+14,"benthos","DHUR_2",1.89471786051153,NA
+14,"benthos","DHUR_3",2.70067460616802,NA
+14,"divent","DHUR_2",9.49828751406364,NA
+14,"divent","DHUR_3",9.67731619985116,NA
+14,"entropart","DHUR_2",1.89471786051153,NA
+14,"entropart","DHUR_3",2.70067460616802,NA
+14,"mobsim","DHUR_2",1.89471786051153,NA
+14,"mobsim","DHUR_3",2.70067460616802,NA
+14,"tabula","DHUR_2",1.89471786050319,NA
+14,"tabula","DHUR_3",2.70067460616041,NA
+14,"vegan","DHUR_2",1.89471786051153,NA
+14,"vegan","DHUR_3",2.70067460616802,NA
 14,"abdiv","DINVSP",9.20740552233108,"Simpson inverse"
 14,"adiv","DINVSP",9.20740552233108,"Simpson inverse"
 14,"asbio","DINVSP",9.20740552233108,"Simpson inverse"
@@ -4984,24 +4996,12 @@
 14,"OTUtable","RC1M",23.3333333333333,"Chao 1 modified"
 14,"tabula","RC1M",23.3320941759603,"Chao 1 modified"
 14,"wiqid","RC1M",23.3333333333333,"Chao 1 modified"
-14,"BAT","RCA2",35.087380952381,"Chao 2"
+14,"BAT","RCA2",34.971373015873,"Chao 2"
 14,"divDyn","RCA2",23.1366459627329,"Chao 2"
 14,"fossil","RCA2",23.3333333333333,"Chao 2"
 14,"tabula","RCA2",23,"Chao 2"
 14,"wiqid","RCA2",23,"Chao 2"
-14,"benthos","RHUR_2",1.89471786051153,"Hurlbert D k=2"
-14,"benthos","RHUR_3",2.70067460616802,"Hurlbert D k=3"
-14,"divent","RHUR_2",9.49828751406364,"Hurlbert D k=2"
-14,"divent","RHUR_3",9.67731619985116,"Hurlbert D k=3"
-14,"entropart","RHUR_2",1.89471786051153,"Hurlbert D k=2"
-14,"entropart","RHUR_3",2.70067460616802,"Hurlbert D k=3"
-14,"mobsim","RHUR_2",1.89471786051153,"Hurlbert D k=2"
-14,"mobsim","RHUR_3",2.70067460616802,"Hurlbert D k=3"
-14,"tabula","RHUR_2",1.89471786050319,"Hurlbert D k=2"
-14,"tabula","RHUR_3",2.70067460616041,"Hurlbert D k=3"
-14,"vegan","RHUR_2",1.89471786051153,"Hurlbert D k=2"
-14,"vegan","RHUR_3",2.70067460616802,"Hurlbert D k=3"
-14,"BAT","RICE",35.0590261159798,"ICE"
+14,"BAT","RICE",35.3082234661679,"ICE"
 14,"fossil","RICE",23.5660377358491,"ICE"
 14,"tabula","RICE",23,"ICE"
 14,"wiqid","RICE",23,"ICE"
@@ -5084,6 +5084,18 @@
 15,"custom","DGOO_3_1",0.0494237045959761,"Good m3 n1"
 15,"custom","DGOO_3_2",0.116953123988016,"Good m3 n2"
 15,"custom","DGOO_3_3",1,"Good m3 n3"
+15,"benthos","DHUR_2",1.85313131313127,NA
+15,"benthos","DHUR_3",2.59130488559056,NA
+15,"divent","DHUR_2",6.80877696420632,NA
+15,"divent","DHUR_3",6.99041280077468,NA
+15,"entropart","DHUR_2",1.85313131313127,NA
+15,"entropart","DHUR_3",2.59130488559056,NA
+15,"mobsim","DHUR_2",1.85313131313127,NA
+15,"mobsim","DHUR_3",2.59130488559056,NA
+15,"tabula","DHUR_2",1.85313131313172,NA
+15,"tabula","DHUR_3",2.59130488559018,NA
+15,"vegan","DHUR_2",1.85313131313127,NA
+15,"vegan","DHUR_3",2.59130488559056,NA
 15,"abdiv","DINVSP",6.43500643500644,"Simpson inverse"
 15,"adiv","DINVSP",6.43500643500644,"Simpson inverse"
 15,"asbio","DINVSP",6.43500643500644,"Simpson inverse"
@@ -5344,24 +5356,12 @@
 15,"OTUtable","RC1M",58.5,"Chao 1 modified"
 15,"tabula","RC1M",58.095,"Chao 1 modified"
 15,"wiqid","RC1M",58.5,"Chao 1 modified"
-15,"BAT","RCA2",35.1487380952381,"Chao 2"
+15,"BAT","RCA2",34.8523452380952,"Chao 2"
 15,"divDyn","RCA2",35,"Chao 2"
 15,"fossil","RCA2",58.5,"Chao 2"
 15,"tabula","RCA2",18,"Chao 2"
 15,"wiqid","RCA2",18,"Chao 2"
-15,"benthos","RHUR_2",1.85313131313127,"Hurlbert D k=2"
-15,"benthos","RHUR_3",2.59130488559056,"Hurlbert D k=3"
-15,"divent","RHUR_2",6.80877696420632,"Hurlbert D k=2"
-15,"divent","RHUR_3",6.99041280077468,"Hurlbert D k=3"
-15,"entropart","RHUR_2",1.85313131313127,"Hurlbert D k=2"
-15,"entropart","RHUR_3",2.59130488559056,"Hurlbert D k=3"
-15,"mobsim","RHUR_2",1.85313131313127,"Hurlbert D k=2"
-15,"mobsim","RHUR_3",2.59130488559056,"Hurlbert D k=3"
-15,"tabula","RHUR_2",1.85313131313172,"Hurlbert D k=2"
-15,"tabula","RHUR_3",2.59130488559018,"Hurlbert D k=3"
-15,"vegan","RHUR_2",1.85313131313127,"Hurlbert D k=2"
-15,"vegan","RHUR_3",2.59130488559056,"Hurlbert D k=3"
-15,"BAT","RICE",35.0699280724215,"ICE"
+15,"BAT","RICE",35.2012596309463,"ICE"
 15,"fossil","RICE",21.5121951219512,"ICE"
 15,"tabula","RICE",18,"ICE"
 15,"wiqid","RICE",18,"ICE"
@@ -5444,6 +5444,18 @@
 16,"custom","DGOO_3_1",0.0509147161494989,"Good m3 n1"
 16,"custom","DGOO_3_2",0.111193144436873,"Good m3 n2"
 16,"custom","DGOO_3_3",1,"Good m3 n3"
+16,"benthos","DHUR_2",1.85094501718213,NA
+16,"benthos","DHUR_3",2.58778486163862,NA
+16,"divent","DHUR_2",6.70890865917534,NA
+16,"divent","DHUR_3",6.92757246489695,NA
+16,"entropart","DHUR_2",1.85094501718213,NA
+16,"entropart","DHUR_3",2.58778486163862,NA
+16,"mobsim","DHUR_2",1.85094501718213,NA
+16,"mobsim","DHUR_3",2.58778486163862,NA
+16,"tabula","DHUR_2",1.85094501718347,NA
+16,"tabula","DHUR_3",2.58778486163969,NA
+16,"vegan","DHUR_2",1.85094501718213,NA
+16,"vegan","DHUR_3",2.58778486163862,NA
 16,"abdiv","DINVSP",6.33602693602694,"Simpson inverse"
 16,"adiv","DINVSP",6.33602693602694,"Simpson inverse"
 16,"asbio","DINVSP",6.33602693602694,"Simpson inverse"
@@ -5704,24 +5716,12 @@
 16,"OTUtable","RC1M",17.9,"Chao 1 modified"
 16,"tabula","RC1M",17.8907216494845,"Chao 1 modified"
 16,"wiqid","RC1M",17.9,"Chao 1 modified"
-16,"BAT","RCA2",35.1492023809524,"Chao 2"
+16,"BAT","RCA2",34.8528452380952,"Chao 2"
 16,"divDyn","RCA2",17.4705882352941,"Chao 2"
 16,"fossil","RCA2",17.9,"Chao 2"
 16,"tabula","RCA2",17,"Chao 2"
 16,"wiqid","RCA2",17,"Chao 2"
-16,"benthos","RHUR_2",1.85094501718213,"Hurlbert D k=2"
-16,"benthos","RHUR_3",2.58778486163862,"Hurlbert D k=3"
-16,"divent","RHUR_2",6.70890865917534,"Hurlbert D k=2"
-16,"divent","RHUR_3",6.92757246489695,"Hurlbert D k=3"
-16,"entropart","RHUR_2",1.85094501718213,"Hurlbert D k=2"
-16,"entropart","RHUR_3",2.58778486163862,"Hurlbert D k=3"
-16,"mobsim","RHUR_2",1.85094501718213,"Hurlbert D k=2"
-16,"mobsim","RHUR_3",2.58778486163862,"Hurlbert D k=3"
-16,"tabula","RHUR_2",1.85094501718347,"Hurlbert D k=2"
-16,"tabula","RHUR_3",2.58778486163969,"Hurlbert D k=3"
-16,"vegan","RHUR_2",1.85094501718213,"Hurlbert D k=2"
-16,"vegan","RHUR_3",2.58778486163862,"Hurlbert D k=3"
-16,"BAT","RICE",35.0529511473077,"ICE"
+16,"BAT","RICE",35.2952886955893,"ICE"
 16,"fossil","RICE",18,"ICE"
 16,"tabula","RICE",17,"ICE"
 16,"wiqid","RICE",17,"ICE"
@@ -5804,6 +5804,18 @@
 17,"custom","DGOO_3_1",0.0736331446971313,"Good m3 n1"
 17,"custom","DGOO_3_2",0.123038039606707,"Good m3 n2"
 17,"custom","DGOO_3_3",1,"Good m3 n3"
+17,"benthos","DHUR_2",1.79475655430714,NA
+17,"benthos","DHUR_3",2.44120701395985,NA
+17,"divent","DHUR_2",4.87226254108946,NA
+17,"divent","DHUR_3",5.01163196447031,NA
+17,"entropart","DHUR_2",1.79475655430713,NA
+17,"entropart","DHUR_3",2.44120701395985,NA
+17,"mobsim","DHUR_2",1.79475655430714,NA
+17,"mobsim","DHUR_3",2.44120701395985,NA
+17,"tabula","DHUR_2",1.79475655430715,NA
+17,"tabula","DHUR_3",2.44120701395946,NA
+17,"vegan","DHUR_2",1.79475655430714,NA
+17,"vegan","DHUR_3",2.44120701395985,NA
 17,"abdiv","DINVSP",4.67128027681661,"Simpson inverse"
 17,"adiv","DINVSP",4.67128027681661,"Simpson inverse"
 17,"asbio","DINVSP",4.67128027681661,"Simpson inverse"
@@ -6064,24 +6076,12 @@
 17,"OTUtable","RC1M",18.1666666666667,"Chao 1 modified"
 17,"tabula","RC1M",18.1203703703704,"Chao 1 modified"
 17,"wiqid","RC1M",18.1666666666667,"Chao 1 modified"
-17,"BAT","RCA2",35.18475,"Chao 2"
+17,"BAT","RCA2",34.9333571428571,"Chao 2"
 17,"divDyn","RCA2",16.3214285714286,"Chao 2"
 17,"fossil","RCA2",18.1666666666667,"Chao 2"
 17,"tabula","RCA2",14,"Chao 2"
 17,"wiqid","RCA2",14,"Chao 2"
-17,"benthos","RHUR_2",1.79475655430714,"Hurlbert D k=2"
-17,"benthos","RHUR_3",2.44120701395985,"Hurlbert D k=3"
-17,"divent","RHUR_2",4.87226254108946,"Hurlbert D k=2"
-17,"divent","RHUR_3",5.01163196447031,"Hurlbert D k=3"
-17,"entropart","RHUR_2",1.79475655430713,"Hurlbert D k=2"
-17,"entropart","RHUR_3",2.44120701395985,"Hurlbert D k=3"
-17,"mobsim","RHUR_2",1.79475655430714,"Hurlbert D k=2"
-17,"mobsim","RHUR_3",2.44120701395985,"Hurlbert D k=3"
-17,"tabula","RHUR_2",1.79475655430715,"Hurlbert D k=2"
-17,"tabula","RHUR_3",2.44120701395946,"Hurlbert D k=3"
-17,"vegan","RHUR_2",1.79475655430714,"Hurlbert D k=2"
-17,"vegan","RHUR_3",2.44120701395985,"Hurlbert D k=3"
-17,"BAT","RICE",35.0775169647685,"ICE"
+17,"BAT","RICE",35.2573561953263,"ICE"
 17,"fossil","RICE",16,"ICE"
 17,"tabula","RICE",14,"ICE"
 17,"wiqid","RICE",14,"ICE"
@@ -6164,6 +6164,18 @@
 18,"custom","DGOO_3_1",0.0422679727064509,"Good m3 n1"
 18,"custom","DGOO_3_2",0.116585520934091,"Good m3 n2"
 18,"custom","DGOO_3_3",1,"Good m3 n3"
+18,"benthos","DHUR_2",1.86846298710708,NA
+18,"benthos","DHUR_3",2.63062161878638,NA
+18,"divent","DHUR_2",7.60242693466208,NA
+18,"divent","DHUR_3",7.77350482328043,NA
+18,"entropart","DHUR_2",1.86846298710707,NA
+18,"entropart","DHUR_3",2.63062161878638,NA
+18,"mobsim","DHUR_2",1.86846298710708,NA
+18,"mobsim","DHUR_3",2.63062161878638,NA
+18,"tabula","DHUR_2",1.86846298710754,NA
+18,"tabula","DHUR_3",2.63062161878787,NA
+18,"vegan","DHUR_2",1.86846298710708,NA
+18,"vegan","DHUR_3",2.63062161878638,NA
 18,"abdiv","DINVSP",7.19958634953464,"Simpson inverse"
 18,"adiv","DINVSP",7.19958634953464,"Simpson inverse"
 18,"asbio","DINVSP",7.19958634953464,"Simpson inverse"
@@ -6424,24 +6436,12 @@
 18,"OTUtable","RC1M",20,"Chao 1 modified"
 18,"tabula","RC1M",19.9830508474576,"Chao 1 modified"
 18,"wiqid","RC1M",20,"Chao 1 modified"
-18,"BAT","RCA2",35.1330833333333,"Chao 2"
+18,"BAT","RCA2",35.1845238095238,"Chao 2"
 18,"divDyn","RCA2",19.1333333333333,"Chao 2"
 18,"fossil","RCA2",20,"Chao 2"
 18,"tabula","RCA2",18,"Chao 2"
 18,"wiqid","RCA2",18,"Chao 2"
-18,"benthos","RHUR_2",1.86846298710708,"Hurlbert D k=2"
-18,"benthos","RHUR_3",2.63062161878638,"Hurlbert D k=3"
-18,"divent","RHUR_2",7.60242693466208,"Hurlbert D k=2"
-18,"divent","RHUR_3",7.77350482328043,"Hurlbert D k=3"
-18,"entropart","RHUR_2",1.86846298710707,"Hurlbert D k=2"
-18,"entropart","RHUR_3",2.63062161878638,"Hurlbert D k=3"
-18,"mobsim","RHUR_2",1.86846298710708,"Hurlbert D k=2"
-18,"mobsim","RHUR_3",2.63062161878638,"Hurlbert D k=3"
-18,"tabula","RHUR_2",1.86846298710754,"Hurlbert D k=2"
-18,"tabula","RHUR_3",2.63062161878787,"Hurlbert D k=3"
-18,"vegan","RHUR_2",1.86846298710708,"Hurlbert D k=2"
-18,"vegan","RHUR_3",2.63062161878638,"Hurlbert D k=3"
-18,"BAT","RICE",35.1450115955605,"ICE"
+18,"BAT","RICE",35.2726166012672,"ICE"
 18,"fossil","RICE",19.2765957446809,"ICE"
 18,"tabula","RICE",18,"ICE"
 18,"wiqid","RICE",18,"ICE"
@@ -6524,6 +6524,18 @@
 19,"custom","DGOO_3_1",0.021353797046753,"Good m3 n1"
 19,"custom","DGOO_3_2",0.101525805389477,"Good m3 n2"
 19,"custom","DGOO_3_3",1,"Good m3 n3"
+19,"benthos","DHUR_2",1.91902071563091,NA
+19,"benthos","DHUR_3",2.76528945436011,NA
+19,"divent","DHUR_2",12.3488372717887,NA
+19,"divent","DHUR_3",12.4391893031477,NA
+19,"entropart","DHUR_2",1.91902071563091,NA
+19,"entropart","DHUR_3",2.76528945436011,NA
+19,"mobsim","DHUR_2",1.91902071563091,NA
+19,"mobsim","DHUR_3",2.76528945436011,NA
+19,"tabula","DHUR_2",1.91902071563123,NA
+19,"tabula","DHUR_3",2.76528945436168,NA
+19,"vegan","DHUR_2",1.91902071563091,NA
+19,"vegan","DHUR_3",2.76528945436011,NA
 19,"abdiv","DINVSP",11.2653721682848,"Simpson inverse"
 19,"adiv","DINVSP",11.2653721682848,"Simpson inverse"
 19,"asbio","DINVSP",11.2653721682848,"Simpson inverse"
@@ -6784,24 +6796,12 @@
 19,"OTUtable","RC1M",22.3333333333333,"Chao 1 modified"
 19,"tabula","RC1M",22.3220338983051,"Chao 1 modified"
 19,"wiqid","RC1M",22.3333333333333,"Chao 1 modified"
-19,"BAT","RCA2",35.1060238095238,"Chao 2"
+19,"BAT","RCA2",35.2001904761905,"Chao 2"
 19,"divDyn","RCA2",21.8163265306122,"Chao 2"
 19,"fossil","RCA2",22.3333333333333,"Chao 2"
 19,"tabula","RCA2",21,"Chao 2"
 19,"wiqid","RCA2",21,"Chao 2"
-19,"benthos","RHUR_2",1.91902071563091,"Hurlbert D k=2"
-19,"benthos","RHUR_3",2.76528945436011,"Hurlbert D k=3"
-19,"divent","RHUR_2",12.3488372717887,"Hurlbert D k=2"
-19,"divent","RHUR_3",12.4391893031477,"Hurlbert D k=3"
-19,"entropart","RHUR_2",1.91902071563091,"Hurlbert D k=2"
-19,"entropart","RHUR_3",2.76528945436011,"Hurlbert D k=3"
-19,"mobsim","RHUR_2",1.91902071563091,"Hurlbert D k=2"
-19,"mobsim","RHUR_3",2.76528945436011,"Hurlbert D k=3"
-19,"tabula","RHUR_2",1.91902071563123,"Hurlbert D k=2"
-19,"tabula","RHUR_3",2.76528945436168,"Hurlbert D k=3"
-19,"vegan","RHUR_2",1.91902071563091,"Hurlbert D k=2"
-19,"vegan","RHUR_3",2.76528945436011,"Hurlbert D k=3"
-19,"BAT","RICE",35.1085445806319,"ICE"
+19,"BAT","RICE",35.1961021334543,"ICE"
 19,"fossil","RICE",22.2592592592593,"ICE"
 19,"tabula","RICE",21,"ICE"
 19,"wiqid","RICE",21,"ICE"
@@ -6884,6 +6884,18 @@
 20,"custom","DGOO_3_1",0.0379002863675766,"Good m3 n1"
 20,"custom","DGOO_3_2",0.105381317754739,"Good m3 n2"
 20,"custom","DGOO_3_3",1,"Good m3 n3"
+20,"benthos","DHUR_2",1.87805892135902,NA
+20,"benthos","DHUR_3",2.65848299953793,NA
+20,"divent","DHUR_2",8.20068196173713,NA
+20,"divent","DHUR_3",8.43729162670695,NA
+20,"entropart","DHUR_2",1.87805892135902,NA
+20,"entropart","DHUR_3",2.65848299953794,NA
+20,"mobsim","DHUR_2",1.87805892135902,NA
+20,"mobsim","DHUR_3",2.65848299953793,NA
+20,"tabula","DHUR_2",1.87816098368763,NA
+20,"tabula","DHUR_3",2.65851806578715,NA
+20,"vegan","DHUR_2",1.87805892135902,NA
+20,"vegan","DHUR_3",2.65848299953793,NA
 20,"abdiv","DINVSP",7.89184149184149,"Simpson inverse"
 20,"adiv","DINVSP",7.89184149184149,"Simpson inverse"
 20,"asbio","DINVSP",7.89184149184149,"Simpson inverse"
@@ -7144,24 +7156,12 @@
 20,"OTUtable","RC1M",22.25,"Chao 1 modified"
 20,"tabula","RC1M",22.2377717391304,"Chao 1 modified"
 20,"wiqid","RC1M",22.25,"Chao 1 modified"
-20,"BAT","RCA2",35.0992619047619,"Chao 2"
+20,"BAT","RCA2",35.10825,"Chao 2"
 20,"divDyn","RCA2",20.95,"Chao 2"
 20,"fossil","RCA2",22.25,"Chao 2"
 20,"tabula","RCA2",20,"Chao 2"
 20,"wiqid","RCA2",20,"Chao 2"
-20,"benthos","RHUR_2",1.87805892135902,"Hurlbert D k=2"
-20,"benthos","RHUR_3",2.65848299953793,"Hurlbert D k=3"
-20,"divent","RHUR_2",8.20068196173713,"Hurlbert D k=2"
-20,"divent","RHUR_3",8.43729162670695,"Hurlbert D k=3"
-20,"entropart","RHUR_2",1.87805892135902,"Hurlbert D k=2"
-20,"entropart","RHUR_3",2.65848299953794,"Hurlbert D k=3"
-20,"mobsim","RHUR_2",1.87805892135902,"Hurlbert D k=2"
-20,"mobsim","RHUR_3",2.65848299953793,"Hurlbert D k=3"
-20,"tabula","RHUR_2",1.87816098368763,"Hurlbert D k=2"
-20,"tabula","RHUR_3",2.65851806578715,"Hurlbert D k=3"
-20,"vegan","RHUR_2",1.87805892135902,"Hurlbert D k=2"
-20,"vegan","RHUR_3",2.65848299953793,"Hurlbert D k=3"
-20,"BAT","RICE",35.1706189909211,"ICE"
+20,"BAT","RICE",35.1264024884059,"ICE"
 20,"fossil","RICE",20.8571428571429,"ICE"
 20,"tabula","RICE",20,"ICE"
 20,"wiqid","RICE",20,"ICE"
@@ -7244,6 +7244,18 @@
 21,"custom","DGOO_3_1",0.0504866133482721,"Good m3 n1"
 21,"custom","DGOO_3_2",0.128299414839335,"Good m3 n2"
 21,"custom","DGOO_3_3",1,"Good m3 n3"
+21,"benthos","DHUR_2",1.84762746831714,NA
+21,"benthos","DHUR_3",2.57322108176678,NA
+21,"divent","DHUR_2",6.56283832297095,NA
+21,"divent","DHUR_3",6.67856755991917,NA
+21,"entropart","DHUR_2",1.84762746831714,NA
+21,"entropart","DHUR_3",2.57322108176677,NA
+21,"mobsim","DHUR_2",1.84762746831714,NA
+21,"mobsim","DHUR_3",2.57322108176678,NA
+21,"tabula","DHUR_2",1.84762746831834,NA
+21,"tabula","DHUR_3",2.57322108176717,NA
+21,"vegan","DHUR_2",1.84762746831714,NA
+21,"vegan","DHUR_3",2.57322108176678,NA
 21,"abdiv","DINVSP",6.2649885583524,"Simpson inverse"
 21,"adiv","DINVSP",6.2649885583524,"Simpson inverse"
 21,"asbio","DINVSP",6.2649885583524,"Simpson inverse"
@@ -7504,24 +7516,12 @@
 21,"OTUtable","RC1M",18,"Chao 1 modified"
 21,"tabula","RC1M",17.982905982906,"Chao 1 modified"
 21,"wiqid","RC1M",18,"Chao 1 modified"
-21,"BAT","RCA2",35.0035952380952,"Chao 2"
+21,"BAT","RCA2",35.0039166666667,"Chao 2"
 21,"divDyn","RCA2",17.125,"Chao 2"
 21,"fossil","RCA2",18,"Chao 2"
 21,"tabula","RCA2",16,"Chao 2"
 21,"wiqid","RCA2",16,"Chao 2"
-21,"benthos","RHUR_2",1.84762746831714,"Hurlbert D k=2"
-21,"benthos","RHUR_3",2.57322108176678,"Hurlbert D k=3"
-21,"divent","RHUR_2",6.56283832297095,"Hurlbert D k=2"
-21,"divent","RHUR_3",6.67856755991917,"Hurlbert D k=3"
-21,"entropart","RHUR_2",1.84762746831714,"Hurlbert D k=2"
-21,"entropart","RHUR_3",2.57322108176677,"Hurlbert D k=3"
-21,"mobsim","RHUR_2",1.84762746831714,"Hurlbert D k=2"
-21,"mobsim","RHUR_3",2.57322108176678,"Hurlbert D k=3"
-21,"tabula","RHUR_2",1.84762746831834,"Hurlbert D k=2"
-21,"tabula","RHUR_3",2.57322108176717,"Hurlbert D k=3"
-21,"vegan","RHUR_2",1.84762746831714,"Hurlbert D k=2"
-21,"vegan","RHUR_3",2.57322108176678,"Hurlbert D k=3"
-21,"BAT","RICE",35.1850924499894,"ICE"
+21,"BAT","RICE",35.0962923239986,"ICE"
 21,"fossil","RICE",17.7777777777778,"ICE"
 21,"tabula","RICE",16,"ICE"
 21,"wiqid","RICE",16,"ICE"
@@ -7604,6 +7604,18 @@
 22,"custom","DGOO_3_1",0.0839350047726514,"Good m3 n1"
 22,"custom","DGOO_3_2",0.124156807138226,"Good m3 n2"
 22,"custom","DGOO_3_3",1,"Good m3 n3"
+22,"benthos","DHUR_2",1.76036991704064,NA
+22,"benthos","DHUR_3",2.35785993712046,NA
+22,"divent","DHUR_2",4.17309667957312,NA
+22,"divent","DHUR_3",4.31060800057009,NA
+22,"entropart","DHUR_2",1.76036991704063,NA
+22,"entropart","DHUR_3",2.35785993712046,NA
+22,"mobsim","DHUR_2",1.76036991704064,NA
+22,"mobsim","DHUR_3",2.35785993712046,NA
+22,"tabula","DHUR_2",1.7606229164185,NA
+22,"tabula","DHUR_3",2.35795237158821,NA
+22,"vegan","DHUR_2",1.76036991704064,NA
+22,"vegan","DHUR_3",2.35785993712046,NA
 22,"abdiv","DINVSP",4.09750692520776,"Simpson inverse"
 22,"adiv","DINVSP",4.09750692520776,"Simpson inverse"
 22,"asbio","DINVSP",4.09750692520776,"Simpson inverse"
@@ -7864,24 +7876,12 @@
 22,"OTUtable","RC1M",26.5,"Chao 1 modified"
 22,"tabula","RC1M",26.4273255813954,"Chao 1 modified"
 22,"wiqid","RC1M",26.5,"Chao 1 modified"
-22,"BAT","RCA2",35.0589285714286,"Chao 2"
+22,"BAT","RCA2",34.941,"Chao 2"
 22,"divDyn","RCA2",18.6428571428571,"Chao 2"
 22,"fossil","RCA2",26.5,"Chao 2"
 22,"tabula","RCA2",14,"Chao 2"
 22,"wiqid","RCA2",14,"Chao 2"
-22,"benthos","RHUR_2",1.76036991704064,"Hurlbert D k=2"
-22,"benthos","RHUR_3",2.35785993712046,"Hurlbert D k=3"
-22,"divent","RHUR_2",4.17309667957312,"Hurlbert D k=2"
-22,"divent","RHUR_3",4.31060800057009,"Hurlbert D k=3"
-22,"entropart","RHUR_2",1.76036991704063,"Hurlbert D k=2"
-22,"entropart","RHUR_3",2.35785993712046,"Hurlbert D k=3"
-22,"mobsim","RHUR_2",1.76036991704064,"Hurlbert D k=2"
-22,"mobsim","RHUR_3",2.35785993712046,"Hurlbert D k=3"
-22,"tabula","RHUR_2",1.7606229164185,"Hurlbert D k=2"
-22,"tabula","RHUR_3",2.35795237158821,"Hurlbert D k=3"
-22,"vegan","RHUR_2",1.76036991704064,"Hurlbert D k=2"
-22,"vegan","RHUR_3",2.35785993712046,"Hurlbert D k=3"
-22,"BAT","RICE",35.2161929401651,"ICE"
+22,"BAT","RICE",35.0439570601236,"ICE"
 22,"fossil","RICE",16.9411764705882,"ICE"
 22,"tabula","RICE",14,"ICE"
 22,"wiqid","RICE",14,"ICE"
@@ -7964,6 +7964,18 @@
 23,"custom","DGOO_3_1",0.0458947133639776,"Good m3 n1"
 23,"custom","DGOO_3_2",0.120427461597759,"Good m3 n2"
 23,"custom","DGOO_3_3",1,"Good m3 n3"
+23,"benthos","DHUR_2",1.86296296296296,NA
+23,"benthos","DHUR_3",2.61511954992971,NA
+23,"divent","DHUR_2",7.29732004022744,NA
+23,"divent","DHUR_3",7.44567259947047,NA
+23,"entropart","DHUR_2",1.86296296296296,NA
+23,"entropart","DHUR_3",2.61511954992971,NA
+23,"mobsim","DHUR_2",1.86296296296296,NA
+23,"mobsim","DHUR_3",2.61511954992971,NA
+23,"tabula","DHUR_2",1.86296296296419,NA
+23,"tabula","DHUR_3",2.61511954993034,NA
+23,"vegan","DHUR_2",1.86296296296296,NA
+23,"vegan","DHUR_3",2.61511954992971,NA
 23,"abdiv","DINVSP",6.77089783281734,"Simpson inverse"
 23,"adiv","DINVSP",6.77089783281734,"Simpson inverse"
 23,"asbio","DINVSP",6.77089783281734,"Simpson inverse"
@@ -8224,24 +8236,12 @@
 23,"OTUtable","RC1M",19,"Chao 1 modified"
 23,"tabula","RC1M",18.9506172839506,"Chao 1 modified"
 23,"wiqid","RC1M",19,"Chao 1 modified"
-23,"BAT","RCA2",34.996,"Chao 2"
+23,"BAT","RCA2",34.9453333333333,"Chao 2"
 23,"divDyn","RCA2",16.8666666666667,"Chao 2"
 23,"fossil","RCA2",19,"Chao 2"
 23,"tabula","RCA2",15,"Chao 2"
 23,"wiqid","RCA2",15,"Chao 2"
-23,"benthos","RHUR_2",1.86296296296296,"Hurlbert D k=2"
-23,"benthos","RHUR_3",2.61511954992971,"Hurlbert D k=3"
-23,"divent","RHUR_2",7.29732004022744,"Hurlbert D k=2"
-23,"divent","RHUR_3",7.44567259947047,"Hurlbert D k=3"
-23,"entropart","RHUR_2",1.86296296296296,"Hurlbert D k=2"
-23,"entropart","RHUR_3",2.61511954992971,"Hurlbert D k=3"
-23,"mobsim","RHUR_2",1.86296296296296,"Hurlbert D k=2"
-23,"mobsim","RHUR_3",2.61511954992971,"Hurlbert D k=3"
-23,"tabula","RHUR_2",1.86296296296419,"Hurlbert D k=2"
-23,"tabula","RHUR_3",2.61511954993034,"Hurlbert D k=3"
-23,"vegan","RHUR_2",1.86296296296296,"Hurlbert D k=2"
-23,"vegan","RHUR_3",2.61511954992971,"Hurlbert D k=3"
-23,"BAT","RICE",35.2029862157147,"ICE"
+23,"BAT","RICE",35.0426806323631,"ICE"
 23,"fossil","RICE",16.3684210526316,"ICE"
 23,"tabula","RICE",15,"ICE"
 23,"wiqid","RICE",15,"ICE"
@@ -8324,6 +8324,18 @@
 24,"custom","DGOO_3_1",0.0557825625255118,"Good m3 n1"
 24,"custom","DGOO_3_2",0.128125136773425,"Good m3 n2"
 24,"custom","DGOO_3_3",1,"Good m3 n3"
+24,"benthos","DHUR_2",1.83860759493668,NA
+24,"benthos","DHUR_3",2.55006085686466,NA
+24,"divent","DHUR_2",6.19610824582148,NA
+24,"divent","DHUR_3",6.31567747645734,NA
+24,"entropart","DHUR_2",1.83860759493668,NA
+24,"entropart","DHUR_3",2.55006085686465,NA
+24,"mobsim","DHUR_2",1.83860759493668,NA
+24,"mobsim","DHUR_3",2.55006085686466,NA
+24,"tabula","DHUR_2",1.83860759493751,NA
+24,"tabula","DHUR_3",2.55006085686519,NA
+24,"vegan","DHUR_2",1.83860759493668,NA
+24,"vegan","DHUR_3",2.55006085686466,NA
 24,"abdiv","DINVSP",5.81818181818182,"Simpson inverse"
 24,"adiv","DINVSP",5.81818181818182,"Simpson inverse"
 24,"asbio","DINVSP",5.81818181818182,"Simpson inverse"
@@ -8584,24 +8596,12 @@
 24,"OTUtable","RC1M",Inf,"Chao 1 modified"
 24,"tabula","RC1M",18.925,"Chao 1 modified"
 24,"wiqid","RC1M",19,"Chao 1 modified"
-24,"BAT","RCA2",35.0236666666667,"Chao 2"
+24,"BAT","RCA2",34.967,"Chao 2"
 24,"divDyn","RCA2",18.5384615384615,"Chao 2"
 24,"fossil","RCA2",19,"Chao 2"
 24,"tabula","RCA2",13,"Chao 2"
 24,"wiqid","RCA2",13,"Chao 2"
-24,"benthos","RHUR_2",1.83860759493668,"Hurlbert D k=2"
-24,"benthos","RHUR_3",2.55006085686466,"Hurlbert D k=3"
-24,"divent","RHUR_2",6.19610824582148,"Hurlbert D k=2"
-24,"divent","RHUR_3",6.31567747645734,"Hurlbert D k=3"
-24,"entropart","RHUR_2",1.83860759493668,"Hurlbert D k=2"
-24,"entropart","RHUR_3",2.55006085686465,"Hurlbert D k=3"
-24,"mobsim","RHUR_2",1.83860759493668,"Hurlbert D k=2"
-24,"mobsim","RHUR_3",2.55006085686466,"Hurlbert D k=3"
-24,"tabula","RHUR_2",1.83860759493751,"Hurlbert D k=2"
-24,"tabula","RHUR_3",2.55006085686519,"Hurlbert D k=3"
-24,"vegan","RHUR_2",1.83860759493668,"Hurlbert D k=2"
-24,"vegan","RHUR_3",2.55006085686466,"Hurlbert D k=3"
-24,"BAT","RICE",35.1613935010975,"ICE"
+24,"BAT","RICE",35.0205841719845,"ICE"
 24,"fossil","RICE",14.8181818181818,"ICE"
 24,"tabula","RICE",13,"ICE"
 24,"wiqid","RICE",13,"ICE"
@@ -8684,6 +8684,18 @@
 25,"custom","DGOO_3_1",0.0647497552727275,"Good m3 n1"
 25,"custom","DGOO_3_2",0.12470125205174,"Good m3 n2"
 25,"custom","DGOO_3_3",1,"Good m3 n3"
+25,"benthos","DHUR_2",1.81474077035853,NA
+25,"benthos","DHUR_3",2.49076567720026,NA
+25,"divent","DHUR_2",5.39784269471813,NA
+25,"divent","DHUR_3",5.53651961368749,NA
+25,"entropart","DHUR_2",1.81474077035853,NA
+25,"entropart","DHUR_3",2.49076567720026,NA
+25,"mobsim","DHUR_2",1.81474077035853,NA
+25,"mobsim","DHUR_3",2.49076567720026,NA
+25,"tabula","DHUR_2",1.81474077036091,NA
+25,"tabula","DHUR_3",2.49076567720102,NA
+25,"vegan","DHUR_2",1.81474077035853,NA
+25,"vegan","DHUR_3",2.49076567720026,NA
 25,"abdiv","DINVSP",5.21150533930417,"Simpson inverse"
 25,"adiv","DINVSP",5.21150533930417,"Simpson inverse"
 25,"asbio","DINVSP",5.21150533930417,"Simpson inverse"
@@ -8944,24 +8956,12 @@
 25,"OTUtable","RC1M",29.125,"Chao 1 modified"
 25,"tabula","RC1M",29.0426829268293,"Chao 1 modified"
 25,"wiqid","RC1M",29.125,"Chao 1 modified"
-25,"BAT","RCA2",35.05,"Chao 2"
+25,"BAT","RCA2",34.9693333333333,"Chao 2"
 25,"divDyn","RCA2",25.8210526315789,"Chao 2"
 25,"fossil","RCA2",29.125,"Chao 2"
 25,"tabula","RCA2",19,"Chao 2"
 25,"wiqid","RCA2",19,"Chao 2"
-25,"benthos","RHUR_2",1.81474077035853,"Hurlbert D k=2"
-25,"benthos","RHUR_3",2.49076567720026,"Hurlbert D k=3"
-25,"divent","RHUR_2",5.39784269471813,"Hurlbert D k=2"
-25,"divent","RHUR_3",5.53651961368749,"Hurlbert D k=3"
-25,"entropart","RHUR_2",1.81474077035853,"Hurlbert D k=2"
-25,"entropart","RHUR_3",2.49076567720026,"Hurlbert D k=3"
-25,"mobsim","RHUR_2",1.81474077035853,"Hurlbert D k=2"
-25,"mobsim","RHUR_3",2.49076567720026,"Hurlbert D k=3"
-25,"tabula","RHUR_2",1.81474077036091,"Hurlbert D k=2"
-25,"tabula","RHUR_3",2.49076567720102,"Hurlbert D k=3"
-25,"vegan","RHUR_2",1.81474077035853,"Hurlbert D k=2"
-25,"vegan","RHUR_3",2.49076567720026,"Hurlbert D k=3"
-25,"BAT","RICE",35.1550697370917,"ICE"
+25,"BAT","RICE",35.0625818484153,"ICE"
 25,"fossil","RICE",26.9411764705882,"ICE"
 25,"tabula","RICE",19,"ICE"
 25,"wiqid","RICE",19,"ICE"
@@ -9044,6 +9044,18 @@
 26,"custom","DGOO_3_1",0.0618749571411798,"Good m3 n1"
 26,"custom","DGOO_3_2",0.130454406158394,"Good m3 n2"
 26,"custom","DGOO_3_3",1,"Good m3 n3"
+26,"benthos","DHUR_2",1.82114845938374,NA
+26,"benthos","DHUR_3",2.50466101694915,NA
+26,"divent","DHUR_2",5.59123283242122,NA
+26,"divent","DHUR_3",5.70244569150956,NA
+26,"entropart","DHUR_2",1.82114845938374,NA
+26,"entropart","DHUR_3",2.50466101694915,NA
+26,"mobsim","DHUR_2",1.82114845938374,NA
+26,"mobsim","DHUR_3",2.50466101694915,NA
+26,"tabula","DHUR_2",1.82114845938417,NA
+26,"tabula","DHUR_3",2.50466101694945,NA
+26,"vegan","DHUR_2",1.82114845938374,NA
+26,"vegan","DHUR_3",2.50466101694915,NA
 26,"abdiv","DINVSP",5.38519072550486,"Simpson inverse"
 26,"adiv","DINVSP",5.38519072550486,"Simpson inverse"
 26,"asbio","DINVSP",5.38519072550486,"Simpson inverse"
@@ -9304,24 +9316,12 @@
 26,"OTUtable","RC1M",25.1666666666667,"Chao 1 modified"
 26,"tabula","RC1M",25.0986111111111,"Chao 1 modified"
 26,"wiqid","RC1M",25.1666666666667,"Chao 1 modified"
-26,"BAT","RCA2",35.0416666666667,"Chao 2"
+26,"BAT","RCA2",34.9508333333333,"Chao 2"
 26,"divDyn","RCA2",21.9411764705882,"Chao 2"
 26,"fossil","RCA2",25.1666666666667,"Chao 2"
 26,"tabula","RCA2",17,"Chao 2"
 26,"wiqid","RCA2",17,"Chao 2"
-26,"benthos","RHUR_2",1.82114845938374,"Hurlbert D k=2"
-26,"benthos","RHUR_3",2.50466101694915,"Hurlbert D k=3"
-26,"divent","RHUR_2",5.59123283242122,"Hurlbert D k=2"
-26,"divent","RHUR_3",5.70244569150956,"Hurlbert D k=3"
-26,"entropart","RHUR_2",1.82114845938374,"Hurlbert D k=2"
-26,"entropart","RHUR_3",2.50466101694915,"Hurlbert D k=3"
-26,"mobsim","RHUR_2",1.82114845938374,"Hurlbert D k=2"
-26,"mobsim","RHUR_3",2.50466101694915,"Hurlbert D k=3"
-26,"tabula","RHUR_2",1.82114845938417,"Hurlbert D k=2"
-26,"tabula","RHUR_3",2.50466101694945,"Hurlbert D k=3"
-26,"vegan","RHUR_2",1.82114845938374,"Hurlbert D k=2"
-26,"vegan","RHUR_3",2.50466101694915,"Hurlbert D k=3"
-26,"BAT","RICE",35.1181879956535,"ICE"
+26,"BAT","RICE",35.046618551191,"ICE"
 26,"fossil","RICE",20.6296296296296,"ICE"
 26,"tabula","RICE",17,"ICE"
 26,"wiqid","RICE",17,"ICE"
@@ -9404,6 +9404,18 @@
 27,"custom","DGOO_3_1",0.0624895930765883,"Good m3 n1"
 27,"custom","DGOO_3_2",0.100074009061275,"Good m3 n2"
 27,"custom","DGOO_3_3",1,"Good m3 n3"
+27,"benthos","DHUR_2",1.81744858179866,NA
+27,"benthos","DHUR_3",2.50957613148348,NA
+27,"divent","DHUR_2",5.47791040431395,NA
+27,"divent","DHUR_3",5.7633789758573,NA
+27,"entropart","DHUR_2",1.81744858179866,NA
+27,"entropart","DHUR_3",2.50957613148348,NA
+27,"mobsim","DHUR_2",1.81744858179866,NA
+27,"mobsim","DHUR_3",2.50957613148348,NA
+27,"tabula","DHUR_2",1.81784066294948,NA
+27,"tabula","DHUR_3",2.50972284276519,NA
+27,"vegan","DHUR_2",1.81744858179866,NA
+27,"vegan","DHUR_3",2.50957613148348,NA
 27,"abdiv","DINVSP",5.33969669937556,"Simpson inverse"
 27,"adiv","DINVSP",5.33969669937556,"Simpson inverse"
 27,"asbio","DINVSP",5.33969669937556,"Simpson inverse"
@@ -9664,24 +9676,12 @@
 27,"OTUtable","RC1M",34.25,"Chao 1 modified"
 27,"tabula","RC1M",34.1791907514451,"Chao 1 modified"
 27,"wiqid","RC1M",34.25,"Chao 1 modified"
-27,"BAT","RCA2",35.045,"Chao 2"
+27,"BAT","RCA2",34.9761666666667,"Chao 2"
 27,"divDyn","RCA2",28.6818181818182,"Chao 2"
 27,"fossil","RCA2",34.25,"Chao 2"
 27,"tabula","RCA2",22,"Chao 2"
 27,"wiqid","RCA2",22,"Chao 2"
-27,"benthos","RHUR_2",1.81744858179866,"Hurlbert D k=2"
-27,"benthos","RHUR_3",2.50957613148348,"Hurlbert D k=3"
-27,"divent","RHUR_2",5.47791040431395,"Hurlbert D k=2"
-27,"divent","RHUR_3",5.7633789758573,"Hurlbert D k=3"
-27,"entropart","RHUR_2",1.81744858179866,"Hurlbert D k=2"
-27,"entropart","RHUR_3",2.50957613148348,"Hurlbert D k=3"
-27,"mobsim","RHUR_2",1.81744858179866,"Hurlbert D k=2"
-27,"mobsim","RHUR_3",2.50957613148348,"Hurlbert D k=3"
-27,"tabula","RHUR_2",1.81784066294948,"Hurlbert D k=2"
-27,"tabula","RHUR_3",2.50972284276519,"Hurlbert D k=3"
-27,"vegan","RHUR_2",1.81744858179866,"Hurlbert D k=2"
-27,"vegan","RHUR_3",2.50957613148348,"Hurlbert D k=3"
-27,"BAT","RICE",35.0973146406718,"ICE"
+27,"BAT","RICE",35.1117414404767,"ICE"
 27,"fossil","RICE",24.8,"ICE"
 27,"tabula","RICE",22,"ICE"
 27,"wiqid","RICE",22,"ICE"
@@ -9764,6 +9764,18 @@
 28,"custom","DGOO_3_1",0.04303419109045,"Good m3 n1"
 28,"custom","DGOO_3_2",0.115131644720921,"Good m3 n2"
 28,"custom","DGOO_3_3",1,"Good m3 n3"
+28,"benthos","DHUR_2",1.86764946764947,NA
+28,"benthos","DHUR_3",2.62888443071936,NA
+28,"divent","DHUR_2",7.55569865203933,NA
+28,"divent","DHUR_3",7.73541475589015,NA
+28,"entropart","DHUR_2",1.86764946764947,NA
+28,"entropart","DHUR_3",2.62888443071937,NA
+28,"mobsim","DHUR_2",1.86764946764947,NA
+28,"mobsim","DHUR_3",2.62888443071936,NA
+28,"tabula","DHUR_2",1.86764946764796,NA
+28,"tabula","DHUR_3",2.62888443071869,NA
+28,"vegan","DHUR_2",1.86764946764947,NA
+28,"vegan","DHUR_3",2.62888443071936,NA
 28,"abdiv","DINVSP",7.13433700057904,"Simpson inverse"
 28,"adiv","DINVSP",7.13433700057904,"Simpson inverse"
 28,"asbio","DINVSP",7.13433700057904,"Simpson inverse"
@@ -10024,24 +10036,12 @@
 28,"OTUtable","RC1M",22.1666666666667,"Chao 1 modified"
 28,"tabula","RC1M",22.1291291291291,"Chao 1 modified"
 28,"wiqid","RC1M",22.1666666666667,"Chao 1 modified"
-28,"BAT","RCA2",35.055,"Chao 2"
+28,"BAT","RCA2",34.977,"Chao 2"
 28,"divDyn","RCA2",20.3611111111111,"Chao 2"
 28,"fossil","RCA2",22.1666666666667,"Chao 2"
 28,"tabula","RCA2",18,"Chao 2"
 28,"wiqid","RCA2",18,"Chao 2"
-28,"benthos","RHUR_2",1.86764946764947,"Hurlbert D k=2"
-28,"benthos","RHUR_3",2.62888443071936,"Hurlbert D k=3"
-28,"divent","RHUR_2",7.55569865203933,"Hurlbert D k=2"
-28,"divent","RHUR_3",7.73541475589015,"Hurlbert D k=3"
-28,"entropart","RHUR_2",1.86764946764947,"Hurlbert D k=2"
-28,"entropart","RHUR_3",2.62888443071937,"Hurlbert D k=3"
-28,"mobsim","RHUR_2",1.86764946764947,"Hurlbert D k=2"
-28,"mobsim","RHUR_3",2.62888443071936,"Hurlbert D k=3"
-28,"tabula","RHUR_2",1.86764946764796,"Hurlbert D k=2"
-28,"tabula","RHUR_3",2.62888443071869,"Hurlbert D k=3"
-28,"vegan","RHUR_2",1.86764946764947,"Hurlbert D k=2"
-28,"vegan","RHUR_3",2.62888443071936,"Hurlbert D k=3"
-28,"BAT","RICE",35.0769869137511,"ICE"
+28,"BAT","RICE",35.1112037653662,"ICE"
 28,"fossil","RICE",19.7045454545455,"ICE"
 28,"tabula","RICE",18,"ICE"
 28,"wiqid","RICE",18,"ICE"
@@ -10124,6 +10124,18 @@
 29,"custom","DGOO_3_1",0.0827284861853508,"Good m3 n1"
 29,"custom","DGOO_3_2",0.136035060544684,"Good m3 n2"
 29,"custom","DGOO_3_3",1,"Good m3 n3"
+29,"benthos","DHUR_2",1.76576576576577,NA
+29,"benthos","DHUR_3",2.36525482947505,NA
+29,"divent","DHUR_2",4.26923016673038,NA
+29,"divent","DHUR_3",4.36541547062278,NA
+29,"entropart","DHUR_2",1.76576576576577,NA
+29,"entropart","DHUR_3",2.36525482947505,NA
+29,"mobsim","DHUR_2",1.76576576576577,NA
+29,"mobsim","DHUR_3",2.36525482947505,NA
+29,"tabula","DHUR_2",1.76576576576513,NA
+29,"tabula","DHUR_3",2.36525482947475,NA
+29,"vegan","DHUR_2",1.76576576576577,NA
+29,"vegan","DHUR_3",2.36525482947505,NA
 29,"abdiv","DINVSP",4.14708852238304,"Simpson inverse"
 29,"adiv","DINVSP",4.14708852238304,"Simpson inverse"
 29,"asbio","DINVSP",4.14708852238304,"Simpson inverse"
@@ -10384,24 +10396,12 @@
 29,"OTUtable","RC1M",10,"Chao 1 modified"
 29,"tabula","RC1M",9.99099099099099,"Chao 1 modified"
 29,"wiqid","RC1M",10,"Chao 1 modified"
-29,"BAT","RCA2",35.0433333333333,"Chao 2"
+29,"BAT","RCA2",34.985,"Chao 2"
 29,"divDyn","RCA2",9.2962962962963,"Chao 2"
 29,"fossil","RCA2",10,"Chao 2"
 29,"tabula","RCA2",9,"Chao 2"
 29,"wiqid","RCA2",9,"Chao 2"
-29,"benthos","RHUR_2",1.76576576576577,"Hurlbert D k=2"
-29,"benthos","RHUR_3",2.36525482947505,"Hurlbert D k=3"
-29,"divent","RHUR_2",4.26923016673038,"Hurlbert D k=2"
-29,"divent","RHUR_3",4.36541547062278,"Hurlbert D k=3"
-29,"entropart","RHUR_2",1.76576576576577,"Hurlbert D k=2"
-29,"entropart","RHUR_3",2.36525482947505,"Hurlbert D k=3"
-29,"mobsim","RHUR_2",1.76576576576577,"Hurlbert D k=2"
-29,"mobsim","RHUR_3",2.36525482947505,"Hurlbert D k=3"
-29,"tabula","RHUR_2",1.76576576576513,"Hurlbert D k=2"
-29,"tabula","RHUR_3",2.36525482947475,"Hurlbert D k=3"
-29,"vegan","RHUR_2",1.76576576576577,"Hurlbert D k=2"
-29,"vegan","RHUR_3",2.36525482947505,"Hurlbert D k=3"
-29,"BAT","RICE",35.0601829354815,"ICE"
+29,"BAT","RICE",35.0987094769713,"ICE"
 29,"fossil","RICE",10,"ICE"
 29,"tabula","RICE",9,"ICE"
 29,"wiqid","RICE",9,"ICE"
@@ -10484,6 +10484,18 @@
 30,"custom","DGOO_3_1",0.0343668565733963,"Good m3 n1"
 30,"custom","DGOO_3_2",0.116583373543927,"Good m3 n2"
 30,"custom","DGOO_3_3",1,"Good m3 n3"
+30,"benthos","DHUR_2",1.88859649122812,NA
+30,"benthos","DHUR_3",2.68238381858902,NA
+30,"divent","DHUR_2",8.97637778999211,NA
+30,"divent","DHUR_3",9.09935402883601,NA
+30,"entropart","DHUR_2",1.88859649122812,NA
+30,"entropart","DHUR_3",2.68238381858902,NA
+30,"mobsim","DHUR_2",1.88859649122812,NA
+30,"mobsim","DHUR_3",2.68238381858902,NA
+30,"tabula","DHUR_2",1.88859649122959,NA
+30,"tabula","DHUR_3",2.68238381859054,NA
+30,"vegan","DHUR_2",1.88859649122812,NA
+30,"vegan","DHUR_3",2.68238381858902,NA
 30,"abdiv","DINVSP",8.28776978417266,"Simpson inverse"
 30,"adiv","DINVSP",8.28776978417266,"Simpson inverse"
 30,"asbio","DINVSP",8.28776978417266,"Simpson inverse"
@@ -10744,24 +10756,12 @@
 30,"OTUtable","RC1M",41.1666666666667,"Chao 1 modified"
 30,"tabula","RC1M",40.9565972222222,"Chao 1 modified"
 30,"wiqid","RC1M",41.1666666666667,"Chao 1 modified"
-30,"BAT","RCA2",35.0483333333333,"Chao 2"
+30,"BAT","RCA2",35.005,"Chao 2"
 30,"divDyn","RCA2",34.0952380952381,"Chao 2"
 30,"fossil","RCA2",41.1666666666667,"Chao 2"
 30,"tabula","RCA2",21,"Chao 2"
 30,"wiqid","RCA2",21,"Chao 2"
-30,"benthos","RHUR_2",1.88859649122812,"Hurlbert D k=2"
-30,"benthos","RHUR_3",2.68238381858902,"Hurlbert D k=3"
-30,"divent","RHUR_2",8.97637778999211,"Hurlbert D k=2"
-30,"divent","RHUR_3",9.09935402883601,"Hurlbert D k=3"
-30,"entropart","RHUR_2",1.88859649122812,"Hurlbert D k=2"
-30,"entropart","RHUR_3",2.68238381858902,"Hurlbert D k=3"
-30,"mobsim","RHUR_2",1.88859649122812,"Hurlbert D k=2"
-30,"mobsim","RHUR_3",2.68238381858902,"Hurlbert D k=3"
-30,"tabula","RHUR_2",1.88859649122959,"Hurlbert D k=2"
-30,"tabula","RHUR_3",2.68238381859054,"Hurlbert D k=3"
-30,"vegan","RHUR_2",1.88859649122812,"Hurlbert D k=2"
-30,"vegan","RHUR_3",2.68238381858902,"Hurlbert D k=3"
-30,"BAT","RICE",35.0486599141338,"ICE"
+30,"BAT","RICE",35.0739242817707,"ICE"
 30,"fossil","RICE",26.6571428571429,"ICE"
 30,"tabula","RICE",21,"ICE"
 30,"wiqid","RICE",21,"ICE"
@@ -10844,6 +10844,18 @@
 31,"custom","DGOO_3_1",0.0675708141266263,"Good m3 n1"
 31,"custom","DGOO_3_2",0.113441243104916,"Good m3 n2"
 31,"custom","DGOO_3_3",1,"Good m3 n3"
+31,"benthos","DHUR_2",1.80298151460943,NA
+31,"benthos","DHUR_3",2.46887298747764,NA
+31,"divent","DHUR_2",5.07565173856196,NA
+31,"divent","DHUR_3",5.29263287890513,NA
+31,"entropart","DHUR_2",1.80298151460944,NA
+31,"entropart","DHUR_3",2.46887298747764,NA
+31,"mobsim","DHUR_2",1.80298151460943,NA
+31,"mobsim","DHUR_3",2.46887298747764,NA
+31,"tabula","DHUR_2",1.80298151460917,NA
+31,"tabula","DHUR_3",2.46887298747854,NA
+31,"vegan","DHUR_2",1.80298151460943,NA
+31,"vegan","DHUR_3",2.46887298747764,NA
 31,"abdiv","DINVSP",4.92137449039021,"Simpson inverse"
 31,"adiv","DINVSP",4.92137449039021,"Simpson inverse"
 31,"asbio","DINVSP",4.92137449039021,"Simpson inverse"
@@ -11104,24 +11116,12 @@
 31,"OTUtable","RC1M",33,"Chao 1 modified"
 31,"tabula","RC1M",32.8615384615385,"Chao 1 modified"
 31,"wiqid","RC1M",33,"Chao 1 modified"
-31,"BAT","RCA2",35.0633333333333,"Chao 2"
+31,"BAT","RCA2",34.97,"Chao 2"
 31,"divDyn","RCA2",22,"Chao 2"
 31,"fossil","RCA2",33,"Chao 2"
 31,"tabula","RCA2",15,"Chao 2"
 31,"wiqid","RCA2",15,"Chao 2"
-31,"benthos","RHUR_2",1.80298151460943,"Hurlbert D k=2"
-31,"benthos","RHUR_3",2.46887298747764,"Hurlbert D k=3"
-31,"divent","RHUR_2",5.07565173856196,"Hurlbert D k=2"
-31,"divent","RHUR_3",5.29263287890513,"Hurlbert D k=3"
-31,"entropart","RHUR_2",1.80298151460944,"Hurlbert D k=2"
-31,"entropart","RHUR_3",2.46887298747764,"Hurlbert D k=3"
-31,"mobsim","RHUR_2",1.80298151460943,"Hurlbert D k=2"
-31,"mobsim","RHUR_3",2.46887298747764,"Hurlbert D k=3"
-31,"tabula","RHUR_2",1.80298151460917,"Hurlbert D k=2"
-31,"tabula","RHUR_3",2.46887298747854,"Hurlbert D k=3"
-31,"vegan","RHUR_2",1.80298151460943,"Hurlbert D k=2"
-31,"vegan","RHUR_3",2.46887298747764,"Hurlbert D k=3"
-31,"BAT","RICE",35.047086188095,"ICE"
+31,"BAT","RICE",35.0418063050856,"ICE"
 31,"fossil","RICE",18.1578947368421,"ICE"
 31,"tabula","RICE",15,"ICE"
 31,"wiqid","RICE",15,"ICE"
@@ -11204,6 +11204,18 @@
 32,"custom","DGOO_3_1",0.0294791479993921,"Good m3 n1"
 32,"custom","DGOO_3_2",0.110684390554471,"Good m3 n2"
 32,"custom","DGOO_3_3",1,"Good m3 n3"
+32,"benthos","DHUR_2",1.90065451145393,NA
+32,"benthos","DHUR_3",2.71530292988918,NA
+32,"divent","DHUR_2",10.0659105340867,NA
+32,"divent","DHUR_3",10.1929161350691,NA
+32,"entropart","DHUR_2",1.90065451145393,NA
+32,"entropart","DHUR_3",2.71530292988918,NA
+32,"mobsim","DHUR_2",1.90065451145393,NA
+32,"mobsim","DHUR_3",2.71530292988918,NA
+32,"tabula","DHUR_2",1.90065451145326,NA
+32,"tabula","DHUR_3",2.71530292988939,NA
+32,"vegan","DHUR_2",1.90065451145393,NA
+32,"vegan","DHUR_3",2.71530292988918,NA
 32,"abdiv","DINVSP",9.17179215270414,"Simpson inverse"
 32,"adiv","DINVSP",9.17179215270414,"Simpson inverse"
 32,"asbio","DINVSP",9.17179215270414,"Simpson inverse"
@@ -11464,24 +11476,12 @@
 32,"OTUtable","RC1M",16.1,"Chao 1 modified"
 32,"tabula","RC1M",16.0989247311828,"Chao 1 modified"
 32,"wiqid","RC1M",16.1,"Chao 1 modified"
-32,"BAT","RCA2",35.055,"Chao 2"
+32,"BAT","RCA2",34.9708333333333,"Chao 2"
 32,"divDyn","RCA2",16,"Chao 2"
 32,"fossil","RCA2",16.1,"Chao 2"
 32,"tabula","RCA2",16,"Chao 2"
 32,"wiqid","RCA2",16,"Chao 2"
-32,"benthos","RHUR_2",1.90065451145393,"Hurlbert D k=2"
-32,"benthos","RHUR_3",2.71530292988918,"Hurlbert D k=3"
-32,"divent","RHUR_2",10.0659105340867,"Hurlbert D k=2"
-32,"divent","RHUR_3",10.1929161350691,"Hurlbert D k=3"
-32,"entropart","RHUR_2",1.90065451145393,"Hurlbert D k=2"
-32,"entropart","RHUR_3",2.71530292988918,"Hurlbert D k=3"
-32,"mobsim","RHUR_2",1.90065451145393,"Hurlbert D k=2"
-32,"mobsim","RHUR_3",2.71530292988918,"Hurlbert D k=3"
-32,"tabula","RHUR_2",1.90065451145326,"Hurlbert D k=2"
-32,"tabula","RHUR_3",2.71530292988939,"Hurlbert D k=3"
-32,"vegan","RHUR_2",1.90065451145393,"Hurlbert D k=2"
-32,"vegan","RHUR_3",2.71530292988918,"Hurlbert D k=3"
-32,"BAT","RICE",35.0283485589542,"ICE"
+32,"BAT","RICE",35.0241465483665,"ICE"
 32,"fossil","RICE",16.2456140350877,"ICE"
 32,"tabula","RICE",16,"ICE"
 32,"wiqid","RICE",16,"ICE"
@@ -11564,6 +11564,18 @@
 33,"custom","DGOO_3_1",0.0467750314875977,"Good m3 n1"
 33,"custom","DGOO_3_2",0.127025979828542,"Good m3 n2"
 33,"custom","DGOO_3_3",1,"Good m3 n3"
+33,"benthos","DHUR_2",1.85403050108936,NA
+33,"benthos","DHUR_3",2.59071797873386,NA
+33,"divent","DHUR_2",6.85071922848131,NA
+33,"divent","DHUR_3",6.97986029678038,NA
+33,"entropart","DHUR_2",1.85403050108935,NA
+33,"entropart","DHUR_3",2.59071797873386,NA
+33,"mobsim","DHUR_2",1.85403050108936,NA
+33,"mobsim","DHUR_3",2.59071797873386,NA
+33,"tabula","DHUR_2",1.85403050108759,NA
+33,"tabula","DHUR_3",2.59071797873189,NA
+33,"vegan","DHUR_2",1.85403050108936,NA
+33,"vegan","DHUR_3",2.59071797873386,NA
 33,"abdiv","DINVSP",6.56818181818182,"Simpson inverse"
 33,"adiv","DINVSP",6.56818181818182,"Simpson inverse"
 33,"asbio","DINVSP",6.56818181818182,"Simpson inverse"
@@ -11824,24 +11836,12 @@
 33,"OTUtable","RC1M",19.125,"Chao 1 modified"
 33,"tabula","RC1M",19.1020220588235,"Chao 1 modified"
 33,"wiqid","RC1M",19.125,"Chao 1 modified"
-33,"BAT","RCA2",35.02,"Chao 2"
+33,"BAT","RCA2",34.9716666666667,"Chao 2"
 33,"divDyn","RCA2",17.875,"Chao 2"
 33,"fossil","RCA2",19.125,"Chao 2"
 33,"tabula","RCA2",16,"Chao 2"
 33,"wiqid","RCA2",16,"Chao 2"
-33,"benthos","RHUR_2",1.85403050108936,"Hurlbert D k=2"
-33,"benthos","RHUR_3",2.59071797873386,"Hurlbert D k=3"
-33,"divent","RHUR_2",6.85071922848131,"Hurlbert D k=2"
-33,"divent","RHUR_3",6.97986029678038,"Hurlbert D k=3"
-33,"entropart","RHUR_2",1.85403050108935,"Hurlbert D k=2"
-33,"entropart","RHUR_3",2.59071797873386,"Hurlbert D k=3"
-33,"mobsim","RHUR_2",1.85403050108936,"Hurlbert D k=2"
-33,"mobsim","RHUR_3",2.59071797873386,"Hurlbert D k=3"
-33,"tabula","RHUR_2",1.85403050108759,"Hurlbert D k=2"
-33,"tabula","RHUR_3",2.59071797873189,"Hurlbert D k=3"
-33,"vegan","RHUR_2",1.85403050108936,"Hurlbert D k=2"
-33,"vegan","RHUR_3",2.59071797873386,"Hurlbert D k=3"
-33,"BAT","RICE",35.0315023124465,"ICE"
+33,"BAT","RICE",35.0173543398604,"ICE"
 33,"fossil","RICE",18.1153846153846,"ICE"
 33,"tabula","RICE",16,"ICE"
 33,"wiqid","RICE",16,"ICE"
@@ -11924,6 +11924,18 @@
 34,"custom","DGOO_3_1",0.0486523130567251,"Good m3 n1"
 34,"custom","DGOO_3_2",0.116304579921009,"Good m3 n2"
 34,"custom","DGOO_3_3",1,"Good m3 n3"
+34,"benthos","DHUR_2",1.85123657924254,NA
+34,"benthos","DHUR_3",2.58643118022534,NA
+34,"divent","DHUR_2",6.7220573927579,NA
+34,"divent","DHUR_3",6.90369028924229,NA
+34,"entropart","DHUR_2",1.85123657924254,NA
+34,"entropart","DHUR_3",2.58643118022533,NA
+34,"mobsim","DHUR_2",1.85123657924254,NA
+34,"mobsim","DHUR_3",2.58643118022534,NA
+34,"tabula","DHUR_2",1.85127618609871,NA
+34,"tabula","DHUR_3",2.5864430713451,NA
+34,"vegan","DHUR_2",1.85123657924254,NA
+34,"vegan","DHUR_3",2.58643118022534,NA
 34,"abdiv","DINVSP",6.529493407356,"Simpson inverse"
 34,"adiv","DINVSP",6.529493407356,"Simpson inverse"
 34,"asbio","DINVSP",6.529493407356,"Simpson inverse"
@@ -12184,24 +12196,12 @@
 34,"OTUtable","RC1M",25.5,"Chao 1 modified"
 34,"tabula","RC1M",25.4768041237113,"Chao 1 modified"
 34,"wiqid","RC1M",25.5,"Chao 1 modified"
-34,"BAT","RCA2",35.0216666666667,"Chao 2"
+34,"BAT","RCA2",34.9866666666667,"Chao 2"
 34,"divDyn","RCA2",23.8571428571429,"Chao 2"
 34,"fossil","RCA2",25.5,"Chao 2"
 34,"tabula","RCA2",21,"Chao 2"
 34,"wiqid","RCA2",21,"Chao 2"
-34,"benthos","RHUR_2",1.85123657924254,"Hurlbert D k=2"
-34,"benthos","RHUR_3",2.58643118022534,"Hurlbert D k=3"
-34,"divent","RHUR_2",6.7220573927579,"Hurlbert D k=2"
-34,"divent","RHUR_3",6.90369028924229,"Hurlbert D k=3"
-34,"entropart","RHUR_2",1.85123657924254,"Hurlbert D k=2"
-34,"entropart","RHUR_3",2.58643118022533,"Hurlbert D k=3"
-34,"mobsim","RHUR_2",1.85123657924254,"Hurlbert D k=2"
-34,"mobsim","RHUR_3",2.58643118022534,"Hurlbert D k=3"
-34,"tabula","RHUR_2",1.85127618609871,"Hurlbert D k=2"
-34,"tabula","RHUR_3",2.5864430713451,"Hurlbert D k=3"
-34,"vegan","RHUR_2",1.85123657924254,"Hurlbert D k=2"
-34,"vegan","RHUR_3",2.58643118022534,"Hurlbert D k=3"
-34,"BAT","RICE",35.0332497202603,"ICE"
+34,"BAT","RICE",35.0382912844726,"ICE"
 34,"fossil","RICE",23.5714285714286,"ICE"
 34,"tabula","RICE",21,"ICE"
 34,"wiqid","RICE",21,"ICE"
@@ -12284,6 +12284,18 @@
 35,"custom","DGOO_3_1",0.0549406502464249,"Good m3 n1"
 35,"custom","DGOO_3_2",0.12541679670231,"Good m3 n2"
 35,"custom","DGOO_3_3",1,"Good m3 n3"
+35,"benthos","DHUR_2",1.83947583947584,NA
+35,"benthos","DHUR_3",2.55275792890479,NA
+35,"divent","DHUR_2",6.22956294213353,NA
+35,"divent","DHUR_3",6.35601005396056,NA
+35,"entropart","DHUR_2",1.83947583947584,NA
+35,"entropart","DHUR_3",2.5527579289048,NA
+35,"mobsim","DHUR_2",1.83947583947584,NA
+35,"mobsim","DHUR_3",2.55275792890479,NA
+35,"tabula","DHUR_2",1.83947583947438,NA
+35,"tabula","DHUR_3",2.55275792890407,NA
+35,"vegan","DHUR_2",1.83947583947584,NA
+35,"vegan","DHUR_3",2.55275792890479,NA
 35,"abdiv","DINVSP",5.94929985514244,"Simpson inverse"
 35,"adiv","DINVSP",5.94929985514244,"Simpson inverse"
 35,"asbio","DINVSP",5.94929985514244,"Simpson inverse"
@@ -12544,24 +12556,12 @@
 35,"OTUtable","RC1M",24,"Chao 1 modified"
 35,"tabula","RC1M",23.9459459459459,"Chao 1 modified"
 35,"wiqid","RC1M",24,"Chao 1 modified"
-35,"BAT","RCA2",35.0183333333333,"Chao 2"
+35,"BAT","RCA2",35.0033333333333,"Chao 2"
 35,"divDyn","RCA2",21.5416666666667,"Chao 2"
 35,"fossil","RCA2",24,"Chao 2"
 35,"tabula","RCA2",18,"Chao 2"
 35,"wiqid","RCA2",18,"Chao 2"
-35,"benthos","RHUR_2",1.83947583947584,"Hurlbert D k=2"
-35,"benthos","RHUR_3",2.55275792890479,"Hurlbert D k=3"
-35,"divent","RHUR_2",6.22956294213353,"Hurlbert D k=2"
-35,"divent","RHUR_3",6.35601005396056,"Hurlbert D k=3"
-35,"entropart","RHUR_2",1.83947583947584,"Hurlbert D k=2"
-35,"entropart","RHUR_3",2.5527579289048,"Hurlbert D k=3"
-35,"mobsim","RHUR_2",1.83947583947584,"Hurlbert D k=2"
-35,"mobsim","RHUR_3",2.55275792890479,"Hurlbert D k=3"
-35,"tabula","RHUR_2",1.83947583947438,"Hurlbert D k=2"
-35,"tabula","RHUR_3",2.55275792890407,"Hurlbert D k=3"
-35,"vegan","RHUR_2",1.83947583947584,"Hurlbert D k=2"
-35,"vegan","RHUR_3",2.55275792890479,"Hurlbert D k=3"
-35,"BAT","RICE",35.0239222038957,"ICE"
+35,"BAT","RICE",35.0295373619223,"ICE"
 35,"fossil","RICE",21.1034482758621,"ICE"
 35,"tabula","RICE",18,"ICE"
 35,"wiqid","RICE",18,"ICE"
@@ -12644,6 +12644,18 @@
 36,"custom","DGOO_3_1",0.0399199597947353,"Good m3 n1"
 36,"custom","DGOO_3_2",0.126643212332913,"Good m3 n2"
 36,"custom","DGOO_3_3",1,"Good m3 n3"
+36,"benthos","DHUR_2",1.87115516062888,NA
+36,"benthos","DHUR_3",2.63417217575518,NA
+36,"divent","DHUR_2",7.7612744793058,NA
+36,"divent","DHUR_3",7.85248055700944,NA
+36,"entropart","DHUR_2",1.87115516062888,NA
+36,"entropart","DHUR_3",2.63417217575518,NA
+36,"mobsim","DHUR_2",1.87115516062888,NA
+36,"mobsim","DHUR_3",2.63417217575518,NA
+36,"tabula","DHUR_2",1.87115516063041,NA
+36,"tabula","DHUR_3",2.63417217575597,NA
+36,"vegan","DHUR_2",1.87115516062888,NA
+36,"vegan","DHUR_3",2.63417217575518,NA
 36,"abdiv","DINVSP",7.38580375782881,"Simpson inverse"
 36,"adiv","DINVSP",7.38580375782881,"Simpson inverse"
 36,"asbio","DINVSP",7.38580375782881,"Simpson inverse"
@@ -12904,24 +12916,12 @@
 36,"OTUtable","RC1M",24.25,"Chao 1 modified"
 36,"tabula","RC1M",24.203007518797,"Chao 1 modified"
 36,"wiqid","RC1M",24.25,"Chao 1 modified"
-36,"BAT","RCA2",35.02,"Chao 2"
+36,"BAT","RCA2",34.9958333333333,"Chao 2"
 36,"divDyn","RCA2",21.1481481481481,"Chao 2"
 36,"fossil","RCA2",24.25,"Chao 2"
 36,"tabula","RCA2",18,"Chao 2"
 36,"wiqid","RCA2",18,"Chao 2"
-36,"benthos","RHUR_2",1.87115516062888,"Hurlbert D k=2"
-36,"benthos","RHUR_3",2.63417217575518,"Hurlbert D k=3"
-36,"divent","RHUR_2",7.7612744793058,"Hurlbert D k=2"
-36,"divent","RHUR_3",7.85248055700944,"Hurlbert D k=3"
-36,"entropart","RHUR_2",1.87115516062888,"Hurlbert D k=2"
-36,"entropart","RHUR_3",2.63417217575518,"Hurlbert D k=3"
-36,"mobsim","RHUR_2",1.87115516062888,"Hurlbert D k=2"
-36,"mobsim","RHUR_3",2.63417217575518,"Hurlbert D k=3"
-36,"tabula","RHUR_2",1.87115516063041,"Hurlbert D k=2"
-36,"tabula","RHUR_3",2.63417217575597,"Hurlbert D k=3"
-36,"vegan","RHUR_2",1.87115516062888,"Hurlbert D k=2"
-36,"vegan","RHUR_3",2.63417217575518,"Hurlbert D k=3"
-36,"BAT","RICE",35.0213066970834,"ICE"
+36,"BAT","RICE",35.0371794178418,"ICE"
 36,"fossil","RICE",20.7083333333333,"ICE"
 36,"tabula","RICE",18,"ICE"
 36,"wiqid","RICE",18,"ICE"
@@ -13004,6 +13004,18 @@
 37,"custom","DGOO_3_1",0.0482133473574976,"Good m3 n1"
 37,"custom","DGOO_3_2",0.132415522326127,"Good m3 n2"
 37,"custom","DGOO_3_3",1,"Good m3 n3"
+37,"benthos","DHUR_2",1.85048482952768,NA
+37,"benthos","DHUR_3",2.57945975812181,NA
+37,"divent","DHUR_2",6.68825964882657,NA
+37,"divent","DHUR_3",6.78312673172171,NA
+37,"entropart","DHUR_2",1.85048482952768,NA
+37,"entropart","DHUR_3",2.57945975812181,NA
+37,"mobsim","DHUR_2",1.85048482952768,NA
+37,"mobsim","DHUR_3",2.57945975812181,NA
+37,"tabula","DHUR_2",1.85048482952638,NA
+37,"tabula","DHUR_3",2.57945975812204,NA
+37,"vegan","DHUR_2",1.85048482952768,NA
+37,"vegan","DHUR_3",2.57945975812181,NA
 37,"abdiv","DINVSP",6.4253408713003,"Simpson inverse"
 37,"adiv","DINVSP",6.4253408713003,"Simpson inverse"
 37,"asbio","DINVSP",6.4253408713003,"Simpson inverse"
@@ -13264,24 +13276,12 @@
 37,"OTUtable","RC1M",16.9,"Chao 1 modified"
 37,"tabula","RC1M",16.8935251798561,"Chao 1 modified"
 37,"wiqid","RC1M",16.9,"Chao 1 modified"
-37,"BAT","RCA2",35.02,"Chao 2"
+37,"BAT","RCA2",34.99,"Chao 2"
 37,"divDyn","RCA2",16.46875,"Chao 2"
 37,"fossil","RCA2",16.9,"Chao 2"
 37,"tabula","RCA2",16,"Chao 2"
 37,"wiqid","RCA2",16,"Chao 2"
-37,"benthos","RHUR_2",1.85048482952768,"Hurlbert D k=2"
-37,"benthos","RHUR_3",2.57945975812181,"Hurlbert D k=3"
-37,"divent","RHUR_2",6.68825964882657,"Hurlbert D k=2"
-37,"divent","RHUR_3",6.78312673172171,"Hurlbert D k=3"
-37,"entropart","RHUR_2",1.85048482952768,"Hurlbert D k=2"
-37,"entropart","RHUR_3",2.57945975812181,"Hurlbert D k=3"
-37,"mobsim","RHUR_2",1.85048482952768,"Hurlbert D k=2"
-37,"mobsim","RHUR_3",2.57945975812181,"Hurlbert D k=3"
-37,"tabula","RHUR_2",1.85048482952638,"Hurlbert D k=2"
-37,"tabula","RHUR_3",2.57945975812204,"Hurlbert D k=3"
-37,"vegan","RHUR_2",1.85048482952768,"Hurlbert D k=2"
-37,"vegan","RHUR_3",2.57945975812181,"Hurlbert D k=3"
-37,"BAT","RICE",35.0175164316636,"ICE"
+37,"BAT","RICE",35.0285684070858,"ICE"
 37,"fossil","RICE",17.5714285714286,"ICE"
 37,"tabula","RICE",16,"ICE"
 37,"wiqid","RICE",16,"ICE"
@@ -13364,6 +13364,18 @@
 38,"custom","DGOO_3_1",0.111012494565304,"Good m3 n1"
 38,"custom","DGOO_3_2",0.0611553888243629,"Good m3 n2"
 38,"custom","DGOO_3_3",1,"Good m3 n3"
+38,"benthos","DHUR_2",1.64122481143759,NA
+38,"benthos","DHUR_3",2.1199108915004,NA
+38,"divent","DHUR_2",2.78727897297631,NA
+38,"divent","DHUR_3",3.03426442196252,NA
+38,"entropart","DHUR_2",1.64122481143759,NA
+38,"entropart","DHUR_3",2.1199108915004,NA
+38,"mobsim","DHUR_2",1.64122481143759,NA
+38,"mobsim","DHUR_3",2.1199108915004,NA
+38,"tabula","DHUR_2",1.64123082360371,NA
+38,"tabula","DHUR_3",2.11991187236299,NA
+38,"vegan","DHUR_2",1.64122481143759,NA
+38,"vegan","DHUR_3",2.1199108915004,NA
 38,"abdiv","DINVSP",2.7611501893793,"Simpson inverse"
 38,"adiv","DINVSP",2.7611501893793,"Simpson inverse"
 38,"asbio","DINVSP",2.7611501893793,"Simpson inverse"
@@ -13624,24 +13636,12 @@
 38,"OTUtable","RC1M",16.25,"Chao 1 modified"
 38,"tabula","RC1M",16.2380952380952,"Chao 1 modified"
 38,"wiqid","RC1M",16.25,"Chao 1 modified"
-38,"BAT","RCA2",35.015,"Chao 2"
+38,"BAT","RCA2",34.99,"Chao 2"
 38,"divDyn","RCA2",14.9285714285714,"Chao 2"
 38,"fossil","RCA2",16.25,"Chao 2"
 38,"tabula","RCA2",14,"Chao 2"
 38,"wiqid","RCA2",14,"Chao 2"
-38,"benthos","RHUR_2",1.64122481143759,"Hurlbert D k=2"
-38,"benthos","RHUR_3",2.1199108915004,"Hurlbert D k=3"
-38,"divent","RHUR_2",2.78727897297631,"Hurlbert D k=2"
-38,"divent","RHUR_3",3.03426442196252,"Hurlbert D k=3"
-38,"entropart","RHUR_2",1.64122481143759,"Hurlbert D k=2"
-38,"entropart","RHUR_3",2.1199108915004,"Hurlbert D k=3"
-38,"mobsim","RHUR_2",1.64122481143759,"Hurlbert D k=2"
-38,"mobsim","RHUR_3",2.1199108915004,"Hurlbert D k=3"
-38,"tabula","RHUR_2",1.64123082360371,"Hurlbert D k=2"
-38,"tabula","RHUR_3",2.11991187236299,"Hurlbert D k=3"
-38,"vegan","RHUR_2",1.64122481143759,"Hurlbert D k=2"
-38,"vegan","RHUR_3",2.1199108915004,"Hurlbert D k=3"
-38,"BAT","RICE",35.0170023223949,"ICE"
+38,"BAT","RICE",35.0175569880462,"ICE"
 38,"fossil","RICE",14.7674418604651,"ICE"
 38,"tabula","RICE",14,"ICE"
 38,"wiqid","RICE",14,"ICE"
@@ -13724,6 +13724,18 @@
 39,"custom","DGOO_3_1",0.083962599400894,"Good m3 n1"
 39,"custom","DGOO_3_2",0.114482607488483,"Good m3 n2"
 39,"custom","DGOO_3_3",1,"Good m3 n3"
+39,"benthos","DHUR_2",1.76115305422098,NA
+39,"benthos","DHUR_3",2.3654024051804,NA
+39,"divent","DHUR_2",4.18677985212417,NA
+39,"divent","DHUR_3",4.36652211926587,NA
+39,"entropart","DHUR_2",1.76115305422098,NA
+39,"entropart","DHUR_3",2.3654024051804,NA
+39,"mobsim","DHUR_2",1.76115305422098,NA
+39,"mobsim","DHUR_3",2.3654024051804,NA
+39,"tabula","DHUR_2",1.76115305422028,NA
+39,"tabula","DHUR_3",2.36540240517962,NA
+39,"vegan","DHUR_2",1.76115305422098,NA
+39,"vegan","DHUR_3",2.3654024051804,NA
 39,"abdiv","DINVSP",4.04949587534372,"Simpson inverse"
 39,"adiv","DINVSP",4.04949587534372,"Simpson inverse"
 39,"asbio","DINVSP",4.04949587534372,"Simpson inverse"
@@ -13984,24 +13996,12 @@
 39,"OTUtable","RC1M",15.5,"Chao 1 modified"
 39,"tabula","RC1M",15.4521276595745,"Chao 1 modified"
 39,"wiqid","RC1M",15.5,"Chao 1 modified"
-39,"BAT","RCA2",35.005,"Chao 2"
+39,"BAT","RCA2",34.99,"Chao 2"
 39,"divDyn","RCA2",12.3636363636364,"Chao 2"
 39,"fossil","RCA2",15.5,"Chao 2"
 39,"tabula","RCA2",11,"Chao 2"
 39,"wiqid","RCA2",11,"Chao 2"
-39,"benthos","RHUR_2",1.76115305422098,"Hurlbert D k=2"
-39,"benthos","RHUR_3",2.3654024051804,"Hurlbert D k=3"
-39,"divent","RHUR_2",4.18677985212417,"Hurlbert D k=2"
-39,"divent","RHUR_3",4.36652211926587,"Hurlbert D k=3"
-39,"entropart","RHUR_2",1.76115305422098,"Hurlbert D k=2"
-39,"entropart","RHUR_3",2.3654024051804,"Hurlbert D k=3"
-39,"mobsim","RHUR_2",1.76115305422098,"Hurlbert D k=2"
-39,"mobsim","RHUR_3",2.3654024051804,"Hurlbert D k=3"
-39,"tabula","RHUR_2",1.76115305422028,"Hurlbert D k=2"
-39,"tabula","RHUR_3",2.36540240517962,"Hurlbert D k=3"
-39,"vegan","RHUR_2",1.76115305422098,"Hurlbert D k=2"
-39,"vegan","RHUR_3",2.3654024051804,"Hurlbert D k=3"
-39,"BAT","RICE",35.0174610970042,"ICE"
+39,"BAT","RICE",35.0097877658646,"ICE"
 39,"fossil","RICE",12.1428571428571,"ICE"
 39,"tabula","RICE",11,"ICE"
 39,"wiqid","RICE",11,"ICE"
@@ -14084,6 +14084,18 @@
 40,"custom","DGOO_3_1",0.0844635955637734,"Good m3 n1"
 40,"custom","DGOO_3_2",0.119245234235836,"Good m3 n2"
 40,"custom","DGOO_3_3",1,"Good m3 n3"
+40,"benthos","DHUR_2",1.75837008002611,NA
+40,"benthos","DHUR_3",2.35563054163838,NA
+40,"divent","DHUR_2",4.13855722739973,NA
+40,"divent","DHUR_3",4.29432943891777,NA
+40,"entropart","DHUR_2",1.75837008002611,NA
+40,"entropart","DHUR_3",2.35563054163838,NA
+40,"mobsim","DHUR_2",1.75837008002611,NA
+40,"mobsim","DHUR_3",2.35563054163838,NA
+40,"tabula","DHUR_2",1.75837008002718,NA
+40,"tabula","DHUR_3",2.35563054163827,NA
+40,"vegan","DHUR_2",1.75837008002611,NA
+40,"vegan","DHUR_3",2.35563054163838,NA
 40,"abdiv","DINVSP",4.05744855967078,"Simpson inverse"
 40,"adiv","DINVSP",4.05744855967078,"Simpson inverse"
 40,"asbio","DINVSP",4.05744855967078,"Simpson inverse"
@@ -14344,24 +14356,12 @@
 40,"OTUtable","RC1M",16.5,"Chao 1 modified"
 40,"tabula","RC1M",16.4713375796178,"Chao 1 modified"
 40,"wiqid","RC1M",16.5,"Chao 1 modified"
-40,"BAT","RCA2",35,"Chao 2"
+40,"BAT","RCA2",34.99,"Chao 2"
 40,"divDyn","RCA2",13.375,"Chao 2"
 40,"fossil","RCA2",16.5,"Chao 2"
 40,"tabula","RCA2",12,"Chao 2"
 40,"wiqid","RCA2",12,"Chao 2"
-40,"benthos","RHUR_2",1.75837008002611,"Hurlbert D k=2"
-40,"benthos","RHUR_3",2.35563054163838,"Hurlbert D k=3"
-40,"divent","RHUR_2",4.13855722739973,"Hurlbert D k=2"
-40,"divent","RHUR_3",4.29432943891777,"Hurlbert D k=3"
-40,"entropart","RHUR_2",1.75837008002611,"Hurlbert D k=2"
-40,"entropart","RHUR_3",2.35563054163838,"Hurlbert D k=3"
-40,"mobsim","RHUR_2",1.75837008002611,"Hurlbert D k=2"
-40,"mobsim","RHUR_3",2.35563054163838,"Hurlbert D k=3"
-40,"tabula","RHUR_2",1.75837008002718,"Hurlbert D k=2"
-40,"tabula","RHUR_3",2.35563054163827,"Hurlbert D k=3"
-40,"vegan","RHUR_2",1.75837008002611,"Hurlbert D k=2"
-40,"vegan","RHUR_3",2.35563054163838,"Hurlbert D k=3"
-40,"BAT","RICE",35.0168916957192,"ICE"
+40,"BAT","RICE",35.0057036621296,"ICE"
 40,"fossil","RICE",12.84375,"ICE"
 40,"tabula","RICE",12,"ICE"
 40,"wiqid","RICE",12,"ICE"
@@ -14444,6 +14444,18 @@
 41,"custom","DGOO_3_1",0.110125002803159,"Good m3 n1"
 41,"custom","DGOO_3_2",0.0863739280791266,"Good m3 n2"
 41,"custom","DGOO_3_3",1,"Good m3 n3"
+41,"benthos","DHUR_2",1.66635802469135,NA
+41,"benthos","DHUR_3",2.15917721518989,NA
+41,"divent","DHUR_2",2.99722596488211,NA
+41,"divent","DHUR_3",3.19577953987793,NA
+41,"entropart","DHUR_2",1.66635802469135,NA
+41,"entropart","DHUR_3",2.15917721518989,NA
+41,"mobsim","DHUR_2",1.66635802469135,NA
+41,"mobsim","DHUR_3",2.15917721518989,NA
+41,"tabula","DHUR_2",1.66635802469211,NA
+41,"tabula","DHUR_3",2.15917721519037,NA
+41,"vegan","DHUR_2",1.66635802469135,NA
+41,"vegan","DHUR_3",2.15917721518989,NA
 41,"abdiv","DINVSP",2.92510031208203,"Simpson inverse"
 41,"adiv","DINVSP",2.92510031208203,"Simpson inverse"
 41,"asbio","DINVSP",2.92510031208203,"Simpson inverse"
@@ -14704,24 +14716,12 @@
 41,"OTUtable","RC1M",17.25,"Chao 1 modified"
 41,"tabula","RC1M",17.1728395061728,"Chao 1 modified"
 41,"wiqid","RC1M",17.25,"Chao 1 modified"
-41,"BAT","RCA2",35,"Chao 2"
+41,"BAT","RCA2",34.99,"Chao 2"
 41,"divDyn","RCA2",14.030303030303,"Chao 2"
 41,"fossil","RCA2",17.25,"Chao 2"
 41,"tabula","RCA2",11,"Chao 2"
 41,"wiqid","RCA2",11,"Chao 2"
-41,"benthos","RHUR_2",1.66635802469135,"Hurlbert D k=2"
-41,"benthos","RHUR_3",2.15917721518989,"Hurlbert D k=3"
-41,"divent","RHUR_2",2.99722596488211,"Hurlbert D k=2"
-41,"divent","RHUR_3",3.19577953987793,"Hurlbert D k=3"
-41,"entropart","RHUR_2",1.66635802469135,"Hurlbert D k=2"
-41,"entropart","RHUR_3",2.15917721518989,"Hurlbert D k=3"
-41,"mobsim","RHUR_2",1.66635802469135,"Hurlbert D k=2"
-41,"mobsim","RHUR_3",2.15917721518989,"Hurlbert D k=3"
-41,"tabula","RHUR_2",1.66635802469211,"Hurlbert D k=2"
-41,"tabula","RHUR_3",2.15917721519037,"Hurlbert D k=3"
-41,"vegan","RHUR_2",1.66635802469135,"Hurlbert D k=2"
-41,"vegan","RHUR_3",2.15917721518989,"Hurlbert D k=3"
-41,"BAT","RICE",35.0172338611872,"ICE"
+41,"BAT","RICE",35.0016504434497,"ICE"
 41,"fossil","RICE",13.3684210526316,"ICE"
 41,"tabula","RICE",11,"ICE"
 41,"wiqid","RICE",11,"ICE"
@@ -14804,6 +14804,18 @@
 42,"custom","DGOO_3_1",0.111051045594012,"Good m3 n1"
 42,"custom","DGOO_3_2",0.0938862385129124,"Good m3 n2"
 42,"custom","DGOO_3_3",1,"Good m3 n3"
+42,"benthos","DHUR_2",1.67029804727646,NA
+42,"benthos","DHUR_3",2.16053666383663,NA
+42,"divent","DHUR_2",3.03304388139419,NA
+42,"divent","DHUR_3",3.20163695594193,NA
+42,"entropart","DHUR_2",1.67029804727646,NA
+42,"entropart","DHUR_3",2.16053666383664,NA
+42,"mobsim","DHUR_2",1.67029804727646,NA
+42,"mobsim","DHUR_3",2.16053666383663,NA
+42,"tabula","DHUR_2",1.67029804727774,NA
+42,"tabula","DHUR_3",2.16053666383667,NA
+42,"vegan","DHUR_2",1.67029804727646,NA
+42,"vegan","DHUR_3",2.16053666383663,NA
 42,"abdiv","DINVSP",2.98962782184259,"Simpson inverse"
 42,"adiv","DINVSP",2.98962782184259,"Simpson inverse"
 42,"asbio","DINVSP",2.98962782184259,"Simpson inverse"
@@ -15064,24 +15076,12 @@
 42,"OTUtable","RC1M",Inf,"Chao 1 modified"
 42,"tabula","RC1M",12.9785714285714,"Chao 1 modified"
 42,"wiqid","RC1M",13,"Chao 1 modified"
-42,"BAT","RCA2",35,"Chao 2"
+42,"BAT","RCA2",34.99,"Chao 2"
 42,"divDyn","RCA2",12.7,"Chao 2"
 42,"fossil","RCA2",13,"Chao 2"
 42,"tabula","RCA2",10,"Chao 2"
 42,"wiqid","RCA2",10,"Chao 2"
-42,"benthos","RHUR_2",1.67029804727646,"Hurlbert D k=2"
-42,"benthos","RHUR_3",2.16053666383663,"Hurlbert D k=3"
-42,"divent","RHUR_2",3.03304388139419,"Hurlbert D k=2"
-42,"divent","RHUR_3",3.20163695594193,"Hurlbert D k=3"
-42,"entropart","RHUR_2",1.67029804727646,"Hurlbert D k=2"
-42,"entropart","RHUR_3",2.16053666383664,"Hurlbert D k=3"
-42,"mobsim","RHUR_2",1.67029804727646,"Hurlbert D k=2"
-42,"mobsim","RHUR_3",2.16053666383663,"Hurlbert D k=3"
-42,"tabula","RHUR_2",1.67029804727774,"Hurlbert D k=2"
-42,"tabula","RHUR_3",2.16053666383667,"Hurlbert D k=3"
-42,"vegan","RHUR_2",1.67029804727646,"Hurlbert D k=2"
-42,"vegan","RHUR_3",2.16053666383663,"Hurlbert D k=3"
-42,"BAT","RICE",35.0109220085021,"ICE"
+42,"BAT","RICE",35.0015313709965,"ICE"
 42,"fossil","RICE",11,"ICE"
 42,"tabula","RICE",10,"ICE"
 42,"wiqid","RICE",10,"ICE"
@@ -15164,6 +15164,18 @@
 43,"custom","DGOO_3_1",0.116106279195577,"Good m3 n1"
 43,"custom","DGOO_3_2",0.0613556029391713,"Good m3 n2"
 43,"custom","DGOO_3_3",1,"Good m3 n3"
+43,"benthos","DHUR_2",1.61592204449344,NA
+43,"benthos","DHUR_3",2.06414102108819,NA
+43,"divent","DHUR_2",2.60363314505004,NA
+43,"divent","DHUR_3",2.8277089424504,NA
+43,"entropart","DHUR_2",1.61592204449344,NA
+43,"entropart","DHUR_3",2.06414102108819,NA
+43,"mobsim","DHUR_2",1.61592204449344,NA
+43,"mobsim","DHUR_3",2.06414102108819,NA
+43,"tabula","DHUR_2",1.61592204449388,NA
+43,"tabula","DHUR_3",2.06414102108814,NA
+43,"vegan","DHUR_2",1.61592204449344,NA
+43,"vegan","DHUR_3",2.06414102108819,NA
 43,"abdiv","DINVSP",2.57572906867357,"Simpson inverse"
 43,"adiv","DINVSP",2.57572906867357,"Simpson inverse"
 43,"asbio","DINVSP",2.57572906867357,"Simpson inverse"
@@ -15424,24 +15436,12 @@
 43,"OTUtable","RC1M",16.5,"Chao 1 modified"
 43,"tabula","RC1M",16.4695945945946,"Chao 1 modified"
 43,"wiqid","RC1M",16.5,"Chao 1 modified"
-43,"BAT","RCA2",35,"Chao 2"
+43,"BAT","RCA2",34.99,"Chao 2"
 43,"divDyn","RCA2",13.375,"Chao 2"
 43,"fossil","RCA2",16.5,"Chao 2"
 43,"tabula","RCA2",12,"Chao 2"
 43,"wiqid","RCA2",12,"Chao 2"
-43,"benthos","RHUR_2",1.61592204449344,"Hurlbert D k=2"
-43,"benthos","RHUR_3",2.06414102108819,"Hurlbert D k=3"
-43,"divent","RHUR_2",2.60363314505004,"Hurlbert D k=2"
-43,"divent","RHUR_3",2.8277089424504,"Hurlbert D k=3"
-43,"entropart","RHUR_2",1.61592204449344,"Hurlbert D k=2"
-43,"entropart","RHUR_3",2.06414102108819,"Hurlbert D k=3"
-43,"mobsim","RHUR_2",1.61592204449344,"Hurlbert D k=2"
-43,"mobsim","RHUR_3",2.06414102108819,"Hurlbert D k=3"
-43,"tabula","RHUR_2",1.61592204449388,"Hurlbert D k=2"
-43,"tabula","RHUR_3",2.06414102108814,"Hurlbert D k=3"
-43,"vegan","RHUR_2",1.61592204449344,"Hurlbert D k=2"
-43,"vegan","RHUR_3",2.06414102108819,"Hurlbert D k=3"
-43,"BAT","RICE",35.0087937388669,"ICE"
+43,"BAT","RICE",34.9976201697205,"ICE"
 43,"fossil","RICE",13.0384615384615,"ICE"
 43,"tabula","RICE",12,"ICE"
 43,"wiqid","RICE",12,"ICE"
@@ -15483,7 +15483,7 @@
 44,"abdiv","D1SP",0.613888888888889,"Simpson's reciprocal"
 44,"ade4","D1SP",0.613888888888889,"Simpson's reciprocal"
 44,"adiv","D1SP",0.613888888888889,"Simpson's reciprocal"
-44,"agricolae","D1SP",NA,"Simpson's reciprocal"
+44,"agricolae","D1SP",0.613888888888889,"Simpson's reciprocal"
 44,"asbio","D1SP",0.613888888888889,"Simpson's reciprocal"
 44,"BiodiversityR","D1SP",0.61388889,"Simpson's reciprocal"
 44,"biosampleR","D1SP",0.874486854747139,"Simpson's reciprocal"
@@ -15524,6 +15524,18 @@
 44,"custom","DGOO_3_1",0.137681568309263,"Good m3 n1"
 44,"custom","DGOO_3_2",0.104881033363741,"Good m3 n2"
 44,"custom","DGOO_3_3",1,"Good m3 n3"
+44,"benthos","DHUR_2",1.62429378531073,NA
+44,"benthos","DHUR_3",2.02805376972531,NA
+44,"divent","DHUR_2",2.66164247684825,NA
+44,"divent","DHUR_3",2.70646017384937,NA
+44,"entropart","DHUR_2",1.62429378531073,NA
+44,"entropart","DHUR_3",2.0280537697253,NA
+44,"mobsim","DHUR_2",1.62429378531073,NA
+44,"mobsim","DHUR_3",2.02805376972531,NA
+44,"tabula","DHUR_2",1.62429378531082,NA
+44,"tabula","DHUR_3",2.02805376972546,NA
+44,"vegan","DHUR_2",1.62429378531073,NA
+44,"vegan","DHUR_3",2.02805376972531,NA
 44,"abdiv","DINVSP",2.58992805755396,"Simpson inverse"
 44,"adiv","DINVSP",2.58992805755396,"Simpson inverse"
 44,"asbio","DINVSP",2.58992805755396,"Simpson inverse"
@@ -15598,7 +15610,7 @@
 44,"tabula","DSP",0.386111111111111,"Simpson"
 44,"triversity","DSP",0.386111111111111,"Simpson"
 44,"abdiv","EBP",0.466666666666667,"Berger-Parker"
-44,"agricolae","EBP",NA,"Berger-Parker"
+44,"agricolae","EBP",0.466666666666667,"Berger-Parker"
 44,"BiodiversityR","EBP",0.46666667,"Berger-Parker"
 44,"diverse","EBP",0.233644859813084,"Berger-Parker"
 44,"dyvDyn","EBP",0.466666666666667,"Berger-Parker"
@@ -15784,24 +15796,12 @@
 44,"OTUtable","RC1M",5.5,"Chao 1 modified"
 44,"tabula","RC1M",5.49166666666667,"Chao 1 modified"
 44,"wiqid","RC1M",5.5,"Chao 1 modified"
-44,"BAT","RCA2",35,"Chao 2"
+44,"BAT","RCA2",34.99,"Chao 2"
 44,"divDyn","RCA2",5,"Chao 2"
 44,"fossil","RCA2",5.5,"Chao 2"
 44,"tabula","RCA2",5,"Chao 2"
 44,"wiqid","RCA2",5,"Chao 2"
-44,"benthos","RHUR_2",1.62429378531073,"Hurlbert D k=2"
-44,"benthos","RHUR_3",2.02805376972531,"Hurlbert D k=3"
-44,"divent","RHUR_2",2.66164247684825,"Hurlbert D k=2"
-44,"divent","RHUR_3",2.70646017384937,"Hurlbert D k=3"
-44,"entropart","RHUR_2",1.62429378531073,"Hurlbert D k=2"
-44,"entropart","RHUR_3",2.0280537697253,"Hurlbert D k=3"
-44,"mobsim","RHUR_2",1.62429378531073,"Hurlbert D k=2"
-44,"mobsim","RHUR_3",2.02805376972531,"Hurlbert D k=3"
-44,"tabula","RHUR_2",1.62429378531082,"Hurlbert D k=2"
-44,"tabula","RHUR_3",2.02805376972546,"Hurlbert D k=3"
-44,"vegan","RHUR_2",1.62429378531073,"Hurlbert D k=2"
-44,"vegan","RHUR_3",2.02805376972531,"Hurlbert D k=3"
-44,"BAT","RICE",35,"ICE"
+44,"BAT","RICE",35.0054192602688,"ICE"
 44,"fossil","RICE",5.42857142857143,"ICE"
 44,"tabula","RICE",5,"ICE"
 44,"wiqid","RICE",5,"ICE"
@@ -15884,6 +15884,18 @@
 45,"custom","DGOO_3_1",0.0811715605078477,"Good m3 n1"
 45,"custom","DGOO_3_2",0.115212105263796,"Good m3 n2"
 45,"custom","DGOO_3_3",1,"Good m3 n3"
+45,"benthos","DHUR_2",1.77497379666208,NA
+45,"benthos","DHUR_3",2.39389663791016,NA
+45,"divent","DHUR_2",4.44392687519951,NA
+45,"divent","DHUR_3",4.59020083485093,NA
+45,"entropart","DHUR_2",1.77497379666207,NA
+45,"entropart","DHUR_3",2.39389663791017,NA
+45,"mobsim","DHUR_2",1.77497379666208,NA
+45,"mobsim","DHUR_3",2.39389663791016,NA
+45,"tabula","DHUR_2",1.77497379666381,NA
+45,"tabula","DHUR_3",2.39389663791085,NA
+45,"vegan","DHUR_2",1.77497379666208,NA
+45,"vegan","DHUR_3",2.39389663791016,NA
 45,"abdiv","DINVSP",4.34912891986063,"Simpson inverse"
 45,"adiv","DINVSP",4.34912891986063,"Simpson inverse"
 45,"asbio","DINVSP",4.34912891986063,"Simpson inverse"
@@ -16144,24 +16156,12 @@
 45,"OTUtable","RC1M",26,"Chao 1 modified"
 45,"tabula","RC1M",25.9430379746835,"Chao 1 modified"
 45,"wiqid","RC1M",26,"Chao 1 modified"
-45,"BAT","RCA2",35,"Chao 2"
+45,"BAT","RCA2",34.99,"Chao 2"
 45,"divDyn","RCA2",21.7058823529412,"Chao 2"
 45,"fossil","RCA2",26,"Chao 2"
 45,"tabula","RCA2",17,"Chao 2"
 45,"wiqid","RCA2",17,"Chao 2"
-45,"benthos","RHUR_2",1.77497379666208,"Hurlbert D k=2"
-45,"benthos","RHUR_3",2.39389663791016,"Hurlbert D k=3"
-45,"divent","RHUR_2",4.44392687519951,"Hurlbert D k=2"
-45,"divent","RHUR_3",4.59020083485093,"Hurlbert D k=3"
-45,"entropart","RHUR_2",1.77497379666207,"Hurlbert D k=2"
-45,"entropart","RHUR_3",2.39389663791017,"Hurlbert D k=3"
-45,"mobsim","RHUR_2",1.77497379666208,"Hurlbert D k=2"
-45,"mobsim","RHUR_3",2.39389663791016,"Hurlbert D k=3"
-45,"tabula","RHUR_2",1.77497379666381,"Hurlbert D k=2"
-45,"tabula","RHUR_3",2.39389663791085,"Hurlbert D k=3"
-45,"vegan","RHUR_2",1.77497379666208,"Hurlbert D k=2"
-45,"vegan","RHUR_3",2.39389663791016,"Hurlbert D k=3"
-45,"BAT","RICE",35,"ICE"
+45,"BAT","RICE",35.0054192602688,"ICE"
 45,"fossil","RICE",19.2702702702703,"ICE"
 45,"tabula","RICE",17,"ICE"
 45,"wiqid","RICE",17,"ICE"
@@ -16244,6 +16244,18 @@
 46,"custom","DGOO_3_1",0.0478122082070296,"Good m3 n1"
 46,"custom","DGOO_3_2",0.126271892408681,"Good m3 n2"
 46,"custom","DGOO_3_3",1,"Good m3 n3"
+46,"benthos","DHUR_2",1.85196502843561,NA
+46,"benthos","DHUR_3",2.5852281103829,NA
+46,"divent","DHUR_2",6.75513497337448,NA
+46,"divent","DHUR_3",6.88259577640011,NA
+46,"entropart","DHUR_2",1.85196502843561,NA
+46,"entropart","DHUR_3",2.5852281103829,NA
+46,"mobsim","DHUR_2",1.85196502843561,NA
+46,"mobsim","DHUR_3",2.5852281103829,NA
+46,"tabula","DHUR_2",1.85196502843625,NA
+46,"tabula","DHUR_3",2.5852281103821,NA
+46,"vegan","DHUR_2",1.85196502843561,NA
+46,"vegan","DHUR_3",2.5852281103829,NA
 46,"abdiv","DINVSP",6.5118066996156,"Simpson inverse"
 46,"adiv","DINVSP",6.5118066996156,"Simpson inverse"
 46,"asbio","DINVSP",6.5118066996156,"Simpson inverse"
@@ -16509,19 +16521,7 @@
 46,"fossil","RCA2",16.6666666666667,"Chao 2"
 46,"tabula","RCA2",16,"Chao 2"
 46,"wiqid","RCA2",16,"Chao 2"
-46,"benthos","RHUR_2",1.85196502843561,"Hurlbert D k=2"
-46,"benthos","RHUR_3",2.5852281103829,"Hurlbert D k=3"
-46,"divent","RHUR_2",6.75513497337448,"Hurlbert D k=2"
-46,"divent","RHUR_3",6.88259577640011,"Hurlbert D k=3"
-46,"entropart","RHUR_2",1.85196502843561,"Hurlbert D k=2"
-46,"entropart","RHUR_3",2.5852281103829,"Hurlbert D k=3"
-46,"mobsim","RHUR_2",1.85196502843561,"Hurlbert D k=2"
-46,"mobsim","RHUR_3",2.5852281103829,"Hurlbert D k=3"
-46,"tabula","RHUR_2",1.85196502843625,"Hurlbert D k=2"
-46,"tabula","RHUR_3",2.5852281103821,"Hurlbert D k=3"
-46,"vegan","RHUR_2",1.85196502843561,"Hurlbert D k=2"
-46,"vegan","RHUR_3",2.5852281103829,"Hurlbert D k=3"
-46,"BAT","RICE",35,"ICE"
+46,"BAT","RICE",35.0054192602688,"ICE"
 46,"fossil","RICE",16.7586206896552,"ICE"
 46,"tabula","RICE",16,"ICE"
 46,"wiqid","RICE",16,"ICE"
@@ -16604,6 +16604,18 @@
 47,"custom","DGOO_3_1",0.0565788223750496,"Good m3 n1"
 47,"custom","DGOO_3_2",0.138805031595809,"Good m3 n2"
 47,"custom","DGOO_3_3",1,"Good m3 n3"
+47,"benthos","DHUR_2",1.83044077134983,NA
+47,"benthos","DHUR_3",2.52623793318976,NA
+47,"divent","DHUR_2",5.8976570186743,NA
+47,"divent","DHUR_3",5.97929540823294,NA
+47,"entropart","DHUR_2",1.83044077134983,NA
+47,"entropart","DHUR_3",2.52623793318975,NA
+47,"mobsim","DHUR_2",1.83044077134983,NA
+47,"mobsim","DHUR_3",2.52623793318976,NA
+47,"tabula","DHUR_2",1.8304407713494,NA
+47,"tabula","DHUR_3",2.52623793318907,NA
+47,"vegan","DHUR_2",1.83044077134983,NA
+47,"vegan","DHUR_3",2.52623793318976,NA
 47,"abdiv","DINVSP",5.66821525358111,"Simpson inverse"
 47,"adiv","DINVSP",5.66821525358111,"Simpson inverse"
 47,"asbio","DINVSP",5.66821525358111,"Simpson inverse"
@@ -16869,19 +16881,7 @@
 47,"fossil","RCA2",23,"Chao 2"
 47,"tabula","RCA2",14,"Chao 2"
 47,"wiqid","RCA2",14,"Chao 2"
-47,"benthos","RHUR_2",1.83044077134983,"Hurlbert D k=2"
-47,"benthos","RHUR_3",2.52623793318976,"Hurlbert D k=3"
-47,"divent","RHUR_2",5.8976570186743,"Hurlbert D k=2"
-47,"divent","RHUR_3",5.97929540823294,"Hurlbert D k=3"
-47,"entropart","RHUR_2",1.83044077134983,"Hurlbert D k=2"
-47,"entropart","RHUR_3",2.52623793318975,"Hurlbert D k=3"
-47,"mobsim","RHUR_2",1.83044077134983,"Hurlbert D k=2"
-47,"mobsim","RHUR_3",2.52623793318976,"Hurlbert D k=3"
-47,"tabula","RHUR_2",1.8304407713494,"Hurlbert D k=2"
-47,"tabula","RHUR_3",2.52623793318907,"Hurlbert D k=3"
-47,"vegan","RHUR_2",1.83044077134983,"Hurlbert D k=2"
-47,"vegan","RHUR_3",2.52623793318976,"Hurlbert D k=3"
-47,"BAT","RICE",35,"ICE"
+47,"BAT","RICE",35.0055518507964,"ICE"
 47,"fossil","RICE",17.1578947368421,"ICE"
 47,"tabula","RICE",14,"ICE"
 47,"wiqid","RICE",14,"ICE"
@@ -16964,6 +16964,18 @@
 48,"custom","DGOO_3_1",0.103526287623983,"Good m3 n1"
 48,"custom","DGOO_3_2",0.104779593868326,"Good m3 n2"
 48,"custom","DGOO_3_3",1,"Good m3 n3"
+48,"benthos","DHUR_2",1.70670037926676,NA
+48,"benthos","DHUR_3",2.23638398195921,NA
+48,"divent","DHUR_2",3.40948537876242,NA
+48,"divent","DHUR_3",3.56091705928089,NA
+48,"entropart","DHUR_2",1.70670037926676,NA
+48,"entropart","DHUR_3",2.23638398195921,NA
+48,"mobsim","DHUR_2",1.70670037926676,NA
+48,"mobsim","DHUR_3",2.23638398195921,NA
+48,"tabula","DHUR_2",1.70670037926713,NA
+48,"tabula","DHUR_3",2.23638398195944,NA
+48,"vegan","DHUR_2",1.70670037926676,NA
+48,"vegan","DHUR_3",2.23638398195921,NA
 48,"abdiv","DINVSP",3.33830065359477,"Simpson inverse"
 48,"adiv","DINVSP",3.33830065359477,"Simpson inverse"
 48,"asbio","DINVSP",3.33830065359477,"Simpson inverse"
@@ -17229,19 +17241,7 @@
 48,"fossil","RCA2",22,"Chao 2"
 48,"tabula","RCA2",12,"Chao 2"
 48,"wiqid","RCA2",12,"Chao 2"
-48,"benthos","RHUR_2",1.70670037926676,"Hurlbert D k=2"
-48,"benthos","RHUR_3",2.23638398195921,"Hurlbert D k=3"
-48,"divent","RHUR_2",3.40948537876242,"Hurlbert D k=2"
-48,"divent","RHUR_3",3.56091705928089,"Hurlbert D k=3"
-48,"entropart","RHUR_2",1.70670037926676,"Hurlbert D k=2"
-48,"entropart","RHUR_3",2.23638398195921,"Hurlbert D k=3"
-48,"mobsim","RHUR_2",1.70670037926676,"Hurlbert D k=2"
-48,"mobsim","RHUR_3",2.23638398195921,"Hurlbert D k=3"
-48,"tabula","RHUR_2",1.70670037926713,"Hurlbert D k=2"
-48,"tabula","RHUR_3",2.23638398195944,"Hurlbert D k=3"
-48,"vegan","RHUR_2",1.70670037926676,"Hurlbert D k=2"
-48,"vegan","RHUR_3",2.23638398195921,"Hurlbert D k=3"
-48,"BAT","RICE",35,"ICE"
+48,"BAT","RICE",35.0023702245277,"ICE"
 48,"fossil","RICE",13.9230769230769,"ICE"
 48,"tabula","RICE",12,"ICE"
 48,"wiqid","RICE",12,"ICE"
@@ -17324,6 +17324,18 @@
 49,"custom","DGOO_3_1",0.0356086756325437,"Good m3 n1"
 49,"custom","DGOO_3_2",0.120138264467703,"Good m3 n2"
 49,"custom","DGOO_3_3",1,"Good m3 n3"
+49,"benthos","DHUR_2",1.88273673073532,NA
+49,"benthos","DHUR_3",2.66631735395623,NA
+49,"divent","DHUR_2",8.52782944903298,NA
+49,"divent","DHUR_3",8.64387519273331,NA
+49,"entropart","DHUR_2",1.88273673073532,NA
+49,"entropart","DHUR_3",2.66631735395623,NA
+49,"mobsim","DHUR_2",1.88273673073532,NA
+49,"mobsim","DHUR_3",2.66631735395623,NA
+49,"tabula","DHUR_2",1.88273673073547,NA
+49,"tabula","DHUR_3",2.66631735395673,NA
+49,"vegan","DHUR_2",1.88273673073532,NA
+49,"vegan","DHUR_3",2.66631735395623,NA
 49,"abdiv","DINVSP",7.96729297146834,"Simpson inverse"
 49,"adiv","DINVSP",7.96729297146834,"Simpson inverse"
 49,"asbio","DINVSP",7.96729297146834,"Simpson inverse"
@@ -17589,19 +17601,7 @@
 49,"fossil","RCA2",13.5,"Chao 2"
 49,"tabula","RCA2",13,"Chao 2"
 49,"wiqid","RCA2",13,"Chao 2"
-49,"benthos","RHUR_2",1.88273673073532,"Hurlbert D k=2"
-49,"benthos","RHUR_3",2.66631735395623,"Hurlbert D k=3"
-49,"divent","RHUR_2",8.52782944903298,"Hurlbert D k=2"
-49,"divent","RHUR_3",8.64387519273331,"Hurlbert D k=3"
-49,"entropart","RHUR_2",1.88273673073532,"Hurlbert D k=2"
-49,"entropart","RHUR_3",2.66631735395623,"Hurlbert D k=3"
-49,"mobsim","RHUR_2",1.88273673073532,"Hurlbert D k=2"
-49,"mobsim","RHUR_3",2.66631735395623,"Hurlbert D k=3"
-49,"tabula","RHUR_2",1.88273673073547,"Hurlbert D k=2"
-49,"tabula","RHUR_3",2.66631735395673,"Hurlbert D k=3"
-49,"vegan","RHUR_2",1.88273673073532,"Hurlbert D k=2"
-49,"vegan","RHUR_3",2.66631735395623,"Hurlbert D k=3"
-49,"BAT","RICE",35,"ICE"
+49,"BAT","RICE",35.0023702245277,"ICE"
 49,"fossil","RICE",13.2,"ICE"
 49,"tabula","RICE",13,"ICE"
 49,"wiqid","RICE",13,"ICE"
@@ -17684,6 +17684,18 @@
 50,"custom","DGOO_3_1",0.0804492356034084,"Good m3 n1"
 50,"custom","DGOO_3_2",0.120278554841774,"Good m3 n2"
 50,"custom","DGOO_3_3",1,"Good m3 n3"
+50,"benthos","DHUR_2",1.77174112888397,NA
+50,"benthos","DHUR_3",2.38644417411541,NA
+50,"divent","DHUR_2",4.38099063024138,NA
+50,"divent","DHUR_3",4.52971135875732,NA
+50,"entropart","DHUR_2",1.77174112888397,NA
+50,"entropart","DHUR_3",2.38644417411541,NA
+50,"mobsim","DHUR_2",1.77174112888397,NA
+50,"mobsim","DHUR_3",2.38644417411541,NA
+50,"tabula","DHUR_2",1.77174112888441,NA
+50,"tabula","DHUR_3",2.38644417411543,NA
+50,"vegan","DHUR_2",1.77174112888397,NA
+50,"vegan","DHUR_3",2.38644417411541,NA
 50,"abdiv","DINVSP",4.28314430973797,"Simpson inverse"
 50,"adiv","DINVSP",4.28314430973797,"Simpson inverse"
 50,"asbio","DINVSP",4.28314430973797,"Simpson inverse"
@@ -17949,19 +17961,7 @@
 50,"fossil","RCA2",11.25,"Chao 2"
 50,"tabula","RCA2",11,"Chao 2"
 50,"wiqid","RCA2",11,"Chao 2"
-50,"benthos","RHUR_2",1.77174112888397,"Hurlbert D k=2"
-50,"benthos","RHUR_3",2.38644417411541,"Hurlbert D k=3"
-50,"divent","RHUR_2",4.38099063024138,"Hurlbert D k=2"
-50,"divent","RHUR_3",4.52971135875732,"Hurlbert D k=3"
-50,"entropart","RHUR_2",1.77174112888397,"Hurlbert D k=2"
-50,"entropart","RHUR_3",2.38644417411541,"Hurlbert D k=3"
-50,"mobsim","RHUR_2",1.77174112888397,"Hurlbert D k=2"
-50,"mobsim","RHUR_3",2.38644417411541,"Hurlbert D k=3"
-50,"tabula","RHUR_2",1.77174112888441,"Hurlbert D k=2"
-50,"tabula","RHUR_3",2.38644417411543,"Hurlbert D k=3"
-50,"vegan","RHUR_2",1.77174112888397,"Hurlbert D k=2"
-50,"vegan","RHUR_3",2.38644417411541,"Hurlbert D k=3"
-50,"BAT","RICE",35,"ICE"
+50,"BAT","RICE",35.0023702245277,"ICE"
 50,"fossil","RICE",11.25,"ICE"
 50,"tabula","RICE",11,"ICE"
 50,"wiqid","RICE",11,"ICE"
@@ -18044,6 +18044,18 @@
 51,"custom","DGOO_3_1",0.0746614710631785,"Good m3 n1"
 51,"custom","DGOO_3_2",0.117573197635783,"Good m3 n2"
 51,"custom","DGOO_3_3",1,"Good m3 n3"
+51,"benthos","DHUR_2",1.79365079365078,NA
+51,"benthos","DHUR_3",2.43995555006792,NA
+51,"divent","DHUR_2",4.84615377085828,NA
+51,"divent","DHUR_3",4.99957369205357,NA
+51,"entropart","DHUR_2",1.79365079365078,NA
+51,"entropart","DHUR_3",2.43995555006791,NA
+51,"mobsim","DHUR_2",1.79365079365078,NA
+51,"mobsim","DHUR_3",2.43995555006792,NA
+51,"tabula","DHUR_2",1.79365079365216,NA
+51,"tabula","DHUR_3",2.43995555006872,NA
+51,"vegan","DHUR_2",1.79365079365078,NA
+51,"vegan","DHUR_3",2.43995555006792,NA
 51,"abdiv","DINVSP",4.64963503649635,"Simpson inverse"
 51,"adiv","DINVSP",4.64963503649635,"Simpson inverse"
 51,"asbio","DINVSP",4.64963503649635,"Simpson inverse"
@@ -18309,18 +18321,6 @@
 51,"fossil","RCA2",18,"Chao 2"
 51,"tabula","RCA2",14,"Chao 2"
 51,"wiqid","RCA2",14,"Chao 2"
-51,"benthos","RHUR_2",1.79365079365078,"Hurlbert D k=2"
-51,"benthos","RHUR_3",2.43995555006792,"Hurlbert D k=3"
-51,"divent","RHUR_2",4.84615377085828,"Hurlbert D k=2"
-51,"divent","RHUR_3",4.99957369205357,"Hurlbert D k=3"
-51,"entropart","RHUR_2",1.79365079365078,"Hurlbert D k=2"
-51,"entropart","RHUR_3",2.43995555006791,"Hurlbert D k=3"
-51,"mobsim","RHUR_2",1.79365079365078,"Hurlbert D k=2"
-51,"mobsim","RHUR_3",2.43995555006792,"Hurlbert D k=3"
-51,"tabula","RHUR_2",1.79365079365216,"Hurlbert D k=2"
-51,"tabula","RHUR_3",2.43995555006872,"Hurlbert D k=3"
-51,"vegan","RHUR_2",1.79365079365078,"Hurlbert D k=2"
-51,"vegan","RHUR_3",2.43995555006792,"Hurlbert D k=3"
 51,"BAT","RICE",35,"ICE"
 51,"fossil","RICE",15.6,"ICE"
 51,"tabula","RICE",14,"ICE"
@@ -18404,6 +18404,18 @@
 52,"custom","DGOO_3_1",0.0910153891271078,"Good m3 n1"
 52,"custom","DGOO_3_2",0.111376234954017,"Good m3 n2"
 52,"custom","DGOO_3_3",1,"Good m3 n3"
+52,"benthos","DHUR_2",1.74774774774774,NA
+52,"benthos","DHUR_3",2.33002808002805,NA
+52,"divent","DHUR_2",3.96430914020573,NA
+52,"divent","DHUR_3",4.1150873176868,NA
+52,"entropart","DHUR_2",1.74774774774774,NA
+52,"entropart","DHUR_3",2.33002808002805,NA
+52,"mobsim","DHUR_2",1.74774774774774,NA
+52,"mobsim","DHUR_3",2.33002808002805,NA
+52,"tabula","DHUR_2",1.74774774774835,NA
+52,"tabula","DHUR_3",2.33002808002811,NA
+52,"vegan","DHUR_2",1.74774774774774,NA
+52,"vegan","DHUR_3",2.33002808002805,NA
 52,"abdiv","DINVSP",3.86206896551724,"Simpson inverse"
 52,"adiv","DINVSP",3.86206896551724,"Simpson inverse"
 52,"asbio","DINVSP",3.86206896551724,"Simpson inverse"
@@ -18669,18 +18681,6 @@
 52,"fossil","RCA2",14,"Chao 2"
 52,"tabula","RCA2",12,"Chao 2"
 52,"wiqid","RCA2",12,"Chao 2"
-52,"benthos","RHUR_2",1.74774774774774,"Hurlbert D k=2"
-52,"benthos","RHUR_3",2.33002808002805,"Hurlbert D k=3"
-52,"divent","RHUR_2",3.96430914020573,"Hurlbert D k=2"
-52,"divent","RHUR_3",4.1150873176868,"Hurlbert D k=3"
-52,"entropart","RHUR_2",1.74774774774774,"Hurlbert D k=2"
-52,"entropart","RHUR_3",2.33002808002805,"Hurlbert D k=3"
-52,"mobsim","RHUR_2",1.74774774774774,"Hurlbert D k=2"
-52,"mobsim","RHUR_3",2.33002808002805,"Hurlbert D k=3"
-52,"tabula","RHUR_2",1.74774774774835,"Hurlbert D k=2"
-52,"tabula","RHUR_3",2.33002808002811,"Hurlbert D k=3"
-52,"vegan","RHUR_2",1.74774774774774,"Hurlbert D k=2"
-52,"vegan","RHUR_3",2.33002808002805,"Hurlbert D k=3"
 52,"BAT","RICE",35,"ICE"
 52,"fossil","RICE",12.6060606060606,"ICE"
 52,"tabula","RICE",12,"ICE"
@@ -18764,6 +18764,18 @@
 53,"custom","DGOO_3_1",0.0490918343374556,"Good m3 n1"
 53,"custom","DGOO_3_2",0.117848667365797,"Good m3 n2"
 53,"custom","DGOO_3_3",1,"Good m3 n3"
+53,"benthos","DHUR_2",1.84999999999998,NA
+53,"benthos","DHUR_3",2.58341170323924,NA
+53,"divent","DHUR_2",6.66664196411711,NA
+53,"divent","DHUR_3",6.85097734998687,NA
+53,"entropart","DHUR_2",1.84999999999998,NA
+53,"entropart","DHUR_3",2.58341170323924,NA
+53,"mobsim","DHUR_2",1.84999999999998,NA
+53,"mobsim","DHUR_3",2.58341170323924,NA
+53,"tabula","DHUR_2",1.85000000000105,NA
+53,"tabula","DHUR_3",2.58341170324101,NA
+53,"vegan","DHUR_2",1.84999999999998,NA
+53,"vegan","DHUR_3",2.58341170323924,NA
 53,"abdiv","DINVSP",6.41592920353982,"Simpson inverse"
 53,"adiv","DINVSP",6.41592920353982,"Simpson inverse"
 53,"asbio","DINVSP",6.41592920353982,"Simpson inverse"
@@ -19029,18 +19041,6 @@
 53,"fossil","RCA2",15.6666666666667,"Chao 2"
 53,"tabula","RCA2",15,"Chao 2"
 53,"wiqid","RCA2",15,"Chao 2"
-53,"benthos","RHUR_2",1.84999999999998,"Hurlbert D k=2"
-53,"benthos","RHUR_3",2.58341170323924,"Hurlbert D k=3"
-53,"divent","RHUR_2",6.66664196411711,"Hurlbert D k=2"
-53,"divent","RHUR_3",6.85097734998687,"Hurlbert D k=3"
-53,"entropart","RHUR_2",1.84999999999998,"Hurlbert D k=2"
-53,"entropart","RHUR_3",2.58341170323924,"Hurlbert D k=3"
-53,"mobsim","RHUR_2",1.84999999999998,"Hurlbert D k=2"
-53,"mobsim","RHUR_3",2.58341170323924,"Hurlbert D k=3"
-53,"tabula","RHUR_2",1.85000000000105,"Hurlbert D k=2"
-53,"tabula","RHUR_3",2.58341170324101,"Hurlbert D k=3"
-53,"vegan","RHUR_2",1.84999999999998,"Hurlbert D k=2"
-53,"vegan","RHUR_3",2.58341170323924,"Hurlbert D k=3"
 53,"BAT","RICE",35,"ICE"
 53,"fossil","RICE",15.4210526315789,"ICE"
 53,"tabula","RICE",15,"ICE"
@@ -19124,6 +19124,18 @@
 54,"custom","DGOO_3_1",0.106678793782422,"Good m3 n1"
 54,"custom","DGOO_3_2",0.121181093505236,"Good m3 n2"
 54,"custom","DGOO_3_3",1,"Good m3 n3"
+54,"benthos","DHUR_2",1.71343537414967,NA
+54,"benthos","DHUR_3",2.23909031697786,NA
+54,"divent","DHUR_2",3.48961675604004,NA
+54,"divent","DHUR_3",3.5750402331181,NA
+54,"entropart","DHUR_2",1.71343537414967,NA
+54,"entropart","DHUR_3",2.23909031697787,NA
+54,"mobsim","DHUR_2",1.71343537414967,NA
+54,"mobsim","DHUR_3",2.23909031697786,NA
+54,"tabula","DHUR_2",1.71343537414966,NA
+54,"tabula","DHUR_3",2.23909031697785,NA
+54,"vegan","DHUR_2",1.71343537414967,NA
+54,"vegan","DHUR_3",2.23909031697786,NA
 54,"abdiv","DINVSP",3.32088520055325,"Simpson inverse"
 54,"adiv","DINVSP",3.32088520055325,"Simpson inverse"
 54,"asbio","DINVSP",3.32088520055325,"Simpson inverse"
@@ -19389,18 +19401,6 @@
 54,"fossil","RCA2",16,"Chao 2"
 54,"tabula","RCA2",8,"Chao 2"
 54,"wiqid","RCA2",8,"Chao 2"
-54,"benthos","RHUR_2",1.71343537414967,"Hurlbert D k=2"
-54,"benthos","RHUR_3",2.23909031697786,"Hurlbert D k=3"
-54,"divent","RHUR_2",3.48961675604004,"Hurlbert D k=2"
-54,"divent","RHUR_3",3.5750402331181,"Hurlbert D k=3"
-54,"entropart","RHUR_2",1.71343537414967,"Hurlbert D k=2"
-54,"entropart","RHUR_3",2.23909031697787,"Hurlbert D k=3"
-54,"mobsim","RHUR_2",1.71343537414967,"Hurlbert D k=2"
-54,"mobsim","RHUR_3",2.23909031697786,"Hurlbert D k=3"
-54,"tabula","RHUR_2",1.71343537414966,"Hurlbert D k=2"
-54,"tabula","RHUR_3",2.23909031697785,"Hurlbert D k=3"
-54,"vegan","RHUR_2",1.71343537414967,"Hurlbert D k=2"
-54,"vegan","RHUR_3",2.23909031697786,"Hurlbert D k=3"
 54,"BAT","RICE",35,"ICE"
 54,"fossil","RICE",10.6666666666667,"ICE"
 54,"tabula","RICE",8,"ICE"
@@ -19484,6 +19484,18 @@
 55,"custom","DGOO_3_1",0.0649980824624585,"Good m3 n1"
 55,"custom","DGOO_3_2",0.131560290517317,"Good m3 n2"
 55,"custom","DGOO_3_3",1,"Good m3 n3"
+55,"benthos","DHUR_2",1.8185117967332,NA
+55,"benthos","DHUR_3",2.49808789214415,NA
+55,"divent","DHUR_2",5.51000210858725,NA
+55,"divent","DHUR_3",5.62281512368074,NA
+55,"entropart","DHUR_2",1.8185117967332,NA
+55,"entropart","DHUR_3",2.49808789214415,NA
+55,"mobsim","DHUR_2",1.8185117967332,NA
+55,"mobsim","DHUR_3",2.49808789214415,NA
+55,"tabula","DHUR_2",1.81851179673317,NA
+55,"tabula","DHUR_3",2.49808789214397,NA
+55,"vegan","DHUR_2",1.8185117967332,NA
+55,"vegan","DHUR_3",2.49808789214415,NA
 55,"abdiv","DINVSP",5.11246200607903,"Simpson inverse"
 55,"adiv","DINVSP",5.11246200607903,"Simpson inverse"
 55,"asbio","DINVSP",5.11246200607903,"Simpson inverse"
@@ -19749,18 +19761,6 @@
 55,"fossil","RCA2",9.5,"Chao 2"
 55,"tabula","RCA2",9,"Chao 2"
 55,"wiqid","RCA2",9,"Chao 2"
-55,"benthos","RHUR_2",1.8185117967332,"Hurlbert D k=2"
-55,"benthos","RHUR_3",2.49808789214415,"Hurlbert D k=3"
-55,"divent","RHUR_2",5.51000210858725,"Hurlbert D k=2"
-55,"divent","RHUR_3",5.62281512368074,"Hurlbert D k=3"
-55,"entropart","RHUR_2",1.8185117967332,"Hurlbert D k=2"
-55,"entropart","RHUR_3",2.49808789214415,"Hurlbert D k=3"
-55,"mobsim","RHUR_2",1.8185117967332,"Hurlbert D k=2"
-55,"mobsim","RHUR_3",2.49808789214415,"Hurlbert D k=3"
-55,"tabula","RHUR_2",1.81851179673317,"Hurlbert D k=2"
-55,"tabula","RHUR_3",2.49808789214397,"Hurlbert D k=3"
-55,"vegan","RHUR_2",1.8185117967332,"Hurlbert D k=2"
-55,"vegan","RHUR_3",2.49808789214415,"Hurlbert D k=3"
 55,"BAT","RICE",35,"ICE"
 55,"fossil","RICE",9.29166666666667,"ICE"
 55,"tabula","RICE",9,"ICE"
@@ -19844,6 +19844,18 @@
 56,"custom","DGOO_3_1",0.100863204380536,"Good m3 n1"
 56,"custom","DGOO_3_2",0.0972963389938475,"Good m3 n2"
 56,"custom","DGOO_3_3",1,"Good m3 n3"
+56,"benthos","DHUR_2",1.70335756317067,NA
+56,"benthos","DHUR_3",2.23774956405887,NA
+56,"divent","DHUR_2",3.3710644717151,NA
+56,"divent","DHUR_3",3.56803106355971,NA
+56,"entropart","DHUR_2",1.70335756317067,NA
+56,"entropart","DHUR_3",2.23774956405887,NA
+56,"mobsim","DHUR_2",1.70335756317067,NA
+56,"mobsim","DHUR_3",2.23774956405887,NA
+56,"tabula","DHUR_2",1.70335756317072,NA
+56,"tabula","DHUR_3",2.2377495640589,NA
+56,"vegan","DHUR_2",1.70335756317067,NA
+56,"vegan","DHUR_3",2.23774956405887,NA
 56,"abdiv","DINVSP",3.29864253393665,"Simpson inverse"
 56,"adiv","DINVSP",3.29864253393665,"Simpson inverse"
 56,"asbio","DINVSP",3.29864253393665,"Simpson inverse"
@@ -20109,18 +20121,6 @@
 56,"fossil","RCA2",15.5,"Chao 2"
 56,"tabula","RCA2",11,"Chao 2"
 56,"wiqid","RCA2",11,"Chao 2"
-56,"benthos","RHUR_2",1.70335756317067,"Hurlbert D k=2"
-56,"benthos","RHUR_3",2.23774956405887,"Hurlbert D k=3"
-56,"divent","RHUR_2",3.3710644717151,"Hurlbert D k=2"
-56,"divent","RHUR_3",3.56803106355971,"Hurlbert D k=3"
-56,"entropart","RHUR_2",1.70335756317067,"Hurlbert D k=2"
-56,"entropart","RHUR_3",2.23774956405887,"Hurlbert D k=3"
-56,"mobsim","RHUR_2",1.70335756317067,"Hurlbert D k=2"
-56,"mobsim","RHUR_3",2.23774956405887,"Hurlbert D k=3"
-56,"tabula","RHUR_2",1.70335756317072,"Hurlbert D k=2"
-56,"tabula","RHUR_3",2.2377495640589,"Hurlbert D k=3"
-56,"vegan","RHUR_2",1.70335756317067,"Hurlbert D k=2"
-56,"vegan","RHUR_3",2.23774956405887,"Hurlbert D k=3"
 56,"BAT","RICE",35,"ICE"
 56,"fossil","RICE",12.3333333333333,"ICE"
 56,"tabula","RICE",11,"ICE"
@@ -20163,7 +20163,7 @@
 57,"abdiv","D1SP",0.78125,"Simpson's reciprocal"
 57,"ade4","D1SP",0.78125,"Simpson's reciprocal"
 57,"adiv","D1SP",0.78125,"Simpson's reciprocal"
-57,"agricolae","D1SP",NA,"Simpson's reciprocal"
+57,"agricolae","D1SP",0.78125,"Simpson's reciprocal"
 57,"asbio","D1SP",0.78125,"Simpson's reciprocal"
 57,"BiodiversityR","D1SP",0.78125,"Simpson's reciprocal"
 57,"biosampleR","D1SP",0.738173476346953,"Simpson's reciprocal"
@@ -20204,6 +20204,18 @@
 57,"custom","DGOO_3_1",0.0731053666996817,"Good m3 n1"
 57,"custom","DGOO_3_2",0.160007938260306,"Good m3 n2"
 57,"custom","DGOO_3_3",1,"Good m3 n3"
+57,"benthos","DHUR_2",1.89285714285714,NA
+57,"benthos","DHUR_3",2.67857142857143,NA
+57,"divent","DHUR_2",9.33331989458403,NA
+57,"divent","DHUR_3",8.98718240214402,NA
+57,"entropart","DHUR_2",1.89285714285715,NA
+57,"entropart","DHUR_3",2.67857142857143,NA
+57,"mobsim","DHUR_2",1.89285714285714,NA
+57,"mobsim","DHUR_3",2.67857142857143,NA
+57,"tabula","DHUR_2",1.89285714285714,NA
+57,"tabula","DHUR_3",2.67857142857143,NA
+57,"vegan","DHUR_2",1.89285714285714,NA
+57,"vegan","DHUR_3",2.67857142857143,NA
 57,"abdiv","DINVSP",4.57142857142857,"Simpson inverse"
 57,"adiv","DINVSP",4.57142857142857,"Simpson inverse"
 57,"asbio","DINVSP",4.57142857142857,"Simpson inverse"
@@ -20469,18 +20481,6 @@
 57,"fossil","RCA2",5.66666666666667,"Chao 2"
 57,"tabula","RCA2",5,"Chao 2"
 57,"wiqid","RCA2",5,"Chao 2"
-57,"benthos","RHUR_2",1.89285714285714,"Hurlbert D k=2"
-57,"benthos","RHUR_3",2.67857142857143,"Hurlbert D k=3"
-57,"divent","RHUR_2",9.33331989458403,"Hurlbert D k=2"
-57,"divent","RHUR_3",8.98718240214402,"Hurlbert D k=3"
-57,"entropart","RHUR_2",1.89285714285715,"Hurlbert D k=2"
-57,"entropart","RHUR_3",2.67857142857143,"Hurlbert D k=3"
-57,"mobsim","RHUR_2",1.89285714285714,"Hurlbert D k=2"
-57,"mobsim","RHUR_3",2.67857142857143,"Hurlbert D k=3"
-57,"tabula","RHUR_2",1.89285714285714,"Hurlbert D k=2"
-57,"tabula","RHUR_3",2.67857142857143,"Hurlbert D k=3"
-57,"vegan","RHUR_2",1.89285714285714,"Hurlbert D k=2"
-57,"vegan","RHUR_3",2.67857142857143,"Hurlbert D k=3"
 57,"BAT","RICE",35,"ICE"
 57,"fossil","RICE",6.66666666666667,"ICE"
 57,"tabula","RICE",5,"ICE"
@@ -20564,6 +20564,18 @@
 58,"custom","DGOO_3_1",0.0925632919210889,"Good m3 n1"
 58,"custom","DGOO_3_2",0.104462125345044,"Good m3 n2"
 58,"custom","DGOO_3_3",1,"Good m3 n3"
+58,"benthos","DHUR_2",1.72975206611568,NA
+58,"benthos","DHUR_3",2.29665254531561,NA
+58,"divent","DHUR_2",3.70030607640794,NA
+58,"divent","DHUR_3",3.90083854493836,NA
+58,"entropart","DHUR_2",1.72975206611568,NA
+58,"entropart","DHUR_3",2.29665254531562,NA
+58,"mobsim","DHUR_2",1.72975206611568,NA
+58,"mobsim","DHUR_3",2.29665254531561,NA
+58,"tabula","DHUR_2",1.72975206611529,NA
+58,"tabula","DHUR_3",2.29665254531509,NA
+58,"vegan","DHUR_2",1.72975206611568,NA
+58,"vegan","DHUR_3",2.29665254531561,NA
 58,"abdiv","DINVSP",3.61953028430161,"Simpson inverse"
 58,"adiv","DINVSP",3.61953028430161,"Simpson inverse"
 58,"asbio","DINVSP",3.61953028430161,"Simpson inverse"
@@ -20829,18 +20841,6 @@
 58,"fossil","RCA2",13.25,"Chao 2"
 58,"tabula","RCA2",11,"Chao 2"
 58,"wiqid","RCA2",11,"Chao 2"
-58,"benthos","RHUR_2",1.72975206611568,"Hurlbert D k=2"
-58,"benthos","RHUR_3",2.29665254531561,"Hurlbert D k=3"
-58,"divent","RHUR_2",3.70030607640794,"Hurlbert D k=2"
-58,"divent","RHUR_3",3.90083854493836,"Hurlbert D k=3"
-58,"entropart","RHUR_2",1.72975206611568,"Hurlbert D k=2"
-58,"entropart","RHUR_3",2.29665254531562,"Hurlbert D k=3"
-58,"mobsim","RHUR_2",1.72975206611568,"Hurlbert D k=2"
-58,"mobsim","RHUR_3",2.29665254531561,"Hurlbert D k=3"
-58,"tabula","RHUR_2",1.72975206611529,"Hurlbert D k=2"
-58,"tabula","RHUR_3",2.29665254531509,"Hurlbert D k=3"
-58,"vegan","RHUR_2",1.72975206611568,"Hurlbert D k=2"
-58,"vegan","RHUR_3",2.29665254531561,"Hurlbert D k=3"
 58,"BAT","RICE",35,"ICE"
 58,"fossil","RICE",12.2352941176471,"ICE"
 58,"tabula","RICE",11,"ICE"
@@ -20924,6 +20924,18 @@
 59,"custom","DGOO_3_1",0.148329124968011,"Good m3 n1"
 59,"custom","DGOO_3_2",0.0789732258041828,"Good m3 n2"
 59,"custom","DGOO_3_3",1,"Good m3 n3"
+59,"benthos","DHUR_2",1.54082397003746,NA
+59,"benthos","DHUR_3",1.86470888661901,NA
+59,"divent","DHUR_2",2.17778847927863,NA
+59,"divent","DHUR_3",2.25121218321,NA
+59,"entropart","DHUR_2",1.54082397003746,NA
+59,"entropart","DHUR_3",1.86470888661901,NA
+59,"mobsim","DHUR_2",1.54082397003746,NA
+59,"mobsim","DHUR_3",1.86470888661901,NA
+59,"tabula","DHUR_2",1.5408239700376,NA
+59,"tabula","DHUR_3",1.86470888661891,NA
+59,"vegan","DHUR_2",1.54082397003746,NA
+59,"vegan","DHUR_3",1.86470888661901,NA
 59,"abdiv","DINVSP",2.14968152866242,"Simpson inverse"
 59,"adiv","DINVSP",2.14968152866242,"Simpson inverse"
 59,"asbio","DINVSP",2.14968152866242,"Simpson inverse"
@@ -20940,7 +20952,7 @@
 59,"custom","DKO",0.72,"Kothe"
 59,"abdiv","DMC",0.355419666700975,"McIntosh"
 59,"adiv","DMC",0.355419666700975,"McIntosh"
-59,"agricolae","DMC",NA,"McIntosh"
+59,"agricolae","DMC",0.355419666700975,"McIntosh"
 59,"ecodive","DMC",0.355419666700975,"McIntosh"
 59,"forestHES","DMC",0.355419666700975,"McIntosh"
 59,"tabula","DMC",0.355419666700975,"McIntosh"
@@ -21189,18 +21201,6 @@
 59,"fossil","RCA2",9.25,"Chao 2"
 59,"tabula","RCA2",7,"Chao 2"
 59,"wiqid","RCA2",7,"Chao 2"
-59,"benthos","RHUR_2",1.54082397003746,"Hurlbert D k=2"
-59,"benthos","RHUR_3",1.86470888661901,"Hurlbert D k=3"
-59,"divent","RHUR_2",2.17778847927863,"Hurlbert D k=2"
-59,"divent","RHUR_3",2.25121218321,"Hurlbert D k=3"
-59,"entropart","RHUR_2",1.54082397003746,"Hurlbert D k=2"
-59,"entropart","RHUR_3",1.86470888661901,"Hurlbert D k=3"
-59,"mobsim","RHUR_2",1.54082397003746,"Hurlbert D k=2"
-59,"mobsim","RHUR_3",1.86470888661901,"Hurlbert D k=3"
-59,"tabula","RHUR_2",1.5408239700376,"Hurlbert D k=2"
-59,"tabula","RHUR_3",1.86470888661891,"Hurlbert D k=3"
-59,"vegan","RHUR_2",1.54082397003746,"Hurlbert D k=2"
-59,"vegan","RHUR_3",1.86470888661901,"Hurlbert D k=3"
 59,"BAT","RICE",35,"ICE"
 59,"fossil","RICE",13.15625,"ICE"
 59,"tabula","RICE",7,"ICE"
@@ -21284,6 +21284,18 @@
 60,"custom","DGOO_3_1",0.0898946727300756,"Good m3 n1"
 60,"custom","DGOO_3_2",0.115171498713823,"Good m3 n2"
 60,"custom","DGOO_3_3",1,"Good m3 n3"
+60,"benthos","DHUR_2",1.74403199600049,NA
+60,"benthos","DHUR_3",2.32266666666666,NA
+60,"divent","DHUR_2",3.90671597595864,NA
+60,"divent","DHUR_3",4.06604112056125,NA
+60,"entropart","DHUR_2",1.74403199600049,NA
+60,"entropart","DHUR_3",2.32266666666666,NA
+60,"mobsim","DHUR_2",1.74403199600049,NA
+60,"mobsim","DHUR_3",2.32266666666666,NA
+60,"tabula","DHUR_2",1.74403199600019,NA
+60,"tabula","DHUR_3",2.32266666666517,NA
+60,"vegan","DHUR_2",1.74403199600049,NA
+60,"vegan","DHUR_3",2.32266666666666,NA
 60,"abdiv","DINVSP",3.81932275633436,"Simpson inverse"
 60,"adiv","DINVSP",3.81932275633436,"Simpson inverse"
 60,"asbio","DINVSP",3.81932275633436,"Simpson inverse"
@@ -21549,18 +21561,6 @@
 60,"fossil","RCA2",16,"Chao 2"
 60,"tabula","RCA2",12,"Chao 2"
 60,"wiqid","RCA2",12,"Chao 2"
-60,"benthos","RHUR_2",1.74403199600049,"Hurlbert D k=2"
-60,"benthos","RHUR_3",2.32266666666666,"Hurlbert D k=3"
-60,"divent","RHUR_2",3.90671597595864,"Hurlbert D k=2"
-60,"divent","RHUR_3",4.06604112056125,"Hurlbert D k=3"
-60,"entropart","RHUR_2",1.74403199600049,"Hurlbert D k=2"
-60,"entropart","RHUR_3",2.32266666666666,"Hurlbert D k=3"
-60,"mobsim","RHUR_2",1.74403199600049,"Hurlbert D k=2"
-60,"mobsim","RHUR_3",2.32266666666666,"Hurlbert D k=3"
-60,"tabula","RHUR_2",1.74403199600019,"Hurlbert D k=2"
-60,"tabula","RHUR_3",2.32266666666517,"Hurlbert D k=3"
-60,"vegan","RHUR_2",1.74403199600049,"Hurlbert D k=2"
-60,"vegan","RHUR_3",2.32266666666666,"Hurlbert D k=3"
 60,"BAT","RICE",35,"ICE"
 60,"fossil","RICE",13.5,"ICE"
 60,"tabula","RICE",12,"ICE"
@@ -21644,6 +21644,18 @@
 61,"custom","DGOO_3_1",0.0466434116720921,"Good m3 n1"
 61,"custom","DGOO_3_2",0.14231898479382,"Good m3 n2"
 61,"custom","DGOO_3_3",1,"Good m3 n3"
+61,"benthos","DHUR_2",1.86527293844366,NA
+61,"benthos","DHUR_3",2.61489547038328,NA
+61,"divent","DHUR_2",7.42242756475792,NA
+61,"divent","DHUR_3",7.44112717577797,NA
+61,"entropart","DHUR_2",1.86527293844366,NA
+61,"entropart","DHUR_3",2.61489547038328,NA
+61,"mobsim","DHUR_2",1.86527293844366,NA
+61,"mobsim","DHUR_3",2.61489547038328,NA
+61,"tabula","DHUR_2",1.86527293844367,NA
+61,"tabula","DHUR_3",2.61489547038328,NA
+61,"vegan","DHUR_2",1.86527293844366,NA
+61,"vegan","DHUR_3",2.61489547038328,NA
 61,"abdiv","DINVSP",6.43795620437956,"Simpson inverse"
 61,"adiv","DINVSP",6.43795620437956,"Simpson inverse"
 61,"asbio","DINVSP",6.43795620437956,"Simpson inverse"
@@ -21909,18 +21921,6 @@
 61,"fossil","RCA2",11,"Chao 2"
 61,"tabula","RCA2",9,"Chao 2"
 61,"wiqid","RCA2",9,"Chao 2"
-61,"benthos","RHUR_2",1.86527293844366,"Hurlbert D k=2"
-61,"benthos","RHUR_3",2.61489547038328,"Hurlbert D k=3"
-61,"divent","RHUR_2",7.42242756475792,"Hurlbert D k=2"
-61,"divent","RHUR_3",7.44112717577797,"Hurlbert D k=3"
-61,"entropart","RHUR_2",1.86527293844366,"Hurlbert D k=2"
-61,"entropart","RHUR_3",2.61489547038328,"Hurlbert D k=3"
-61,"mobsim","RHUR_2",1.86527293844366,"Hurlbert D k=2"
-61,"mobsim","RHUR_3",2.61489547038328,"Hurlbert D k=3"
-61,"tabula","RHUR_2",1.86527293844367,"Hurlbert D k=2"
-61,"tabula","RHUR_3",2.61489547038328,"Hurlbert D k=3"
-61,"vegan","RHUR_2",1.86527293844366,"Hurlbert D k=2"
-61,"vegan","RHUR_3",2.61489547038328,"Hurlbert D k=3"
 61,"BAT","RICE",35,"ICE"
 61,"fossil","RICE",9.45,"ICE"
 61,"tabula","RICE",9,"ICE"
@@ -22004,6 +22004,18 @@
 62,"custom","DGOO_3_1",0.0827033668518204,"Good m3 n1"
 62,"custom","DGOO_3_2",0.135304386508084,"Good m3 n2"
 62,"custom","DGOO_3_3",1,"Good m3 n3"
+62,"benthos","DHUR_2",1.82051282051282,NA
+62,"benthos","DHUR_3",2.5,NA
+62,"divent","DHUR_2",5.57143160774423,NA
+62,"divent","DHUR_3",5.64576448230653,NA
+62,"entropart","DHUR_2",1.82051282051282,NA
+62,"entropart","DHUR_3",2.5,NA
+62,"mobsim","DHUR_2",1.82051282051282,NA
+62,"mobsim","DHUR_3",2.5,NA
+62,"tabula","DHUR_2",1.82051282051282,NA
+62,"tabula","DHUR_3",2.5,NA
+62,"vegan","DHUR_2",1.82051282051282,NA
+62,"vegan","DHUR_3",2.5,NA
 62,"abdiv","DINVSP",4.1219512195122,"Simpson inverse"
 62,"adiv","DINVSP",4.1219512195122,"Simpson inverse"
 62,"asbio","DINVSP",4.1219512195122,"Simpson inverse"
@@ -22269,18 +22281,6 @@
 62,"fossil","RCA2",10.5,"Chao 2"
 62,"tabula","RCA2",6,"Chao 2"
 62,"wiqid","RCA2",6,"Chao 2"
-62,"benthos","RHUR_2",1.82051282051282,"Hurlbert D k=2"
-62,"benthos","RHUR_3",2.5,"Hurlbert D k=3"
-62,"divent","RHUR_2",5.57143160774423,"Hurlbert D k=2"
-62,"divent","RHUR_3",5.64576448230653,"Hurlbert D k=3"
-62,"entropart","RHUR_2",1.82051282051282,"Hurlbert D k=2"
-62,"entropart","RHUR_3",2.5,"Hurlbert D k=3"
-62,"mobsim","RHUR_2",1.82051282051282,"Hurlbert D k=2"
-62,"mobsim","RHUR_3",2.5,"Hurlbert D k=3"
-62,"tabula","RHUR_2",1.82051282051282,"Hurlbert D k=2"
-62,"tabula","RHUR_3",2.5,"Hurlbert D k=3"
-62,"vegan","RHUR_2",1.82051282051282,"Hurlbert D k=2"
-62,"vegan","RHUR_3",2.5,"Hurlbert D k=3"
 62,"BAT","RICE",35,"ICE"
 62,"fossil","RICE",7.8,"ICE"
 62,"tabula","RICE",6,"ICE"
@@ -22364,6 +22364,18 @@
 63,"custom","DGOO_3_1",0.0355098953532685,"Good m3 n1"
 63,"custom","DGOO_3_2",0.1188807415391,"Good m3 n2"
 63,"custom","DGOO_3_3",1,"Good m3 n3"
+63,"benthos","DHUR_2",1.88618331053355,NA
+63,"benthos","DHUR_3",2.67557162399847,NA
+63,"divent","DHUR_2",8.78605897937081,NA
+63,"divent","DHUR_3",8.90073528860104,NA
+63,"entropart","DHUR_2",1.88618331053355,NA
+63,"entropart","DHUR_3",2.67557162399847,NA
+63,"mobsim","DHUR_2",1.88618331053355,NA
+63,"mobsim","DHUR_3",2.67557162399847,NA
+63,"tabula","DHUR_2",1.88618331053379,NA
+63,"tabula","DHUR_3",2.6755716239985,NA
+63,"vegan","DHUR_2",1.88618331053355,NA
+63,"vegan","DHUR_3",2.67557162399847,NA
 63,"abdiv","DINVSP",8.05664488017429,"Simpson inverse"
 63,"adiv","DINVSP",8.05664488017429,"Simpson inverse"
 63,"asbio","DINVSP",8.05664488017429,"Simpson inverse"
@@ -22629,18 +22641,6 @@
 63,"fossil","RCA2",16.2857142857143,"Chao 2"
 63,"tabula","RCA2",16,"Chao 2"
 63,"wiqid","RCA2",16,"Chao 2"
-63,"benthos","RHUR_2",1.88618331053355,"Hurlbert D k=2"
-63,"benthos","RHUR_3",2.67557162399847,"Hurlbert D k=3"
-63,"divent","RHUR_2",8.78605897937081,"Hurlbert D k=2"
-63,"divent","RHUR_3",8.90073528860104,"Hurlbert D k=3"
-63,"entropart","RHUR_2",1.88618331053355,"Hurlbert D k=2"
-63,"entropart","RHUR_3",2.67557162399847,"Hurlbert D k=3"
-63,"mobsim","RHUR_2",1.88618331053355,"Hurlbert D k=2"
-63,"mobsim","RHUR_3",2.67557162399847,"Hurlbert D k=3"
-63,"tabula","RHUR_2",1.88618331053379,"Hurlbert D k=2"
-63,"tabula","RHUR_3",2.6755716239985,"Hurlbert D k=3"
-63,"vegan","RHUR_2",1.88618331053355,"Hurlbert D k=2"
-63,"vegan","RHUR_3",2.67557162399847,"Hurlbert D k=3"
 63,"BAT","RICE",35,"ICE"
 63,"fossil","RICE",16.6842105263158,"ICE"
 63,"tabula","RICE",16,"ICE"
@@ -22724,6 +22724,18 @@
 64,"custom","DGOO_3_1",0.043277279799203,"Good m3 n1"
 64,"custom","DGOO_3_2",0.129102661807681,"Good m3 n2"
 64,"custom","DGOO_3_3",1,"Good m3 n3"
+64,"benthos","DHUR_2",1.86598746081505,NA
+64,"benthos","DHUR_3",2.62019756506524,NA
+64,"divent","DHUR_2",7.4619988814558,NA
+64,"divent","DHUR_3",7.55011399099331,NA
+64,"entropart","DHUR_2",1.86598746081505,NA
+64,"entropart","DHUR_3",2.62019756506524,NA
+64,"mobsim","DHUR_2",1.86598746081505,NA
+64,"mobsim","DHUR_3",2.62019756506524,NA
+64,"tabula","DHUR_2",1.86598746081533,NA
+64,"tabula","DHUR_3",2.62019756506562,NA
+64,"vegan","DHUR_2",1.86598746081505,NA
+64,"vegan","DHUR_3",2.62019756506524,NA
 64,"abdiv","DINVSP",6.95152603231598,"Simpson inverse"
 64,"adiv","DINVSP",6.95152603231598,"Simpson inverse"
 64,"asbio","DINVSP",6.95152603231598,"Simpson inverse"
@@ -22989,18 +23001,6 @@
 64,"fossil","RCA2",15,"Chao 2"
 64,"tabula","RCA2",13,"Chao 2"
 64,"wiqid","RCA2",13,"Chao 2"
-64,"benthos","RHUR_2",1.86598746081505,"Hurlbert D k=2"
-64,"benthos","RHUR_3",2.62019756506524,"Hurlbert D k=3"
-64,"divent","RHUR_2",7.4619988814558,"Hurlbert D k=2"
-64,"divent","RHUR_3",7.55011399099331,"Hurlbert D k=3"
-64,"entropart","RHUR_2",1.86598746081505,"Hurlbert D k=2"
-64,"entropart","RHUR_3",2.62019756506524,"Hurlbert D k=3"
-64,"mobsim","RHUR_2",1.86598746081505,"Hurlbert D k=2"
-64,"mobsim","RHUR_3",2.62019756506524,"Hurlbert D k=3"
-64,"tabula","RHUR_2",1.86598746081533,"Hurlbert D k=2"
-64,"tabula","RHUR_3",2.62019756506562,"Hurlbert D k=3"
-64,"vegan","RHUR_2",1.86598746081505,"Hurlbert D k=2"
-64,"vegan","RHUR_3",2.62019756506524,"Hurlbert D k=3"
 64,"BAT","RICE",35,"ICE"
 64,"fossil","RICE",13.7826086956522,"ICE"
 64,"tabula","RICE",13,"ICE"
@@ -23084,6 +23084,18 @@
 65,"custom","DGOO_3_1",0.041997070378955,"Good m3 n1"
 65,"custom","DGOO_3_2",0.129732289530653,"Good m3 n2"
 65,"custom","DGOO_3_3",1,"Good m3 n3"
+65,"benthos","DHUR_2",1.86615186615186,NA
+65,"benthos","DHUR_3",2.62056423306421,NA
+65,"divent","DHUR_2",7.47116379149559,NA
+65,"divent","DHUR_3",7.55776334372208,NA
+65,"entropart","DHUR_2",1.86615186615185,NA
+65,"entropart","DHUR_3",2.62056423306421,NA
+65,"mobsim","DHUR_2",1.86615186615186,NA
+65,"mobsim","DHUR_3",2.62056423306421,NA
+65,"tabula","DHUR_2",1.86615186615277,NA
+65,"tabula","DHUR_3",2.62056423306457,NA
+65,"vegan","DHUR_2",1.86615186615186,NA
+65,"vegan","DHUR_3",2.62056423306421,NA
 65,"abdiv","DINVSP",7.06306306306306,"Simpson inverse"
 65,"adiv","DINVSP",7.06306306306306,"Simpson inverse"
 65,"asbio","DINVSP",7.06306306306306,"Simpson inverse"
@@ -23349,18 +23361,6 @@
 65,"fossil","RCA2",14,"Chao 2"
 65,"tabula","RCA2",13,"Chao 2"
 65,"wiqid","RCA2",13,"Chao 2"
-65,"benthos","RHUR_2",1.86615186615186,"Hurlbert D k=2"
-65,"benthos","RHUR_3",2.62056423306421,"Hurlbert D k=3"
-65,"divent","RHUR_2",7.47116379149559,"Hurlbert D k=2"
-65,"divent","RHUR_3",7.55776334372208,"Hurlbert D k=3"
-65,"entropart","RHUR_2",1.86615186615185,"Hurlbert D k=2"
-65,"entropart","RHUR_3",2.62056423306421,"Hurlbert D k=3"
-65,"mobsim","RHUR_2",1.86615186615186,"Hurlbert D k=2"
-65,"mobsim","RHUR_3",2.62056423306421,"Hurlbert D k=3"
-65,"tabula","RHUR_2",1.86615186615277,"Hurlbert D k=2"
-65,"tabula","RHUR_3",2.62056423306457,"Hurlbert D k=3"
-65,"vegan","RHUR_2",1.86615186615186,"Hurlbert D k=2"
-65,"vegan","RHUR_3",2.62056423306421,"Hurlbert D k=3"
 65,"BAT","RICE",35,"ICE"
 65,"fossil","RICE",13.5294117647059,"ICE"
 65,"tabula","RICE",13,"ICE"
@@ -23444,6 +23444,18 @@
 66,"custom","DGOO_3_1",0.0378688375259111,"Good m3 n1"
 66,"custom","DGOO_3_2",0.125594991105114,"Good m3 n2"
 66,"custom","DGOO_3_3",1,"Good m3 n3"
+66,"benthos","DHUR_2",1.87616191904048,NA
+66,"benthos","DHUR_3",2.64756569083883,NA
+66,"divent","DHUR_2",8.07506063427289,NA
+66,"divent","DHUR_3",8.16470220840152,NA
+66,"entropart","DHUR_2",1.87616191904048,NA
+66,"entropart","DHUR_3",2.64756569083883,NA
+66,"mobsim","DHUR_2",1.87616191904048,NA
+66,"mobsim","DHUR_3",2.64756569083883,NA
+66,"tabula","DHUR_2",1.87616191904027,NA
+66,"tabula","DHUR_3",2.64756569083854,NA
+66,"vegan","DHUR_2",1.87616191904048,NA
+66,"vegan","DHUR_3",2.64756569083883,NA
 66,"abdiv","DINVSP",7.61085972850679,"Simpson inverse"
 66,"adiv","DINVSP",7.61085972850679,"Simpson inverse"
 66,"asbio","DINVSP",7.61085972850679,"Simpson inverse"
@@ -23709,18 +23721,6 @@
 66,"fossil","RCA2",17,"Chao 2"
 66,"tabula","RCA2",14,"Chao 2"
 66,"wiqid","RCA2",14,"Chao 2"
-66,"benthos","RHUR_2",1.87616191904048,"Hurlbert D k=2"
-66,"benthos","RHUR_3",2.64756569083883,"Hurlbert D k=3"
-66,"divent","RHUR_2",8.07506063427289,"Hurlbert D k=2"
-66,"divent","RHUR_3",8.16470220840152,"Hurlbert D k=3"
-66,"entropart","RHUR_2",1.87616191904048,"Hurlbert D k=2"
-66,"entropart","RHUR_3",2.64756569083883,"Hurlbert D k=3"
-66,"mobsim","RHUR_2",1.87616191904048,"Hurlbert D k=2"
-66,"mobsim","RHUR_3",2.64756569083883,"Hurlbert D k=3"
-66,"tabula","RHUR_2",1.87616191904027,"Hurlbert D k=2"
-66,"tabula","RHUR_3",2.64756569083854,"Hurlbert D k=3"
-66,"vegan","RHUR_2",1.87616191904048,"Hurlbert D k=2"
-66,"vegan","RHUR_3",2.64756569083883,"Hurlbert D k=3"
 66,"BAT","RICE",35,"ICE"
 66,"fossil","RICE",14.8108108108108,"ICE"
 66,"tabula","RICE",14,"ICE"
@@ -23763,7 +23763,7 @@
 67,"abdiv","D1SP",0.140907369487557,"Simpson's reciprocal"
 67,"ade4","D1SP",0.140907369487557,"Simpson's reciprocal"
 67,"adiv","D1SP",0.140907369487557,"Simpson's reciprocal"
-67,"agricolae","D1SP",NA,"Simpson's reciprocal"
+67,"agricolae","D1SP",0.140907369487557,"Simpson's reciprocal"
 67,"asbio","D1SP",0.140907369487557,"Simpson's reciprocal"
 67,"BiodiversityR","D1SP",0.14090737,"Simpson's reciprocal"
 67,"biosampleR","D1SP",0.868770004572474,"Simpson's reciprocal"
@@ -23804,6 +23804,18 @@
 67,"custom","DGOO_3_1",0.0614741792558499,"Good m3 n1"
 67,"custom","DGOO_3_2",0.00307546586659072,"Good m3 n2"
 67,"custom","DGOO_3_3",1,"Good m3 n3"
+67,"benthos","DHUR_2",1.14108801996124,NA
+67,"benthos","DHUR_3",1.21643511526531,NA
+67,"divent","DHUR_2",1.16428617530736,NA
+67,"divent","DHUR_3",1.22393156951352,NA
+67,"entropart","DHUR_2",1.14108801996124,NA
+67,"entropart","DHUR_3",1.21643511526531,NA
+67,"mobsim","DHUR_2",1.14108801996124,NA
+67,"mobsim","DHUR_3",1.21643511526531,NA
+67,"tabula","DHUR_2",1.14108820810609,NA
+67,"tabula","DHUR_3",1.216435120626,NA
+67,"vegan","DHUR_2",1.14108801996124,NA
+67,"vegan","DHUR_3",1.21643511526531,NA
 67,"abdiv","DINVSP",1.16401883159387,"Simpson inverse"
 67,"adiv","DINVSP",1.16401883159387,"Simpson inverse"
 67,"asbio","DINVSP",1.16401883159387,"Simpson inverse"
@@ -23820,7 +23832,7 @@
 67,"custom","DKO",0.76,"Kothe"
 67,"abdiv","DMC",0.0758413160578267,"McIntosh"
 67,"adiv","DMC",0.0758413160578267,"McIntosh"
-67,"agricolae","DMC",0.0758413160578267,"McIntosh"
+67,"agricolae","DMC",NA,"McIntosh"
 67,"ecodive","DMC",0.0758413160578267,"McIntosh"
 67,"forestHES","DMC",0.0758413160578267,"McIntosh"
 67,"tabula","DMC",0.0758413160578267,"McIntosh"
@@ -24069,18 +24081,6 @@
 67,"fossil","RCA2",6,"Chao 2"
 67,"tabula","RCA2",6,"Chao 2"
 67,"wiqid","RCA2",6,"Chao 2"
-67,"benthos","RHUR_2",1.14108801996124,"Hurlbert D k=2"
-67,"benthos","RHUR_3",1.21643511526531,"Hurlbert D k=3"
-67,"divent","RHUR_2",1.16428617530736,"Hurlbert D k=2"
-67,"divent","RHUR_3",1.22393156951352,"Hurlbert D k=3"
-67,"entropart","RHUR_2",1.14108801996124,"Hurlbert D k=2"
-67,"entropart","RHUR_3",1.21643511526531,"Hurlbert D k=3"
-67,"mobsim","RHUR_2",1.14108801996124,"Hurlbert D k=2"
-67,"mobsim","RHUR_3",1.21643511526531,"Hurlbert D k=3"
-67,"tabula","RHUR_2",1.14108820810609,"Hurlbert D k=2"
-67,"tabula","RHUR_3",1.216435120626,"Hurlbert D k=3"
-67,"vegan","RHUR_2",1.14108801996124,"Hurlbert D k=2"
-67,"vegan","RHUR_3",1.21643511526531,"Hurlbert D k=3"
 67,"BAT","RICE",35,"ICE"
 67,"fossil","RICE",6,"ICE"
 67,"tabula","RICE",6,"ICE"
@@ -24164,6 +24164,18 @@
 68,"custom","DGOO_3_1",0.0520830326880922,"Good m3 n1"
 68,"custom","DGOO_3_2",0.12609872197332,"Good m3 n2"
 68,"custom","DGOO_3_3",1,"Good m3 n3"
+68,"benthos","DHUR_2",1.84389844389844,NA
+68,"benthos","DHUR_3",2.56472736289255,NA
+68,"divent","DHUR_2",6.40607032007173,NA
+68,"divent","DHUR_3",6.54101342018521,NA
+68,"entropart","DHUR_2",1.84389844389844,NA
+68,"entropart","DHUR_3",2.56472736289255,NA
+68,"mobsim","DHUR_2",1.84389844389844,NA
+68,"mobsim","DHUR_3",2.56472736289255,NA
+68,"tabula","DHUR_2",1.84389844389768,NA
+68,"tabula","DHUR_3",2.56472736289231,NA
+68,"vegan","DHUR_2",1.84389844389844,NA
+68,"vegan","DHUR_3",2.56472736289255,NA
 68,"abdiv","DINVSP",6.10857709469509,"Simpson inverse"
 68,"adiv","DINVSP",6.10857709469509,"Simpson inverse"
 68,"asbio","DINVSP",6.10857709469509,"Simpson inverse"
@@ -24429,18 +24441,6 @@
 68,"fossil","RCA2",14,"Chao 2"
 68,"tabula","RCA2",13,"Chao 2"
 68,"wiqid","RCA2",13,"Chao 2"
-68,"benthos","RHUR_2",1.84389844389844,"Hurlbert D k=2"
-68,"benthos","RHUR_3",2.56472736289255,"Hurlbert D k=3"
-68,"divent","RHUR_2",6.40607032007173,"Hurlbert D k=2"
-68,"divent","RHUR_3",6.54101342018521,"Hurlbert D k=3"
-68,"entropart","RHUR_2",1.84389844389844,"Hurlbert D k=2"
-68,"entropart","RHUR_3",2.56472736289255,"Hurlbert D k=3"
-68,"mobsim","RHUR_2",1.84389844389844,"Hurlbert D k=2"
-68,"mobsim","RHUR_3",2.56472736289255,"Hurlbert D k=3"
-68,"tabula","RHUR_2",1.84389844389768,"Hurlbert D k=2"
-68,"tabula","RHUR_3",2.56472736289231,"Hurlbert D k=3"
-68,"vegan","RHUR_2",1.84389844389844,"Hurlbert D k=2"
-68,"vegan","RHUR_3",2.56472736289255,"Hurlbert D k=3"
 68,"BAT","RICE",35,"ICE"
 68,"fossil","RICE",13.5263157894737,"ICE"
 68,"tabula","RICE",13,"ICE"
@@ -24524,6 +24524,18 @@
 69,"custom","DGOO_3_1",0.0664655438962781,"Good m3 n1"
 69,"custom","DGOO_3_2",0.0988500661112731,"Good m3 n2"
 69,"custom","DGOO_3_3",1,"Good m3 n3"
+69,"benthos","DHUR_2",1.80601092896176,NA
+69,"benthos","DHUR_3",2.48213894088809,NA
+69,"divent","DHUR_2",5.15495832037056,NA
+69,"divent","DHUR_3",5.43796688158089,NA
+69,"entropart","DHUR_2",1.80601092896176,NA
+69,"entropart","DHUR_3",2.48213894088809,NA
+69,"mobsim","DHUR_2",1.80601092896176,NA
+69,"mobsim","DHUR_3",2.48213894088809,NA
+69,"tabula","DHUR_2",1.80610745626519,NA
+69,"tabula","DHUR_3",2.48217180265849,NA
+69,"vegan","DHUR_2",1.80601092896176,NA
+69,"vegan","DHUR_3",2.48213894088809,NA
 69,"abdiv","DINVSP",5.04109589041096,"Simpson inverse"
 69,"adiv","DINVSP",5.04109589041096,"Simpson inverse"
 69,"asbio","DINVSP",5.04109589041096,"Simpson inverse"
@@ -24789,18 +24801,6 @@
 69,"fossil","RCA2",17,"Chao 2"
 69,"tabula","RCA2",17,"Chao 2"
 69,"wiqid","RCA2",17,"Chao 2"
-69,"benthos","RHUR_2",1.80601092896176,"Hurlbert D k=2"
-69,"benthos","RHUR_3",2.48213894088809,"Hurlbert D k=3"
-69,"divent","RHUR_2",5.15495832037056,"Hurlbert D k=2"
-69,"divent","RHUR_3",5.43796688158089,"Hurlbert D k=3"
-69,"entropart","RHUR_2",1.80601092896176,"Hurlbert D k=2"
-69,"entropart","RHUR_3",2.48213894088809,"Hurlbert D k=3"
-69,"mobsim","RHUR_2",1.80601092896176,"Hurlbert D k=2"
-69,"mobsim","RHUR_3",2.48213894088809,"Hurlbert D k=3"
-69,"tabula","RHUR_2",1.80610745626519,"Hurlbert D k=2"
-69,"tabula","RHUR_3",2.48217180265849,"Hurlbert D k=3"
-69,"vegan","RHUR_2",1.80601092896176,"Hurlbert D k=2"
-69,"vegan","RHUR_3",2.48213894088809,"Hurlbert D k=3"
 69,"BAT","RICE",35,"ICE"
 69,"fossil","RICE",17,"ICE"
 69,"tabula","RICE",17,"ICE"
@@ -24884,6 +24884,18 @@
 70,"custom","DGOO_3_1",0.0278796714131697,"Good m3 n1"
 70,"custom","DGOO_3_2",0.117080849838763,"Good m3 n2"
 70,"custom","DGOO_3_3",1,"Good m3 n3"
+70,"benthos","DHUR_2",1.89958677685947,NA
+70,"benthos","DHUR_3",2.71076463643304,NA
+70,"divent","DHUR_2",9.95883346832909,NA
+70,"divent","DHUR_3",10.0273817760336,NA
+70,"entropart","DHUR_2",1.89958677685947,NA
+70,"entropart","DHUR_3",2.71076463643304,NA
+70,"mobsim","DHUR_2",1.89958677685947,NA
+70,"mobsim","DHUR_3",2.71076463643304,NA
+70,"tabula","DHUR_2",1.8995867768592,NA
+70,"tabula","DHUR_3",2.71076463643234,NA
+70,"vegan","DHUR_2",1.89958677685947,NA
+70,"vegan","DHUR_3",2.71076463643304,NA
 70,"abdiv","DINVSP",9.27232425585814,"Simpson inverse"
 70,"adiv","DINVSP",9.27232425585814,"Simpson inverse"
 70,"asbio","DINVSP",9.27232425585814,"Simpson inverse"
@@ -25149,18 +25161,6 @@
 70,"fossil","RCA2",19.5,"Chao 2"
 70,"tabula","RCA2",15,"Chao 2"
 70,"wiqid","RCA2",15,"Chao 2"
-70,"benthos","RHUR_2",1.89958677685947,"Hurlbert D k=2"
-70,"benthos","RHUR_3",2.71076463643304,"Hurlbert D k=3"
-70,"divent","RHUR_2",9.95883346832909,"Hurlbert D k=2"
-70,"divent","RHUR_3",10.0273817760336,"Hurlbert D k=3"
-70,"entropart","RHUR_2",1.89958677685947,"Hurlbert D k=2"
-70,"entropart","RHUR_3",2.71076463643304,"Hurlbert D k=3"
-70,"mobsim","RHUR_2",1.89958677685947,"Hurlbert D k=2"
-70,"mobsim","RHUR_3",2.71076463643304,"Hurlbert D k=3"
-70,"tabula","RHUR_2",1.8995867768592,"Hurlbert D k=2"
-70,"tabula","RHUR_3",2.71076463643234,"Hurlbert D k=3"
-70,"vegan","RHUR_2",1.89958677685947,"Hurlbert D k=2"
-70,"vegan","RHUR_3",2.71076463643304,"Hurlbert D k=3"
 70,"BAT","RICE",35,"ICE"
 70,"fossil","RICE",15.9310344827586,"ICE"
 70,"tabula","RICE",15,"ICE"

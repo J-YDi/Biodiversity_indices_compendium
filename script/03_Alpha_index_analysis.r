@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 03_Alpha_index_analysis.r
-# Date               : 19/03/2025
+# Date               : 23/03/2025
 # Object             : Script to analyze alpha biodiversity index
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
@@ -128,7 +128,7 @@ ggplot(filter(data_long, startsWith(index, "E"))) +
         strip.background = element_rect(fill = "darkmagenta"),
         axis.title = element_text(size = 15),
         axis.text.y = element_text(size = 12,face = "bold"))
-ggsave('values_alpha_E_indices.png', path = "output/fig/alpha/indices/", dpi = 900, width = 300, height = 200, units = 'mm')
+#ggsave('values_alpha_E_indices.png', path = "output/fig/alpha/indices/", dpi = 900, width = 300, height = 200, units = 'mm')
 
 # Heterogeneity indices
 
@@ -139,21 +139,21 @@ ggplot(filter(data_long, startsWith(index, "D") | startsWith(index, "Q"))) +
   geom_label(data = filter(data_stats, startsWith(index, "D") | startsWith(index, "Q")),
              aes(x = 14, y = 0, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
              color = "black", size = 4,alpha=0.5,linewidth=0) +
-  facet_wrap(~ index,scales="free_y",ncol=5) +
+  facet_wrap(~ index,scales="free_y",ncol=4) +
   labs(x = "Sample", y = "Index value") +
   theme(strip.text = element_text(face = "bold", color = "white",
                                   hjust = 0, size = 10),
         strip.background = element_rect(fill = "darkblue"),
         axis.title = element_text(size = 15),
         axis.text.y = element_text(size = 12,face = "bold"))
-ggsave('values_alpha_D_indices.png', path = "output/fig/alpha/indices/", dpi = 600, width = 500, height = 200, units = 'mm')
+# ggsave('values_alpha_D_indices.png', path = "output/fig/alpha/indices/", dpi = 600, width = 450, height = 250, units = 'mm')
 
 # Heterogeneity indices
 
 ggplot(filter(data_long, startsWith(index, "T"))) +
-  geom_segment(aes(x = Sample,y=0, yend = value), col = "brown4",
+  geom_segment(aes(x = Sample,y=0, yend = value), col = "darkgreen",
                linewidth = 1, alpha = 0.4) +
-  geom_point(aes(x = Sample, y = value), col = "brown4", size = 1.7) +
+  geom_point(aes(x = Sample, y = value), col = "darkgreen", size = 1.7) +
   geom_label(data = filter(data_stats, startsWith(index, "T")),
              aes(x = 14, y = 0, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
              color = "black", size = 4,alpha=0.5,linewidth=0) +
@@ -161,15 +161,15 @@ ggplot(filter(data_long, startsWith(index, "T"))) +
   labs(x = "Sample", y = "Index value") +
   theme(strip.text = element_text(face = "bold", color = "white",
                                   hjust = 0, size = 10),
-        strip.background = element_rect(fill = "brown4"),
+        strip.background = element_rect(fill = "darkgreen"),
         axis.title = element_text(size = 15),
         axis.text.y = element_text(size = 12,face = "bold"))
-ggsave('values_alpha_T_indices.png', path = "output/fig/alpha/indices/", dpi = 600, width = 400, height = 100, units = 'mm')
+# ggsave('values_alpha_T_indices.png', path = "output/fig/alpha/indices/", dpi = 600, width = 400, height = 100, units = 'mm')
 
 
 # Estimate of species richness indices
 
-A <- ggplot(filter(data_long, startsWith(index, "R") & !index %in% c("RHUR_2","RHUR_3"))) +
+ggplot(filter(data_long, startsWith(index, "R") & !index %in% c("RHUR_2","RHUR_3"))) +
   geom_segment(aes(x = Sample,y=0, yend = value), col = "darkgoldenrod4",
                linewidth = 1, alpha = 0.4) +
   geom_point(aes(x = Sample, y = value), col = "darkgoldenrod4", size = 1.7) +
@@ -183,43 +183,27 @@ A <- ggplot(filter(data_long, startsWith(index, "R") & !index %in% c("RHUR_2","R
         strip.background = element_rect(fill = "darkgoldenrod4"),
         axis.title = element_text(size = 15),
         axis.text.y = element_text(size = 12,face = "bold"))
-B <- ggplot(filter(data_long, startsWith(index, "R") & index %in% c("RHUR_2","RHUR_3"))) +
-  geom_segment(aes(x = Sample,y=1, yend = value), col = "darkgoldenrod4",
-               linewidth = 1, alpha = 0.4) +
-  geom_point(aes(x = Sample, y = value), col = "darkgoldenrod4", size = 1.7) +
-  geom_label(data = filter(data_stats, startsWith(index, "R") & index %in% c("RHUR_2","RHUR_3")),
-             aes(x = 12, y = 1, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
-             color = "black", size = 4,alpha=0.5,linewidth=0) +
-  scale_y_continuous(limits = c(1, 3)) +
-  facet_wrap(~ index,nrow=3) +
-  labs(x = "", y = NULL) +
-  theme(strip.text = element_text(face = "bold", color = "white",
-                                  hjust = 0, size = 10),
-        strip.background = element_rect(fill = "darkgoldenrod4"),
-        axis.title = element_text(size = 15),
-        axis.text.y = element_text(size = 12,face = "bold"))
-plot_grid(A,B,rel_widths = c(3,1),rel_heights = c(1,2))
-ggsave('values_alpha_R_indices.png', path = "output/fig/alpha/indices/", dpi = 900, width = 400, height = 200, units = 'mm')
+# ggsave('values_alpha_R_indices.png', path = "output/fig/alpha/indices/", dpi = 900, width = 350, height = 200, units = 'mm')
 
 # Mixte Q indices
 
 # Heterogeneity indices
 
-ggplot(filter(data_long, startsWith(index, "Q"))) +
-  geom_segment(aes(x = Sample,y=0, yend = value), col = "darkgreen",
-               linewidth = 1, alpha = 0.4) +
-  geom_point(aes(x = Sample, y = value), col = "darkgreen", size = 1.7) +
-  geom_label(data = filter(data_stats, startsWith(index, "Q")),
-             aes(x = 12, y = 0, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
-             color = "black", size = 4,alpha=0.5,linewidth=0) +
-  facet_wrap(~ index,scales="free_y",ncol=4) +
-  labs(x = "Sample", y = "Index value") +
-  theme(strip.text = element_text(face = "bold", color = "white",
-                                  hjust = 0, size = 10),
-        strip.background = element_rect(fill = "darkgreen"),
-        axis.title = element_text(size = 15),
-        axis.text.y = element_text(size = 12,face = "bold"))
-ggsave('values_alpha_Q_indices.png', path = "output/fig/alpha/indices/", dpi = 900, width = 400, height = 200, units = 'mm')
+# ggplot(filter(data_long, startsWith(index, "Q"))) +
+#   geom_segment(aes(x = Sample,y=0, yend = value), col = "darkgreen",
+#                linewidth = 1, alpha = 0.4) +
+#   geom_point(aes(x = Sample, y = value), col = "darkgreen", size = 1.7) +
+#   geom_label(data = filter(data_stats, startsWith(index, "Q")),
+#              aes(x = 12, y = 0, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
+#              color = "black", size = 4,alpha=0.5,linewidth=0) +
+#   facet_wrap(~ index,scales="free_y",ncol=4) +
+#   labs(x = "Sample", y = "Index value") +
+#   theme(strip.text = element_text(face = "bold", color = "white",
+#                                   hjust = 0, size = 10),
+#         strip.background = element_rect(fill = "darkgreen"),
+#         axis.title = element_text(size = 15),
+#         axis.text.y = element_text(size = 12,face = "bold"))
+# ggsave('values_alpha_Q_indices.png', path = "output/fig/alpha/indices/", dpi = 900, width = 400, height = 200, units = 'mm')
 
 # ALL VARIABLES SELECT #############____________________________________________
 #________________________________________PCA____________________________________####
@@ -230,9 +214,9 @@ PCA_results_t <- PCA(t(data_pca))
 fviz_screeplot(PCA_results) # Screeplot
 
 # Create the color code
-group_D <- names(data)[startsWith(names(data), "D")]
+group_D <- names(data)[startsWith(names(data), "D") | startsWith(names(data), "Q")]
 group_E <- names(data)[startsWith(names(data), "E")]
-group_Q <- names(data)[startsWith(names(data), "Q")]
+group_T <- names(data)[startsWith(names(data), "T")]
 group_R <- names(data)[startsWith(names(data), "R")]
 
 # Distinguishing the dimensions
@@ -240,19 +224,19 @@ color_vector <- rep("Misrepresented", length(colnames(data_pca)))
 names(color_vector) <- colnames(data_pca)
 color_vector[group_D] <- "D"
 color_vector[group_E] <- "E"
-color_vector[group_Q] <- "Q"
+color_vector[group_T] <- "T"
 color_vector[group_R] <- "R"
 
 # PCA viz with colour arrows
 
 PCA <- fviz_pca_var(PCA_results, axes = c(1, 2), repel = T ,col.var = color_vector, legend = "none", 
-             palette = c("darkblue","darkmagenta","darkgreen","darkgoldenrod4"),title="", ggtheme = theme_minimal()) +
+             palette = c("darkblue","darkmagenta","darkgoldenrod4","darkgreen"),title="", ggtheme = theme_minimal()) +
   theme(
     axis.title.x = element_text(size = 12),
     axis.title.y = element_text(size = 12)
   )
 PCA
-ggsave('PCA_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 1200, width = 250, height = 250, units = 'mm')
+# ggsave('PCA_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 600, width = 200, height = 200, units = 'mm')
 
 fviz_contrib(PCA_results, choice = "var", axes = 1)
 fviz_contrib(PCA_results, choice = "var", axes = 2)
@@ -345,18 +329,20 @@ cluster_quality(data_pca_scaled, return_table = TRUE)
 
 k=4
 clusters <- cutree(hc, k = k)
-cluster_cols <- c("red", "blue", "darkgreen", "orange")
-label_cols <- cluster_cols[clusters]
 dend <- as.dendrogram(hc)
-dend <- dendrapply(dend, function(n) {
-  if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
-  n
-})
+# dend <- dendrapply(dend, function(n) {
+#   if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
+#   n
+# })
+dend <- color_branches(dend,k = k, col = c("red3","orange3","cyan3","pink3") )
 
-dend <- color_branches(dend,k = k )
-dend <- color_labels(dend,k = k )
+dend <- color_labels(dend,col = c(rep("darkmagenta",8),rep("darkblue",3),"darkmagenta",rep("darkblue",14),
+                                  rep("darkmagenta",4),rep("darkgoldenrod4",6),"darkblue",
+                                  rep("darkgoldenrod4",2),"darkblue","darkgoldenrod4",rep("darkblue",2),
+                                  rep("darkgreen",2),"darkblue",rep("darkgreen",2)))
 dend <- set(dend, "branches_lwd", k)
 plot(dend, horiz = T,dLeaf = -0.1,axes=T)
+  
 # 
 # k=5
 # clusters <- cutree(hc, k = k)

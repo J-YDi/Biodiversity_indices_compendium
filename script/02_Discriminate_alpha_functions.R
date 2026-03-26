@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 02_Discriminate_alpha_functions.r
-# Date               : 10/03/2025
+# Date               : 25/03/2025
 # Object             : Script to discrimate functions that return a false value
 #                      of alpha diverisity indices
 # Authors            : Jean-Yves Dias
@@ -23,7 +23,7 @@ loadpackages <- function(packages){
 }
 
 packages_needed <- c("readr","dplyr","tidyr","stringr","dendextend","ggplot2",
-                     "tidyverse","dendextend","circlize","corrplot")
+                     "tidyverse","dendextend","circlize","corrplot","ggh4x")
 
 loadpackages(packages_needed)
 
@@ -137,7 +137,7 @@ ggplot(results_E) +
   scale_fill_gradient(low = "darkorchid1", high = "gold", name = "Agreement (%)",
                       na.value = "darkorchid1") +
   scale_y_discrete(limits = rev(sort(unique(results_E$package)))) +
-  labs(x = "", y = "") +
+  labs(x = NULL, y = NULL) +
   theme(
     axis.text.x = element_blank(),
     axis.text.y = element_text(size = 10),
@@ -148,9 +148,9 @@ ggplot(results_E) +
   theme(strip.text = element_text(face = "bold", color = "white",
                                   size = 10),
         strip.background = element_rect(fill = "darkmagenta"))
-ggsave('heatmap_alpha_E_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 900, width = 400, height = 200, units = 'mm')
+ggsave('heatmap_alpha_E_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 600, width = 400, height = 200, units = 'mm')
 
-results_D <- filter(results,startsWith(Index, "D"))
+results_D <- filter(results,startsWith(Index, "D") | startsWith(Index, "Q"))
 
 line_df_D <- data.frame(
   package = sort(unique(results_D$package)),
@@ -169,12 +169,12 @@ ggplot(results_D) +
   geom_tile() +
   geom_text(
     aes(label = scales::percent(Percentage, accuracy = 1)), 
-    size = 2.5, na.rm = TRUE
+    size = 3, na.rm = TRUE
   ) +
   scale_fill_gradient(low = "darkorchid1", high = "gold", name = "Agreement (%)",
                       na.value = "darkorchid1") +
   scale_y_discrete(limits = rev(sort(unique(results_D$package)))) +
-  labs(x = "", y = "") +
+  labs(x = NULL, y = NULL) +
   theme(
     axis.text.x = element_blank(),
     axis.text.y = element_text(size = 10),
@@ -185,119 +185,61 @@ ggplot(results_D) +
   theme(strip.text = element_text(face = "bold", color = "white",
                                   size = 10),
         strip.background = element_rect(fill = "darkblue"))
-ggsave('heatmap_alpha_D_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 900, width = 400, height = 200, units = 'mm')
+ggsave('heatmap_alpha_D_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 600, width = 500, height = 300, units = 'mm')
 
-results_R <- filter(results,startsWith(Index, "R"))
+results_R <- filter(results, startsWith(Index, "R") | startsWith(Index, "T"))
+
+# ordonner les packages en ordre alphabétique
+results_R$package <- factor(results_R$package,
+                            levels = sort(unique(results_R$package)))
+
+# extrait l'ordre des facettes
+index_levels <- sort(unique(results_R$Index))
 
 line_df_R <- data.frame(
   package = sort(unique(results_R$package)),
   col = rep(c("black", "grey70"), length.out = length(unique(results_R$package)))
 )
 
+strip_colors <- lapply(index_levels, function(x) {
+  if (grepl("^T", x)) {
+    element_rect(fill = "darkgreen")
+  } else {
+    element_rect(fill = "darkgoldenrod4")
+  }
+})
+
 ggplot(results_R) +
   aes(x = Index, y = package, fill = Percentage) +
   geom_segment(
     data = line_df_R,
     aes(y = package, yend = package, x = -Inf, xend = Inf, color = col),
-    inherit.aes = FALSE,
-    linewidth = 0.3
+    inherit.aes = FALSE, linewidth = 0.3
   ) +
   scale_color_identity() +
   geom_tile() +
-  geom_text(
-    aes(label = scales::percent(Percentage, accuracy = 1)), 
-    size = 2.5, na.rm = TRUE
-  ) +
-  scale_fill_gradient(low = "darkorchid1", high = "gold", name = "Agreement (%)",
-                      na.value = "darkorchid1") +
-  scale_y_discrete(limits = rev(sort(unique(results_R$package)))) +
-  labs(x = "", y = "") +
+  geom_text(aes(label = scales::percent(Percentage, accuracy = 1)), 
+            size = 2.5, na.rm = TRUE) +
+  scale_fill_gradient(low = "darkorchid1", high = "gold",
+                      name = "Agreement (%)", na.value = "darkorchid1") +
+  scale_y_discrete(limits = rev(levels(results_R$package))) +
+  labs(x = NULL, y = NULL) +
   theme(
     axis.text.x = element_blank(),
     axis.text.y = element_text(size = 10),
     legend.position = "bottom",
     panel.background = NULL
   ) +
-  facet_wrap(~Index, scales = "free_x", ncol = 50)+
-  theme(strip.text = element_text(face = "bold", color = "white",
-                                  size = 10),
-        strip.background = element_rect(fill = "darkgoldenrod4"))
-ggsave('heatmap_alpha_R_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 900, width = 400, height = 200, units = 'mm')
-
-results_T <- filter(results,startsWith(Index, "T"))
-
-line_df_T <- data.frame(
-  package = sort(unique(results_T$package)),
-  col = rep(c("black", "grey70"), length.out = length(unique(results_T$package)))
-)
-
-ggplot(results_T) +
-  aes(x = Index, y = package, fill = Percentage) +
-  geom_segment(
-    data = line_df_T,
-    aes(y = package, yend = package, x = -Inf, xend = Inf, color = col),
-    inherit.aes = FALSE,
-    linewidth = 0.3
-  ) +
-  scale_color_identity() +
-  geom_tile() +
-  geom_text(
-    aes(label = scales::percent(Percentage, accuracy = 1)), 
-    size = 2.5, na.rm = TRUE
-  ) +
-  scale_fill_gradient(low = "darkorchid1", high = "gold", name = "Agreement (%)",
-                      na.value = "darkorchid1") +
-  scale_y_discrete(limits = rev(sort(unique(results_T$package)))) +
-  labs(x = "", y = "") +
-  theme(
-    axis.text.x = element_blank(),
-    axis.text.y = element_text(size = 10),
-    legend.position = "bottom",
-    panel.background = NULL
-  ) +
-  facet_wrap(~Index, scales = "free_x", ncol = 50)+
-  theme(strip.text = element_text(face = "bold", color = "white",
-                                  size = 10),
-        strip.background = element_rect(fill = "brown4"))
-ggsave('heatmap_alpha_T_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 900, width = 400, height = 200, units = 'mm')
-
-
-results_Q <- filter(results,startsWith(Index, "Q"))
-
-line_df_Q <- data.frame(
-  package = sort(unique(results_Q$package)),
-  col = rep(c("black", "grey70"), length.out = length(unique(results_Q$package)))
-)
-
-ggplot(results_Q) +
-  aes(x = Index, y = package, fill = Percentage) +
-  geom_segment(
-    data = line_df_Q,
-    aes(y = package, yend = package, x = -Inf, xend = Inf, color = col),
-    inherit.aes = FALSE,
-    linewidth = 0.3
-  ) +
-  scale_color_identity() +
-  geom_tile() +
-  geom_text(
-    aes(label = scales::percent(Percentage, accuracy = 1)), 
-    size = 2.5, na.rm = TRUE
-  ) +
-  scale_fill_gradient(low = "darkorchid1", high = "gold", name = "Agreement (%)",
-                      na.value = "darkorchid1") +
-  scale_y_discrete(limits = rev(sort(unique(results_Q$package)))) +
-  labs(x = "", y = "") +
-  theme(
-    axis.text.x = element_blank(),
-    axis.text.y = element_text(size = 10),
-    legend.position = "bottom",
-    panel.background = NULL
-  ) +
-  facet_wrap(~Index, scales = "free_x", ncol = 50)+
-  theme(strip.text = element_text(face = "bold", color = "white",
-                                  size = 10),
-        strip.background = element_rect(fill = "darkgreen"))
-ggsave('heatmap_alpha_Q_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 900, width = 400, height = 200, units = 'mm')
+  ggh4x::facet_wrap2(
+    vars(Index),
+    scales = "free_x",
+    ncol = 50,
+    strip = strip_themed(
+      background_x = strip_colors,
+      text_x = element_text(face = "bold", colour = "white", size = 10)
+    )
+  )
+ggsave('heatmap_alpha_RT_packages_TF.png', path = "output/fig/alpha/packages/", dpi = 600, width = 400, height = 200, units = 'mm')
 
 
 withNAorInf <- unique(select(filter(data,is.na(value) | value == Inf),-Sample))
