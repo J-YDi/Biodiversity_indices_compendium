@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 05_Discriminate_beta_functions.r
-# Date               : 26/02/2025
+# Date               : 27/03/2026
 # Object             : Script to discrimate functions that return a false value
 #                      of beta diverisity indices
 # Authors            : Jean-Yves Dias
@@ -138,7 +138,7 @@ ggplot(results_P) +
   geom_tile() +
   geom_text(
     aes(label = scales::percent(Percentage, accuracy = 1)), 
-    size = 2.5, na.rm = TRUE
+    size = 3.5, na.rm = TRUE
   ) +
   scale_fill_gradient(low = "darkorchid1", high = "gold", name = "Agreement (%)",
                       na.value = "darkorchid1") +
@@ -154,7 +154,7 @@ ggplot(results_P) +
   theme(strip.text = element_text(face = "bold", color = "white",
                                   size = 10),
         strip.background = element_rect(fill = "indianred1"))
-ggsave('heatmap_beta_P_packages_TF.png', path = "output/fig/beta/packages/", dpi = 900, width = 500, height = 300, units = 'mm')
+ggsave('heatmap_beta_P_packages_TF.png', path = "output/fig/beta/packages/", dpi = 600, width = 500, height = 300, units = 'mm')
 
 results_A <- filter(results,endsWith(Index, "A"))
 
