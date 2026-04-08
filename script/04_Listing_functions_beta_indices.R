@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 04_Listing_functions_beta_indices.r
-# Date               : 26/02/2025
+# Date               : 08/04/2025
 # Object             : Script to create dataset of values from functions that 
 #                      calculate beta diversity indices
 # Authors            : Jean-Yves Dias
@@ -388,10 +388,10 @@ for (i in 1:(nrow(mite)-1)){
   proxy_10_A[i] <- proxy::dist(mite_beta,method = "Canberra")
 }
 
-BoutrosLab.plotting.general_10_A <- rep(NA,69)
+BoutrosLabplottinggeneral_10_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  BoutrosLab.plotting.general_10_A[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "canberra")
+  BoutrosLabplottinggeneral_10_A[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "canberra")
 }
 
 amap_10_A <- rep(NA,69)
@@ -420,15 +420,15 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   ClusterR_10_A[i] <- ClusterR::distance_matrix(mite_beta,method = "canberra")[2,1]
 }
-coda.base_10_A <- rep(NA,69)
+codabase_10_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  coda.base_10_A[i] <- coda.base::dist(mite_beta,"canberra")
+  codabase_10_A[i] <- coda.base::dist(mite_beta,"canberra")
 }
-fda.usc_10_A <- rep(NA,69)
+fdausc_10_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  fda.usc_10_A[i] <- fda.usc::metric.dist(mite_beta,method = "canberra")[1,2]
+  fdausc_10_A[i] <- fda.usc::metric.dist(mite_beta,method = "canberra")[1,2]
 }
 flexclust_10_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -1057,10 +1057,10 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   dynutils_30_A[i] <- dynutils::calculate_distance(mite_beta,method = "euclidean")[1,2]
 }
-fda.usc_30_A <- rep(NA,69)
+fdausc_30_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  fda.usc_30_A[i] <- fda.usc::metric.dist(mite_beta,method = "euclidean")[1,2]
+  fdausc_30_A[i] <- fda.usc::metric.dist(mite_beta,method = "euclidean")[1,2]
 }
 EnvNJ_30_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -1082,10 +1082,10 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   rdist_30_A[i] <- rdist::rdist(mite_beta,metric = "euclidean")
 }
-coda.base_30_A <- rep(NA,69)
+codabase_30_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  coda.base_30_A[i] <- coda.base::dist(mite_beta,"euclidean")
+  codabase_30_A[i] <- coda.base::dist(mite_beta,"euclidean")
 }
 NST_30_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -1097,10 +1097,10 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   Rlof_30_A[i] <- Rlof::distmc(mite_beta,method = "euclidean")
 }
-BoutrosLab.plotting.general_30_A <- rep(NA,69)
+BoutrosLabplottinggeneral_30_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  BoutrosLab.plotting.general_30_A[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "euclidean")
+  BoutrosLabplottinggeneral_30_A[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "euclidean")
 }
 fossil_30_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -1595,10 +1595,10 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   picante_43_A[i] <- 1-picante::species.dist(t(mite_beta),metric = "jaccard")
 }
-BoutrosLab.plotting.general_43_A <- rep(NA,69)
+BoutrosLabplottinggeneral_43_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  BoutrosLab.plotting.general_43_A[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "jaccard") 
+  BoutrosLabplottinggeneral_43_A[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "jaccard") 
 }
 statisfactory_43_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -1687,10 +1687,10 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   mgc_43_P[i] <- mgc::mgc.distance(mite_beta,method = "binary")[1,2] 
 }
-BoutrosLab.plotting.general_43_P <- rep(NA,69)
+BoutrosLabplottinggeneral_43_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  BoutrosLab.plotting.general_43_P[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "binary")
+  BoutrosLabplottinggeneral_43_P[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "binary")
 }
 bioregion_43_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -2155,35 +2155,35 @@ P59_A <- mget(P59_A)
 P59_A <- as.data.frame(P59_A)
 
 # Mahalanobis ####
-vegan_60_P <- rep(NA,69)
+vegan_60_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_60_P[i] <- vegan::vegdist(mite_beta,method = "mahalanobis") 
+  vegan_60_A[i] <- vegan::vegdist(mite_beta,method = "mahalanobis") 
 }
-FD_60_P <- rep(NA,69)
+FD_60_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  FD_60_P[i] <- FD::mahaldis(as.matrix(mite_beta)) 
+  FD_60_A[i] <- FD::mahaldis(as.matrix(mite_beta)) 
 }
-pctax_60_P <- rep(NA,69)
+pctax_60_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  pctax_60_P[i] <- pctax::mat_dist(t((mite_beta)),method = "mahalanobis")
+  pctax_60_A[i] <- pctax::mat_dist(t((mite_beta)),method = "mahalanobis")
 }
-ClusterR_60_P <- rep(NA,69)
+ClusterR_60_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  ClusterR_60_P[i] <- ClusterR::distance_matrix(mite_beta,method = "mahalanobis")[2,1] 
+  ClusterR_60_A[i] <- ClusterR::distance_matrix(mite_beta,method = "mahalanobis")[2,1] 
 }
-NST_60_P <- rep(NA,69)
+NST_60_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  NST_60_P[i] <- NST::beta.g(mite_beta,dist.method = "mahalanobis")
+  NST_60_A[i] <- NST::beta.g(mite_beta,dist.method = "mahalanobis")
 }
 
-P60_P <- ls(pattern = "_60_P$")
-P60_P <- mget(P60_P)
-P60_P <- as.data.frame(P60_P)
+P60_A <- ls(pattern = "_60_A$")
+P60_A <- mget(P60_A)
+P60_A <- as.data.frame(P60_A)
 
 # Manhattan ####
 ecodist_61_A <- rep(NA,69)
@@ -2295,15 +2295,15 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   rdist_61_A[i] <- rdist::rdist(mite_beta,metric = "manhattan")
 }
-BoutrosLab.plotting.general_61_A <- rep(NA,69)
+BoutrosLabplottinggeneral_61_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  BoutrosLab.plotting.general_61_A[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "manhattan")
+  BoutrosLabplottinggeneral_61_A[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "manhattan")
 }
-coda.base_61_A <- rep(NA,69)
+codabase_61_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  coda.base_61_A[i] <- coda.base::dist(mite_beta,"manhattan")
+  codabase_61_A[i] <- coda.base::dist(mite_beta,"manhattan")
 }
 NST_61_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -2315,10 +2315,10 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   Rlof_61_A[i] <- Rlof::distmc(mite_beta,method = "manhattan")
 }
-fda.usc_61_A <- rep(NA,69)
+fdausc_61_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  fda.usc_61_A[i] <- fda.usc::metric.dist(mite_beta,method = "manhattan")[1,2]
+  fdausc_61_A[i] <- fda.usc::metric.dist(mite_beta,method = "manhattan")[1,2]
 }
 analogue_61_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -2588,50 +2588,50 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   rdist_66_3_A[i] <- rdist::rdist(mite_beta,metric = "minkowski",p = 3)
 }
-coda.base_66_1_A <- rep(NA,69)
+codabase_66_1_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  coda.base_66_1_A[i] <- coda.base::dist(mite_beta,"minkowski",p=1)
+  codabase_66_1_A[i] <- coda.base::dist(mite_beta,"minkowski",p=1)
 }
-coda.base_66_2_A <- rep(NA,69)
+codabase_66_2_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  coda.base_66_2_A[i] <- coda.base::dist(mite_beta,"minkowski",p=2) 
+  codabase_66_2_A[i] <- coda.base::dist(mite_beta,"minkowski",p=2) 
 }
-coda.base_66_3_A <- rep(NA,69)
+codabase_66_3_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  coda.base_66_3_A[i] <- coda.base::dist(mite_beta,"minkowski",p=3)
+  codabase_66_3_A[i] <- coda.base::dist(mite_beta,"minkowski",p=3)
 }
-fda.usc_66_1_A <- rep(NA,69)
+fdausc_66_1_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  fda.usc_66_1_A[i] <- fda.usc::metric.dist(mite_beta,method = "minkowski",p=1)[1,2]
+  fdausc_66_1_A[i] <- fda.usc::metric.dist(mite_beta,method = "minkowski",p=1)[1,2]
 }
-fda.usc_66_2_A <- rep(NA,69)
+fdausc_66_2_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  fda.usc_66_2_A[i] <- fda.usc::metric.dist(mite_beta,method = "minkowski",p=2)[1,2]
+  fdausc_66_2_A[i] <- fda.usc::metric.dist(mite_beta,method = "minkowski",p=2)[1,2]
 }
-fda.usc_66_3_A <- rep(NA,69)
+fdausc_66_3_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  fda.usc_66_3_A[i] <- fda.usc::metric.dist(mite_beta,method = "minkowski",p=3)[1,2]
+  fdausc_66_3_A[i] <- fda.usc::metric.dist(mite_beta,method = "minkowski",p=3)[1,2]
 }
-BoutrosLab.plotting.general_66_1_A <- rep(NA,69)
+BoutrosLabplottinggeneral_66_1_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  BoutrosLab.plotting.general_66_1_A[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "minkowski",p=1)
+  BoutrosLabplottinggeneral_66_1_A[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "minkowski",p=1)
 }
-BoutrosLab.plotting.general_66_2_A <- rep(NA,69)
+BoutrosLabplottinggeneral_66_2_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  BoutrosLab.plotting.general_66_2_A[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "minkowski",p=2)
+  BoutrosLabplottinggeneral_66_2_A[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "minkowski",p=2)
 }
-BoutrosLab.plotting.general_66_3_A <- rep(NA,69)
+BoutrosLabplottinggeneral_66_3_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  BoutrosLab.plotting.general_66_3_A[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "minkowski",p=3)
+  BoutrosLabplottinggeneral_66_3_A[i] <- BoutrosLab.plotting.general::dist(mite_beta,method = "minkowski",p=3)
 }
 comparator_66_1_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -3597,19 +3597,19 @@ P103_P <- mget(P103_P)
 P103_P <- as.data.frame(P103_P)
 
 # beta c ####
-vegan_104_P <- rep(NA,69)
+vegan_104_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_pa[c(i,i+1),]
-  vegan_104_P[i] <- vegan::betadiver(mite_beta,"c")
+  mite_beta <- mite[c(i,i+1),]
+  vegan_104_A[i] <- vegan::betadiver(mite_beta,"c")
 }
-tabula_104_P <- rep(NA,69)
+tabula_104_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite_pa[c(i,i+1),]
-  tabula_104_P[i] <- tabula::index_cody(as.matrix(mite_beta)) 
+  mite_beta <- mite[c(i,i+1),]
+  tabula_104_A[i] <- tabula::index_cody(as.matrix(mite_beta)) 
 }
-P104_P <- ls(pattern = "_104_P$")
-P104_P <- mget(P104_P)
-P104_P <- as.data.frame(P104_P)
+P104_A <- ls(pattern = "_104_A$")
+P104_A <- mget(P104_A)
+P104_A <- as.data.frame(P104_A)
 
 # beta cc ####
 vegan_105_P <- rep(NA,69)
@@ -3849,10 +3849,10 @@ data$selection <- paste0(data$index,"_",data$package)
 
 dataindex_P <- filter(data,selection %in% c("1_P_PERMANOVA","5_P_vegan","8_P_proxy","38_P_ade4","39_P_proxy","40_P_Mercator","43_P_vegan","44_P_ade4",
                                           "45_P_abdiv","46_P_abdiv","48_P_adespatial","49_P_adespatial","50_P_adespatial","51_P_BAT","52_P_BAT",
-                                          "56_P_vegan","60_P_vegan","63_P_abdiv","64_P_abdiv","70_P_vegan","71_P_ade4","72_P_vegan","73_P_ade4",
+                                          "56_P_vegan","63_P_abdiv","64_P_abdiv","70_P_vegan","71_P_ade4","72_P_vegan","73_P_ade4",
                                           "74_P_wiqid","76_P_wiqid","78_P_abdiv","79_P_wiqid","80_P_abdiv","82_P_PERMANOVA","83_P_ade4","84_P_ade4",
                                           "85_P_vegan","86_P_abdiv","87_P_vegan","88_P_vegan","89_P_adiv","90_P_adiv","91_P_adespatial","92_P_adespatial",
-                                          "96_P_abdiv","97_P_proxy","98_P_MultBiplotR","101_P_vegan","102_P_vegan","103_P_vegan","104_P_vegan","105_P_vegan",
+                                          "96_P_abdiv","97_P_proxy","98_P_MultBiplotR","101_P_vegan","102_P_vegan","103_P_vegan","105_P_vegan",
                                           "106_P_vegan","107_P_vegan","108_P_vegan","109_P_vegan","110_P_vegan","111_P_vegan","112_P_vegan","113_P_vegan",
                                           "114_P_vegan","115_P_vegan","116_P_vegan","117_P_vegan","118_P_vegan","119_P_vegan","120_P_vegan","121_P_vegan"
 ))
@@ -3874,11 +3874,11 @@ dataindex_A <- filter(data,selection %in% c("2_A_vegan","3_A_EnvNJ","4_A_ecodive
                                             "27_A_ecodive","28_A_vegan","29_A_ecodive","30_A_vegan","31_A_NST",
                                             "32_A_abdiv","33_A_ecodive","34_A_vegan","35_A_vegan","36_A_ecodist",
                                             "37_A_NST","40_A_proxyC","41_A_EnvNJ","42_A_vegan","43_A_vegan","47_A_vegan",
-                                            "53_A_EnvNJ","54_A_adiv","55_A_adiv","57_A_vegan","58_A_EnvNJ","59_A_EnvNJ",
+                                            "53_A_EnvNJ","54_A_adiv","55_A_adiv","57_A_vegan","58_A_EnvNJ","59_A_EnvNJ","60_A_vegan",
                                             "61_A_vegan","62_A_NST","64_A_adespatial","65_A_ecodive","66_1_A_ecodive",
                                             "66_2_A_ecodive","66_3_A_ecodive","67_A_vegan","68_A_vegan","69_A_pctax",
                                             "75_A_vegan","77_A_abdiv","81_A_adiv","93_A_adiv","94_A_ade4","95_A_ecodive",
-                                            "99_A_ecodive","100_A_proxy"
+                                            "99_A_ecodive","100_A_proxy","104_A_vegan"
 ))
 dataindex_A <- dataindex_A |>
   select(-c(package,selection)) 

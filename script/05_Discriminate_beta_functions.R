@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 05_Discriminate_beta_functions.r
-# Date               : 27/03/2026
+# Date               : 08/04/2026
 # Object             : Script to discrimate functions that return a false value
 #                      of beta diverisity indices
 # Authors            : Jean-Yves Dias
@@ -31,6 +31,10 @@ loadpackages(packages_needed)
 #________________________________Loading data___________________________________####
 
 data <- read_csv("data/beta/b_combined_long_all_mite.csv")
+
+data[data$package == "BoutrosLabplottinggeneral", "package"] <- "BoutrosLab.plotting.general"
+data[data$package == "fdausc", "package"] <- "fda.usc"
+data[data$package == "codabase", "package"] <- "coda.base"
 
 #__________________________Viz false values from packages_______________________####
 
@@ -150,7 +154,7 @@ ggplot(results_P) +
     legend.position = "bottom",
     panel.background = NULL
   ) +
-  facet_wrap(~Index, scales = "free_x", ncol = 32)+
+  facet_wrap(~Index, scales = "free_x", ncol = 31)+
   theme(strip.text = element_text(face = "bold", color = "white",
                                   size = 10),
         strip.background = element_rect(fill = "indianred1"))
