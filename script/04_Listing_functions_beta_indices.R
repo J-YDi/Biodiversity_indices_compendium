@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 04_Listing_functions_beta_indices.r
-# Date               : 08/04/2025
+# Date               : 14/04/2025
 # Object             : Script to create dataset of values from functions that 
 #                      calculate beta diversity indices
 # Authors            : Jean-Yves Dias
@@ -2098,20 +2098,24 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   prabclus_57_A[i] <- prabclus::qkulczynski(t(mite_beta))[1,2]
 }
-proxy_57_A <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  proxy_57_A[i] <- proxy::dist(mite_beta,method = "Kulczynski1") 
-}
-abdiv_57_A <- rep(NA,69)
+proxy_57_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite_pa[c(i,i+1),]
-  abdiv_57_A[i] <- abdiv::kulczynski_first(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+  proxy_57_P[i] <- proxy::dist(mite_beta,method = "Kulczynski1") 
+}
+abdiv_57_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  abdiv_57_P[i] <- abdiv::kulczynski_first(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
 }
 
 P57_A <- ls(pattern = "_57_A$")
 P57_A <- mget(P57_A)
 P57_A <- as.data.frame(P57_A)
+
+P57_P <- ls(pattern = "_57_P$")
+P57_P <- mget(P57_P)
+P57_P <- as.data.frame(P57_P)
 
 # Kulczynski 3 ####
 philentropy_58_A <- rep(NA,69)
@@ -3849,7 +3853,7 @@ data$selection <- paste0(data$index,"_",data$package)
 
 dataindex_P <- filter(data,selection %in% c("1_P_PERMANOVA","5_P_vegan","8_P_proxy","38_P_ade4","39_P_proxy","40_P_Mercator","43_P_vegan","44_P_ade4",
                                           "45_P_abdiv","46_P_abdiv","48_P_adespatial","49_P_adespatial","50_P_adespatial","51_P_BAT","52_P_BAT",
-                                          "56_P_vegan","63_P_abdiv","64_P_abdiv","70_P_vegan","71_P_ade4","72_P_vegan","73_P_ade4",
+                                          "56_P_vegan","57_P_abdiv","63_P_abdiv","64_P_abdiv","70_P_vegan","71_P_ade4","72_P_vegan","73_P_ade4",
                                           "74_P_wiqid","76_P_wiqid","78_P_abdiv","79_P_wiqid","80_P_abdiv","82_P_PERMANOVA","83_P_ade4","84_P_ade4",
                                           "85_P_vegan","86_P_abdiv","87_P_vegan","88_P_vegan","89_P_adiv","90_P_adiv","91_P_adespatial","92_P_adespatial",
                                           "96_P_abdiv","97_P_proxy","98_P_MultBiplotR","101_P_vegan","102_P_vegan","103_P_vegan","105_P_vegan",
