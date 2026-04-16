@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 06_Beta_index_analysis.r
-# Date               : 13/02/2025
+# Date               : 16/04/2025
 # Object             : Script to analyze alpha biodiversity index
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
@@ -129,14 +129,22 @@ data_long <- data_long %>%
     Sample = fct_reorder(Sample, Sample_num)
   )
 
-ggplot(data_long) +
+data_long_P <- filter(data_long, !index %in% c("87_P","88_P","89_P","90_P","91_P","92_P",
+                                               "45_P","46_P","48_P","49_P","50_P","51_P","52_P") )
+data_stats_P <- filter(data_stats, !index %in% c("87_P","88_P","89_P","90_P","91_P","92_P",
+                                               "45_P","46_P","48_P","49_P","50_P","51_P","52_P") )
+
+ggplot(data_long_P) +
   geom_segment(aes(x = Sample,y=0, yend = value), col = "indianred1",
                linewidth = 1, alpha = 0.4) +
   geom_point(aes(x = Sample, y = value), col = "indianred1", size = 1.7) +
-  geom_label(data = filter(data_stats),
-             aes(x = 69/2, y = 0.01, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
+  geom_label(data = filter(data_stats_P, !index %in% c("5_P","64_P","119_P","112_P","63_P","40_P")),
+             aes(x = 69/2, y = 0.04, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
              color = "black", size = 4,alpha=0.5,linewidth=0) +
-  facet_wrap(~ index,scale = "free_y",ncol = 9) +
+  geom_label(data = filter(data_stats_P, index %in% c("5_P","64_P","119_P","112_P","63_P","40_P")),
+             aes(x = 69/2, y = 0.9, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
+             color = "black", size = 4,alpha=0.5,linewidth=0) +
+  facet_wrap(~ index,scale = "free_y",ncol = 5) +
   labs(x = "Sample", y = "Index value") +
   theme(strip.text = element_text(face = "bold", color = "white",
                                   hjust = 0, size = 10),
@@ -145,6 +153,76 @@ ggplot(data_long) +
         axis.text.y = element_text(size = 12,face = "bold"),
         axis.text.x = element_text(size = 3.7,angle=90,hjust = 1,vjust = 0.5))
 ggsave('values_beta_P_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 600, height = 300, units = 'mm')
+
+ggplot(filter(data_stats_P, mean_value <= 1 & mean_value >= 0)) +
+  geom_point(aes(x = reorder(index, mean_value), y = mean_value)) +
+  geom_errorbar(aes(
+    x = reorder(index, mean_value),
+    ymin = mean_value - sd_value,
+    ymax = mean_value + sd_value
+  ), width = 0.2)+
+  labs(x = "Index", y = "Mean index value") +
+  theme(axis.text.x = element_text(size = 12, angle=90,hjust = 1,vjust = 0.5), 
+        axis.text.y = element_text(size = 12,face = "bold"),
+        axis.title = element_text(size = 15))
+ggsave('mean_values_beta_P_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 250, height = 150, units = 'mm')
+
+ggplot(filter(data_stats_P)) +
+  geom_point(aes(x = reorder(index, abs(sd_value/mean_value)), y = abs(sd_value/mean_value))) +
+  labs(x = "Index", y = "Mean index value") +
+  theme(axis.text.x = element_text(size = 12, angle=90,hjust = 1,vjust = 0.5), 
+        axis.text.y = element_text(size = 12,face = "bold"),
+        axis.title = element_text(size = 15))
+
+levels_index <- data_long$index %>%
+  unique() %>%
+  .[order(as.numeric(str_extract(., "\\d+")))]
+
+data_long$index <- factor(data_long$index, levels = levels_index)
+
+zeros <- ggplot(filter(data_long, value == 0 & !index %in% c("87_P","88_P","89_P","90_P","91_P","92_P",
+                                                          "45_P","46_P","48_P","49_P","50_P","51_P","52_P"))) +
+  geom_point(aes(x = Sample, y = index),size=10,shape=15) +
+  labs(x = "Samples", y = "Index with 0") +
+  theme(axis.text.x = element_text(size = 8), 
+        axis.text.y = element_text(size = 12,face = "bold"),
+        axis.title = element_text(size = 15))
+ones <- ggplot(filter(data_long, value == 1 & !index %in% c("87_P","88_P","89_P","90_P","91_P","92_P",
+                                                            "45_P","46_P","48_P","49_P","50_P","51_P","52_P"))) +
+  geom_point(aes(x = Sample, y = index),size=12,shape=15) +
+  labs(x = "Samples", y = "Index with 1") +
+  theme(axis.text.x = element_text(size = 8), 
+        axis.text.y = element_text(size = 12,face = "bold"),
+        axis.title = element_text(size = 15))
+plot_grid(zeros,ones,rel_widths = c(3,1))
+ggsave('extreme_values_beta_P_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 220, height = 100, units = 'mm')
+
+
+
+data_long_Pdec <- filter(data_long, index %in% c("87_P","88_P","89_P","90_P","91_P","92_P",
+                                               "45_P","46_P","48_P","49_P","50_P","51_P","52_P") )
+data_stats_Pdec <- filter(data_stats, index %in% c("87_P","88_P","89_P","90_P","91_P","92_P",
+                                                 "45_P","46_P","48_P","49_P","50_P","51_P","52_P") )
+
+ggplot(data_long_Pdec) +
+  geom_segment(aes(x = Sample,y=0, yend = value), col = "turquoise3",
+               linewidth = 1, alpha = 0.4) +
+  geom_point(aes(x = Sample, y = value), col = "turquoise3", size = 1.7) +
+  geom_label(data = filter(data_stats_Pdec),
+             aes(x = 69/2, y = 0.01, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
+             color = "black", size = 4,alpha=0.5,linewidth=0) +
+  facet_wrap(~ index,scale = "free_y",ncol = 3) +
+  labs(x = "Sample", y = "Index value") +
+  theme(strip.text = element_text(face = "bold", color = "white",
+                                  hjust = 0, size = 10),
+        strip.background = element_rect(fill = "turquoise3"),
+        axis.title = element_text(size = 15),
+        axis.text.y = element_text(size = 12,face = "bold"),
+        axis.text.x = element_text(size = 3.7,angle=90,hjust = 1,vjust = 0.5))
+ggsave('values_beta_Pdec_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 300, height = 200, units = 'mm')
+
+
+
 
 # ALL VARIABLES SELECT #############____________________________________________
 #________________________________________PCA____________________________________####

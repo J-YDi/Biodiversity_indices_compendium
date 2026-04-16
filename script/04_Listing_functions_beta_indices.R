@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 04_Listing_functions_beta_indices.r
-# Date               : 14/04/2025
+# Date               : 15/04/2025
 # Object             : Script to create dataset of values from functions that 
 #                      calculate beta diversity indices
 # Authors            : Jean-Yves Dias
@@ -2389,19 +2389,15 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   adespatial_64_A[i] <- print(adespatial::dist.ldc(mite_beta,method = "modmeanchardiff")) 
 }
-abdiv_64_P <- rep(NA,69)
+abdiv_64_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  abdiv_64_P[i] <- abdiv::modified_mean_character_difference(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+  abdiv_64_A[i] <- abdiv::modified_mean_character_difference(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
 }
 
 P64_A <- ls(pattern = "_64_A$")
 P64_A <- mget(P64_A)
 P64_A <- as.data.frame(P64_A)
-
-P64_P <- ls(pattern = "_64_P$")
-P64_P <- mget(P64_P)
-P64_P <- as.data.frame(P64_P)
 
 # Matusita ####
 ecodive_65_A <- rep(NA,69)
@@ -3390,7 +3386,7 @@ P90_P <- as.data.frame(P90_P)
 adespatial_91_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  adespatial_91_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = F)$repl
+  adespatial_91_P[i] <-  adespatial::beta.div.comp(mite_beta,coef = "S")$repl
 }
 
 P91_P <- ls(pattern = "_91_P$")
@@ -3601,19 +3597,19 @@ P103_P <- mget(P103_P)
 P103_P <- as.data.frame(P103_P)
 
 # beta c ####
-vegan_104_A <- rep(NA,69)
+vegan_104_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_104_A[i] <- vegan::betadiver(mite_beta,"c")
+  vegan_104_P[i] <- vegan::betadiver(mite_beta,"c")
 }
-tabula_104_A <- rep(NA,69)
+tabula_104_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  tabula_104_A[i] <- tabula::index_cody(as.matrix(mite_beta)) 
+  tabula_104_P[i] <- tabula::index_cody(as.matrix(mite_beta)) 
 }
-P104_A <- ls(pattern = "_104_A$")
-P104_A <- mget(P104_A)
-P104_A <- as.data.frame(P104_A)
+P104_P <- ls(pattern = "_104_P$")
+P104_P <- mget(P104_P)
+P104_P <- as.data.frame(P104_P)
 
 # beta cc ####
 vegan_105_P <- rep(NA,69)
@@ -3853,10 +3849,10 @@ data$selection <- paste0(data$index,"_",data$package)
 
 dataindex_P <- filter(data,selection %in% c("1_P_PERMANOVA","5_P_vegan","8_P_proxy","38_P_ade4","39_P_proxy","40_P_Mercator","43_P_vegan","44_P_ade4",
                                           "45_P_abdiv","46_P_abdiv","48_P_adespatial","49_P_adespatial","50_P_adespatial","51_P_BAT","52_P_BAT",
-                                          "56_P_vegan","57_P_abdiv","63_P_abdiv","64_P_abdiv","70_P_vegan","71_P_ade4","72_P_vegan","73_P_ade4",
+                                          "56_P_vegan","57_P_abdiv","63_P_abdiv","70_P_vegan","71_P_ade4","72_P_vegan","73_P_ade4",
                                           "74_P_wiqid","76_P_wiqid","78_P_abdiv","79_P_wiqid","80_P_abdiv","82_P_PERMANOVA","83_P_ade4","84_P_ade4",
                                           "85_P_vegan","86_P_abdiv","87_P_vegan","88_P_vegan","89_P_adiv","90_P_adiv","91_P_adespatial","92_P_adespatial",
-                                          "96_P_abdiv","97_P_proxy","98_P_MultBiplotR","101_P_vegan","102_P_vegan","103_P_vegan","105_P_vegan",
+                                          "96_P_abdiv","97_P_proxy","98_P_MultBiplotR","101_P_vegan","102_P_vegan","103_P_vegan","104_P_vegan","105_P_vegan",
                                           "106_P_vegan","107_P_vegan","108_P_vegan","109_P_vegan","110_P_vegan","111_P_vegan","112_P_vegan","113_P_vegan",
                                           "114_P_vegan","115_P_vegan","116_P_vegan","117_P_vegan","118_P_vegan","119_P_vegan","120_P_vegan","121_P_vegan"
 ))
@@ -3882,7 +3878,7 @@ dataindex_A <- filter(data,selection %in% c("2_A_vegan","3_A_EnvNJ","4_A_ecodive
                                             "61_A_vegan","62_A_NST","64_A_adespatial","65_A_ecodive","66_1_A_ecodive",
                                             "66_2_A_ecodive","66_3_A_ecodive","67_A_vegan","68_A_vegan","69_A_pctax",
                                             "75_A_vegan","77_A_abdiv","81_A_adiv","93_A_adiv","94_A_ade4","95_A_ecodive",
-                                            "99_A_ecodive","100_A_proxy","104_A_vegan"
+                                            "99_A_ecodive","100_A_proxy"
 ))
 dataindex_A <- dataindex_A |>
   select(-c(package,selection)) 
@@ -3892,3 +3888,4 @@ dataindex_wide_A <- dataindex_A|>
 
 write.csv(dataindex_A,"data/beta/beta_values_mite_long_mite_A.csv",row.names = F)
 write.csv(dataindex_wide_A,"data/beta/beta_values_mite_wide_mite_A.csv",row.names = F)
+
