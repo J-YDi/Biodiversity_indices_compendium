@@ -234,7 +234,24 @@ fviz_screeplot(PCA_results) # Screeplot
 
 # PCA viz with colour arrows
 
-PCA <- fviz_pca_var(PCA_results, axes = c(1, 2), repel = T ,col.var = "indianred1",title="", ggtheme = theme_minimal()) +
+# Create the color code
+group_PC <- names(data_pca)[names(data_pca) %in% c("87_P","88_P","89_P","90_P","91_P","92_P",
+                                          "45_P","46_P","48_P","49_P","50_P","51_P","52_P")]
+group_P <-  names(data_pca)[!names(data_pca) %in% c("87_P","88_P","89_P","90_P","91_P","92_P",
+                                           "45_P","46_P","48_P","49_P","50_P","51_P","52_P")]
+
+
+# Distinguishing the dimensions
+color_vector <- rep("Misrepresented", length(colnames(data_pca)))
+names(color_vector) <- colnames(data_pca)
+color_vector[group_PC] <- "PC"
+color_vector[group_P] <- "P"
+
+
+# PCA viz with colour arrows
+
+PCA <- fviz_pca_var(PCA_results, axes = c(1, 2), repel = T ,col.var = color_vector, legend = "none", 
+                    palette = c("indianred1","turquoise3"),title="", ggtheme = theme_minimal()) +
   theme(
     axis.title.x = element_text(size = 12),
     axis.title.y = element_text(size = 12)

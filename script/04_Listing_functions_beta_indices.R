@@ -3393,11 +3393,11 @@ P91_P <- ls(pattern = "_91_P$")
 P91_P <- mget(P91_P)
 P91_P <- as.data.frame(P91_P)
 
-# Legendre richness difference index ####
+# Sorensen Richness podani ####
 adespatial_92_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  adespatial_92_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = F)$rich
+  adespatial_92_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "S",quant = F)$rich
 }
 BAT_92_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
