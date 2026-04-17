@@ -1946,7 +1946,7 @@ P49_P <- as.data.frame(P49_P)
 adespatial_50_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  adespatial_50_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "N")$rich 
+  adespatial_50_P[i] <- 1-adespatial::beta.div.comp(mite_beta,coef = "N")$rich 
 }
 
 P50_P <- ls(pattern = "_50_P$")

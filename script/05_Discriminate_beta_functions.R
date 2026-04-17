@@ -130,6 +130,17 @@ line_df_P <- data.frame(
   col = rep(c("black", "grey70"), length.out = length(unique(results_P$package)))
 )
 
+index_levels <- sort(unique(results_P$Index))
+
+strip_colors <- lapply(index_levels, function(x) {
+  if (x %in% c("87_P","88_P","89_P","90_P","91_P","92_P",
+                        "45_P","46_P","48_P","49_P","50_P","51_P","52_P")) {
+    element_rect(fill = "turquoise3")
+  } else {
+    element_rect(fill = "indianred1")
+  }
+})
+
 ggplot(results_P) +
   aes(x = Index, y = package, fill = Percentage) +
   geom_segment(
@@ -154,7 +165,15 @@ ggplot(results_P) +
     legend.position = "bottom",
     panel.background = NULL
   ) +
-  facet_wrap(~Index, scales = "free_x", ncol = 31)+
+  ggh4x::facet_wrap2(
+    vars(Index),
+    scales = "free_x",
+    ncol = 31,
+    strip = strip_themed(
+      background_x = strip_colors,
+      text_x = element_text(face = "bold", colour = "white", size = 10)
+    )
+  )+
   theme(strip.text = element_text(face = "bold", color = "white",
                                   size = 10),
         strip.background = element_rect(fill = "indianred1"))

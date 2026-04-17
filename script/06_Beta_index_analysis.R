@@ -279,25 +279,32 @@ plot(hc)
 library(cluster)
 
 cluster_quality(data_pca_scaled, return_table = TRUE)
-k=3
+k=4
 clusters <- cutree(hc, k = k)
-cluster_cols <- c("red", "blue", "darkgreen", "orange")
+cluster_cols <- c("", "blue", "darkgreen", "orange")
+
+
 label_cols <- cluster_cols[clusters]
 dend <- as.dendrogram(hc)
-dend <- dendrapply(dend, function(n) {
-  if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
-  n
-})
+# dend <- dendrapply(dend, function(n) {
+#   if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
+#   n
+# })
 
-dend <- color_branches(dend,k = k )
-dend <- color_labels(dend,k = k )
-dend <- set(dend, "branches_lwd", k)
-plot(dend, horiz = T,dLeaf = -0.1,axes=T)
+dend <- color_branches(dend,k = k, col = c("orchid","olivedrab","thistle4","yellow3") )
+
+dend <- color_labels(dend,col = c(rep("indianred1",9),rep("turquoise3",1),rep("indianred1",13),"turquoise3",
+                                  rep("indianred1",1),rep("turquoise3",3),rep("indianred1",5),"turquoise3",rep("indianred1",12),"turquoise3",rep("indianred1",1),
+                                  rep("turquoise3",2),"indianred1",
+                                  rep("turquoise3",2),"indianred1","turquoise3",rep("indianred1",2)))
+dend <- set(dend, "branches_lwd",3 )
+
+plot(dend, horiz = T,dLeaf = -0.3,axes=T)
 
 
 # NMDS 
 cluster_quality(data_pca_scaled, return_table = TRUE)
-nmds <- metaMDS(dist(t(data_pca_scaled)), k = 3, trymax = 999)
+nmds <- metaMDS(dist(t(data_pca_scaled)), k = 4, trymax = 999)
 
 scores_df <- as.data.frame(scores(nmds))  # x,y
 scores_df$Sample <- rownames(scores_df)
