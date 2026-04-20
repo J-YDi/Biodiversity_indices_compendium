@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 05_Discriminate_beta_functions.r
-# Date               : 08/04/2026
+# Date               : 20/04/2026
 # Object             : Script to discrimate functions that return a false value
 #                      of beta diverisity indices
 # Authors            : Jean-Yves Dias
@@ -23,7 +23,7 @@ loadpackages <- function(packages){
 }
 
 packages_needed <- c("readr","dplyr","tidyr","stringr","dendextend","ggplot2",
-                     "tidyverse","dendextend","circlize","corrplot")
+                     "tidyverse","dendextend","circlize","corrplot","ggh4x")
 
 loadpackages(packages_needed)
 
@@ -201,6 +201,15 @@ line_df_A_35 <- data.frame(
   col = rep(c("black", "grey70"), length.out = length(unique(results_A_35$package)))
 )
 
+strip_colors <- lapply(index_levels, function(x) {
+  if (x %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
+               "45_A","46_A","48_A","49_A","50_A","51_A","52_A")) {
+    element_rect(fill = "turquoise3")
+  } else {
+    element_rect(fill = "royalblue")
+  }
+})
+
 ggplot(results_A_35) +
   aes(x = Index, y = package, fill = Percentage) +
   geom_segment(
@@ -225,7 +234,15 @@ ggplot(results_A_35) +
     legend.position = "bottom",
     panel.background = NULL
   ) +
-  facet_wrap(~Index, scales = "free_x", ncol = 33)+
+  ggh4x::facet_wrap2(
+    vars(Index),
+    scales = "free_x",
+    ncol = 33,
+    strip = strip_themed(
+      background_x = strip_colors,
+      text_x = element_text(face = "bold", colour = "white", size = 10)
+    )
+  )+
   theme(strip.text = element_text(face = "bold", color = "white",
                                   size = 10),
         strip.background = element_rect(fill = "royalblue"))
@@ -239,6 +256,15 @@ levels_index_120 <- results_A_120$Index %>%
   .[order(as.numeric(str_extract(., "\\d+")))]
 
 results_A_120$Index <- factor(results_A_120$Index, levels = levels_index_120)
+
+strip_colors <- lapply(levels_index_120, function(x) {
+  if (x %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
+               "45_A","46_A","48_A","49_A","50_A","51_A","52_A")) {
+    element_rect(fill = "turquoise3")
+  } else {
+    element_rect(fill = "royalblue")
+  }
+})
 
 line_df_A_120 <- data.frame(
   package = sort(unique(results_A_120$package)),
@@ -269,8 +295,16 @@ ggplot(results_A_120) +
     legend.position = "bottom",
     panel.background = NULL
   ) +
-  facet_wrap(~Index, scales = "free_x", ncol = 33)+
+  ggh4x::facet_wrap2(
+    vars(Index),
+    scales = "free_x",
+    ncol = 22,
+    strip = strip_themed(
+      background_x = strip_colors,
+      text_x = element_text(face = "bold", colour = "white", size = 10)
+    )
+  )+
   theme(strip.text = element_text(face = "bold", color = "white",
                                   size = 10),
         strip.background = element_rect(fill = "royalblue"))
-ggsave('heatmap_beta_A_P2_packages_TF.png', path = "output/fig/beta/packages/", dpi = 900, width = 500, height = 250, units = 'mm')
+ggsave('heatmap_beta_A_P2_packages_TF.png', path = "output/fig/beta/packages/", dpi = 300, width = 400, height = 370, units = 'mm')

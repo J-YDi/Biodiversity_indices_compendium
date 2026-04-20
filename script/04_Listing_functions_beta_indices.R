@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 04_Listing_functions_beta_indices.r
-# Date               : 15/04/2025
+# Date               : 20/04/2025
 # Object             : Script to create dataset of values from functions that 
 #                      calculate beta diversity indices
 # Authors            : Jean-Yves Dias
@@ -1823,6 +1823,13 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   adespatial_45_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "BJ")$repl 
 }
+
+adespatial_45_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_45_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "BJ",quant = T)$repl 
+}
+
 bioregion_45_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
@@ -1836,6 +1843,10 @@ for (i in 1:(nrow(mite)-1)){
 P45_P <- ls(pattern = "_45_P$")
 P45_P <- mget(P45_P)
 P45_P <- as.data.frame(P45_P)
+
+P45_A <- ls(pattern = "_45_A$")
+P45_A <- mget(P45_A)
+P45_A <- as.data.frame(P45_A)
 
 # Nestedness component of Jaccard dissimilarity defined by Baselga ####
 abdiv_46_P <- rep(NA,69)
@@ -1858,9 +1869,19 @@ for (i in 1:(nrow(mite)-1)){
   adespatial_46_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "BJ")$rich
 }
 
+adespatial_46_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_46_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "BJ",quant = T)$rich
+}
+
 P46_P <- ls(pattern = "_46_P$")
 P46_P <- mget(P46_P)
 P46_P <- as.data.frame(P46_P)
+
+P46_A <- ls(pattern = "_46_A$")
+P46_A <- mget(P46_A)
+P46_A <- as.data.frame(P46_A)
 
 # Extended Jaccard Similarity ####
 adiv_47_A <- rep(NA,69)
@@ -1922,9 +1943,25 @@ for (i in 1:(nrow(mite)-1)){
   BAT_48_P[i] <- BAT::beta(mite_beta,func = "jaccard",abund = F)$Brepl
 }
 
+adespatial_48_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_48_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = T)$repl
+}
+
+BAT_48_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_48_A[i] <- BAT::beta(mite_beta,func = "jaccard",abund = T)$Brepl
+}
+
 P48_P <- ls(pattern = "_48_P$")
 P48_P <- mget(P48_P)
 P48_P <- as.data.frame(P48_P)
+
+P48_A <- ls(pattern = "_48_A$")
+P48_A <- mget(P48_A)
+P48_A <- as.data.frame(P48_A)
 
 # Nestedness component of Jaccard dissimilarity defined by Podani ####
 BAT_49_P <- rep(NA,69)
@@ -1938,9 +1975,25 @@ for (i in 1:(nrow(mite)-1)){
   adespatial_49_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "J")$rich
 }
 
+BAT_49_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_49_A[i] <- BAT::beta(mite_beta,func = "jaccard",abund = T)$Brich
+}
+
+adespatial_49_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_49_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "J",quant = T)$rich
+}
+
 P49_P <- ls(pattern = "_49_P$")
 P49_P <- mget(P49_P)
 P49_P <- as.data.frame(P49_P)
+
+P49_A <- ls(pattern = "_49_A$")
+P49_A <- mget(P49_A)
+P49_A <- as.data.frame(P49_A)
 
 # Nestedness component of Jaccard dissimilarity defined by Podani & Schmera ####
 adespatial_50_P <- rep(NA,69)
@@ -1959,6 +2012,13 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   BAT_51_P[i] <- BAT::beta(mite_beta,func = "jaccard",abund = F)$Bgain
 }
+
+BAT_51_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_51_A[i] <- BAT::beta(mite_beta,func = "jaccard",abund = T)$Bgain
+}
+
 adiv_51_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
@@ -1969,12 +2029,23 @@ P51_P <- ls(pattern = "_51_P$")
 P51_P <- mget(P51_P)
 P51_P <- as.data.frame(P51_P)
 
+P51_A <- ls(pattern = "_51_A$")
+P51_A <- mget(P51_A)
+P51_A <- as.data.frame(P51_A)
+
 # Jaccard richness loss ####
 BAT_52_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   BAT_52_P[i] <- BAT::beta(mite_beta,func = "jaccard",abund = F)$Bloss
 }
+
+BAT_52_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_52_A[i] <- BAT::beta(mite_beta,func = "jaccard",abund = T)$Bloss
+}
+
 adiv_52_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
@@ -1984,6 +2055,10 @@ for (i in 1:(nrow(mite)-1)){
 P52_P <- ls(pattern = "_52_P$")
 P52_P <- mget(P52_P)
 P52_P <- as.data.frame(P52_P)
+
+P52_A <- ls(pattern = "_52_A$")
+P52_A <- mget(P52_A)
+P52_A <- as.data.frame(P52_A)
 
 # Jeffreys ####
 EnvNJ_53_A <- rep(NA,69)
@@ -3319,9 +3394,24 @@ for (i in 1:(nrow(mite)-1)){
   fossil_87_P[i] <- 1-fossil::simpson(mite[i,],mite[i+1,])
 }
 
+adespatial_87_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_87_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "BS",quant = T)$repl # Baselga 0.1538462
+}
+BAT_87_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_87_A[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Brepl
+}
+
 P87_P <- ls(pattern = "_87_P$")
 P87_P <- mget(P87_P)
 P87_P <- as.data.frame(P87_P)
+
+P87_A <- ls(pattern = "_87_A$")
+P87_A <- mget(P87_A)
+P87_A <- as.data.frame(P87_A)
 
 
 # Nestedness-resultant component of Sørensen dissimilarity ####
@@ -3346,9 +3436,19 @@ for (i in 1:(nrow(mite)-1)){
   adespatial_88_P [i] <- adespatial::beta.div.comp(mite_beta,coef = "BS")$rich
 }
 
+adespatial_88_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_88_A [i] <- adespatial::beta.div.comp(mite_beta,coef = "BS",quant = T)$rich
+}
+
 P88_P <- ls(pattern = "_88_P$")
 P88_P <- mget(P88_P)
 P88_P <- as.data.frame(P88_P)
+
+P88_A <- ls(pattern = "_88_A$")
+P88_A <- mget(P88_A)
+P88_A <- as.data.frame(P88_A)
 
 # Sorensen richness gain ####
 BAT_89_P <- rep(NA,69)
@@ -3362,9 +3462,19 @@ for (i in 1:(nrow(mite)-1)){
   adiv_89_P[i] <- adiv::betastatsor(mite_beta)[3]
 }
 
+BAT_89_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_89_A[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Bgain
+}
+
 P89_P <- ls(pattern = "_89_P$")
 P89_P <- mget(P89_P)
 P89_P <- as.data.frame(P89_P)
+
+P89_A <- ls(pattern = "_89_A$")
+P89_A <- mget(P89_A)
+P89_A <- as.data.frame(P89_A)
 
 # Sorensen richness loss ####
 BAT_90_P <- rep(NA,69)
@@ -3372,6 +3482,13 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   BAT_90_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Bloss
 }
+
+BAT_90_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_90_A[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Bloss
+}
+
 adiv_90_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
@@ -3382,6 +3499,10 @@ P90_P <- ls(pattern = "_90_P$")
 P90_P <- mget(P90_P)
 P90_P <- as.data.frame(P90_P)
 
+P90_A <- ls(pattern = "_90_A$")
+P90_A <- mget(P90_A)
+P90_A <- as.data.frame(P90_A)
+
 # Legendre replacement index ####
 adespatial_91_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -3389,9 +3510,19 @@ for (i in 1:(nrow(mite)-1)){
   adespatial_91_P[i] <-  adespatial::beta.div.comp(mite_beta,coef = "S")$repl
 }
 
+adespatial_91_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_91_A[i] <-  adespatial::beta.div.comp(mite_beta,coef = "S",quant = T)$repl
+}
+
 P91_P <- ls(pattern = "_91_P$")
 P91_P <- mget(P91_P)
 P91_P <- as.data.frame(P91_P)
+
+P91_A <- ls(pattern = "_91_A$")
+P91_A <- mget(P91_A)
+P91_A <- as.data.frame(P91_A)
 
 # Sorensen Richness podani ####
 adespatial_92_P <- rep(NA,69)
@@ -3405,9 +3536,25 @@ for (i in 1:(nrow(mite)-1)){
   BAT_92_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Brich
 }
 
+
+adespatial_92_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_92_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "S",quant = T)$rich
+}
+BAT_92_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_92_A[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Brich
+}
+
 P92_P <- ls(pattern = "_92_P$")
 P92_P <- mget(P92_P)
 P92_P <- as.data.frame(P92_P)
+
+P92_A <- ls(pattern = "_92_A$")
+P92_A <- mget(P92_A)
+P92_A <- as.data.frame(P92_A)
 
 # Extended Sorensen Similarity ####
 adiv_93_A <- rep(NA,69)
@@ -3825,7 +3972,7 @@ write.csv(beta_combined,"data/beta/b_combined_all_mite.csv",row.names = F)
 
 # Same but with a long version
 beta_combined$Sample <- paste0(1:69, "-", 2:70)
-beta_combined_long <- pivot_longer(beta_combined,cols = colnames(beta_combined)[1:615],names_to = "package_index",values_to = "value")
+beta_combined_long <- pivot_longer(beta_combined,cols = colnames(beta_combined)[1:631],names_to = "package_index",values_to = "value")
 beta_combined_long <- beta_combined_long |>
   separate(package_index, into = c("package", "index"), sep = "_",extra = "merge")
 write.csv(beta_combined_long,"data/beta/b_combined_long_all_mite.csv",row.names = F)
@@ -3873,11 +4020,12 @@ dataindex_A <- filter(data,selection %in% c("2_A_vegan","3_A_EnvNJ","4_A_ecodive
                                             "22_A_ecodive","23_A_vegan","24_A_analogue","25_A_adespatial","26_A_vegan",
                                             "27_A_ecodive","28_A_vegan","29_A_ecodive","30_A_vegan","31_A_NST",
                                             "32_A_abdiv","33_A_ecodive","34_A_vegan","35_A_vegan","36_A_ecodist",
-                                            "37_A_NST","40_A_proxyC","41_A_EnvNJ","42_A_vegan","43_A_vegan","47_A_vegan",
-                                            "53_A_EnvNJ","54_A_adiv","55_A_adiv","57_A_vegan","58_A_EnvNJ","59_A_EnvNJ","60_A_vegan",
+                                            "37_A_NST","40_A_proxyC","41_A_EnvNJ","42_A_vegan","43_A_vegan","45_A_adespatial","46_A_adespatial","47_A_vegan",
+                                            "48_A_adespatial","49_A_adespatial","51_A_BAT","52_A_BAT","53_A_EnvNJ","54_A_adiv","55_A_adiv","57_A_vegan","58_A_EnvNJ","59_A_EnvNJ","60_A_vegan",
                                             "61_A_vegan","62_A_NST","64_A_adespatial","65_A_ecodive","66_1_A_ecodive",
                                             "66_2_A_ecodive","66_3_A_ecodive","67_A_vegan","68_A_vegan","69_A_pctax",
-                                            "75_A_vegan","77_A_abdiv","81_A_adiv","93_A_adiv","94_A_ade4","95_A_ecodive",
+                                            "75_A_vegan","77_A_abdiv","81_A_adiv","87_A_adespatial","88_A_adespatial","89_A_BAT",
+                                            "90_A_BAT","91_A_adespatial","92_A_adespatial","93_A_adiv","94_A_ade4","95_A_ecodive",
                                             "99_A_ecodive","100_A_proxy"
 ))
 dataindex_A <- dataindex_A |>

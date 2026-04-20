@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 06_Beta_index_analysis.r
-# Date               : 16/04/2025
+# Date               : 20/04/2025
 # Object             : Script to analyze alpha biodiversity index
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
@@ -359,29 +359,153 @@ levels_index <- data_stats$index %>%
 
 data_stats$index <- factor(data_stats$index, levels = levels_index)
 
-data_long <- data_long %>%
-  mutate(
-    Sample_num = as.numeric(str_extract(Sample, "^[0-9]+")),
-    Sample = fct_reorder(Sample, Sample_num)
+data_long_A <- filter(data_long, !index %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
+                                               "45_A","46_A","48_A","49_A","50_A","51_A","52_A") )
+data_stats_A <- filter(data_stats, !index %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
+                                                 "45_A","46_A","48_A","49_A","50_A","51_A","52_A") )
+
+
+data_stats_A <- data_stats_A %>%
+  left_join(
+    data_long_A %>%
+      group_by(index) %>%
+      summarise(
+        y_label = max(value, na.rm = TRUE) * 0.4
+      ),
+    by = "index"
   )
 
+ggplot(data_long_A) +
+  geom_segment(
+    aes(x = Sample, y = 0, yend = value),
+    color = "royalblue",
+    linewidth = 1,
+    alpha = 0.4
+  ) +
+  
+  geom_point(
+    aes(x = Sample, y = value),
+    color = "royalblue",
+    size = 1.7
+  ) +
+  
+  geom_label(
+    data = data_stats_A,
+    aes(
+      x = 69/2,
+      y = y_label,
+      label = paste0(
+        round(mean_value, 3), " \u00B1 ", round(sd_value, 3)
+      )
+    ),
+    hjust = 0.5,
+    vjust = 1,
+    size = 4,
+    alpha = 0.5,
+    linewidth = 0
+  ) +
+  
+  facet_wrap(~ index, scales = "free_y", ncol = 5) +
+  
+  scale_y_continuous(
+    expand = expansion(mult = c(0.05, 0.15))
+  ) +
+  
+  labs(
+    x = "Sample",
+    y = "Index value"
+  ) +
+  
+  theme(
+    strip.text = element_text(
+      face = "bold",
+      color = "white",
+      hjust = 0,
+      size = 10
+    ),
+    strip.background = element_rect(
+      fill = "royalblue"
+    ),
+    axis.title = element_text(size = 15),
+    axis.text.y = element_text(
+      size = 12,
+      face = "bold"
+    ),
+    axis.text.x = element_text(
+      size = 3.7,
+      angle = 90,
+      hjust = 1,
+      vjust = 0.5
+    )
+  )
 
-ggplot(data_long) +
-  geom_segment(aes(x = Sample,y=0, yend = value), col = "royalblue",
+ggsave('values_beta_A_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 600, height = 300, units = 'mm')
+
+ggplot(filter(data_stats_A, mean_value <= 1 & mean_value >= 0)) +
+  geom_point(aes(x = reorder(index, mean_value), y = mean_value)) +
+  geom_errorbar(aes(
+    x = reorder(index, mean_value),
+    ymin = mean_value - sd_value,
+    ymax = mean_value + sd_value
+  ), width = 0.2)+
+  labs(x = "Index", y = "Mean index value") +
+  theme(axis.text.x = element_text(size = 12, angle=90,hjust = 1,vjust = 0.5), 
+        axis.text.y = element_text(size = 12,face = "bold"),
+        axis.title = element_text(size = 15))
+ggsave('mean_values_beta_A_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 250, height = 150, units = 'mm')
+
+ggplot(filter(data_stats_A)) +
+  geom_point(aes(x = reorder(index, abs(sd_value/mean_value)), y = abs(sd_value/mean_value))) +
+  labs(x = "Index", y = "Mean index value") +
+  theme(axis.text.x = element_text(size = 12, angle=90,hjust = 1,vjust = 0.5), 
+        axis.text.y = element_text(size = 12,face = "bold"),
+        axis.title = element_text(size = 15))
+
+levels_index <- data_long$index %>%
+  unique() %>%
+  .[order(as.numeric(str_extract(., "\\d+")))]
+
+data_long$index <- factor(data_long$index, levels = levels_index)
+
+zeros <- ggplot(filter(data_long, value == 0 & !index %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
+                                                             "45_A","46_A","48_A","49_A","50_A","51_A","52_A"))) +
+  geom_point(aes(x = Sample, y = index),size=10,shape=15) +
+  labs(x = "Samples", y = "Index with 0") +
+  theme(axis.text.x = element_text(size = 8), 
+        axis.text.y = element_text(size = 12,face = "bold"),
+        axis.title = element_text(size = 15))
+ones <- ggplot(filter(data_long, value == 1 & !index %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
+                                                            "45_A","46_A","48_A","49_A","50_A","51_A","52_A"))) +
+  geom_point(aes(x = Sample, y = index),size=12,shape=15) +
+  labs(x = "Samples", y = "Index with 1") +
+  theme(axis.text.x = element_text(size = 8), 
+        axis.text.y = element_text(size = 12,face = "bold"),
+        axis.title = element_text(size = 15))
+plot_grid(zeros,ones,rel_widths = c(3,1))
+ggsave('extreme_values_beta_A_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 220, height = 100, units = 'mm')
+
+
+
+data_long_Adec <- filter(data_long, index %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
+                                                 "45_A","46_A","48_A","49_A","50_A","51_A","52_A") )
+data_stats_Adec <- filter(data_stats, index %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
+                                                   "45_A","46_A","48_A","49_A","50_A","51_A","52_A"))
+ggplot(data_long_Adec) +
+  geom_segment(aes(x = Sample,y=0, yend = value), col = "turquoise3",
                linewidth = 1, alpha = 0.4) +
-  geom_point(aes(x = Sample, y = value), col = "royalblue", size = 1.7) +
-  geom_label(data = filter(data_stats),
+  geom_point(aes(x = Sample, y = value), col = "turquoise3", size = 1.7) +
+  geom_label(data = filter(data_stats_Adec),
              aes(x = 69/2, y = 0.01, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
              color = "black", size = 4,alpha=0.5,linewidth=0) +
-  facet_wrap(~ index,scale = "free_y",ncol = 8) +
+  facet_wrap(~ index,scale = "free_y",ncol = 3) +
   labs(x = "Sample", y = "Index value") +
   theme(strip.text = element_text(face = "bold", color = "white",
                                   hjust = 0, size = 10),
-        strip.background = element_rect(fill = "royalblue"),
+        strip.background = element_rect(fill = "turquoise3"),
         axis.title = element_text(size = 15),
         axis.text.y = element_text(size = 12,face = "bold"),
         axis.text.x = element_text(size = 3.7,angle=90,hjust = 1,vjust = 0.5))
-ggsave('values_beta_A_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 600, height = 300, units = 'mm')
+ggsave('values_beta_Adec_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 300, height = 200, units = 'mm')
 
 # ALL VARIABLES SELECT #############____________________________________________
 #________________________________________PCA____________________________________####
