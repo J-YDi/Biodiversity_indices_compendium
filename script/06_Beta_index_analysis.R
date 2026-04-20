@@ -439,7 +439,7 @@ ggplot(data_long_A) +
     )
   )
 
-ggsave('values_beta_A_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 600, height = 300, units = 'mm')
+ggsave('values_beta_A_indices.png', path = "output/fig/beta/indices/", dpi = 300, width = 600, height = 300, units = 'mm')
 
 ggplot(filter(data_stats_A, mean_value <= 1 & mean_value >= 0)) +
   geom_point(aes(x = reorder(index, mean_value), y = mean_value)) +
@@ -452,7 +452,7 @@ ggplot(filter(data_stats_A, mean_value <= 1 & mean_value >= 0)) +
   theme(axis.text.x = element_text(size = 12, angle=90,hjust = 1,vjust = 0.5), 
         axis.text.y = element_text(size = 12,face = "bold"),
         axis.title = element_text(size = 15))
-ggsave('mean_values_beta_A_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 250, height = 150, units = 'mm')
+ggsave('mean_values_beta_A_indices.png', path = "output/fig/beta/indices/", dpi = 300, width = 250, height = 150, units = 'mm')
 
 ggplot(filter(data_stats_A)) +
   geom_point(aes(x = reorder(index, abs(sd_value/mean_value)), y = abs(sd_value/mean_value))) +
