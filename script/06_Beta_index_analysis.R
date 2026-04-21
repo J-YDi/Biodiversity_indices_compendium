@@ -467,22 +467,14 @@ levels_index <- data_long$index %>%
 
 data_long$index <- factor(data_long$index, levels = levels_index)
 
-zeros <- ggplot(filter(data_long, value == 0 & !index %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
+ggplot(filter(data_long, value == 0 & !index %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
                                                              "45_A","46_A","48_A","49_A","50_A","51_A","52_A"))) +
-  geom_point(aes(x = Sample, y = index),size=10,shape=15) +
+  geom_point(aes(x = Sample, y = index),size=25,shape=15) +
   labs(x = "Samples", y = "Index with 0") +
   theme(axis.text.x = element_text(size = 8), 
         axis.text.y = element_text(size = 12,face = "bold"),
         axis.title = element_text(size = 15))
-ones <- ggplot(filter(data_long, value == 1 & !index %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
-                                                            "45_A","46_A","48_A","49_A","50_A","51_A","52_A"))) +
-  geom_point(aes(x = Sample, y = index),size=12,shape=15) +
-  labs(x = "Samples", y = "Index with 1") +
-  theme(axis.text.x = element_text(size = 8), 
-        axis.text.y = element_text(size = 12,face = "bold"),
-        axis.title = element_text(size = 15))
-plot_grid(zeros,ones,rel_widths = c(3,1))
-ggsave('extreme_values_beta_A_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 220, height = 100, units = 'mm')
+ggsave('extreme_values_beta_A_indices.png', path = "output/fig/beta/indices/", dpi = 300, width = 200, height = 100, units = 'mm')
 
 
 
