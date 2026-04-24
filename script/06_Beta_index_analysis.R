@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 06_Beta_index_analysis.r
-# Date               : 20/04/2025
+# Date               : 24/04/2025
 # Object             : Script to analyze alpha biodiversity index
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
@@ -507,15 +507,30 @@ PCA_results_t <- PCA(t(data_pca))
 
 fviz_screeplot(PCA_results) # Screeplot
 
+# Create the color code
+group_PC <- names(data_pca)[names(data_pca) %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
+                                                   "45_A","46_A","48_A","49_A","50_A","51_A","52_A")]
+group_P <-  names(data_pca)[!names(data_pca) %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
+                                                    "45_A","46_A","48_A","49_A","50_A","51_A","52_A")]
+
+
+# Distinguishing the dimensions
+color_vector <- rep("Misrepresented", length(colnames(data_pca)))
+names(color_vector) <- colnames(data_pca)
+color_vector[group_PC] <- "PC"
+color_vector[group_P] <- "P"
+
+
 # PCA viz with colour arrows
 
-PCA <- fviz_pca_var(PCA_results, axes = c(1, 2), repel = T ,col.var = "royalblue",title="", ggtheme = theme_minimal()) +
+PCA <- fviz_pca_var(PCA_results, axes = c(1, 2), repel = T ,col.var = color_vector, legend = "none", 
+                    palette = c("royalblue","turquoise3"),title="", ggtheme = theme_minimal()) +
   theme(
     axis.title.x = element_text(size = 12),
     axis.title.y = element_text(size = 12)
   )
 PCA
-ggsave('PCA_beta_A_all.png', path = "output/fig/beta/indices/", dpi = 1200, width = 250, height = 250, units = 'mm')
+# ggsave('PCA_beta_A_all.png', path = "output/fig/beta/indices/", dpi = 1200, width = 250, height = 250, units = 'mm')
 
 fviz_contrib(PCA_results, choice = "var", axes = 1)
 fviz_contrib(PCA_results, choice = "var", axes = 2)
@@ -545,14 +560,16 @@ clusters <- cutree(hc, k = k)
 cluster_cols <- c("red", "blue", "darkgreen", "orange")
 label_cols <- cluster_cols[clusters]
 dend <- as.dendrogram(hc)
-dend <- dendrapply(dend, function(n) {
-  if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
-  n
-})
+# dend <- dendrapply(dend, function(n) {
+#   if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
+#   n
+# })
 
-dend <- color_branches(dend,k = k )
-dend <- color_labels(dend,k = k )
-dend <- set(dend, "branches_lwd", k)
+dend <- color_branches(dend,k = k, col = c("gold","limegreen","coral3") )
+
+dend <- color_labels(dend,col = c(rep("royalblue",32),rep("turquoise3",6),rep("royalblue",33),rep("turquoise3",6)))
+dend <- set(dend, "branches_lwd",3 )
+
 plot(dend, horiz = T,dLeaf = -0.1,axes=T)
 
 
@@ -578,4 +595,295 @@ NMDS <- ggplot(scores_df, aes(x = NMDS1, y = NMDS2, color = Cluster)) +
   scale_color_discrete(palette = c("red", "blue", "green2", "orange","magenta"))
 NMDS
 ggsave('NMDS_k3_beta_A_all.png', path = "output/fig/beta/indices/", dpi = 1200, width = 250, height = 150, units = 'mm')
+
+# Tranformations #####
+data <- read_csv("data/beta/beta_values_mite_wide_mite_A_relat.csv")
+
+data_pca <- select(data,-Sample)
+PCA_results <- PCA(data_pca)
+PCA_results_t <- PCA(t(data_pca))
+
+fviz_screeplot(PCA_results) # Screeplot
+
+# Create the color code
+group_PC <- names(data_pca)[names(data_pca) %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
+                                                   "45_A","46_A","48_A","49_A","50_A","51_A","52_A")]
+group_P <-  names(data_pca)[!names(data_pca) %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
+                                                    "45_A","46_A","48_A","49_A","50_A","51_A","52_A")]
+
+
+# Distinguishing the dimensions
+color_vector <- rep("Misrepresented", length(colnames(data_pca)))
+names(color_vector) <- colnames(data_pca)
+color_vector[group_PC] <- "PC"
+color_vector[group_P] <- "P"
+
+
+# PCA viz with colour arrows
+
+PCA_relat <- fviz_pca_var(PCA_results, axes = c(1, 2), repel = T ,col.var = color_vector, legend = "none", 
+                    palette = c("royalblue","turquoise3"),title="", ggtheme = theme_minimal()) +
+  theme(
+    axis.title.x = element_text(size = 12),
+    axis.title.y = element_text(size = 12)
+  )+
+  labs(title = "Relative abundance transformation")
+PCA_relat
+
+# Hellinger ###
+data <- read_csv("data/beta/beta_values_mite_wide_mite_A_hellinger.csv")
+
+data_pca <- select(data,-Sample)
+PCA_results <- PCA(data_pca)
+PCA_results_t <- PCA(t(data_pca))
+
+fviz_screeplot(PCA_results) # Screeplot
+
+# Create the color code
+group_PC <- names(data_pca)[names(data_pca) %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
+                                                   "45_A","46_A","48_A","49_A","50_A","51_A","52_A")]
+group_P <-  names(data_pca)[!names(data_pca) %in% c("87_A","88_A","89_A","90_A","91_A","92_A",
+                                                    "45_A","46_A","48_A","49_A","50_A","51_A","52_A")]
+
+
+# Distinguishing the dimensions
+color_vector <- rep("Misrepresented", length(colnames(data_pca)))
+names(color_vector) <- colnames(data_pca)
+color_vector[group_PC] <- "PC"
+color_vector[group_P] <- "P"
+
+
+# PCA viz with colour arrows
+
+PCA_hellinger <- fviz_pca_var(PCA_results, axes = c(1, 2), repel = T ,col.var = color_vector, legend = "none", 
+                    palette = c("royalblue","turquoise3"),title="", ggtheme = theme_minimal()) +
+  theme(
+    axis.title.x = element_text(size = 12),
+    axis.title.y = element_text(size = 12)
+  )+
+  labs(title = "Hellinger transformation")
+
+plot_grid(PCA_relat,PCA_hellinger,labels = "AUTO",nrow = 2)
+ggsave('PCA_beta_A_transfo_indices.png', path = "output/fig/beta/indices/", dpi = 300, width = 250, height = 500, units = 'mm')
+
+
+#______________________Some basic representations of the data___________________####
+
+data_long <- read_csv("data/beta/beta_values_mite_long_mite_A_relat.csv")
+
+
+
+# # All
+# ggplot(data_long)+
+#   geom_line(aes(x=Sample,y=value))+
+#   facet_wrap(~index,scale = "free_y")
+
+# Calculate some stats to the plot
+data_stats <- data_long |> 
+  group_by(index) |> 
+  summarise(mean_value = mean(value),
+            sd_value = sd(value))
+
+# A indices
+
+levels_index <- data_long$index %>%
+  unique() %>%
+  .[order(as.numeric(str_extract(., "\\d+")))]
+
+data_long$index <- factor(data_long$index, levels = levels_index)
+
+levels_index <- data_stats$index %>%
+  unique() %>%
+  .[order(as.numeric(str_extract(., "\\d+")))]
+
+data_stats$index <- factor(data_stats$index, levels = levels_index)
+
+data_long_A <- data_long
+data_stats_A <- data_stats
+
+
+data_stats_A <- data_stats_A %>%
+  left_join(
+    data_long_A %>%
+      group_by(index) %>%
+      summarise(
+        y_label = max(value, na.rm = TRUE) * 0.4
+      ),
+    by = "index"
+  )
+
+ggplot(data_long_A) +
+  geom_segment(
+    aes(x = Sample, y = 0, yend = value),
+    color = "royalblue",
+    linewidth = 1,
+    alpha = 0.4
+  ) +
+  
+  geom_point(
+    aes(x = Sample, y = value),
+    color = "royalblue",
+    size = 1.7
+  ) +
+  
+  geom_label(
+    data = data_stats_A,
+    aes(
+      x = 69/2,
+      y = y_label,
+      label = paste0(
+        round(mean_value, 3), " \u00B1 ", round(sd_value, 3)
+      )
+    ),
+    hjust = 0.5,
+    vjust = 1,
+    size = 4,
+    alpha = 0.5,
+    linewidth = 0
+  ) +
+  
+  facet_wrap(~ index, scales = "free_y", ncol = 5) +
+  
+  scale_y_continuous(
+    expand = expansion(mult = c(0.05, 0.15))
+  ) +
+  
+  labs(
+    x = "Sample",
+    y = "Index value"
+  ) +
+  
+  theme(
+    strip.text = element_text(
+      face = "bold",
+      color = "white",
+      hjust = 0,
+      size = 10
+    ),
+    strip.background = element_rect(
+      fill = "royalblue"
+    ),
+    axis.title = element_text(size = 15),
+    axis.text.y = element_text(
+      size = 12,
+      face = "bold"
+    ),
+    axis.text.x = element_text(
+      size = 3.7,
+      angle = 90,
+      hjust = 1,
+      vjust = 0.5
+    )
+  )
+
+ggsave('values_beta_A_relat_indices.png', path = "output/fig/beta/indices/", dpi = 300, width = 600, height = 300, units = 'mm')
+
+data_long <- read_csv("data/beta/beta_values_mite_long_mite_A_hellinger.csv")
+
+
+
+# # All
+# ggplot(data_long)+
+#   geom_line(aes(x=Sample,y=value))+
+#   facet_wrap(~index,scale = "free_y")
+
+# Calculate some stats to the plot
+data_stats <- data_long |> 
+  group_by(index) |> 
+  summarise(mean_value = mean(value),
+            sd_value = sd(value))
+
+# A indices
+
+levels_index <- data_long$index %>%
+  unique() %>%
+  .[order(as.numeric(str_extract(., "\\d+")))]
+
+data_long$index <- factor(data_long$index, levels = levels_index)
+
+levels_index <- data_stats$index %>%
+  unique() %>%
+  .[order(as.numeric(str_extract(., "\\d+")))]
+
+data_stats$index <- factor(data_stats$index, levels = levels_index)
+
+data_long_A <- data_long
+data_stats_A <- data_stats
+
+
+data_stats_A <- data_stats_A %>%
+  left_join(
+    data_long_A %>%
+      group_by(index) %>%
+      summarise(
+        y_label = max(value, na.rm = TRUE) * 0.4
+      ),
+    by = "index"
+  )
+
+ggplot(data_long_A) +
+  geom_segment(
+    aes(x = Sample, y = 0, yend = value),
+    color = "royalblue",
+    linewidth = 1,
+    alpha = 0.4
+  ) +
+  
+  geom_point(
+    aes(x = Sample, y = value),
+    color = "royalblue",
+    size = 1.7
+  ) +
+  
+  geom_label(
+    data = data_stats_A,
+    aes(
+      x = 69/2,
+      y = y_label,
+      label = paste0(
+        round(mean_value, 3), " \u00B1 ", round(sd_value, 3)
+      )
+    ),
+    hjust = 0.5,
+    vjust = 1,
+    size = 4,
+    alpha = 0.5,
+    linewidth = 0
+  ) +
+  
+  facet_wrap(~ index, scales = "free_y", ncol = 5) +
+  
+  scale_y_continuous(
+    expand = expansion(mult = c(0.05, 0.15))
+  ) +
+  
+  labs(
+    x = "Sample",
+    y = "Index value"
+  ) +
+  
+  theme(
+    strip.text = element_text(
+      face = "bold",
+      color = "white",
+      hjust = 0,
+      size = 10
+    ),
+    strip.background = element_rect(
+      fill = "royalblue"
+    ),
+    axis.title = element_text(size = 15),
+    axis.text.y = element_text(
+      size = 12,
+      face = "bold"
+    ),
+    axis.text.x = element_text(
+      size = 3.7,
+      angle = 90,
+      hjust = 1,
+      vjust = 0.5
+    )
+  )
+
+ggsave('values_beta_A_hellinger_indices.png', path = "output/fig/beta/indices/", dpi = 300, width = 600, height = 300, units = 'mm')
 
