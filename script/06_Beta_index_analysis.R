@@ -1,7 +1,7 @@
 #_______________________________________________________________________________
 # Title              : 06_Beta_index_analysis.r
 # Date               : 24/04/2025
-# Object             : Script to analyze alpha biodiversity index
+# Object             : Script to analyze beta biodiversity indices
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
 # Github link        : 

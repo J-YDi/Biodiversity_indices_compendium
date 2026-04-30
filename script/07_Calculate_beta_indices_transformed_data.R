@@ -1,8 +1,8 @@
 #_______________________________________________________________________________
-# Title              : 08_Calculate_beta_indices_transformed_data.r
+# Title              : 07_Calculate_beta_indices_transformed_data.r
 # Date               : 24/04/2025
 # Object             : Script to create dataset of values from functions that 
-#                      calculate beta diversity indices
+#                      calculate beta diversity indices with data transformation
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
 # Github link        : 

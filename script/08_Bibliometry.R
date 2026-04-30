@@ -1,7 +1,8 @@
 #_______________________________________________________________________________
 # Title              : 08_Bibliometry.r
 # Date               : 09/03/2026
-# Object             : Script to
+# Object             : Script to represent the number of publications involving
+#                      biodiversity and/or marine and/or policy
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
 # Github link        : 
