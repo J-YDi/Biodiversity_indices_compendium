@@ -15,7 +15,6 @@
 + 07_Calculate_beta_indices_transformed_data.R : Script to create dataset of values from functions that calculate beta diversity indices with data transformation
 + 07_Compare_transformations_beta_indices.R : Script to represent the influence on transformations on beta biodiversity indices
 + 08_Bibliometry.R : Script to represent the number of publications involving biodiversity and/or marine and/or policy
-+ Script to create dataset of values from functions that calculate beta diversity indices with data transformation
 
 ##### data folder : 
 + contains all the original raw datasets and additionnal files supporting the data processing.
