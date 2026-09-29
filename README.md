@@ -1,8 +1,7 @@
 # QUANTIFY PHYTOPLANKTON BIODIVERSITY
 ## Dias Jean-Yves $^1$, Vincent Dorothée $^2$, Goberville Eric $^1$
 #### $^1$ Laboratoire de Biologie des Organismes et des Écosystèmes Aquatiques-BOREA, Muséum national d’Histoire naturelle (MNHN), SU, CNRS, IRD, UA, F-75005 Paris, France ; $^2$ PatriNat (OFB, MNHN), Brest, France ; Office Français de la Biodiversité
-##### Correspond to the R scripts and data for the INDIBIO projet report (2026) and Chapter 1 of Jean-Yves Dias' PhD thesis (2025-2028)
-### **Document access: INDIBIO report : not provided ; Chapter 1 : not provided ; **
+##### Correspond to the R scripts and data for the INDIBIO project report (2026) and Chapter 1 of Jean-Yves Dias' PhD thesis (2025-2028)
 
 #### Github repository organization
 
