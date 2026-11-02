@@ -1,8 +1,7 @@
 # QUANTIFY PHYTOPLANKTON BIODIVERSITY
 ## Dias Jean-Yves $^1$, Vincent Dorothée $^2$, Goberville Eric $^1$
 #### $^1$ Laboratoire de Biologie des Organismes et des Écosystèmes Aquatiques-BOREA, Muséum national d’Histoire naturelle (MNHN), SU, CNRS, IRD, UA, F-75005 Paris, France ; $^2$ PatriNat (OFB, MNHN), Brest, France ; Office Français de la Biodiversité
-##### Correspond to the R scripts and data for the INDIBIO projet report (2026) and Chapter 1 of Jean-Yves Dias' PhD thesis (2025-2028)
-### **Document access: INDIBIO report : not provided ; Chapter 1 : not provided ; **
+##### Correspond to the R scripts and data for the INDIBIO project report (2026) and Chapter 1 of Jean-Yves Dias' PhD thesis (2025-2028)
 
 #### Github repository organization
 
@@ -16,7 +15,6 @@
 + 07_Calculate_beta_indices_transformed_data.R : Script to create dataset of values from functions that calculate beta diversity indices with data transformation
 + 07_Compare_transformations_beta_indices.R : Script to represent the influence on transformations on beta biodiversity indices
 + 08_Bibliometry.R : Script to represent the number of publications involving biodiversity and/or marine and/or policy
-+ Script to create dataset of values from functions that calculate beta diversity indices with data transformation
 
 ##### data folder : 
 + contains all the original raw datasets and additionnal files supporting the data processing.
