@@ -151,6 +151,8 @@ for (i in 1:nrow(mite)){
   custom_DQ[i] <- kempton_q(as.numeric(mite[i,]),q1 = 0.5,q2 = 0.9)
 }
 
+sum(abs(abdiv_DQ)-abs(custom_DQ),na.rm = T) 
+
 # DBRI ####
 tabula_DBRI <- as.numeric(tabula::heterogeneity(mite,method = "brillouin"))
 abdiv_DBRI <- apply(mite, 1, abdiv::brillouin_d)
@@ -172,10 +174,12 @@ brillouin <- function(x, binary = FALSE) {
   y <- (lfactorial(rowSums(x)) - rowSums(lfactorial(x))) / rowSums(x)
   return(y)
 }
-
 custom_DBRI <- brillouin(mite)
 
 sum(abs(wiqid_DBRI)-abs(custom_DBRI))
+sum(abs(tabula_DBRI)-abs(custom_DBRI))
+sum(abs(abdiv_DBRI)-abs(custom_DBRI))
+sum(abs(ecodive_DBRI)-abs(custom_DBRI))
 
 # DRAO ####
 BAT_DRAO <- BAT::rao(as.matrix(mite))[,1] 
@@ -183,7 +187,7 @@ ade4_DRAO <- rep(1,70)
 for (i in 1:nrow(mite)){
   ade4_DRAO[i] <- ade4::apqe(as.data.frame(t(mite[i,])),dis = NULL)$results[2,1]
 }
-SYNCSA_DRAO <- SYNCSA::rao.diversity(mite)$Simpson
+SYNCSA_DRAO <- SYNCSA::rao.diversity(mite)$Simpson # package down
 
 rao_q <- function(x, d) {
   # Convert input to a samples x species matrix
@@ -194,7 +198,7 @@ rao_q <- function(x, d) {
   if (!is.numeric(x)) stop("`x` must contain numeric values only.")
   if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
   
-  # Check distance: Euclidean `dist` object, as in ade4::apqe
+  # Check distance: Euclidean `dist` object
   if (!inherits(d, "dist")) stop("`d` must be a `dist` object.")
   if (!ade4::is.euclid(d)) stop("`d` must be a Euclidean distance.")
   d <- as.matrix(d)^2
@@ -222,7 +226,6 @@ rao_q <- function(x, d) {
     p   <- x[k, present] / sum(x[k, present])
     d_k <- d[present, present, drop = FALSE]
     
-    # Q = sum_{i=1}^{S-1} sum_{j=i+1}^{S-1} d_ij p_i p_j
     res <- 0
     for (i in seq_len(S - 1)) {
       for (j in seq(from = i + 1, length.out = max(0, S - 1 - i))) {
@@ -238,6 +241,11 @@ rao_q <- function(x, d) {
   Q
 }
 custom_DRAO <- rao_q(mite,dist(t(mite),method = "euclidean",diag = T,upper = T))
+
+sum(abs(BAT_DRAO)-abs(custom_DRAO))
+sum(abs(ade4_DRAO)-abs(custom_DRAO))
+sum(abs(SYNCSA_DRAO)-abs(custom_DRAO))
+
 
 # EBRI ####
 tabula_EBRI <- as.numeric(tabula::evenness(mite,method = "brillouin"))
@@ -284,7 +292,7 @@ brillouin_evenness <- function(x) {
 }
 
 custom_EBRI <- brillouin_evenness(mite)
-abs(tabula_EBRI)-abs(custom_EBRI)
+sum(abs(tabula_EBRI)-abs(custom_EBRI))
 
 # EBU ####
 BAT_EBU <- as.numeric(BAT::evenness(mite,func = "bulla"))
@@ -323,6 +331,7 @@ bulla_evenness <- function(x) {
 custom_EBU <- bulla_evenness(mite)
 
 sum(abs(microbiome_EBU)-abs(custom_EBU))
+sum(abs(BAT_EBU)-abs(custom_EBU))
 
 #ECAM ####
 BAT_ECAM <- as.numeric(BAT::evenness(mite,func = "camargo"))
@@ -363,6 +372,7 @@ camargo_evenness <- function(x) {
 
 custom_ECAM <- camargo_evenness(mite)
 sum(abs(microbiome_ECAM)-abs(custom_ECAM))
+sum(abs(BAT_ECAM)-abs(custom_ECAM))
 
 #EEQ ####
 eq_evenness <- function(x, na.rm = TRUE) {
@@ -413,7 +423,6 @@ eq_evenness <- function(x, na.rm = TRUE) {
   names(E) <- rownames(x)
   E
 }
-
 custom_EEQ <- rep(1,70) 
 for (i in 1:nrow(mite)){
   custom_EEQ[i] <- eq_evenness(mite[i,]) 
@@ -425,6 +434,7 @@ for (i in 1:nrow(mite)){
   codyn_EEQ[i] <- codyn::community_structure(mite_long,abundance.var = "Value",metric = "EQ")$EQ
 }
 sum(abs(codyn_EEQ)-abs(custom_EEQ))
+
 
 # EEVAR  ####
 
@@ -482,6 +492,9 @@ adiv_EEVAR <- adiv::specieseve(mite,method = "SmithWilson")[,1]
 microbiome_EEVAR <- microbiome::evenness(t(mite), index = "evar")[,1]
 
 sum(abs(microbiome_EEVAR)-abs(custom_EEVAR))
+sum(abs(codyn_EEVAR)-abs(custom_EEVAR))
+sum(abs(adiv_EEVAR)-abs(custom_EEVAR))
+
 
 # EHEI ####
 adiv_EHEI <- adiv::specieseve(mite,method = "Heip")[,1] # OK
@@ -489,7 +502,6 @@ abdiv_EHEI <- rep(1,70)
 for (i in 1:nrow(mite)){
   abdiv_EHEI[i] <- abdiv::heip_e(as.numeric(mite[i,])) # OK
 }
-
 heip_evenness <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
@@ -515,7 +527,7 @@ heip_evenness <- function(x, na.rm = TRUE) {
     S <- length(n)
     if (S < 2) next
     
-    # Shannon entropy (natural log)
+    # Shannon entropy
     p <- n / sum(n)
     H <- -sum(p * log(p))
     
@@ -535,6 +547,7 @@ for (i in 1:nrow(mite)){
 }
 
 sum(abs(abdiv_EHEI)-abs(custom_EHEI))
+sum(abs(adiv_EHEI)-abs(custom_EHEI))
 
 # EMC ####
 tabula_EMC <- as.numeric(tabula::evenness(mite,method = "mcintosh"))
@@ -576,17 +589,17 @@ mcintosh_evenness <- function(x, na.rm = TRUE) {
   names(E) <- rownames(x)
   E
 }
-
-
 custom_EMC <- mcintosh_evenness(mite)
+
 sum(abs(tabula_EMC)-abs(custom_EMC))
+sum(abs(abdiv_EMC)-abs(custom_EMC))
+
 # EMN ####
 
 microbiome_EMN <- rep(1,70) 
 for (i in 1:nrow(mite)){
   microbiome_EMN[i] <- microbiome::dominance(as.numeric(mite[i,]),index = "DMN")$dmn  #OK
 }
-
 
 mcnaughton_dominance <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
@@ -629,7 +642,6 @@ mcnaughton_dominance <- function(x, na.rm = TRUE) {
   names(d) <- rownames(x)
   d
 }
-
 custom_EMN <- mcnaughton_dominance(mite)
 
 sum(abs(microbiome_EMN)-abs(custom_EMN))
@@ -690,6 +702,9 @@ for (i in 1:nrow(mite)){
 }
 
 sum(abs(codyn_ESP)-abs(custom_ESP))
+sum(abs(tabula_ESP)-abs(custom_ESP))
+sum(abs(sprex_ESP)-abs(custom_ESP))
+sum(abs(adiv_ESP)-abs(custom_ESP))
 
 # EST ####
 strong_dominance <- function(x, na.rm = TRUE) {
@@ -788,3 +803,478 @@ rygg_adjusted <- function(x, binary = FALSE) {
 custom_TRYA <- rygg_adjusted(mite)
 
 sum(abs(benthos_TRYA)-abs(custom_TRYA))
+
+# RCA2 ####
+chao2 <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)))
+    stop("`x` must be a data frame or matrix (samples in rows, species in columns).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) return(NA_real_)
+    x[is.na(x)] <- 0
+  }
+  
+  # Number of samples in which each species occurs
+  occ <- colSums(x > 0)
+  
+  S_obs <- sum(occ > 0)
+  Q1 <- sum(occ == 1)
+  Q2 <- sum(occ == 2)
+  
+  if (Q2 == 0) {
+    message("Q2 = 0: bias-corrected Chao 2 used.")
+    return(S_obs + Q1 * (Q1 - 1) / (2 * (Q2 + 1)))
+  }
+  
+  S_obs + Q1^2 / (2 * Q2)
+}
+
+# We cannot calculate this index sample by sample
+# fossil_RCA2 <- rep(1,70)
+# for (i in 1:nrow(mite)){
+#   fossil_RCA2[i] <- fossil::chao2(as.numeric(mite[i,]))
+# }
+# wiqid_RCA2 <- rep(1,70)
+# for (i in 1:nrow(mite)){
+#   wiqid_RCA2[i] <- wiqid::richChao2(t(mite[i,]))[1]
+# }
+# tabula_RCA2 <- rep(1,70)
+# for (i in 1:nrow(mite)){
+#   tabula_RCA2[i] <- tabula::index_chao2(as.matrix(mite))
+# }
+# divDyn_RCA2 <- rep(1,70)
+# for (i in 1:nrow(mite)){
+#   divDyn_RCA2[i] <- divDyn::indices(as.matrix(mite),method = "chao2")
+# }
+# BAT_RCA2 <- BAT::alpha.accum(mite)[,18]
+# 
+# custom_RCA2 <- rep(1,70)
+# for (i in 1:nrow(mite)){
+#   custom_RCA2[i]  <- chao2(mite)
+# }
+
+fossil::chao2(mite) #70
+wiqid::richChao2(t(mite))[1] #35
+tabula::index_chao2(as.matrix(mite)) #35
+divDyn::indices(as.matrix(mite),method = "chao2") # Don't respect the purpose
+BAT::alpha.accum(mite) #35
+chao2(mite) #35
+# but according to formula tabula and wiqid compute Chao2 modified
+# BAT compute another form of correction factor, either Chao2 and Chao2 modified
+
+# RCA2M ####
+chao2_corrected <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)))
+    stop("`x` must be a data frame or matrix (samples in rows, species in columns).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) return(NA_real_)
+    x[is.na(x)] <- 0
+  }
+  
+  # Number of samples in which each species occurs
+  occ <- colSums(x > 0)
+  
+  S_obs <- sum(occ > 0)
+  Q1 <- sum(occ == 1)
+  Q2 <- sum(occ == 2)
+  t  <- nrow(x)
+  
+  if (Q2 == 0) {
+    message("Q2 = 0: bias-corrected Chao 2 used.")
+    return(S_obs + ((t - 1) / t) * Q1 * (Q1 - 1) / (2 * (Q2 + 1)))
+  }
+  
+  S_obs + ((t - 1) / t) * Q1^2 / (2 * Q2)
+}
+
+# ICE ####
+fossil_RICE <- rep(1,70)
+for (i in 1:nrow(mite)){
+  fossil_RICE[i] <- fossil::ICE(t(mite[i,])) #44
+}
+wiqid_RICE <- rep(1,70)
+for (i in 1:nrow(mite)){
+  wiqid_RICE[i] <- wiqid::richICE(t(mite[i,])) #44
+}
+tabula_RICE <- rep(1,70)
+for (i in 1:nrow(mite)){
+  tabula_RICE[i] <- tabula::index_ice(t(mite[i,])) #44
+}
+BAT_RICE <- BAT::alpha.accum(mite)[,22] #NaN
+
+ice <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)))
+    stop("`x` must be a data frame or matrix (samples in rows, species in columns).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) return(NA_real_)
+    x[is.na(x)] <- 0
+  }
+  
+  # Number of samples in which each species occurs
+  occ <- colSums(x > 0)
+  
+  # Frequent (> 10 samples) and infrequent (<= 10 samples) species
+  infr <- occ > 0 & occ <= 10
+  S_freq <- sum(occ > 10)
+  S_infr <- sum(infr)
+  
+  # No infrequent species: nothing to estimate
+  if (S_infr == 0) return(S_freq)
+  
+  Q1 <- sum(occ == 1)
+  N_infr <- sum(occ[infr])
+  
+  # Samples with at least one infrequent species
+  m_infr <- sum(rowSums(x[, infr, drop = FALSE] > 0) > 0)
+  
+  # Sample coverage
+  C_ice <- 1 - Q1 / N_infr
+  if (C_ice == 0) {
+    warning("All infrequent species are uniques (C_ICE = 0): ICE is undefined.")
+    return(NA_real_)
+  }
+  
+  # Coefficient of variation
+  sum_jj <- sum(occ[infr] * (occ[infr] - 1))
+  gamma2 <- max((S_infr / C_ice) * (m_infr / (m_infr - 1)) * sum_jj / N_infr^2 - 1, 0)
+  
+  S_freq + S_infr / C_ice + (Q1 / C_ice) * gamma2
+}
+custom_RICE <- rep(1,70)
+for (i in 1:nrow(mite)){
+  custom_RICE[i] <- ice(mite[i,])
+
+}
+
+ice(mite)
+wiqid::richICE(t(mite)) # change to Chao2 if C_ICE = 0
+fossil::ICE(t(mite)) #wrong formula
+tabula::index_ice(t(mite)) # wrong formula
+BAT::alpha.accum(mite)[,22] # Don't respect the purpose of the index
+
+# RJA2 ####
+SSP_RJA2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  SSP_RJA2[i] <- SSP:::assempar(mite[i,],type = "counts",Sest.method = "jack2")$Sest #10
+}
+
+wiqid_RJA2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  wiqid_RJA2[i] <- wiqid::richJackA2(t(mite[i,])) #13
+}
+fossil_RJA2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  fossil_RJA2[i] <- fossil::jack2(as.numeric(mite[i,]))
+}
+
+BiodiversityR_RJA2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  BiodiversityR_RJA2[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "jack2",method = "each site"))
+}
+
+BAT_RJA2 <- BAT::alpha.estimate(mite)[,7]
+
+jackknife2 <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)))
+    stop("`x` must be a data frame or matrix (samples in rows, species in columns).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) return(NA_real_)
+    x[is.na(x)] <- 0
+  }
+  
+  m <- nrow(x)
+  if (m < 2) {
+    warning("At least 2 samples are needed to compute Jackknife 2.")
+    return(NA_real_)
+  }
+  
+  # Number of samples in which each species occurs
+  occ <- colSums(x > 0)
+  
+  S_obs <- sum(occ > 0)
+  Q1 <- sum(occ == 1)
+  Q2 <- sum(occ == 2)
+  
+  S_obs + (Q1 * (2 * m - 3) / m - Q2 * (m - 2)^2 / (m * (m - 1)))
+}
+custom_RJA2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  custom_RJA2[i] <- jackknife2(mite[i,])
+}
+
+BiodiversityR::diversityresult(mite,index = "jack2",method = "pooled")
+BAT::alpha.estimate(mite) # Don't follow index purpose
+fossil::jack2(mite)
+wiqid::richJackA2(t(mite))
+SSP:::assempar(mite,type = "counts",Sest.method = "jack2")$Sest
+jackknife2(mite)
+
+# RMM ####
+wiqid_RMM <- rep(1,70)
+for (i in 1:nrow(mite)){
+  wiqid_RMM[i] <- wiqid::richMM(t(mite[i,]))
+}
+
+michaelis_menten_raaijmakers <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)))
+    stop("`x` must be a data frame or matrix (samples in rows, species in columns).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) return(NA_real_)
+    x[is.na(x)] <- 0
+  }
+  
+  m <- nrow(x)
+  if (m < 2) {
+    warning("At least 2 samples are needed to compute the estimator.")
+    return(NA_real_)
+  }
+  
+  # Number of samples in which each species occurs
+  occ <- colSums(x > 0)
+  occ <- occ[occ > 0]
+  
+  # Exact expected accumulation curve
+  k <- seq_len(m)
+  S_k <- vapply(k, function(kk) sum(1 - choose(m - occ, kk) / choose(m, kk)),
+                numeric(1))
+  
+  # Raaijmakers (1987) maximum likelihood estimator
+  Y <- S_k
+  X <- S_k / k
+  Sxx <- sum((X - mean(X))^2)
+  Syy <- sum((Y - mean(Y))^2)
+  Sxy <- sum((X - mean(X)) * (Y - mean(Y)))
+  
+  B    <- (mean(X) * Syy - mean(Y) * Sxy) / (mean(Y) * Sxx - mean(X) * Sxy)
+  Smax <- mean(Y) + B * mean(X)
+  
+  if (!is.finite(Smax) || Smax < 0) {
+    warning("Raaijmakers estimate is not finite or negative: NA returned.")
+    return(NA_real_)
+  }
+  
+  Smax
+}
+wiqid::richMM(t(mite))
+michaelis_menten_raaijmakers(mite)
+
+
+# RSQ ####
+squares_richness <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x))) {
+    x <- matrix(x, nrow = 1, dimnames = list(NULL, names(x)))
+  }
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  if (any(x != round(x), na.rm = TRUE))
+    warning("`x` contains non-integer values: the estimator expects counts.")
+  
+  S_est <- rep(NA_real_, nrow(x))
+  
+  for (k in seq_len(nrow(x))) {
+    n <- x[k, ]
+    
+    # Missing values
+    if (any(is.na(n))) {
+      if (!na.rm) next
+      n <- n[!is.na(n)]
+    }
+    
+    # Species present only
+    n <- n[n > 0]
+    S_obs <- length(n)
+    if (S_obs == 0) next
+    
+    N  <- sum(n)
+    F1 <- sum(n == 1)
+    
+    # No singleton: no unseen species estimated
+    if (F1 == 0) {
+      S_est[k] <- S_obs
+      next
+    }
+    
+    denom <- N^2 - F1 * S_obs
+    if (denom == 0) next
+    
+    S_est[k] <- S_obs + F1^2 * sum(n^2) / denom
+  }
+  
+  if (any(is.na(S_est)))
+    warning("Some samples are empty, contain only singletons or contain NA: S set to NA.")
+  
+  names(S_est) <- rownames(x)
+  S_est
+}
+
+tabula_RSQ <- rep(1,70)
+for (i in 1:nrow(mite)){
+  tabula_RSQ[i] <- tabula::index_squares(as.numeric(mite[i,]))
+}
+divDyn_RSQ <- rep(1,70)
+for (i in 1:nrow(mite)){
+  divDyn_RSQ[i] <- divDyn::indices(as.matrix(mite[i,]),method = "squares")
+}
+ecodive_RSQ <- rep(1,70)
+for (i in 1:nrow(mite)){
+  ecodive_RSQ[i] <- ecodive::squares(mite[i,]) #12.178889
+}
+
+custom_RSQ <- rep(1,70)
+for (i in 1:nrow(mite)){
+  custom_RSQ[i] <- squares_richness(mite[i,])
+}
+
+sum(abs(ecodive_RSQ)-abs(custom_RSQ))
+sum(abs(divDyn_RSQ)-abs(custom_RSQ))
+sum(abs(tabula_RSQ)-abs(custom_RSQ))
+
+
+# RBOO ####
+wiqid_RBOO <- rep(1,70)
+for (i in 1:nrow(mite)){
+  wiqid_RBOO[i] <- wiqid::richBoot(t(mite[i,])) #44
+}
+BiodiversityR_RBOO <- rep(1,70)
+for (i in 1:nrow(mite)){
+  BiodiversityR_RBOO[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "boot",method = "each site")) #11
+}
+
+bootstrap_richness <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)))
+    stop("`x` must be a data frame or matrix (samples in rows, species in columns).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) return(NA_real_)
+    x[is.na(x)] <- 0
+  }
+  
+  m <- nrow(x)
+  
+  # Number of samples in which each species occurs
+  occ <- colSums(x > 0)
+  occ <- occ[occ > 0]
+  
+  S_obs <- length(occ)
+  p <- occ / m
+  
+  S_obs + sum((1 - p)^m)
+}
+
+custom_RBOO <- rep(1,70)
+for (i in 1:nrow(mite)){
+  custom_RBOO[i] <- bootstrap_richness(mite[i,])
+}
+
+bootstrap_richness(mite)
+wiqid::richBoot(t(mite))
+BiodiversityR::diversityresult(mite,index = "boot",method = "pooled")
+
+# RLMD ####
+lognormal_lambda <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x))) {
+    x <- matrix(x, nrow = 1, dimnames = list(NULL, names(x)))
+  }
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  if (any(x != round(x), na.rm = TRUE))
+    warning("`x` contains non-integer values: the log-normal model expects counts.")
+  
+  L <- rep(NA_real_, nrow(x))
+  
+  for (k in seq_len(nrow(x))) {
+    n <- x[k, ]
+    
+    # Missing values
+    if (any(is.na(n))) {
+      if (!na.rm) next
+      n <- n[!is.na(n)]
+    }
+    
+    # Species present only
+    n <- n[n > 0]
+    if (length(n) < 3) next
+    
+    # Fit Preston's truncated log-normal (log2 octaves)
+    fit <- tryCatch(vegan::prestondistr(n), error = function(e) NULL)
+    if (is.null(fit)) next
+    
+    # lambda = S* / sigma = S0 * sqrt(2 * pi)
+    S0 <- unname(fit$coefficients["S0"])
+    if (!is.finite(S0)) next
+    
+    L[k] <- S0 * sqrt(2 * pi)
+  }
+  
+  if (any(is.na(L)))
+    warning("Some samples have fewer than 3 species, could not be fitted or contain NA: lambda set to NA.")
+  
+  names(L) <- rownames(x)
+  L
+}
+
+sads_RLMD <- rep(1,70)
+for (i in 1:nrow(mite)){
+  sads_RLMD[i] <- sads::fitsad(mite[i, ][mite[i, ] != 0],sad = "lnorm")@coef
+}
+asbio_RLMD <- numeric(nrow(mite))
+for (i in seq_len(nrow(mite))) {
+  asbio_RLMD[i] <- tryCatch(
+    {
+      as.numeric(
+        asbio::Preston.dist(as.numeric(mite[i, ]),plot = FALSE)$Est.no.of.spp
+      )
+    },
+    error = function(e) NA
+  )
+}
+vegan_RLMD <- rep(1,70)
+for (i in 1:nrow(mite)){
+  n <- mite[i, ]
+  fit <- vegan::prestondistr(n)
+  vegan_RLMD[i] <- vegan::veiledspec(fit)["Extrapolated"] / fit$coefficients["width"]
+}
+
+custom_RLMD <- lognormal_lambda(mite)
+
+sum(abs(sads_RLMD)-abs(custom_RLMD))
+sum(abs(asbio_RLMD)-abs(custom_RLMD))
+sum(abs(vegan_RLMD)-abs(custom_RLMD))
