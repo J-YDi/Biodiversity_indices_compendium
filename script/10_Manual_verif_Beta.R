@@ -572,4 +572,596 @@ for (i in 1:(nrow(mite)-1)){
   abdiv_57_P[i] <- abdiv::kulczynski_first(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
 }
 
+kulczynski1_similarity <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b and c: species exclusive to each sample of the pair
+  S <- rowSums(pa)
+  b <- S - a          # exclusive to sample i (row)
+  c <- t(b)           # exclusive to sample j (column)
+  
+  P <- a / (b + c)                     # a / 0 = Inf for identical samples
+  P[(a + b + c) == 0] <- NA_real_      # empty pairs
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
 
+custom_57_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_57_P[i] <- kulczynski1_similarity(mite_beta)
+}
+
+# 63_P ####
+abdiv_63_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  abdiv_63_P[i] <- abdiv::mean_character_difference(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+# abdiv do not convert to P/A -> wrong
+mean_character_difference <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b, c and d
+  S <- rowSums(pa)
+  b <- S - a                  # exclusive to sample i (row)
+  c <- t(b)                   # exclusive to sample j (column)
+  d <- ncol(pa) - a - b - c   # absent from both samples
+  
+  P <- 1 - (a + d) / (a + b + c + d)
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+
+custom_63_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_63_P[i] <- mean_character_difference(mite_beta)
+}
+
+abdiv::mean_character_difference(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+
+# 70_P ####
+vegan_70_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_70_P[i] <- vegan::vegdist(mite_beta,method = "mountford")
+}
+pctax_70_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_70_P[i] <- pctax::mat_dist(t((mite_beta)),method = "mountford")
+}
+proxy_70_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  proxy_70_P[i] <- proxy::dist(mite_beta,method = "Mountford")
+}
+NST_70_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_70_P[i] <- NST::beta.g(mite_beta,dist.method = "mountford")
+}
+
+mountford_similarity <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b and c: species exclusive to each sample of the pair
+  S <- rowSums(pa)
+  b <- S - a          # exclusive to sample i (row)
+  c <- t(b)           # exclusive to sample j (column)
+  
+  # Richness of each sample in the pair
+  nA <- a + b
+  nB <- a + c
+  
+  P <- 2 * a / (2 * nA * nB - (nA + nB) * a)
+  P[a == 0] <- 0                       # no shared species
+  P[(a + b + c) == 0] <- NA_real_      # empty pairs
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+} # arrondi
+
+custom_70_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_70_P[i] <- 1-mountford_similarity(mite_beta)
+}
+
+sum(abs(vegan_70_P)-abs(custom_70_P),na.rm = T)
+sum(abs(pctax_70_P)-abs(custom_70_P),na.rm = T)
+sum(abs(proxy_70_P)-abs(custom_70_P),na.rm = T)
+sum(abs(NST_70_P)-abs(custom_70_P),na.rm = T)
+
+mountford_dissimilarity <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  n  <- nrow(pa)
+  
+  # a, b, c for all pairs
+  a_mat <- pa %*% t(pa)          # shared species
+  S     <- rowSums(pa)
+  b_mat <- S - a_mat             # b_mat[i, j]: exclusive to sample i
+  
+  P <- matrix(NA_real_, n, n)
+  
+  for (i in 2:n) {
+    for (j in 1:(i - 1)) {
+      a <- a_mat[i, j]
+      b <- b_mat[i, j]           # exclusive to sample i
+      c <- b_mat[j, i]           # exclusive to sample j
+      
+      if (a + b + c == 0) next                  # empty pair: NA
+      if (a == 0) { P[i, j] <- log(2); next }    # no shared species
+      if (b == 0 || c == 0) { P[i, j] <- 0; next } # nested or identical
+      
+      # exp((a+b)M) + exp((a+c)M) = 1 + exp((a+b+c)M),
+      # divided by exp((a+b+c)M)
+      g <- function(M) {
+        exp(-c * M) + exp(-b * M) - exp(-(a + b + c) * M) - 1
+      }
+      
+      # g > 0 near 0 and g -> -1 for large M: search for the sign change
+      upper <- 1
+      while (g(upper) > 0) upper <- upper * 2
+      
+      M <- stats::uniroot(g, lower = 1e-10, upper = upper,
+                          tol = .Machine$double.eps^0.5)$root
+      
+      P[i, j] <- log(2) - M
+    }
+  }
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+} # exact solution
+
+custom_70_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_70_P[i] <- mountford_dissimilarity(mite_beta)
+}
+
+sum(abs(vegan_70_P)-abs(custom_70_P),na.rm = T)
+sum(abs(pctax_70_P)-abs(custom_70_P),na.rm = T)
+sum(abs(proxy_70_P)-abs(custom_70_P),na.rm = T)
+sum(abs(NST_70_P)-abs(custom_70_P),na.rm = T)
+
+# 73_P ####
+ade4_73_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  ade4_73_P[i] <- ade4::dist.binary(mite_beta,method = 9)
+}
+proxy_73_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_73_P[i] <- proxy::simil(mite_beta,method = "phi")
+}
+MultBiplotR_73_P <- rep(NA,69) # Besoin de PA pour marcher
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  MultBiplotR_73_P[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 14,transformation = "Identity")[1,2]
+}
+PERMANOVA_73_P <- rep(NA,69) # Besoin de PA pour etre correct
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  PERMANOVA_73_P[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 14,transformation = 1)$D[1,2]
+}
+
+phi_similarity <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b, c and d
+  S <- rowSums(pa)
+  b <- S - a                  # exclusive to sample i (row)
+  c <- t(b)                   # exclusive to sample j (column)
+  d <- ncol(pa) - a - b - c   # absent from both samples
+  
+  denom <- sqrt((a + b) * (a + c) * (b + d) * (c + d))
+  
+  P <- (a * d - b * c) / denom
+  P[denom == 0] <- NA_real_
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+custom_73_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_73_P[i] <- phi_similarity(mite_beta)
+}
+
+sum(abs(ade4_73_P)-abs(custom_73_P),na.rm = T)
+sum(abs(MultBiplotR_73_P)-abs(custom_73_P),na.rm = T)
+sum(abs(proxy_73_P)-abs(custom_73_P),na.rm = T)
+sum(abs(PERMANOVA_73_P)-abs(custom_73_P),na.rm = T)
+
+# 74_P ####
+wiqid_74_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  wiqid_74_P[i] <- wiqid::distPreston(mite[i,],mite[i+1,])
+}
+preston_dissimilarity <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  n  <- nrow(pa)
+  
+  # a, b, c for all pairs
+  a_mat <- pa %*% t(pa)          # shared species
+  S     <- rowSums(pa)
+  b_mat <- S - a_mat             # b_mat[i, j]: exclusive to sample i
+  
+  P <- matrix(NA_real_, n, n)
+  
+  for (i in 2:n) {
+    for (j in 1:(i - 1)) {
+      a <- a_mat[i, j]
+      b <- b_mat[i, j]           # exclusive to sample i
+      c <- b_mat[j, i]           # exclusive to sample j
+      
+      if (a + b + c == 0) next                  # empty pair: NA
+      if (a == 0) { P[i, j] <- 1; next }         # no shared species
+      if (b == 0 || c == 0) { P[i, j] <- 0; next } # nested or identical
+      
+      u <- (a + b) / (a + b + c)
+      v <- (a + c) / (a + b + c)
+      
+      # Solve u^t + v^t = 1 for t = 1/P (decreasing in t)
+      f <- function(t) u^t + v^t - 1
+      upper <- 2
+      while (f(upper) > 0) upper <- upper * 2
+      
+      t <- stats::uniroot(f, lower = 1, upper = upper,
+                          tol = .Machine$double.eps^0.5)$root
+      
+      P[i, j] <- 1 / t
+    }
+  }
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+custom_74_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_74_P[i] <- preston_dissimilarity(mite_beta)
+}
+
+sum(abs(wiqid_74_P)-abs(custom_74_P),na.rm = T)
+
+# 80_P ####
+abdiv_80_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_80_P[i] <- abdiv::sokal_sneath(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+
+sokal_sneath_dissimilarity <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b and c: species exclusive to each sample of the pair
+  S <- rowSums(pa)
+  b <- S - a          # exclusive to sample i (row)
+  c <- t(b)           # exclusive to sample j (column)
+  
+  P <- (2 * b + 2 * c) / (a + 2 * b + 2 * c)
+  P[(a + b + c) == 0] <- NA_real_
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+
+custom_80_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_80_P[i] <- sokal_sneath_dissimilarity(mite_beta)
+}
+
+sum(abs(abdiv_80_P)-abs(custom_80_P),na.rm = T)
+
+# 82_P ####
+sokal_sneath_similarity <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b, c and d
+  S <- rowSums(pa)
+  b <- S - a                  # exclusive to sample i (row)
+  c <- t(b)                   # exclusive to sample j (column)
+  d <- ncol(pa) - a - b - c   # absent from both samples
+  
+  P <- (a + d) / (a + (1 / 2) * (b + c) + d)
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+
+custom_82_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_82_P[i] <- sokal_sneath_similarity(mite_beta)
+}
+
+MultivariateAnalysis_82_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  MultivariateAnalysis_82_P[i] <- 1-MultivariateAnalysis::Distancia(mite_beta,Metodo = 14)[1]$Distancia
+}
+MultBiplotR_82_P <- rep(NA,69) # Besoin de PA
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  MultBiplotR_82_P[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 8,transformation = "Identity")[1,2]
+}
+PERMANOVA_82_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  PERMANOVA_82_P[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 8,transformation = 1)$D[2,1]
+}
+Mercator_82_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  Mercator_82_P[i] <- Mercator::binaryDistance(t(mite_beta),metric = "sokalMichener")
+}
+
+sum(abs(MultivariateAnalysis_82_P)-abs(custom_82_P),na.rm = T)
+sum(abs(MultBiplotR_82_P)-abs(custom_82_P),na.rm = T)
+sum(abs(PERMANOVA_82_P)-abs(custom_82_P),na.rm = T)
+sum(abs(Mercator_82_P)-abs(custom_82_P),na.rm = T)
+
+# 83_P ####
+ade4_83_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ade4_83_P[i] <- ade4::dist.binary(mite_beta,method = 3)^2
+}
+
+custom_1_P
+
+# 84_P ####
+ade4_84_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ade4_84_P[i] <- ade4::dist.binary(mite_beta,method = 8)^2
+}
+MultBiplotR_84_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  MultBiplotR_84_P[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 13)[1,2]^2
+}
+PERMANOVA_84_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  PERMANOVA_84_P[i] <- 1-PERMANOVA::DistBinary(mite_beta,coefficient = 13,transformation = 1)$D[1,2]
+}
+sokal_sneath13_similarity <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b, c and d
+  S <- rowSums(pa)
+  b <- S - a                  # exclusive to sample i (row)
+  c <- t(b)                   # exclusive to sample j (column)
+  d <- ncol(pa) - a - b - c   # absent from both samples
+  
+  denom <- sqrt((a + b) * (a + c) * (d + b) * (d + c))
+  
+  P <- (a * d) / denom
+  P[denom == 0] <- NA_real_
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+
+custom_84_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_84_P[i] <- 1-sokal_sneath13_similarity(mite_beta)
+}
+
+sum(abs(ade4_84_P)-abs(custom_84_P),na.rm = T)
+sum(abs(MultBiplotR_84_P)-abs(custom_84_P),na.rm = T)
+sum(abs(PERMANOVA_84_P)-abs(custom_84_P),na.rm = T)
+
+# 86_P ####
+abdiv_86_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  abdiv_86_P[i] <- ade4::dist.binary(mite_beta,method = 5)
+}
+adespatial_86_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_86_P[i] <- print(adespatial::dist.ldc(mite_beta,method = "sorensen")) #0.4472136
+}
+MultBiplotR_86_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  MultBiplotR_86_P[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 7)[1,2]
+}
+sqrt_sorensen_distance <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b and c: species exclusive to each sample of the pair
+  S <- rowSums(pa)
+  b <- S - a          # exclusive to sample i (row)
+  c <- t(b)           # exclusive to sample j (column)
+  
+  P <- sqrt((b + c) / (2 * a + b + c))
+  P[(a + b + c) == 0] <- NA_real_
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+
+custom_86_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_86_P[i] <- sqrt_sorensen_distance(mite_beta)
+}
+
+sum(abs(adespatial_86_P)-abs(custom_86_P),na.rm = T)
+sum(abs(MultBiplotR_86_P)-abs(custom_86_P),na.rm = T)
+sum(abs(abdiv_86_P)-abs(custom_86_P),na.rm = T)

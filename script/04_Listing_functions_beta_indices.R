@@ -2949,17 +2949,17 @@ for (i in 1:(nrow(mite)-1)){
 proxy_73_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  proxy_73_P[i] <- proxy::dist(mite_beta,method = "Phi-squared")
+  proxy_73_P[i] <- proxy::simil(mite_beta,method = "phi")
 }
 MultBiplotR_73_P <- rep(NA,69) # Besoin de PA pour marcher
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite_pa[c(i,i+1),]
-  MultBiplotR_73_P[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 14)[1,2]
+  MultBiplotR_73_P[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 14,transformation = "Identity")[1,2]
 }
 PERMANOVA_73_P <- rep(NA,69) # Besoin de PA pour etre correct
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite_pa[c(i,i+1),]
-  PERMANOVA_73_P[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 14,transformation = 3)$D[1,2]
+  PERMANOVA_73_P[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 14,transformation = 1)$D[1,2]
 }
 
 P73_P <- ls(pattern = "_73_P$")
@@ -3178,22 +3178,22 @@ P81_A <- as.data.frame(P81_A)
 MultivariateAnalysis_82_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite_pa[c(i,i+1),]
-  MultivariateAnalysis_82_P[i] <- MultivariateAnalysis::Distancia(mite_beta,Metodo = 14)[1]$Distancia
+  MultivariateAnalysis_82_P[i] <- 1-MultivariateAnalysis::Distancia(mite_beta,Metodo = 14)[1]$Distancia
 }
 MultBiplotR_82_P <- rep(NA,69) # Besoin de PA
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite_pa[c(i,i+1),]
-  MultBiplotR_82_P[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 8)[1,2]
+  MultBiplotR_82_P[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 8,transformation = "Identity")[1,2]
 }
 PERMANOVA_82_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite_pa[c(i,i+1),]
-  PERMANOVA_82_P[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 8,transformation = 3)$D[2,1]
+  PERMANOVA_82_P[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 8,transformation = 1)$D[2,1]
 }
 Mercator_82_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite_pa[c(i,i+1),]
-  Mercator_82_P[i] <- 1-Mercator::binaryDistance(t(mite_beta),metric = "sokalMichener")
+  Mercator_82_P[i] <- Mercator::binaryDistance(t(mite_beta),metric = "sokalMichener")
 }
 
 P82_P <- ls(pattern = "_82_P$")
