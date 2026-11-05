@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 04_Listing_functions_beta_indices.r
-# Date               : 20/04/2025
+# Date               : 05/11/2026
 # Object             : Script to create dataset of values from functions that 
 #                      calculate beta diversity indices
 # Authors            : Jean-Yves Dias
@@ -2019,12 +2019,6 @@ for (i in 1:(nrow(mite)-1)){
   BAT_51_A[i] <- BAT::beta(mite_beta,func = "jaccard",abund = T)$Bgain
 }
 
-adiv_51_P <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  adiv_51_P[i] <- adiv::betastatjac(mite_beta)[3]
-}
-
 P51_P <- ls(pattern = "_51_P$")
 P51_P <- mget(P51_P)
 P51_P <- as.data.frame(P51_P)
@@ -2044,12 +2038,6 @@ BAT_52_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   BAT_52_A[i] <- BAT::beta(mite_beta,func = "jaccard",abund = T)$Bloss
-}
-
-adiv_52_P <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  adiv_52_P[i] <- adiv::betastatjac(mite_beta)[2]
 }
 
 P52_P <- ls(pattern = "_52_P$")

@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 09_Manual_verif_Alpha.r
-# Date               : 02/11/2026
+# Date               : 04/11/2026
 # Object             : Script to manually check values from packages that 
 #                      calculate alpha diversity indices
 # Authors            : Jean-Yves Dias
