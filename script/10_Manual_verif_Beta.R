@@ -2006,3 +2006,465 @@ for (i in 1:(nrow(mite)-1)){
   vegan_110_P[i] <- vegan::betadiver(mite_beta,"l") 
 }
 sum(abs(vegan_110_P)-abs(custom_104_P),na.rm = T)
+
+# 111_P ####
+vegan_111_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_111_P[i] <- vegan::betadiver(mite_beta,"I") 
+}
+
+routledge_beta_i <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b and c: species exclusive to each sample of the pair
+  S <- rowSums(pa)
+  b <- S - a          # exclusive to sample i (row)
+  c <- t(b)           # exclusive to sample j (column)
+  
+  # x * log(x), with 0 * log(0) = 0
+  xlogx <- function(z) ifelse(z > 0, z * log(z), 0)
+  
+  tot <- 2 * a + b + c
+  
+  P <- log(tot) - (1 / tot) * 2 * a * log(2) -
+    (1 / tot) * (xlogx(a + b) + xlogx(a + c))
+  
+  # Remove rounding errors around 0 (identical samples)
+  P[abs(P) < 1e-12] <- 0
+  P[tot == 0] <- NA_real_
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+
+custom_111_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_111_P[i] <- routledge_beta_i(mite_beta)
+}
+
+sum(abs(vegan_111_P)-abs(custom_111_P),na.rm = T)
+
+# 112_P ####
+vegan_112_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_112_P[i] <- vegan::betadiver(mite_beta,"m")
+}
+magurran_beta_m <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b and c: species exclusive to each sample of the pair
+  S <- rowSums(pa)
+  b <- S - a          # exclusive to sample i (row)
+  c <- t(b)           # exclusive to sample j (column)
+  
+  P <- (2 * a + b + c) * (1 - a / (a + b + c))
+  P[(a + b + c) == 0] <- NA_real_
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+
+custom_112_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_112_P[i] <- magurran_beta_m(mite_beta)
+}
+
+
+sum(abs(vegan_112_P)-abs(custom_112_P),na.rm = T)
+
+# 113_P ####
+vegan_113_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_113_P[i] <- vegan::betadiver(mite_beta,"me")
+}
+
+sum(abs(vegan_113_P)-abs(custom_102_P),na.rm = T)
+sum(abs(vegan_113_P)-abs(custom_118_P),na.rm = T)
+
+# 114_P ####
+
+vegan_114_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_114_P[i] <- vegan::betadiver(mite_beta,"r")
+}
+tabula_114_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  tabula_114_P[i] <- tabula::index_routledge1(as.matrix(mite_beta)) 
+}
+
+routledge_beta_r <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b and c: species exclusive to each sample of the pair
+  S <- rowSums(pa)
+  b <- S - a          # exclusive to sample i (row)
+  c <- t(b)           # exclusive to sample j (column)
+  
+  gamma2 <- (a + b + c)^2
+  
+  P <- gamma2 / (gamma2 - 2 * b * c)
+  P[(a + b + c) == 0] <- NA_real_
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+
+custom_114_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_114_P[i] <- routledge_beta_r(mite_beta)
+}
+
+sum(abs(vegan_114_P)-abs(custom_114_P),na.rm = T)
+sum(abs(tabula_114_P)-abs(custom_114_P),na.rm = T)
+
+# 115_P ####
+vegan_115_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_115_P[i] <- vegan::betadiver(mite_beta,"rlb")
+}
+
+ruggiero_beta_rlb <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b and c: species exclusive to each sample of the pair
+  S <- rowSums(pa)
+  b <- S - a          # exclusive to sample i (row)
+  c <- t(b)           # exclusive to sample j (column)
+
+  
+  P <- a / (a + c)
+  P[(a + b + c) == 0] <- NA_real_
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+
+
+custom_115_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_115_P[i] <- ruggiero_beta_rlb(mite_beta)
+}
+
+sum(abs(vegan_115_P)-abs(custom_115_P),na.rm = T)
+
+# 116_P ####
+vegan_116_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_116_P[i] <- vegan::betadiver(mite_beta,"sim") 
+}
+
+lennon_beta_sim <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b and c: species exclusive to each sample of the pair
+  S <- rowSums(pa)
+  b <- S - a          # exclusive to sample i (row)
+  c <- t(b)           # exclusive to sample j (column)
+  
+  
+  P <- pmin(b,c) / (pmin(b,c) + a)
+  P[(a + b + c) == 0] <- NA_real_
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+
+
+custom_116_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_116_P[i] <- lennon_beta_sim(mite_beta)
+}
+
+sum(abs(vegan_116_P)-abs(custom_116_P),na.rm = T)
+
+# 117_P ####
+vegan_117_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_117_P[i] <- vegan::betadiver(mite_beta,"t") 
+}
+
+wilson_beta_t <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b and c: species exclusive to each sample of the pair
+  S <- rowSums(pa)
+  b <- S - a          # exclusive to sample i (row)
+  c <- t(b)           # exclusive to sample j (column)
+  
+  
+  P <- (b + c) / ((2 * a) + b + c)
+  P[(a + b + c) == 0] <- NA_real_
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+
+
+custom_117_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_117_P[i] <- wilson_beta_t(mite_beta)
+}
+
+sum(abs(vegan_117_P)-abs(custom_117_P),na.rm = T)
+
+# 119_P ####
+
+vegan_119_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_119_P[i] <- vegan::betadiver(mite_beta,"wb")
+}
+
+weiher_beta_wb <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b and c: species exclusive to each sample of the pair
+  S <- rowSums(pa)
+  b <- S - a          # exclusive to sample i (row)
+  c <- t(b)           # exclusive to sample j (column)
+  
+  
+  P <- (b + c) 
+  P[(a + b + c) == 0] <- NA_real_
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+
+
+custom_119_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_119_P[i] <- weiher_beta_wb(mite_beta)
+}
+
+sum(abs(vegan_119_P)-abs(custom_119_P),na.rm = T)
+
+# 120_P ####
+vegan_120_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_120_P[i] <- vegan::betadiver(mite_beta,"z") 
+}
+
+lennon_beta_z <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b and c: species exclusive to each sample of the pair
+  S <- rowSums(pa)
+  b <- S - a          # exclusive to sample i (row)
+  c <- t(b)           # exclusive to sample j (column)
+  
+  P <- 1 - log((2 * a + b + c) / (a + b + c)) / log(2)
+  P[(a + b + c) == 0] <- NA_real_
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+
+custom_120_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_120_P[i] <- lennon_beta_z(mite_beta)
+}
+
+sum(abs(vegan_120_P)-abs(custom_120_P),na.rm = T)
+
+# 121_P ####
+vegan_121_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_121_P[i] <- vegan::betadiver(mite_beta,"19")
+}
+
+williams_beta19 <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b and c: species exclusive to each sample of the pair
+  S <- rowSums(pa)
+  b <- S - a          # exclusive to sample i (row)
+  c <- t(b)           # exclusive to sample j (column)
+  
+  N <- a + b + c      # total number of species of the pair
+  
+  P <- 2 * (b * c + 1) / (N^2 - N)
+  P[N <= 1] <- NA_real_
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+
+custom_121_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_121_P[i] <- williams_beta19(mite_beta)
+}
+
+sum(abs(vegan_121_P)-abs(custom_121_P),na.rm = T)
