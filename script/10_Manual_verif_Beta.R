@@ -2468,3 +2468,1158 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 sum(abs(vegan_121_P)-abs(custom_121_P),na.rm = T)
+
+
+# ABONDANCE BASED INDICES ####
+
+# 2_A ####
+pctax_2_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_2_A[i] <- pctax::mat_dist(t((mite_beta)),method = "robust.aitchison")
+}
+ecodive_2_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_2_A[i] <- ecodive::aitchison(mite_beta) 
+}
+vegan_2_A <- rep(NA, 69)
+for (i in 1:(nrow(mite) - 1)) {
+  mite_beta <- mite[c(i, i + 1), ]
+  vegan_2_A[i] <- vegan::vegdist(mite_beta, "aitchison", pseudocount = 1)
+}
+
+aitchison_distance <- function(x, pseudocount = 1, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  if (!is.numeric(pseudocount) || length(pseudocount) != 1 || pseudocount < 0)
+    stop("`pseudocount` must be a single non-negative value.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Add pseudocount to all abundances
+  x <- x + pseudocount
+  
+  if (any(x == 0))
+    warning("Some samples contain zero abundances: ln(0) is undefined, distances set to NA.")
+  
+  n_samples <- nrow(x)
+  N <- ncol(x)
+  
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      if (any(x[j, ] == 0) || any(x[k, ] == 0)) next
+      
+      s <- 0
+      for (i in 1:N) {
+        term_j <- log(x[j, i]) - (1 / N) * sum(log(x[j, ]))
+        term_k <- log(x[k, i]) - (1 / N) * sum(log(x[k, ]))
+        s <- s + (term_j - term_k)^2
+      }
+      
+      A[j, k] <- sqrt(s)
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_2_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_2_A[i] <- aitchison_distance(mite_beta)
+}
+
+sum(abs(vegan_2_A)-abs(custom_2_A),na.rm = T)
+sum(abs(pctax_2_A)-abs(custom_2_A),na.rm = T)
+sum(abs(ecodive_2_A)-abs(custom_2_A),na.rm = T)
+# robust 
+vegan_2_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_2_A[i] <- vegan::vegdist(mite_beta,method = "robust.aitchison")
+}
+robust_aitchison_distance <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  n_samples <- nrow(x)
+  N <- ncol(x)
+  
+  # Robust centred log-ratio of each sample
+  r <- matrix(0, n_samples, N)
+  for (j in 1:n_samples) {
+    present <- x[j, ] > 0
+    if (!any(present)) next
+    N_j <- sum(present)
+    mean_log_j <- (1 / N_j) * sum(log(x[j, present]))
+    r[j, present] <- log(x[j, present]) - mean_log_j
+  }
+  
+  empty <- rowSums(x > 0) == 0
+  
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      if (empty[j] || empty[k]) next
+      
+      s <- 0
+      for (i in 1:N) {
+        s <- s + (r[j, i] - r[k, i])^2
+      }
+      
+      A[j, k] <- sqrt(s)
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_2_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_2_A[i] <- robust_aitchison_distance(mite_beta)
+}
+
+sum(abs(vegan_2_A)-abs(custom_2_A),na.rm = T)
+sum(abs(pctax_2_A)-abs(custom_2_A),na.rm = T)
+sum(abs(ecodive_2_A)-abs(custom_2_A),na.rm = T)
+
+# 3_A ####
+EnvNJ_3_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_3_A[i] <- EnvNJ::metrics(t(mite_beta),method = "avg")
+}
+
+average_distance <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  n_samples <- nrow(x)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      diff <- abs(x[j, ] - x[k, ])
+      A[j, k] <- (1 / 2) * (sum(diff) + max(diff))
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_3_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_3_A[i] <- average_distance(mite_beta)
+}
+
+sum(abs(EnvNJ_3_A)-abs(custom_3_A),na.rm = T)
+
+# 4_A  ####
+ecodive_4_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_4_A[i] <- ecodive::bhattacharyya(mite_beta,rescale = F)
+}
+proxy_4_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_4_A[i] <- proxy::dist(mite_beta,method = "Bhjattacharyya")
+}
+philentropy_4_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_4_A[i] <- philentropy::bhattacharyya(as.numeric(mite[i,]),as.numeric(mite[i+1,])) #-4.223818
+}
+EnvNJ_4_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  EnvNJ_4_A[i] <- EnvNJ::metrics(t(mite_beta),method = "bhattacharyya")
+}
+Rfast_4_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_4_A[i] <- Rfast::Dist(mite_beta,method = "bhattacharyya")[1,2]
+}
+
+bhattacharyya_distance <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  n_samples <- nrow(x)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      A[j, k] <- - log(sum(sqrt(x[j, ] * x[k, ])))
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_4_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_4_A[i] <- bhattacharyya_distance(mite_beta)
+}
+
+sum(abs(ecodive_4_A)-abs(custom_4_A),na.rm = T)
+sum(abs(proxy_4_A)-abs(custom_4_A),na.rm = T)
+sum(abs(philentropy_4_A)-abs(custom_4_A),na.rm = T)
+sum(abs(EnvNJ_4_A)-abs(custom_4_A),na.rm = T)
+sum(abs(Rfast_4_A)-abs(custom_4_A),na.rm = T)
+
+# 6_A -> 6_P ####
+tabula_6_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  tabula_6_A[i] <- tabula::index_binomial(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+
+binomial_cooccurrence <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b and c: species exclusive to each sample of the pair
+  S <- rowSums(pa)
+  b <- S - a          # exclusive to sample i (row)
+  c <- t(b)           # exclusive to sample j (column)
+  
+  N <- ncol(pa)       # total number of species (a + b + c + d)
+  
+  p <- (a + b) * (a + c) / N^2
+  denom <- sqrt(N * p * (1 - p))
+  
+  A <- (a - N * p) / denom
+  A[denom == 0] <- NA_real_
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_6_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_6_A[i] <- binomial_cooccurrence(mite_beta)
+}
+
+sum(abs(tabula_6_A)-abs(custom_6_A),na.rm = T)
+
+# 7_A ####
+tabula_7_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  tabula_7_A[i] <- tabula::index_brainerd(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+brsim_7_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  brsim_7_A[i] <- brsim::brsim(mite_beta)$BR.similarity.matrix[1,2]
+}
+
+brainerd_robinson_similarity <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Percentages (each sample sums to 100)
+  empty <- rowSums(x) == 0
+  x <- 100 * x / rowSums(x)
+  
+  n_samples <- nrow(x)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      if (empty[j] || empty[k]) next
+      diff <- abs(x[j, ] - x[k, ])
+      A[j, k] <- 200 - sum(diff)
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_7_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_7_A[i] <- brainerd_robinson_similarity(mite_beta)
+}
+
+sum(abs(tabula_7_A)-abs(custom_7_A),na.rm = T)
+sum(abs(brsim_7_A)-abs(custom_7_A),na.rm = T)
+
+# 13_A ####
+abdiv_13_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_13_A[i] <- abdiv::cy_dissimilarity(as.numeric(mite[i,]),as.numeric(mite[i+1,]),base = 10) # base can be modified
+}
+cao_original <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  n_samples <- nrow(x)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      # Species present in at least one of the two samples
+      keep <- x[j, ] > 0 | x[k, ] > 0
+      N <- sum(keep)
+      if (N == 0) next
+      
+      xj <- x[j, keep]
+      xk <- x[k, keep]
+      
+      # Abundances <= 0.1 (including zeros) replaced by 0.1 (Cao et al. 1997)
+      xj[xj <= 0.1] <- 0.1
+      xk[xk <= 0.1] <- 0.1
+      
+      n_i <- xj + xk
+      
+      A[j, k] <- (1 / N) * sum(log10(n_i / 2) - (xj * log10(xk) + xk * log10(xj)) / n_i)
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_13_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_13_A[i] <- cao_original(mite_beta)
+}
+
+sum(abs(abdiv_13_A)-abs(custom_13_A),na.rm = T)
+
+# 14_A ####
+vegan_14_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_14_A[i] <- vegan::vegdist(mite_beta,method = "cao")
+}
+pctax_14_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_14_A[i] <- pctax::mat_dist(t((mite_beta)),method = "cao")
+}
+NST_14_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_14_A[i] <- NST::beta.g(mite_beta,dist.method = "cao")
+}
+cao_index <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  n_samples <- nrow(x)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      # Species present in at least one of the two samples
+      keep <- x[j, ] > 0 | x[k, ] > 0
+      N <- sum(keep)
+      if (N == 0) next
+      
+      xj <- x[j, keep]
+      xk <- x[k, keep]
+      
+      # Zero abundances replaced by 0.1 (Cao et al. 1997)
+      xj[xj == 0] <- 0.1
+      xk[xk == 0] <- 0.1
+      
+      n_i <- xj + xk
+      
+      A[j, k] <- (1 / N) * sum(log(n_i / 2) - (xj * log(xk) + xk * log(xj)) / n_i)
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_14_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_14_A[i] <- cao_index(mite_beta)
+}
+
+sum(abs(vegan_14_A)-abs(custom_14_A),na.rm = T)
+sum(abs(pctax_14_A)-abs(custom_14_A),na.rm = T)
+sum(abs(NST_14_A)-abs(custom_14_A),na.rm = T)
+
+# 16_A ####
+vegan_16_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_16_A[i] <- vegan::chaodist(mite_beta,formula = "1 - sqrt(U*V)")
+}
+
+chao_ochiai_distance <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  n_samples <- nrow(x)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      if (sum(x[j, ]) == 0 || sum(x[k, ]) == 0) next
+      
+      # Shared species
+      shared <- x[j, ] > 0 & x[k, ] > 0
+      
+      U <- sum(x[j, shared]) / sum(x[j, ])
+      V <- sum(x[k, shared]) / sum(x[k, ])
+      
+      A[j, k] <- 1 - sqrt(U * V)
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_16_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_16_A[i] <- chao_ochiai_distance(mite_beta)
+}
+
+sum(abs(vegan_16_A)-abs(custom_16_A),na.rm = T)
+
+# 18_A ####
+wiqid_18_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  wiqid_18_A[i] <- wiqid::distChaoSorNaive(mite[i,],mite[i+1,])
+} 
+NST_18_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_18_A[i] <- NST::beta.g(mite_beta,dist.method = "chao.sorensen")
+} 
+CommEcol_18_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  CommEcol_18_A[i] <- CommEcol::dis.chao(mite_beta,index = "sorensen",version = "probability") #0.02642424
+} 
+
+
+chao_sorensen <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  n_samples <- nrow(x)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      if (sum(x[j, ]) == 0 || sum(x[k, ]) == 0) next
+      
+      # Shared species
+      shared <- x[j, ] > 0 & x[k, ] > 0
+      
+      U <- sum(x[j, shared]) / sum(x[j, ])
+      V <- sum(x[k, shared]) / sum(x[k, ])
+      
+      A[j, k] <- 1 - ((2 * U * V)/(U + V))
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_18_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_18_A[i] <- chao_sorensen(mite_beta)
+}
+
+sum(abs(wiqid_18_A)-abs(custom_18_A),na.rm = T)
+sum(abs(NST_18_A)-abs(custom_18_A),na.rm = T)
+sum(abs(CommEcol_18_A)-abs(custom_18_A),na.rm = T)
+
+# 20_A ####
+vegan_20_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_20_A[i] <- vegan::vegdist(mite_beta,method = "chisq")
+}
+pctax_20_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_20_A[i] <- pctax::mat_dist(t((mite_beta)),method = "chisq")
+}
+svs_20_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  svs_20_A[i] <- svs::dist_chisquare(as.matrix(mite_beta))
+}
+analogue_20_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  analogue_20_A[i] <- analogue::distance(mite[i,],mite[i+1,],method = "chi.square")
+}
+adespatial_20_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_20_A[i] <- adespatial::beta.div(mite_beta,method = "chisquare",save.D = T)$D
+}
+proxy_20_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_20_A[i] <- proxy::dist(mite_beta,method = "Chi-squared")
+}
+spaa_20_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  spaa_20_A[i] <- spaa::sp.pair(t(as.matrix(mite_beta)))$chisq
+}
+
+chi_square_distance <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Species absent from all samples are excluded
+  x <- x[, colSums(x) > 0, drop = FALSE]
+  
+  y_plus_plus <- sum(x)       # total of the table
+  y_plus_j <- colSums(x)      # total of each species over all samples
+  y_i_plus <- rowSums(x)      # total of each sample
+  p <- ncol(x)
+  
+  n_samples <- nrow(x)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j1 in 2:n_samples) {
+    for (j2 in 1:(j1 - 1)) {
+      if (y_i_plus[j1] == 0 || y_i_plus[j2] == 0) next
+      
+      s <- 0
+      for (j in 1:p) {
+        s <- s + (1 / y_plus_j[j]) *
+          (x[j1, j] / y_i_plus[j1] - x[j2, j] / y_i_plus[j2])^2
+      }
+      
+      A[j1, j2] <- sqrt(y_plus_plus) * sqrt(s)
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_20_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_20_A[i] <- chi_square_distance(mite_beta)
+}
+
+sum(abs(vegan_20_A)-abs(custom_20_A),na.rm = T)
+sum(abs(pctax_20_A)-abs(custom_20_A),na.rm = T)
+sum(abs(svs_20_A)-abs(custom_20_A),na.rm = T)
+sum(abs(analogue_20_A)-abs(custom_20_A),na.rm = T)
+sum(abs(adespatial_20_A)-abs(custom_20_A),na.rm = T)
+sum(abs(proxy_20_A)-abs(custom_20_A),na.rm = T)
+sum(abs(spaa_20_A)-abs(custom_20_A),na.rm = T)
+
+# 22_A ####
+ecodive_22_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_22_A[i] <- ecodive::psym_chisq(mite_beta,rescale = F)
+}
+
+prob_symmetric_chisq <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  n_samples <- nrow(x)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      # Species absent from both samples are excluded (0/0)
+      keep <- (x[j, ] + x[k, ]) > 0
+      
+      A[j, k] <- 2 * sum((x[j, keep] - x[k, keep])^2 / (x[j, keep] + x[k, keep]))
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_22_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_22_A[i] <- prob_symmetric_chisq(mite_beta)
+}
+
+sum(abs(ecodive_22_A)-abs(custom_22_A),na.rm = T)
+
+# 25_A ####
+adespatial_25_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_25_A[i] <- adespatial::beta.div(mite_beta,method = "log.chord",save.D = T)$D
+}
+
+log_chord_distance <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # log(y + 1) transformation
+  ly <- log(x + 1)
+  
+  n_samples <- nrow(ly)
+  N <- ncol(ly)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j1 in 2:n_samples) {
+    for (j2 in 1:(j1 - 1)) {
+      norm_1 <- sqrt(sum(ly[j1, ]^2))
+      norm_2 <- sqrt(sum(ly[j2, ]^2))
+      if (norm_1 == 0 || norm_2 == 0) next
+      
+      s <- 0
+      for (j in 1:N) {
+        s <- s + (ly[j1, j] / norm_1 - ly[j2, j] / norm_2)^2
+      }
+      
+      A[j1, j2] <- sqrt(s)
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_25_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_25_A[i] <- log_chord_distance(mite_beta)
+}
+
+sum(abs(adespatial_25_A)-abs(custom_25_A),na.rm = T)
+
+# 27_A ####
+ecodive_27_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_27_A[i] <- ecodive::clark(mite_beta,rescale = F)
+}
+philentropy_27_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  philentropy_27_A[i] <- philentropy::clark_sq(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+
+clark_distance <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  n_samples <- nrow(x)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j1 in 2:n_samples) {
+    for (j2 in 1:(j1 - 1)) {
+      # Species present in at least one of the two samples
+      keep <- (x[j1, ] + x[j2, ]) > 0
+      N <- sum(keep)
+      if (N == 0) next
+      
+      y1 <- x[j1, keep]
+      y2 <- x[j2, keep]
+      
+      A[j1, j2] <- sqrt(sum(((y1 - y2) / (y1 + y2))^2))
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_27_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_27_A[i] <- clark_distance(mite_beta)
+}
+
+sum(abs(ecodive_27_A)-abs(custom_27_A),na.rm = T)
+sum(abs(philentropy_27_A)-abs(custom_27_A),na.rm = T)
+
+# 29_A ####
+ecodive_29_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodive_29_A[i] <- ecodive::divergence(mite_beta,rescale = F) 
+}
+proxy_29_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  proxy_29_A[i] <- proxy::dist(mite_beta,method = "divergence")
+}
+philentropy_29_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  philentropy_29_A[i] <- philentropy::divergence_sq(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+divergence_distance <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  n_samples <- nrow(x)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      # Species absent from both samples are excluded (0/0)
+      keep <- (x[j, ] + x[k, ]) > 0
+      if (!any(keep)) next
+      
+      xj <- x[j, keep]
+      xk <- x[k, keep]
+      
+      A[j, k] <- 2 * sum((xj - xk)^2 / (xj + xk)^2)
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_29_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_29_A[i] <- divergence_distance(mite_beta)
+}
+
+sum(abs(ecodive_29_A)-abs(custom_29_A),na.rm = T)
+sum(abs(philentropy_29_A)-abs(custom_29_A),na.rm = T)
+sum(abs(proxy_29_A)-abs(custom_27_A),na.rm = T)
+
+# 31_A ####
+NST_31_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_31_A[i] <- NST::beta.g(mite_beta,dist.method = "mEuclidean")
+}
+
+modified_euclidean <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  n_samples <- nrow(x)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      # Weights: 0 for joint absences, 1 otherwise
+      w <- ifelse(x[j, ] + x[k, ] == 0, 0, 1)
+      if (sum(w) == 0) next
+      
+      A[j, k] <- sqrt(sum((x[j, ] - x[k, ])^2)) / sum(w)
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_31_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_31_A[i] <- modified_euclidean(mite_beta)
+}
+
+sum(abs(NST_31_A)-abs(custom_31_A),na.rm = T)
+
+# 32_A ####
+abdiv_32_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  abdiv_32_A[i] <- abdiv::rms_distance(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+
+average_euclidean <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  n_samples <- nrow(x)
+  N <- ncol(x)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      A[j, k] <- sqrt(sum((x[j, ] - x[k, ])^2) / N)
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_32_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_32_A[i] <- average_euclidean(mite_beta)
+}
+
+sum(abs(abdiv_32_A)-abs(custom_32_A),na.rm = T)
+
+# 35_A ####
+NST_35_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_35_A[i] <- NST::beta.g(mite_beta,dist.method = "altGower")
+}
+vegan_35_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  vegan_35_A[i] <- vegan::vegdist(mite_beta,method = "altGower")
+}
+pctax_35_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  pctax_35_A[i] <- pctax::mat_dist(t(mite_beta),method = "altGower")
+}
+philentropy_35_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  philentropy_35_A[i] <- philentropy::gower(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+}
+Rfast_35_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  Rfast_35_A[i] <- Rfast::Dist(mite_beta,method = "gower")[2,1]
+}
+gower_35_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  gower_35_A[i] <- gower::gower_dist(mite[i,],mite[i+1,])
+}
+
+alt_gower <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  n_samples <- nrow(x)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      # Weights: 0 for joint absences, 1 otherwise
+      omega <- ifelse(x[j, ] + x[k, ] == 0, 0, 1)
+      if (sum(omega) == 0) next
+      
+      A[j, k] <- sum(omega * abs(x[j, ] - x[k, ])) / sum(omega)
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+
+custom_35_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_35_A[i] <- alt_gower(mite_beta)
+}
+
+sum(abs(NST_35_A)-abs(custom_35_A),na.rm = T)
+sum(abs(vegan_35_A)-abs(custom_35_A),na.rm = T)
+sum(abs(pctax_35_A)-abs(custom_35_A),na.rm = T)
+sum(abs(philentropy_35_A)-abs(custom_35_A),na.rm = T)
+sum(abs(Rfast_35_A)-abs(custom_35_A),na.rm = T)
+sum(abs(gower_35_A)-abs(custom_35_A),na.rm = T)
+
+# 36_A ####
+ecodist_36_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ecodist_36_A[i] <- ecodist::distance(mite_beta,method = "modgower10")
+}
+
+modgower10_ecodist <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # log10 transformation: log10(x) if x > 0, 0 otherwise
+  y <- ifelse(x > 0, log10(x), 0)
+  
+  n_samples <- nrow(y)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      A[j, k] <- sum(abs(y[j, ] - y[k, ]))
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_36_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_36_A[i] <- modgower10_ecodist(mite_beta)
+}
+
+sum(abs(ecodist_36_A)-abs(custom_36_A),na.rm = T)
+
+# 37_A ####
+NST_37_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  NST_37_A[i] <- NST::beta.g(mite_beta,dist.method = "mGower")
+}
+mgower_anderson <- function(x, na.rm = TRUE) {
+  # Convert input to a samples x species matrix
+  if (is.data.frame(x)) x <- as.matrix(x)
+  if (is.null(dim(x)) || nrow(x) < 2)
+    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
+  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
+  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Anderson et al. (2006) transformation: log10(x) + 1 if x > 0, 0 otherwise
+  y <- ifelse(x > 0, log10(x) + 1, 0)
+  
+  n_samples <- nrow(y)
+  A <- matrix(NA_real_, n_samples, n_samples)
+  
+  for (j in 2:n_samples) {
+    for (k in 1:(j - 1)) {
+      # Weights: 0 for joint absences (on transformed values), 1 otherwise
+      omega <- ifelse(y[j, ] == 0 & y[k, ] == 0, 0, 1)
+      if (sum(omega) == 0) next
+      
+      A[j, k] <- sum(omega * abs(y[j, ] - y[k, ])) / sum(omega)
+    }
+  }
+  
+  dimnames(A) <- list(rownames(x), rownames(x))
+  stats::as.dist(A)
+}
+
+custom_37_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_37_A[i] <- mgower_anderson(mite_beta)
+}
+
+sum(abs(NST_37_A)-abs(custom_37_A),na.rm = T)
+
+# 45_A ####
+adespatial_45_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_45_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "BJ",quant = T)$repl 
+}
