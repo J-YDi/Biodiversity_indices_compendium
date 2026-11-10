@@ -3387,11 +3387,7 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   adespatial_87_A[i] <- adespatial::beta.div.comp(mite_beta,coef = "BS",quant = T)$repl # Baselga 0.1538462
 }
-BAT_87_A <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  BAT_87_A[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Brepl
-}
+
 
 P87_P <- ls(pattern = "_87_P$")
 P87_P <- mget(P87_P)
@@ -3502,6 +3498,12 @@ adespatial_91_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   adespatial_91_A[i] <-  adespatial::beta.div.comp(mite_beta,coef = "S",quant = T)$repl
+}
+
+BAT_91_A <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_91_A[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Brepl
 }
 
 P91_P <- ls(pattern = "_91_P$")
