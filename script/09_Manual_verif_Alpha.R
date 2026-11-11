@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 09_Manual_verif_Alpha.r
-# Date               : 04/11/2026
+# Date               : 11/11/2026
 # Object             : Script to manually check values from packages that 
 #                      calculate alpha diversity indices
 # Authors            : Jean-Yves Dias
@@ -42,56 +42,8 @@ mite_dist <- as.matrix(dist(t(mite),method = "euclidean",diag = T,upper = T))
 rownames(mite_dist) <- rownames(t(mite))
 colnames(mite_dist) <- rownames(t(mite))
 
-# FUnctions to run custom functions #
-check_comm_matrix <- function(x, binary = FALSE) {
-  
-  # 1. Check if the value is a matrix or a dataframe
-  if (!is.matrix(x) && !is.data.frame(x)) {
-    stop("x must be a matrix or a data.frame")
-  }
-  # We convert into a matrix to simplify tests
-  if (is.data.frame(x)) {
-    x <- as.matrix(x)
-  }
-  
-  # 2. Check if the values are numeric
-  if (!is.numeric(x)) {
-    stop("x must contain numeric values")
-  }
-  
-  # 3. Check for negative values
-  if (any(x < 0)) {
-    stop("x must contain only positive (or 0) values")
-  }
-  
-  # 4. Check for NAs
-  if (any(is.na(x))) {
-    stop("x contains NA values")
-  }
-  
-  # 5. Check for empty sites (rows)
-  if (any(rowSums(x) == 0)) {
-    warning("At least one site (row) contains only zeros")
-  }
-  
-  # 6. Check for empty species (columns)
-  if (any(colSums(x) == 0)) {
-    warning("At least one species (column) contains only zeros")
-  }
-  
-  # 7. If binary = FALSE (default) but data is binary, warn the user
-  if (!binary && all(x %in% c(0, 1))) {
-    warning("x appears to be binary (0/1 only). Some abundance-based indices
-    may not be appropriate. Set binary = TRUE if this is intentional.")
-  }
-  
-  # Return x invisibly if all checks pass
-  invisible(x)
-  
-}
-
+# Functions to run custom functions #
 richness <- function(x, binary = FALSE) {
-  check_comm_matrix(x, binary)
   y <- rowSums(x > 0)
   return(y)
 }
@@ -107,24 +59,13 @@ for (i in 1:nrow(mite)){
 }
 
 kempton_q <- function(x, q1 = 0.25, q2 = 0.75) {
-  if (!is.numeric(x)) stop("`x` must be a numeric vector.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  if (!is.numeric(q1) || !is.numeric(q2) || length(q1) != 1 || length(q2) != 1)
-    stop("`q1` and `q2` must be single numeric values.")
-  if (q1 <= 0 || q2 >= 1 || q1 >= q2)
-    stop("Quantiles must satisfy 0 < q1 < q2 < 1.")
-  
+
   # Keep species present only
   x <- x[!is.na(x)]
   S <- sum(x > 0)
   x <- x[x > 0]
   
-  if (S < 2) {
-    warning("At least 2 species are needed to compute Q.")
-    return(NA_real_)
-  }
-  
-  # Abundance classes r and number of species per class n_r
+  # Abundance classes r and number of species per class nr
   r   <- sort(unique(x))
   nr  <- tabulate(match(x, r), nbins = length(r))
   cum <- cumsum(nr)
@@ -137,7 +78,7 @@ kempton_q <- function(x, q1 = 0.25, q2 = 0.75) {
   
   if (R1 == R2) {
     warning("R1 = R2: Q is undefined (ln(R2/R1) = 0).")
-    return(NA_real_)
+    return(NA)
   }
   
   # Sum from R1 to R2 (inclusive, as in the formula)
@@ -161,16 +102,6 @@ wiqid_DBRI <- apply(mite, 1, wiqid::biodBrillouin) #FALSE
 
 
 brillouin <- function(x, binary = FALSE) {
-  check_comm_matrix(x, binary)
-  if (binary) {
-    stop("Brillouin index requires abundance data, not binary data")
-  }
-  if (any(rowSums(x) == 0)) {
-    warning("Brillouin index may not be meaningful when N = 0")
-  }
-  if (!all(x == floor(x))) {
-    warning("Brillouin index requires integer counts. Non-integer values detected.")
-  }
   y <- (lfactorial(rowSums(x)) - rowSums(lfactorial(x))) / rowSums(x)
   return(y)
 }
@@ -195,8 +126,6 @@ rao_q <- function(x, d) {
   if (is.null(dim(x))) {
     x <- matrix(x, nrow = 1, dimnames = list(NULL, names(x)))
   }
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
   
   # Check distance: Euclidean `dist` object
   if (!inherits(d, "dist")) stop("`d` must be a `dist` object.")
@@ -215,7 +144,7 @@ rao_q <- function(x, d) {
   # NA treated as absence
   x[is.na(x)] <- 0
   
-  Q <- rep(NA_real_, nrow(x))
+  Q <- rep(NA, nrow(x))
   
   for (k in seq_len(nrow(x))) {
     # Species present in sample k
@@ -251,20 +180,11 @@ sum(abs(SYNCSA_DRAO)-abs(custom_DRAO))
 tabula_EBRI <- as.numeric(tabula::evenness(mite,method = "brillouin"))
 
 brillouin_evenness <- function(x) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x))) {
-    x <- matrix(x, nrow = 1, dimnames = list(NULL, names(x)))
-  }
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  if (any(x != round(x), na.rm = TRUE))
-    warning("`x` contains non-integer values: Brillouin index expects counts.")
-  
+
   # NA treated as absence
   x[is.na(x)] <- 0
   
-  E <- rep(NA_real_, nrow(x))
+  E <- rep(NA, nrow(x))
   
   for (k in seq_len(nrow(x))) {
     n <- x[k, x[k, ] > 0]
@@ -283,10 +203,6 @@ brillouin_evenness <- function(x) {
     
     E[k] <- HB / HBmax
   }
-  
-  if (any(is.na(E)))
-    warning("Some samples have fewer than 2 species: E set to NA.")
-  
   names(E) <- rownames(x)
   E
 }
@@ -299,18 +215,11 @@ BAT_EBU <- as.numeric(BAT::evenness(mite,func = "bulla"))
 microbiome_EBU <- microbiome::evenness(t(mite), index = "bulla")[,1] # OK
 
 bulla_evenness <- function(x) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x))) {
-    x <- matrix(x, nrow = 1, dimnames = list(NULL, names(x)))
-  }
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
   
   # NA treated as absence
   x[is.na(x)] <- 0
   
-  E <- rep(NA_real_, nrow(x))
+  E <- rep(NA, nrow(x))
   
   for (k in seq_len(nrow(x))) {
     n <- x[k, x[k, ] > 0]
@@ -321,9 +230,6 @@ bulla_evenness <- function(x) {
     
     E[k] <- (sum(pmin(p, 1 / S)) - 1 / S) / (1 - 1 / S)
   }
-  
-  if (any(is.na(E)))
-    warning("Some samples have fewer than 2 species: E set to NA.")
   
   names(E) <- rownames(x)
   E
@@ -343,13 +249,11 @@ camargo_evenness <- function(x) {
   if (is.null(dim(x))) {
     x <- matrix(x, nrow = 1, dimnames = list(NULL, names(x)))
   }
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
   
   # NA treated as absence
   x[is.na(x)] <- 0
   
-  E <- rep(NA_real_, nrow(x))
+  E <- rep(NA, nrow(x))
   
   for (k in seq_len(nrow(x))) {
     n <- x[k, x[k, ] > 0]
@@ -363,9 +267,6 @@ camargo_evenness <- function(x) {
     E[k] <- 1 - sum(diffs[upper.tri(diffs)] / S)
   }
   
-  if (any(is.na(E)))
-    warning("Some samples are empty: E set to NA.")
-  
   names(E) <- rownames(x)
   E
 }
@@ -376,15 +277,8 @@ sum(abs(BAT_ECAM)-abs(custom_ECAM))
 
 #EEQ ####
 eq_evenness <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x))) {
-    x <- matrix(x, nrow = 1, dimnames = list(NULL, names(x)))
-  }
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
   
-  E <- rep(NA_real_, nrow(x))
+  E <- rep(NA, nrow(x))
   
   for (k in seq_len(nrow(x))) {
     n <- x[k, ]
@@ -417,9 +311,6 @@ eq_evenness <- function(x, na.rm = TRUE) {
     E[k] <- -2 / pi * atan(z)
   }
   
-  if (any(is.na(E)))
-    warning("Some samples have fewer than 2 species or contain NA: E set to NA.")
-  
   names(E) <- rownames(x)
   E
 }
@@ -439,15 +330,8 @@ sum(abs(codyn_EEQ)-abs(custom_EEQ))
 # EEVAR  ####
 
 evar_index <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x))) {
-    x <- matrix(x, nrow = 1, dimnames = list(NULL, names(x)))
-  }
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  E <- rep(NA_real_, nrow(x))
+
+  E <- rep(NA, nrow(x))
   
   for (k in seq_len(nrow(x))) {
     n <- x[k, ]
@@ -463,15 +347,12 @@ evar_index <- function(x, na.rm = TRUE) {
     S <- length(n)
     if (S < 2) next
     
-    # Population variance of log abundances (divided by S)
+    # Population variance of log abundances divided by S
     log_ab <- log(n)
     var_log <- sum((log_ab - mean(log_ab))^2) / S
     
     E[k] <- 1 - (2 / pi) * atan(var_log)
   }
-  
-  if (any(is.na(E)))
-    warning("Some samples have fewer than 2 species or contain NA: E set to NA.")
   
   names(E) <- rownames(x)
   E
@@ -503,15 +384,8 @@ for (i in 1:nrow(mite)){
   abdiv_EHEI[i] <- abdiv::heip_e(as.numeric(mite[i,])) # OK
 }
 heip_evenness <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x))) {
-    x <- matrix(x, nrow = 1, dimnames = list(NULL, names(x)))
-  }
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
   
-  E <- rep(NA_real_, nrow(x))
+  E <- rep(NA, nrow(x))
   
   for (k in seq_len(nrow(x))) {
     n <- x[k, ]
@@ -534,9 +408,6 @@ heip_evenness <- function(x, na.rm = TRUE) {
     E[k] <- (exp(H) - 1) / (S - 1)
   }
   
-  if (any(is.na(E)))
-    warning("Some samples have fewer than 2 species or contain NA: E set to NA.")
-  
   names(E) <- rownames(x)
   E
 }
@@ -554,15 +425,7 @@ tabula_EMC <- as.numeric(tabula::evenness(mite,method = "mcintosh"))
 abdiv_EMC <- apply(mite,1,abdiv::mcintosh_e)
 
 mcintosh_evenness <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x))) {
-    x <- matrix(x, nrow = 1, dimnames = list(NULL, names(x)))
-  }
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  E <- rep(NA_real_, nrow(x))
+  E <- rep(NA, nrow(x))
   
   for (k in seq_len(nrow(x))) {
     n <- x[k, ]
@@ -583,9 +446,6 @@ mcintosh_evenness <- function(x, na.rm = TRUE) {
     E[k] <- (N - sqrt(sum(n^2))) / (N - N / sqrt(S))
   }
   
-  if (any(is.na(E)))
-    warning("Some samples have fewer than 2 species or contain NA: E set to NA.")
-  
   names(E) <- rownames(x)
   E
 }
@@ -602,15 +462,7 @@ for (i in 1:nrow(mite)){
 }
 
 mcnaughton_dominance <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x))) {
-    x <- matrix(x, nrow = 1, dimnames = list(NULL, names(x)))
-  }
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  d <- rep(NA_real_, nrow(x))
+  E <- rep(NA, nrow(x))
   
   for (k in seq_len(nrow(x))) {
     n <- x[k, ]
@@ -633,14 +485,12 @@ mcnaughton_dominance <- function(x, na.rm = TRUE) {
     Nmax1 <- n_sorted[1]
     Nmax2 <- if (S >= 2) n_sorted[2] else 0
     
-    d[k] <- (Nmax1 + Nmax2) / N
+    E[k] <- (Nmax1 + Nmax2) / N
   }
   
-  if (any(is.na(d)))
-    warning("Some samples are empty or contain NA: d set to NA.")
   
-  names(d) <- rownames(x)
-  d
+  names(E) <- rownames(x)
+  E
 }
 custom_EMN <- mcnaughton_dominance(mite)
 
@@ -649,15 +499,8 @@ sum(abs(microbiome_EMN)-abs(custom_EMN))
 # ESP ####
 
 simpson_evenness <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x))) {
-    x <- matrix(x, nrow = 1, dimnames = list(NULL, names(x)))
-  }
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  E <- rep(NA_real_, nrow(x))
+
+  E <- rep(NA, nrow(x))
   
   for (k in seq_len(nrow(x))) {
     n <- x[k, ]
@@ -679,9 +522,6 @@ simpson_evenness <- function(x, na.rm = TRUE) {
     
     E[k] <- (1 / D) / S
   }
-  
-  if (any(is.na(E)))
-    warning("Some samples are empty or contain NA: E set to NA.")
   
   names(E) <- rownames(x)
   E
@@ -708,15 +548,8 @@ sum(abs(adiv_ESP)-abs(custom_ESP))
 
 # EST ####
 strong_dominance <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x))) {
-    x <- matrix(x, nrow = 1, dimnames = list(NULL, names(x)))
-  }
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  D <- rep(NA_real_, nrow(x))
+
+  E <- rep(NA, nrow(x))
   
   for (k in seq_len(nrow(x))) {
     n <- x[k, ]
@@ -738,14 +571,11 @@ strong_dominance <- function(x, na.rm = TRUE) {
     t_i <- cumsum(sort(n, decreasing = TRUE))
     i <- seq_len(S)
     
-    D[k] <- max(t_i / N - i / S)
+    E[k] <- max(t_i / N - i / S)
   }
   
-  if (any(is.na(D)))
-    warning("Some samples have fewer than 2 species or contain NA: D set to NA.")
-  
-  names(D) <- rownames(x)
-  D
+  names(E) <- rownames(x)
+  E
 }
 
 custom_EST <- strong_dominance(mite)
@@ -758,16 +588,6 @@ sum(abs(abdiv_EST)-abs(custom_EST))
 
 # TRY ####
 rygg <- function(x, binary = FALSE) {
-  check_comm_matrix(x, binary)
-  if (binary) {
-    stop("Rygg index requires abundance data, not binary data")
-  }
-  if (any(rowSums(x) == 0)) {
-    warning("Rygg index may not be meaningful when N = 0")
-  }
-  if (any(rowSums(x) <= exp(1))) {
-    warning("Rygg index may not be meaningful when N <= e (log(log(N)) <= 0)")
-  }
   y <- log(richness(x)) / log(log(rowSums(x)))
   return(y)
 }
@@ -787,16 +607,6 @@ for (i in 1:nrow(mite)){
 }
 
 rygg_adjusted <- function(x, binary = FALSE) {
-  check_comm_matrix(x, binary)
-  if (binary) {
-    stop("Rygg adjusted index requires abundance data, not binary data")
-  }
-  if (any(rowSums(x) == 0)) {
-    warning("Rygg adjusted index may not be meaningful when N = 0")
-  }
-  if (any(rowSums(x) <= exp(1))) {
-    warning("Rygg adjusted index may not be meaningful when N <= e (log(log(N)) <= 0)")
-  }
   y <- log(richness(x)) / log(log(rowSums(x)+1)+1)
   return(y)
 }
@@ -806,16 +616,9 @@ sum(abs(benthos_TRYA)-abs(custom_TRYA))
 
 # RCA2 ####
 chao2 <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)))
-    stop("`x` must be a data frame or matrix (samples in rows, species in columns).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
   # Missing values
   if (any(is.na(x))) {
-    if (!na.rm) return(NA_real_)
+    if (!na.rm) return(NA)
     x[is.na(x)] <- 0
   }
   
@@ -869,16 +672,10 @@ chao2(mite) #35
 
 # RCA2M ####
 chao2_corrected <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)))
-    stop("`x` must be a data frame or matrix (samples in rows, species in columns).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
-    if (!na.rm) return(NA_real_)
+    if (!na.rm) return(NA)
     x[is.na(x)] <- 0
   }
   
@@ -914,16 +711,9 @@ for (i in 1:nrow(mite)){
 BAT_RICE <- BAT::alpha.accum(mite)[,22] #NaN
 
 ice <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)))
-    stop("`x` must be a data frame or matrix (samples in rows, species in columns).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
   # Missing values
   if (any(is.na(x))) {
-    if (!na.rm) return(NA_real_)
+    if (!na.rm) return(NA)
     x[is.na(x)] <- 0
   }
   
@@ -947,11 +737,10 @@ ice <- function(x, na.rm = TRUE) {
   # Sample coverage
   C_ice <- 1 - Q1 / N_infr
   if (C_ice == 0) {
-    warning("All infrequent species are uniques (C_ICE = 0): ICE is undefined.")
-    return(NA_real_)
+    warning("All infrequent species are uniques (C_ICE = 0)")
+    return(NA)
   }
   
-  # Coefficient of variation
   sum_jj <- sum(occ[infr] * (occ[infr] - 1))
   gamma2 <- max((S_infr / C_ice) * (m_infr / (m_infr - 1)) * sum_jj / N_infr^2 - 1, 0)
   
@@ -992,23 +781,11 @@ for (i in 1:nrow(mite)){
 BAT_RJA2 <- BAT::alpha.estimate(mite)[,7]
 
 jackknife2 <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)))
-    stop("`x` must be a data frame or matrix (samples in rows, species in columns).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
-    if (!na.rm) return(NA_real_)
+    if (!na.rm) return(NA)
     x[is.na(x)] <- 0
-  }
-  
-  m <- nrow(x)
-  if (m < 2) {
-    warning("At least 2 samples are needed to compute Jackknife 2.")
-    return(NA_real_)
   }
   
   # Number of samples in which each species occurs
@@ -1038,26 +815,14 @@ for (i in 1:nrow(mite)){
   wiqid_RMM[i] <- wiqid::richMM(t(mite[i,]))
 }
 
-michaelis_menten_raaijmakers <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)))
-    stop("`x` must be a data frame or matrix (samples in rows, species in columns).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+michaelis_menten <- function(x, na.rm = TRUE) {
+
   # Missing values
   if (any(is.na(x))) {
-    if (!na.rm) return(NA_real_)
+    if (!na.rm) return(NA)
     x[is.na(x)] <- 0
   }
-  
-  m <- nrow(x)
-  if (m < 2) {
-    warning("At least 2 samples are needed to compute the estimator.")
-    return(NA_real_)
-  }
-  
+
   # Number of samples in which each species occurs
   occ <- colSums(x > 0)
   occ <- occ[occ > 0]
@@ -1067,7 +832,7 @@ michaelis_menten_raaijmakers <- function(x, na.rm = TRUE) {
   S_k <- vapply(k, function(kk) sum(1 - choose(m - occ, kk) / choose(m, kk)),
                 numeric(1))
   
-  # Raaijmakers (1987) maximum likelihood estimator
+  # Raaijmakers maximum likelihood estimator
   Y <- S_k
   X <- S_k / k
   Sxx <- sum((X - mean(X))^2)
@@ -1077,30 +842,15 @@ michaelis_menten_raaijmakers <- function(x, na.rm = TRUE) {
   B    <- (mean(X) * Syy - mean(Y) * Sxy) / (mean(Y) * Sxx - mean(X) * Sxy)
   Smax <- mean(Y) + B * mean(X)
   
-  if (!is.finite(Smax) || Smax < 0) {
-    warning("Raaijmakers estimate is not finite or negative: NA returned.")
-    return(NA_real_)
-  }
-  
   Smax
 }
 wiqid::richMM(t(mite))
-michaelis_menten_raaijmakers(mite)
-
+michaelis_menten(mite)
 
 # RSQ ####
 squares_richness <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x))) {
-    x <- matrix(x, nrow = 1, dimnames = list(NULL, names(x)))
-  }
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  if (any(x != round(x), na.rm = TRUE))
-    warning("`x` contains non-integer values: the estimator expects counts.")
-  
-  S_est <- rep(NA_real_, nrow(x))
+
+  S_est <- rep(NA, nrow(x))
   
   for (k in seq_len(nrow(x))) {
     n <- x[k, ]
@@ -1130,9 +880,6 @@ squares_richness <- function(x, na.rm = TRUE) {
     
     S_est[k] <- S_obs + F1^2 * sum(n^2) / denom
   }
-  
-  if (any(is.na(S_est)))
-    warning("Some samples are empty, contain only singletons or contain NA: S set to NA.")
   
   names(S_est) <- rownames(x)
   S_est
@@ -1172,16 +919,10 @@ for (i in 1:nrow(mite)){
 }
 
 bootstrap_richness <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)))
-    stop("`x` must be a data frame or matrix (samples in rows, species in columns).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
-    if (!na.rm) return(NA_real_)
+    if (!na.rm) return(NA)
     x[is.na(x)] <- 0
   }
   
@@ -1208,17 +949,7 @@ BiodiversityR::diversityresult(mite,index = "boot",method = "pooled")
 
 # RLMD ####
 lognormal_lambda <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x))) {
-    x <- matrix(x, nrow = 1, dimnames = list(NULL, names(x)))
-  }
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  if (any(x != round(x), na.rm = TRUE))
-    warning("`x` contains non-integer values: the log-normal model expects counts.")
-  
-  L <- rep(NA_real_, nrow(x))
+  R <- rep(NA, nrow(x))
   
   for (k in seq_len(nrow(x))) {
     n <- x[k, ]
@@ -1233,7 +964,7 @@ lognormal_lambda <- function(x, na.rm = TRUE) {
     n <- n[n > 0]
     if (length(n) < 3) next
     
-    # Fit Preston's truncated log-normal (log2 octaves)
+    # Fit Preston's model
     fit <- tryCatch(vegan::prestondistr(n), error = function(e) NULL)
     if (is.null(fit)) next
     
@@ -1241,14 +972,11 @@ lognormal_lambda <- function(x, na.rm = TRUE) {
     S0 <- unname(fit$coefficients["S0"])
     if (!is.finite(S0)) next
     
-    L[k] <- S0 * sqrt(2 * pi)
+    R[k] <- S0 * sqrt(2 * pi)
   }
-  
-  if (any(is.na(L)))
-    warning("Some samples have fewer than 3 species, could not be fitted or contain NA: lambda set to NA.")
-  
-  names(L) <- rownames(x)
-  L
+
+  names(R) <- rownames(x)
+  R
 }
 
 sads_RLMD <- rep(1,70)
