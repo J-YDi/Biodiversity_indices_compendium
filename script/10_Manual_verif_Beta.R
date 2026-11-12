@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 10_Manual_verif_Beta.r
-# Date               : 05/11/2026
+# Date               : 12/11/2026
 # Object             : Script to manually check values from packages that 
 #                      calculate beta diversity indices
 # Authors            : Jean-Yves Dias
@@ -70,13 +70,6 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 anderberg_similarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -95,7 +88,7 @@ anderberg_similarity <- function(x, na.rm = TRUE) {
   c <- t(b)           # species exclusive to sample j (column)
   
   P <- a / (a + 2 * (b + c))
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -109,13 +102,7 @@ sum(abs(PERMANOVA_1_P)-abs(custom_1_P),na.rm = T)
 
 # 5_P ####
 binomial_dissimilarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -168,13 +155,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 braun_blanquet_similarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -193,7 +174,7 @@ braun_blanquet_similarity <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- a / (a + pmax(b, c))
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -215,13 +196,7 @@ for (i in 1:(nrow(mite)-1)){
   ade4_38_P[i] <- ade4::dist.binary(mite_beta,method = 10)
 }
 russell_rao_similarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -270,13 +245,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 sqrt_jaccard_similarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -295,7 +264,7 @@ sqrt_jaccard_similarity <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- sqrt(1 - (a / (a + b + c)))
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -322,13 +291,7 @@ for (i in 1:(nrow(mite)-1)){
   BAT_48_P[i] <- BAT::beta(mite_beta,func = "jaccard",abund = F)$Brepl
 }
 jaccard_replacement <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -347,7 +310,7 @@ jaccard_replacement <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- 2 * pmin(b, c) / (a + b + c)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -375,13 +338,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 jaccard_richness_difference <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -400,7 +357,7 @@ jaccard_richness_difference <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- abs(b - c) / (a + b + c)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -422,13 +379,7 @@ for (i in 1:(nrow(mite)-1)){
   adespatial_50_P[i] <- adespatial::beta.div.comp(mite_beta,coef = "N")$rich 
 }
 podani_nestedness <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -450,7 +401,7 @@ podani_nestedness <- function(x, na.rm = TRUE) {
   
   # Nestedness requires shared species
   N[a == 0] <- 0
-  N[(a + b + c) == 0] <- NA_real_
+  N[(a + b + c) == 0] <- NA
   
   dimnames(N) <- list(rownames(x), rownames(x))
   stats::as.dist(N)
@@ -472,13 +423,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 jaccard_gain <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -498,7 +443,7 @@ jaccard_gain <- function(x, na.rm = TRUE) {
   # Lower triangle (r > s): r is the later sample, s the earlier one
   # Gains = species in the later sample only = excl[r, s]
   G <- excl / (a + excl + t(excl))
-  G[(a + excl + t(excl)) == 0] <- NA_real_
+  G[(a + excl + t(excl)) == 0] <- NA
   
   dimnames(G) <- list(rownames(x), rownames(x))
   stats::as.dist(G)
@@ -511,6 +456,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 sum(abs(BAT_51_P)-abs(custom_51_P),na.rm = T) 
+
 # 52_P ####
 
 BAT_52_P <- rep(NA,69)
@@ -520,13 +466,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 jaccard_loss <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -546,7 +486,7 @@ jaccard_loss <- function(x, na.rm = TRUE) {
   # Lower triangle (r > s): r is the later sample, s the earlier one
   # Losses = species in the earlier sample only = excl[s, r] = t(excl)[r, s]
   L <- t(excl) / (a + excl + t(excl))
-  L[(a + excl + t(excl)) == 0] <- NA_real_
+  L[(a + excl + t(excl)) == 0] <- NA
   
   dimnames(L) <- list(rownames(x), rownames(x))
   stats::as.dist(L)
@@ -573,13 +513,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 kulczynski1_similarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -598,7 +532,7 @@ kulczynski1_similarity <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- a / (b + c)                     # a / 0 = Inf for identical samples
-  P[(a + b + c) == 0] <- NA_real_      # empty pairs
+  P[(a + b + c) == 0] <- NA      # empty pairs
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -610,6 +544,9 @@ for (i in 1:(nrow(mite)-1)){
   custom_57_P[i] <- kulczynski1_similarity(mite_beta)
 }
 
+sum(abs(proxy_57_P)-abs(custom_57_P),na.rm = T)
+sum(abs(abdiv_57_P)-abs(custom_57_P),na.rm = T)
+
 # 63_P ####
 abdiv_63_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -618,13 +555,6 @@ for (i in 1:(nrow(mite)-1)){
 }
 # abdiv do not convert to P/A -> wrong
 mean_character_difference <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -655,7 +585,7 @@ for (i in 1:(nrow(mite)-1)){
   custom_63_P[i] <- mean_character_difference(mite_beta)
 }
 
-abdiv::mean_character_difference(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+sum(abs(abdiv_63_P)-abs(custom_63_P),na.rm = T)
 
 # 70_P ####
 vegan_70_P <- rep(NA,69)
@@ -680,13 +610,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 mountford_similarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -710,11 +634,11 @@ mountford_similarity <- function(x, na.rm = TRUE) {
   
   P <- 2 * a / (2 * nA * nB - (nA + nB) * a)
   P[a == 0] <- 0                       # no shared species
-  P[(a + b + c) == 0] <- NA_real_      # empty pairs
+  P[(a + b + c) == 0] <- NA      # empty pairs
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
-} # arrondi
+} # approx
 
 custom_70_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -728,13 +652,7 @@ sum(abs(proxy_70_P)-abs(custom_70_P),na.rm = T)
 sum(abs(NST_70_P)-abs(custom_70_P),na.rm = T)
 
 mountford_dissimilarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -750,7 +668,7 @@ mountford_dissimilarity <- function(x, na.rm = TRUE) {
   S     <- rowSums(pa)
   b_mat <- S - a_mat             # b_mat[i, j]: exclusive to sample i
   
-  P <- matrix(NA_real_, n, n)
+  P <- matrix(NA, n, n)
   
   for (i in 2:n) {
     for (j in 1:(i - 1)) {
@@ -817,13 +735,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 phi_similarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -845,7 +757,7 @@ phi_similarity <- function(x, na.rm = TRUE) {
   denom <- sqrt((a + b) * (a + c) * (b + d) * (c + d))
   
   P <- (a * d - b * c) / denom
-  P[denom == 0] <- NA_real_
+  P[denom == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -867,13 +779,7 @@ for (i in 1:(nrow(mite)-1)){
   wiqid_74_P[i] <- wiqid::distPreston(mite[i,],mite[i+1,])
 }
 preston_dissimilarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -889,7 +795,7 @@ preston_dissimilarity <- function(x, na.rm = TRUE) {
   S     <- rowSums(pa)
   b_mat <- S - a_mat             # b_mat[i, j]: exclusive to sample i
   
-  P <- matrix(NA_real_, n, n)
+  P <- matrix(NA, n, n)
   
   for (i in 2:n) {
     for (j in 1:(i - 1)) {
@@ -934,13 +840,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 sokal_sneath_dissimilarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -959,7 +859,7 @@ sokal_sneath_dissimilarity <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- (2 * b + 2 * c) / (a + 2 * b + 2 * c)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -975,13 +875,7 @@ sum(abs(abdiv_80_P)-abs(custom_80_P),na.rm = T)
 
 # 82_P ####
 sokal_sneath_similarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1045,7 +939,7 @@ for (i in 1:(nrow(mite)-1)){
   ade4_83_P[i] <- ade4::dist.binary(mite_beta,method = 3)^2
 }
 
-custom_1_P
+sum(abs(ade4_83_P)-abs(custom_1_P),na.rm = T)
 
 # 84_P ####
 ade4_84_P <- rep(NA,69)
@@ -1064,13 +958,7 @@ for (i in 1:(nrow(mite)-1)){
   PERMANOVA_84_P[i] <- 1-PERMANOVA::DistBinary(mite_beta,coefficient = 13,transformation = 1)$D[1,2]
 }
 sokal_sneath13_similarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1092,7 +980,7 @@ sokal_sneath13_similarity <- function(x, na.rm = TRUE) {
   denom <- sqrt((a + b) * (a + c) * (d + b) * (d + c))
   
   P <- (a * d) / denom
-  P[denom == 0] <- NA_real_
+  P[denom == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -1125,13 +1013,7 @@ for (i in 1:(nrow(mite)-1)){
   MultBiplotR_86_P[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 7)[1,2]
 }
 sqrt_sorensen_distance <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1150,7 +1032,7 @@ sqrt_sorensen_distance <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- sqrt((b + c) / (2 * a + b + c))
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -1180,13 +1062,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 sorensen_gain <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1207,7 +1083,7 @@ sorensen_gain <- function(x, na.rm = TRUE) {
   # Gains = species in the later sample only = excl[r, s]
   denom <- 2 * a + excl + t(excl)
   G <- excl / denom
-  G[denom == 0] <- NA_real_
+  G[denom == 0] <- NA
   
   dimnames(G) <- list(rownames(x), rownames(x))
   stats::as.dist(G)
@@ -1224,13 +1100,7 @@ sum(abs(adiv_89_P)-abs(custom_89_P),na.rm = T)
 
 # 90_P ####
 sorensen_loss <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1251,7 +1121,7 @@ sorensen_loss <- function(x, na.rm = TRUE) {
   # Losses = species in the earlier sample only = excl[s, r] = t(excl)[r, s]
   denom <- 2 * a + excl + t(excl)
   L <- t(excl) / denom
-  L[denom == 0] <- NA_real_
+  L[denom == 0] <- NA
   
   dimnames(L) <- list(rownames(x), rownames(x))
   stats::as.dist(L)
@@ -1280,13 +1150,7 @@ sum(abs(adiv_90_P)-abs(custom_90_P),na.rm = T)
 
 # 91_P ####
 sorensen_replacement <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1305,7 +1169,7 @@ sorensen_replacement <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- 2 * pmin(b, c) / (2 * a + b + c)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -1336,13 +1200,7 @@ for (i in 1:(nrow(mite)-1)){
   BAT_92_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Brich
 }
 sorensen_richness_difference <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1361,7 +1219,7 @@ sorensen_richness_difference <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- abs(b - c) / (2 * a + b + c)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -1396,13 +1254,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 yule_dissimilarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1424,7 +1276,7 @@ yule_dissimilarity <- function(x, na.rm = TRUE) {
   denom <- a * d + b * c
   
   P <- 2 * b * c / denom
-  P[denom == 0] <- NA_real_
+  P[denom == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -1442,13 +1294,7 @@ sum(abs(PERMANOVA_96_P)-abs(custom_96_P),na.rm = T)
 
 # 97_P ####
 yule_similarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1472,7 +1318,7 @@ yule_similarity <- function(x, na.rm = TRUE) {
   denom <- sad + sbc
   
   P <- (sad - sbc) / denom
-  P[denom == 0] <- NA_real_
+  P[denom == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -1495,13 +1341,7 @@ sum(abs(proxy_97_P)-abs(1-custom_97_P),na.rm = T)
 # 98_P ####
 
 yule_dissimilarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1523,7 +1363,7 @@ yule_dissimilarity <- function(x, na.rm = TRUE) {
   denom <- a*d + b*c
   
   P <- (a * d - b * c) / denom
-  P[denom == 0] <- NA_real_
+  P[denom == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -1552,13 +1392,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 williams_beta3 <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1577,7 +1411,7 @@ williams_beta3 <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- pmin(b, c) / (a + b + c)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -1604,13 +1438,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 whittaker_beta_w <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1629,7 +1457,7 @@ whittaker_beta_w <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- (a + b + c) / ((2 * a + b + c) / 2)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -1652,13 +1480,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 whittaker_beta_w <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1678,7 +1500,7 @@ whittaker_beta_w <- function(x, na.rm = TRUE) {
   
   P <- (a + b + c) / ((2 * a + b + c) / 2)
   P <- P - 1
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -1696,13 +1518,6 @@ sum(abs(vegan_118_P)-abs(custom_118_P),na.rm = T)
 # 103_P ####
 
 harrison_beta_2 <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1721,7 +1536,7 @@ harrison_beta_2 <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- pmin(b, c) / (pmax(b,c) + a)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -1754,13 +1569,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 cody_beta_c <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1779,7 +1588,7 @@ cody_beta_c <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- (b + c )/2
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -1802,13 +1611,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 colwell_beta_cc <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1827,7 +1630,7 @@ colwell_beta_cc <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- (b + c )/(a + b + c)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -1849,13 +1652,6 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 routledge_beta_e <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1881,9 +1677,9 @@ routledge_beta_e <- function(x, na.rm = TRUE) {
   P <- exp(log(tot) - (1 / tot) * 2 * a * log(2) -
              (1 / tot) * (xlogx(a + b) + xlogx(a + c))) - 1
   
-  # Remove rounding errors around 0 (identical samples)
+  # Remove rounding errors around 0
   P[abs(P) < 1e-12] <- 0
-  P[tot == 0] <- NA_real_
+  P[tot == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -1913,13 +1709,7 @@ for (i in 1:(nrow(mite)-1)){
   vegan_108_P[i] <- vegan::betadiver(mite_beta,"gl") 
 }
 lennon_beta_gl <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -1938,7 +1728,7 @@ lennon_beta_gl <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- 2 * abs(b - c) / (2 * a + b + c)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -1954,12 +1744,6 @@ sum(abs(vegan_108_P)-abs(custom_108_P),na.rm = T)
 # 109 ####
 
 harte_kinzig_beta <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
   
   # Missing values
   if (any(is.na(x))) {
@@ -1979,7 +1763,7 @@ harte_kinzig_beta <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- 1 - 2 * a / (2 * a + b + c)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -2015,13 +1799,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 routledge_beta_i <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -2049,7 +1827,7 @@ routledge_beta_i <- function(x, na.rm = TRUE) {
   
   # Remove rounding errors around 0 (identical samples)
   P[abs(P) < 1e-12] <- 0
-  P[tot == 0] <- NA_real_
+  P[tot == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -2070,13 +1848,7 @@ for (i in 1:(nrow(mite)-1)){
   vegan_112_P[i] <- vegan::betadiver(mite_beta,"m")
 }
 magurran_beta_m <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+ 
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -2095,7 +1867,7 @@ magurran_beta_m <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- (2 * a + b + c) * (1 - a / (a + b + c))
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -2134,13 +1906,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 routledge_beta_r <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -2161,7 +1927,7 @@ routledge_beta_r <- function(x, na.rm = TRUE) {
   gamma2 <- (a + b + c)^2
   
   P <- gamma2 / (gamma2 - 2 * b * c)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -2184,13 +1950,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 ruggiero_beta_rlb <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -2210,7 +1970,7 @@ ruggiero_beta_rlb <- function(x, na.rm = TRUE) {
 
   
   P <- a / (a + c)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -2233,13 +1993,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 lennon_beta_sim <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -2259,7 +2013,7 @@ lennon_beta_sim <- function(x, na.rm = TRUE) {
   
   
   P <- pmin(b,c) / (pmin(b,c) + a)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -2282,13 +2036,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 wilson_beta_t <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -2308,7 +2056,7 @@ wilson_beta_t <- function(x, na.rm = TRUE) {
   
   
   P <- (b + c) / ((2 * a) + b + c)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -2332,13 +2080,6 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 weiher_beta_wb <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -2358,7 +2099,7 @@ weiher_beta_wb <- function(x, na.rm = TRUE) {
   
   
   P <- (b + c) 
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -2381,13 +2122,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 lennon_beta_z <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
+
   # Missing values
   if (any(is.na(x))) {
     if (!na.rm) stop("`x` contains missing values.")
@@ -2406,7 +2141,7 @@ lennon_beta_z <- function(x, na.rm = TRUE) {
   c <- t(b)           # exclusive to sample j (column)
   
   P <- 1 - log((2 * a + b + c) / (a + b + c)) / log(2)
-  P[(a + b + c) == 0] <- NA_real_
+  P[(a + b + c) == 0] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -2428,19 +2163,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 williams_beta19 <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   # Presence/absence
   pa <- (x > 0) * 1
   
@@ -2455,7 +2178,7 @@ williams_beta19 <- function(x, na.rm = TRUE) {
   N <- a + b + c      # total number of species of the pair
   
   P <- 2 * (b * c + 1) / (N^2 - N)
-  P[N <= 1] <- NA_real_
+  P[N <= 1] <- NA
   
   dimnames(P) <- list(rownames(x), rownames(x))
   stats::as.dist(P)
@@ -2490,21 +2213,7 @@ for (i in 1:(nrow(mite) - 1)) {
 }
 
 aitchison_distance <- function(x, pseudocount = 1, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  if (!is.numeric(pseudocount) || length(pseudocount) != 1 || pseudocount < 0)
-    stop("`pseudocount` must be a single non-negative value.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   # Add pseudocount to all abundances
   x <- x + pseudocount
   
@@ -2514,7 +2223,7 @@ aitchison_distance <- function(x, pseudocount = 1, na.rm = TRUE) {
   n_samples <- nrow(x)
   N <- ncol(x)
   
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -2553,16 +2262,7 @@ for (i in 1:(nrow(mite)-1)){
 robust_aitchison_distance <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
+
   
   n_samples <- nrow(x)
   N <- ncol(x)
@@ -2579,7 +2279,7 @@ robust_aitchison_distance <- function(x, na.rm = TRUE) {
   
   empty <- rowSums(x > 0) == 0
   
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -2616,20 +2316,9 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 average_distance <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -2677,20 +2366,8 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 bhattacharyya_distance <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -2721,19 +2398,6 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 binomial_cooccurrence <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
   # Presence/absence
   pa <- (x > 0) * 1
   
@@ -2751,7 +2415,7 @@ binomial_cooccurrence <- function(x, na.rm = TRUE) {
   denom <- sqrt(N * p * (1 - p))
   
   A <- (a - N * p) / denom
-  A[denom == 0] <- NA_real_
+  A[denom == 0] <- NA
   
   dimnames(A) <- list(rownames(x), rownames(x))
   stats::as.dist(A)
@@ -2777,25 +2441,13 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 brainerd_robinson_similarity <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
-  # Percentages (each sample sums to 100)
+
+  # Percentages
   empty <- rowSums(x) == 0
   x <- 100 * x / rowSums(x)
   
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -2824,21 +2476,8 @@ for (i in 1:(nrow(mite)-1)){
   abdiv_13_A[i] <- abdiv::cy_dissimilarity(as.numeric(mite[i,]),as.numeric(mite[i+1,]),base = 10) # base can be modified
 }
 cao_original <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -2889,21 +2528,8 @@ for (i in 1:(nrow(mite)-1)){
   NST_14_A[i] <- NST::beta.g(mite_beta,dist.method = "cao")
 }
 cao_index <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -2947,21 +2573,8 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 chao_ochiai_distance <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3008,21 +2621,9 @@ for (i in 1:(nrow(mite)-1)){
 
 
 chao_sorensen <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3089,19 +2690,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 chi_square_distance <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   # Species absent from all samples are excluded
   x <- x[, colSums(x) > 0, drop = FALSE]
   
@@ -3111,7 +2700,7 @@ chi_square_distance <- function(x, na.rm = TRUE) {
   p <- ncol(x)
   
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j1 in 2:n_samples) {
     for (j2 in 1:(j1 - 1)) {
@@ -3153,21 +2742,8 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 prob_symmetric_chisq <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3198,25 +2774,13 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 log_chord_distance <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   # log(y + 1) transformation
   ly <- log(x + 1)
   
   n_samples <- nrow(ly)
   N <- ncol(ly)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j1 in 2:n_samples) {
     for (j2 in 1:(j1 - 1)) {
@@ -3257,21 +2821,9 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 clark_distance <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j1 in 2:n_samples) {
     for (j2 in 1:(j1 - 1)) {
@@ -3317,21 +2869,9 @@ for (i in 1:(nrow(mite)-1)){
   philentropy_29_A[i] <- philentropy::divergence_sq(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
 }
 divergence_distance <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3368,21 +2908,8 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 modified_euclidean <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3413,21 +2940,9 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 average_euclidean <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
   n_samples <- nrow(x)
   N <- ncol(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3480,21 +2995,9 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 alt_gower <- function(x, na.rm = TRUE) {
-  # Convert input to a samples x species matrix
-  if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3534,22 +3037,12 @@ for (i in 1:(nrow(mite)-1)){
 modgower10_ecodist <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
-  # log10 transformation: log10(x) if x > 0, 0 otherwise
+
+    # log10 transformation: log10(x) if x > 0, 0 otherwise
   y <- ifelse(x > 0, log10(x), 0)
   
   n_samples <- nrow(y)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3578,22 +3071,12 @@ for (i in 1:(nrow(mite)-1)){
 mgower_anderson <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
   
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
-  # Anderson et al. (2006) transformation: log10(x) + 1 if x > 0, 0 otherwise
+  # log10(x) + 1 if x > 0, 0 otherwise
   y <- ifelse(x > 0, log10(x) + 1, 0)
   
   n_samples <- nrow(y)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3627,19 +3110,9 @@ for (i in 1:(nrow(mite)-1)){
 ruzicka_balanced <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   n_samples <- nrow(x)
-  P <- matrix(NA_real_, n_samples, n_samples)
+  P <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3676,19 +3149,9 @@ for (i in 1:(nrow(mite)-1)){
 nestedness_jaccard_baselga <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
   
   n_samples <- nrow(x)
-  P <- matrix(NA_real_, n_samples, n_samples)
+  P <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3733,19 +3196,9 @@ for (i in 1:(nrow(mite)-1)){
 replacement_jaccard_podani <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
   
   n_samples <- nrow(x)
-  P <- matrix(NA_real_, n_samples, n_samples)
+  P <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3789,19 +3242,9 @@ for (i in 1:(nrow(mite)-1)){
 richness_jaccard_podani <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
   
   n_samples <- nrow(x)
-  P <- matrix(NA_real_, n_samples, n_samples)
+  P <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3837,22 +3280,12 @@ for (i in 1:(nrow(mite)-1)){
   BAT_51_A[i] <- BAT::beta(mite_beta,func = "jaccard",abund = T)$Bgain
 }
 
-ruzicka_gain <- function(x, na.rm = TRUE) {
+jaccard_gain <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
   
   n_samples <- nrow(x)
-  P <- matrix(NA_real_, n_samples, n_samples)
+  P <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3875,7 +3308,7 @@ ruzicka_gain <- function(x, na.rm = TRUE) {
 custom_51_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  custom_51_A[i] <- ruzicka_gain(mite_beta)
+  custom_51_A[i] <- jaccard_gain(mite_beta)
 }
 
 sum(abs(BAT_51_A)-abs(custom_51_A),na.rm = T)
@@ -3887,22 +3320,12 @@ for (i in 1:(nrow(mite)-1)){
   BAT_52_A[i] <- BAT::beta(mite_beta,func = "jaccard",abund = T)$Bloss
 }
 
-ruzicka_loss <- function(x, na.rm = TRUE) {
+jaccard_loss <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
   
   n_samples <- nrow(x)
-  P <- matrix(NA_real_, n_samples, n_samples)
+  P <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3925,7 +3348,7 @@ ruzicka_loss <- function(x, na.rm = TRUE) {
 custom_52_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  custom_52_A[i] <- ruzicka_loss(mite_beta)
+  custom_52_A[i] <- jaccard_loss(mite_beta)
 }
 
 sum(abs(BAT_52_A)-abs(custom_52_A),na.rm = T)
@@ -3951,11 +3374,14 @@ jeffreys_divergence <- function(x, na.rm = TRUE) {
     x[is.na(x)] <- 0
   }
   
+  # Relative abundances (proportions), as est.prob = "empirical" in philentropy
+  empty <- rowSums(x) == 0
+  
   # Zero proportions replaced by epsilon, as in philentropy
   epsilon <- 0.00001
   
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -3971,6 +3397,7 @@ jeffreys_divergence <- function(x, na.rm = TRUE) {
   dimnames(A) <- list(rownames(x), rownames(x))
   stats::as.dist(A)
 }
+
 
 custom_53_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -3990,22 +3417,12 @@ for (i in 1:(nrow(mite)-1)){
 jensen_shannon_distance <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
   
   # x * ln(2x / (x + y)), with 0 * ln(0) = 0
   term <- function(p, s) ifelse(p > 0, p * log(2 * p / s), 0)
   
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -4050,19 +3467,9 @@ for (i in 1:(nrow(mite)-1)){
 kulczynski_distance <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
   
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -4109,19 +3516,9 @@ for (i in 1:(nrow(mite)-1)){
 lorentzian_distance <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
   
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -4162,7 +3559,7 @@ for (i in 1:(nrow(mite)-1)){
 sum(abs(NST_62_A)-abs(custom_62_A),na.rm = T)
 
 # 64_A ####
-adespatial_64_A <- rep(NA,69) # Donne la meme valeur que P avec des abondances mais si on donne du PA alors la valeur est differente
+adespatial_64_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   adespatial_64_A[i] <- print(adespatial::dist.ldc(mite_beta,method = "modmeanchardiff")) 
@@ -4186,19 +3583,9 @@ for (i in 1:(nrow(mite)-1)){
 matusita_distance <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
   
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -4218,7 +3605,7 @@ for (i in 1:(nrow(mite)-1)){
 
 sum(abs(ecodive_65_A)-abs(custom_65_A),na.rm = T)
 
-# 75_A ####
+# 75_A --> 75_P####
 vegan_75_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
@@ -4243,17 +3630,7 @@ for (i in 1:(nrow(mite)-1)){
 raup_crick <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   # Presence/absence
   pa <- (x > 0) * 1
   
@@ -4268,7 +3645,7 @@ raup_crick <- function(x, na.rm = TRUE) {
   
   # prob(j) = P(X >= a), X ~ hypergeometric(m = a + b, n = N - (a + b), k = a + c)
   A <- 1 - stats::phyper(a - 1, a + b, N - (a + b), a + c)
-  A[(a + b) == 0 | (a + c) == 0] <- NA_real_
+  A[(a + b) == 0 | (a + c) == 0] <- NA
   
   dimnames(A) <- list(rownames(x), rownames(x))
   stats::as.dist(A)
@@ -4304,23 +3681,15 @@ sokal_sneath_quantitative <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
   if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   # Relative abundances (empty samples excluded)
+  empty <- NA
   empty <- rowSums(x) == 0
   p <- x
   p[!empty, ] <- x[!empty, ] / rowSums(x[!empty, , drop = FALSE])
   
   n_samples <- nrow(p)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -4356,19 +3725,9 @@ for (i in 1:(nrow(mite)-1)){
 turnover_sorensen_baselga <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
   
   n_samples <- nrow(x)
-  P <- matrix(NA_real_, n_samples, n_samples)
+  P <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -4403,19 +3762,9 @@ for (i in 1:(nrow(mite)-1)){
 nestedness_sorensen_baselga <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   n_samples <- nrow(x)
-  P <- matrix(NA_real_, n_samples, n_samples)
+  P <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -4452,19 +3801,9 @@ for (i in 1:(nrow(mite)-1)){
 sorensen_gain <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
   
   n_samples <- nrow(x)
-  P <- matrix(NA_real_, n_samples, n_samples)
+  P <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -4500,19 +3839,9 @@ for (i in 1:(nrow(mite)-1)){
 sorensen_loss <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   n_samples <- nrow(x)
-  P <- matrix(NA_real_, n_samples, n_samples)
+  P <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -4554,19 +3883,9 @@ for (i in 1:(nrow(mite)-1)){
 remplacement_sorensen_podani <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   n_samples <- nrow(x)
-  P <- matrix(NA_real_, n_samples, n_samples)
+  P <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -4609,19 +3928,9 @@ for (i in 1:(nrow(mite)-1)){
 richness_sorensen_podani <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   n_samples <- nrow(x)
-  P <- matrix(NA_real_, n_samples, n_samples)
+  P <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -4668,21 +3977,11 @@ for (i in 1:(nrow(mite)-1)){
 species_profile_distance <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   y_plus <- rowSums(x)        # total of each sample
   
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j1 in 2:n_samples) {
     for (j2 in 1:(j1 - 1)) {
@@ -4721,22 +4020,14 @@ for (i in 1:(nrow(mite)-1)){
 topsoe_distance <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
+  empty <- NA
+  empty <- rowSums(x) == 0
   # x * ln(2x / (x + y)), with 0 * ln(0) = 0
   term <- function(p, s) ifelse(p > 0, p * log(2 * p / s), 0)
   
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -4788,19 +4079,9 @@ for (i in 1:(nrow(mite)-1)){
 wave_hedges_distance <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j in 2:n_samples) {
     for (k in 1:(j - 1)) {
@@ -4850,21 +4131,11 @@ for (i in 1:(nrow(mite)-1)){
 whittaker_association <- function(x, na.rm = TRUE) {
   # Convert input to a samples x species matrix
   if (is.data.frame(x)) x <- as.matrix(x)
-  if (is.null(dim(x)) || nrow(x) < 2)
-    stop("`x` must be a data frame or matrix with at least 2 samples (rows).")
-  if (!is.numeric(x)) stop("`x` must contain numeric values only.")
-  if (any(x < 0, na.rm = TRUE)) stop("`x` must not contain negative values.")
-  
-  # Missing values
-  if (any(is.na(x))) {
-    if (!na.rm) stop("`x` contains missing values.")
-    x[is.na(x)] <- 0
-  }
-  
+
   y_plus <- rowSums(x)        # total of each sample
   
   n_samples <- nrow(x)
-  A <- matrix(NA_real_, n_samples, n_samples)
+  A <- matrix(NA, n_samples, n_samples)
   
   for (j1 in 2:n_samples) {
     for (j2 in 1:(j1 - 1)) {
