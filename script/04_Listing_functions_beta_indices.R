@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 04_Listing_functions_beta_indices.r
-# Date               : 05/11/2026
+# Date               : 13/11/2026
 # Object             : Script to create dataset of values from functions that 
 #                      calculate beta diversity indices
 # Authors            : Jean-Yves Dias
@@ -184,14 +184,14 @@ P5_P <- mget(P5_P)
 P5_P <- as.data.frame(P5_P)
 
 # Binomial co-occurrence assessment ####
-tabula_6_A <- rep(NA,69)
+tabula_6_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  tabula_6_A[i] <- tabula::index_binomial(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
+  tabula_6_P[i] <- tabula::index_binomial(as.numeric(mite[i,]),as.numeric(mite[i+1,]))
 }
 
-P6_A <- ls(pattern = "_6_A$")
-P6_A <- mget(P6_A)
-P6_A <- as.data.frame(P6_A)
+P6_P <- ls(pattern = "_6_P$")
+P6_P <- mget(P6_P)
+P6_P <- as.data.frame(P6_P)
 
 # Brainerd-Robinson ####
 tabula_7_A <- rep(NA,69)
@@ -3440,11 +3440,6 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   BAT_89_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Bgain
 }
-adiv_89_P <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  adiv_89_P[i] <- adiv::betastatsor(mite_beta)[3]
-}
 
 BAT_89_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
@@ -3471,12 +3466,6 @@ BAT_90_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   BAT_90_A[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Bloss
-}
-
-adiv_90_P <- rep(NA,69)
-for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
-  adiv_90_P[i] <- adiv::betastatsor(mite_beta)[2]
 }
 
 P90_P <- ls(pattern = "_90_P$")
@@ -3984,11 +3973,11 @@ write.csv(beta_combined_long,"data/beta/b_combined_long_all_mite.csv",row.names 
 data <- read_csv("data/beta/b_combined_long_all_mite.csv")
 data$selection <- paste0(data$index,"_",data$package)
 
-dataindex_P <- filter(data,selection %in% c("1_P_PERMANOVA","5_P_vegan","8_P_proxy","38_P_ade4","39_P_proxy","40_P_Mercator","43_P_vegan","44_P_ade4",
+dataindex_P <- filter(data,selection %in% c("1_P_PERMANOVA","5_P_vegan","8_P_proxy","39_P_proxy","40_P_Mercator","43_P_vegan","44_P_ade4",
                                           "45_P_abdiv","46_P_abdiv","48_P_adespatial","49_P_adespatial","50_P_adespatial","51_P_BAT","52_P_BAT",
-                                          "56_P_vegan","57_P_abdiv","63_P_abdiv","70_P_vegan","71_P_ade4","72_P_vegan","73_P_ade4",
-                                          "74_P_wiqid","76_P_wiqid","78_P_abdiv","79_P_wiqid","80_P_abdiv","82_P_PERMANOVA","83_P_ade4","84_P_ade4",
-                                          "85_P_vegan","86_P_abdiv","87_P_vegan","88_P_vegan","89_P_adiv","90_P_adiv","91_P_adespatial","92_P_adespatial",
+                                          "56_P_vegan","70_P_proxy","71_P_ade4","72_P_vegan","73_P_PERMANOVA","6_P_tabula",
+                                          "76_P_wiqid","78_P_abdiv","79_P_wiqid","80_P_abdiv","82_P_PERMANOVA","84_P_PERMANOVA",
+                                          "85_P_vegan","86_P_abdiv","87_P_vegan","88_P_vegan","89_P_BAT","90_P_BAT","91_P_adespatial","92_P_adespatial",
                                           "96_P_abdiv","97_P_proxy","98_P_MultBiplotR","101_P_vegan","102_P_vegan","103_P_vegan","104_P_vegan","105_P_vegan",
                                           "106_P_vegan","107_P_vegan","108_P_vegan","109_P_vegan","110_P_vegan","111_P_vegan","112_P_vegan","113_P_vegan",
                                           "114_P_vegan","115_P_vegan","116_P_vegan","117_P_vegan","118_P_vegan","119_P_vegan","120_P_vegan","121_P_vegan"
@@ -4003,7 +3992,7 @@ write.csv(dataindex_P,"data/beta/beta_values_mite_long_mite_P.csv",row.names = F
 write.csv(dataindex_wide_P,"data/beta/beta_values_mite_wide_mite_P.csv",row.names = F)
 
 
-dataindex_A <- filter(data,selection %in% c("2_A_vegan","3_A_EnvNJ","4_A_ecodive","5_A_vegan","6_A_tabula",
+dataindex_A <- filter(data,selection %in% c("2_A_vegan","3_A_EnvNJ","4_A_ecodive","5_A_vegan",
                                             "7_A_tabula","9_A_vegan","10_A_stats","11_A_vegan","12_A_abdiv",
                                             "12_A_abdiv","13_A_abdiv","14_A_pctax","15_A_vegan","16_A_vegan",
                                             "17_A_vegan","18_A_wiqid","19_A_abdiv","20_A_vegan","21_A_ecodive",
