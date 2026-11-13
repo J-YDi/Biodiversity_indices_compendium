@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 01_Listing_functions_alpha_indices.r
-# Date               : 23/03/2025
+# Date               : 13/11/2026
 # Object             : Script to create dataset of values from functions that 
 #                      calculate alpha diversity indices
 # Authors            : Jean-Yves Dias
@@ -84,6 +84,11 @@ for (i in 1:nrow(mite)){
 BiodiversityR_RBOO <- rep(1,70)
 for (i in 1:nrow(mite)){
   BiodiversityR_RBOO[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "boot",method = "each site")) #11
+}
+
+vegan_RBOO <- rep(1,70)
+for (i in 1:nrow(mite)){
+  vegan_RBOO[i] <- vegan::specpool(mite[i,])[,7]
 }
 
 # Put all the values in a single dataframe
@@ -170,24 +175,29 @@ fossil_RCA2 <- rep(1,70)
 for (i in 1:nrow(mite)){
   fossil_RCA2[i] <- fossil::chao2(as.numeric(mite[i,]))
 }
-wiqid_RCA2 <- rep(1,70)
+wiqid_RCA2M <- rep(1,70)
 for (i in 1:nrow(mite)){
-  wiqid_RCA2[i] <- wiqid::richChao2(t(mite[i,]))[1]
+  wiqid_RCA2M[i] <- wiqid::richChao2(t(mite[i,]))[1]
 }
-tabula_RCA2 <- rep(1,70)
+tabula_RCA2M <- rep(1,70)
 for (i in 1:nrow(mite)){
-  tabula_RCA2[i] <- tabula::index_chao2(as.matrix(mite[i,]))
+  tabula_RCA2M[i] <- tabula::index_chao2(as.matrix(mite[i,]))
 }
 divDyn_RCA2 <- rep(1,70)
 for (i in 1:nrow(mite)){
   divDyn_RCA2[i] <- divDyn::indices(as.matrix(mite[i,]),method = "chao2")
 }
-BAT_RCA2 <- BAT::alpha.accum(mite)[,18]
+BAT_RCA2M <- BAT::alpha.accum(mite)[,18]
 
 # Put all the values in a single dataframe
 RCA2 <- ls(pattern = "_RCA2$")
 RCA2 <- mget(RCA2)
 RCA2 <- as.data.frame(RCA2)
+
+# Put all the values in a single dataframe
+RCA2M <- ls(pattern = "_RCA2M$")
+RCA2M <- mget(RCA2M)
+RCA2M <- as.data.frame(RCA2M)
 
 # Hurlbert ####
 benthos_DHUR_2 <- rep(1,70)
@@ -253,10 +263,10 @@ wiqid_RICE <- rep(1,70)
 for (i in 1:nrow(mite)){
   wiqid_RICE[i] <- wiqid::richICE(t(mite[i,])) #44
 }
-tabula_RICE <- rep(1,70)
-for (i in 1:nrow(mite)){
-  tabula_RICE[i] <- wiqid::richICE(t(mite[i,])) #44
-}
+# tabula_RICE <- rep(1,70)
+# for (i in 1:nrow(mite)){
+#   tabula_RICE[i] <- tabula::index_ice(t(mite[i,])) #44
+# }
 BAT_RICE <- BAT::alpha.accum(mite)[,22] #NaN
 # Put all the values in a single dataframe
 RICE <- ls(pattern = "_RICE")
@@ -290,6 +300,10 @@ SSP_RJA1 <- rep(1,70)
 for (i in 1:nrow(mite)){
   SSP_RJA1[i] <- SSP:::assempar(mite[i,],type = "counts",Sest.method = "jack1")$Sest #10
 }
+vegan_RJA1 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  vegan_RJA1[i] <- vegan::specpool(mite[i,])[,4]
+}
 
 # Put all the values in a single dataframe
 RJA1 <- ls(pattern = "_RJA1$")
@@ -317,6 +331,11 @@ for (i in 1:nrow(mite)){
 }
 
 BAT_RJA2 <- BAT::alpha.estimate(mite)[,7]
+
+vegan_RJA2 <- rep(1,70)
+for (i in 1:nrow(mite)){
+  vegan_RJA2[i] <- vegan::specpool(mite[i,])[,6]
+}
 
 # Put all the values in a single dataframe
 RJA2 <- ls(pattern = "_RJA2$")
@@ -495,7 +514,8 @@ for (i in seq_len(nrow(mite))) {
 }
 vegan_RLMD <- rep(1,70)
 for (i in 1:nrow(mite)){
-  vegan_RLMD[i] <- vegan::veiledspec(vegan::prestonfit(mite[i,]))
+  fit <- vegan::prestondistr(mite[i, ])
+  vegan_RLMD[i] <- vegan::veiledspec(fit)["Extrapolated"] / fit$coefficients["width"]
 }
 
 
@@ -591,7 +611,7 @@ ade4_DRAO <- rep(1,70)
 for (i in 1:nrow(mite)){
   ade4_DRAO[i] <- ade4::apqe(as.data.frame(t(mite[i,])),dis = NULL)$results[2,1]
 }
-SYNCSA_DRAO <- SYNCSA::rao.diversity(mite)$Simpson
+# SYNCSA_DRAO <- SYNCSA::rao.diversity(mite)$Simpson package down
 
 # Put all the values in a single dataframe
 DRAO <- ls(pattern = "_DRAO")
@@ -1604,7 +1624,7 @@ write.csv(alpha_combined,"data/alpha/a_combined_all.csv",row.names = F)
 
 # Same but with a long version
 alpha_combined$Sample <- c(1:nrow(alpha_combined))
-alpha_combined_long <- pivot_longer(alpha_combined,cols = colnames(alpha_combined)[1:360],names_to = "package_index",values_to = "value")
+alpha_combined_long <- pivot_longer(alpha_combined,cols = colnames(alpha_combined)[1:361],names_to = "package_index",values_to = "value")
 alpha_combined_long <- alpha_combined_long |>
   separate(package_index, into = c("package", "index"), sep = "_",extra = "merge")
 write.csv(alpha_combined_long,"data/alpha/a_combined_long_all.csv",row.names = F)
@@ -1628,7 +1648,7 @@ data$selection <- paste0(data$index,"_",data$package)
 
 dataindex <- filter(data,selection %in% c("D1SP_vegan","DBRI_abdiv","DFIS_vegan",
                                           "DINVSP_vegan","DMC_abdiv","TMG_abdiv","EEQ_codyn",
-                                          "TMN_abdiv","DSHA_vegan","DQ_abdiv","DRAO_BAT",
+                                          "TMN_abdiv","DSHA_vegan","DQ_abdiv","ECAM_microbiome",
                                           "DSP_abdiv","EBP_abdiv","EBRI_tabula","EBU_BAT",
                                           "EEVAR_adiv","EGIN_microbiome","EHEI_abdiv",
                                           "EHURE_vegan","EMC_tabula","EMN_microbiome",
@@ -1636,9 +1656,9 @@ dataindex <- filter(data,selection %in% c("D1SP_vegan","DBRI_abdiv","DFIS_vegan"
                                           "QHIL_0_vegan","QHIL_1_vegan","QHIL_2_vegan","QHIL_3_vegan",
                                           "QREN_0_vegan","QREN_1_vegan","QREN_2_vegan","QREN_3_vegan",
                                           "QTSA_0_vegan","QTSA_1_vegan","QTSA_2_vegan","QTSA_3_vegan",
-                                          "RACE_vegan","RC1_vegan","RC1M_entropart","RCA2_tabula",
-                                          "DHUR_2_vegan","DHUR_3_vegan","RICE_tabula","RJA1_entropart",
-                                          "RJA2_wiqid","RSQ_tabula","RICH_custom"))
+                                          "RACE_vegan","RC1_vegan","RC1M_entropart","RCA2M_tabula",
+                                          "DHUR_2_vegan","DHUR_3_vegan","RICE_wiqid","RJA1_entropart",
+                                          "RJA2_","RSQ_tabula","RICH_custom"))
 dataindex <- dataindex |>
   select(-c(package,selection)) 
 

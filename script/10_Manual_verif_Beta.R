@@ -712,6 +712,61 @@ sum(abs(pctax_70_P)-abs(custom_70_P),na.rm = T)
 sum(abs(proxy_70_P)-abs(custom_70_P),na.rm = T)
 sum(abs(NST_70_P)-abs(custom_70_P),na.rm = T)
 
+# 71_P ####
+adespatial_71_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adespatial_71_P[i] <- adespatial::beta.div(mite_beta,method = "ochiai",save.D = T,sqrt.D = F)$D
+}
+ade4_71_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  ade4_71_P[i] <- ade4::dist.binary(mite_beta,method = 7)
+}
+MultBiplotR_71_P <- rep(NA,69) # Besoin de PA pour fonctionner
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite_pa[c(i,i+1),]
+  MultBiplotR_71_P[i] <- MultBiplotR::BinaryDistances(as.matrix(mite_beta),coefficient = 12)[1,2]
+}
+
+
+ochiai_similarity <- function(x, na.rm = TRUE) {
+  
+  # Missing values
+  if (any(is.na(x))) {
+    if (!na.rm) stop("`x` contains missing values.")
+    x[is.na(x)] <- 0
+  }
+  
+  # Presence/absence
+  pa <- (x > 0) * 1
+  
+  # a: shared species for each pair
+  a <- pa %*% t(pa)
+  
+  # b, c and d
+  S <- rowSums(pa)
+  b <- S - a                  # exclusive to sample i (row)
+  c <- t(b)                   # exclusive to sample j (column)
+
+  denom <- sqrt((a + b) * (a + c))
+  P <- sqrt(1 - (a / denom))
+  P[denom == 0] <- NA
+  
+  dimnames(P) <- list(rownames(x), rownames(x))
+  stats::as.dist(P)
+}
+custom_71_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  custom_71_P[i] <- ochiai_similarity(mite_beta)
+}
+
+sum(abs(ade4_71_P)-abs(custom_71_P),na.rm = T)
+sum(abs(MultBiplotR_71_P)-abs(custom_71_P),na.rm = T)
+sum(abs(adespatial_71_P)-abs(custom_71_P),na.rm = T)
+
+
 # 73_P ####
 ade4_73_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){

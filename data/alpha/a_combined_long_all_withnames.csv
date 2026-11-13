@@ -79,7 +79,6 @@
 1,"abdiv","DQ",5.91655497307444,"Q-statistic"
 1,"ade4","DRAO",0.828775510204082,"Rao"
 1,"BAT","DRAO",0.828775510204082,"Rao"
-1,"SYNCSA","DRAO",0.828775510204082,"Rao"
 1,"abdiv","DSHA",2.28577509566694,"Shannon"
 1,"adiv","DSHA",2.28577509566694,"Shannon"
 1,"aqp","DSHA",3.29767639510619,"Shannon"
@@ -295,6 +294,7 @@
 1,"vegan","RACE",23.5632798573975,"ACE"
 1,"wiqid","RACE",23.5632798573975,"ACE"
 1,"BiodiversityR","RBOO",20,"Bootstrap estimator"
+1,"vegan","RBOO",20,"Bootstrap estimator"
 1,"wiqid","RBOO",35,"Bootstrap estimator"
 1,"BAT","RC1",22.5,"Chao 1"
 1,"BiodiversityR","RC1",20,"Chao 1"
@@ -316,14 +316,13 @@
 1,"OTUtable","RC1M",24.1666666666667,"Chao 1 modified"
 1,"tabula","RC1M",24.1369047619048,"Chao 1 modified"
 1,"wiqid","RC1M",24.1666666666667,"Chao 1 modified"
-1,"BAT","RCA2",125.87,"Chao 2"
 1,"divDyn","RCA2",22.375,"Chao 2"
 1,"fossil","RCA2",24.1666666666667,"Chao 2"
-1,"tabula","RCA2",20,"Chao 2"
-1,"wiqid","RCA2",20,"Chao 2"
+1,"BAT","RCA2M",131.64,NA
+1,"tabula","RCA2M",20,NA
+1,"wiqid","RCA2M",20,NA
 1,"BAT","RICE",NA,"ICE"
 1,"fossil","RICE",21.6666666666667,"ICE"
-1,"tabula","RICE",20,"ICE"
 1,"wiqid","RICE",20,"ICE"
 1,"BAT","RJA1",25,"Jackknife 1"
 1,"BiodiversityR","RJA1",20,"Jackknife 1"
@@ -332,15 +331,17 @@
 1,"fossil","RJA1",24.9642857142857,"Jackknife 1"
 1,"SSP","RJA1",19,"Jackknife 1"
 1,"tabula","RJA1",2.18082826656774,"Jackknife 1"
+1,"vegan","RJA1",20,"Jackknife 1"
 1,"wiqid","RJA1",25,"Jackknife 1"
 1,"BAT","RJA2",27,"Jackknife 2"
 1,"BiodiversityR","RJA2",20,"Jackknife 2"
 1,"fossil","RJA2",26.8498458376156,"Jackknife 2"
 1,"SSP","RJA2",19,"Jackknife 2"
+1,"vegan","RJA2",20,"Jackknife 2"
 1,"wiqid","RJA2",27,"Jackknife 2"
 1,"asbio","RLMD",37.4268551689424,NA
 1,"sads","RLMD",1.27547704199003,NA
-1,"vegan","RLMD",23.5121788699862,NA
+1,"vegan","RLMD",12.2229189735248,NA
 1,"wiqid","RMM",0,"Michaelis-Menten"
 1,"divDyn","RSQ",24.3025641025641,"Squares Richness Estimator"
 1,"ecodive","RSQ",24.3025641025641,"Squares Richness Estimator"
@@ -439,7 +440,6 @@
 2,"abdiv","DQ",6.25167851051884,"Q-statistic"
 2,"ade4","DRAO",0.709345065716195,"Rao"
 2,"BAT","DRAO",0.709345065716196,"Rao"
-2,"SYNCSA","DRAO",0.709345065716195,"Rao"
 2,"abdiv","DSHA",1.93042838599021,"Shannon"
 2,"adiv","DSHA",1.93042838599021,"Shannon"
 2,"aqp","DSHA",2.78501945925936,"Shannon"
@@ -655,6 +655,7 @@
 2,"vegan","RACE",28.4339622641509,"ACE"
 2,"wiqid","RACE",28.4339622641509,"ACE"
 2,"BiodiversityR","RBOO",23,"Bootstrap estimator"
+2,"vegan","RBOO",23,"Bootstrap estimator"
 2,"wiqid","RBOO",35,"Bootstrap estimator"
 2,"BAT","RC1",25.5,"Chao 1"
 2,"BiodiversityR","RC1",23,"Chao 1"
@@ -676,14 +677,13 @@
 2,"OTUtable","RC1M",26.6,"Chao 1 modified"
 2,"tabula","RC1M",26.5865671641791,"Chao 1 modified"
 2,"wiqid","RC1M",26.6,"Chao 1 modified"
-2,"BAT","RCA2",34.6725541705027,"Chao 2"
 2,"divDyn","RCA2",25.3913043478261,"Chao 2"
 2,"fossil","RCA2",26.6,"Chao 2"
-2,"tabula","RCA2",23,"Chao 2"
-2,"wiqid","RCA2",23,"Chao 2"
-2,"BAT","RICE",60.1796605996343,"ICE"
+2,"BAT","RCA2M",38.0272393994894,NA
+2,"tabula","RCA2M",23,NA
+2,"wiqid","RCA2M",23,NA
+2,"BAT","RICE",60.8137701326451,"ICE"
 2,"fossil","RICE",25.25,"ICE"
-2,"tabula","RICE",23,"ICE"
 2,"wiqid","RICE",23,"ICE"
 2,"BAT","RJA1",29,"Jackknife 1"
 2,"BiodiversityR","RJA1",23,"Jackknife 1"
@@ -692,15 +692,17 @@
 2,"fossil","RJA1",28.9776119402985,"Jackknife 1"
 2,"SSP","RJA1",22,"Jackknife 1"
 2,"tabula","RJA1",1.78337739843084,"Jackknife 1"
+2,"vegan","RJA1",23,"Jackknife 1"
 2,"wiqid","RJA1",29,"Jackknife 1"
 2,"BAT","RJA2",30,"Jackknife 2"
 2,"BiodiversityR","RJA2",23,"Jackknife 2"
 2,"fossil","RJA2",29.9215719157024,"Jackknife 2"
 2,"SSP","RJA2",22,"Jackknife 2"
+2,"vegan","RJA2",23,"Jackknife 2"
 2,"wiqid","RJA2",30,"Jackknife 2"
 2,"asbio","RLMD",37.6340074851959,NA
 2,"sads","RLMD",1.36091377691431,NA
-2,"vegan","RLMD",39.7141827865574,NA
+2,"vegan","RLMD",11.8047621657383,NA
 2,"wiqid","RMM",0,"Michaelis-Menten"
 2,"divDyn","RSQ",33.4837206707028,"Squares Richness Estimator"
 2,"ecodive","RSQ",33.4837206707028,"Squares Richness Estimator"
@@ -799,7 +801,6 @@
 3,"abdiv","DQ",5.64582826474227,"Q-statistic"
 3,"ade4","DRAO",0.741299572204879,"Rao"
 3,"BAT","DRAO",0.741299572204878,"Rao"
-3,"SYNCSA","DRAO",0.741299572204879,"Rao"
 3,"abdiv","DSHA",1.99564653126028,"Shannon"
 3,"adiv","DSHA",1.99564653126028,"Shannon"
 3,"aqp","DSHA",2.87910935401647,"Shannon"
@@ -1015,6 +1016,7 @@
 3,"vegan","RACE",20.8909807972205,"ACE"
 3,"wiqid","RACE",20.8909807972205,"ACE"
 3,"BiodiversityR","RBOO",19,"Bootstrap estimator"
+3,"vegan","RBOO",19,"Bootstrap estimator"
 3,"wiqid","RBOO",35,"Bootstrap estimator"
 3,"BAT","RC1",19.75,"Chao 1"
 3,"BiodiversityR","RC1",19,"Chao 1"
@@ -1036,14 +1038,13 @@
 3,"OTUtable","RC1M",20.5,"Chao 1 modified"
 3,"tabula","RC1M",20.491935483871,"Chao 1 modified"
 3,"wiqid","RC1M",20.5,"Chao 1 modified"
-3,"BAT","RCA2",33.5479315006889,"Chao 2"
 3,"divDyn","RCA2",19.7105263157895,"Chao 2"
 3,"fossil","RCA2",20.5,"Chao 2"
-3,"tabula","RCA2",19,"Chao 2"
-3,"wiqid","RCA2",19,"Chao 2"
-3,"BAT","RICE",40.6913568543569,"ICE"
+3,"BAT","RCA2M",33.3911056786351,NA
+3,"tabula","RCA2M",19,NA
+3,"wiqid","RCA2M",19,NA
+3,"BAT","RICE",39.6336063412064,"ICE"
 3,"fossil","RICE",19.8421052631579,"ICE"
-3,"tabula","RICE",19,"ICE"
 3,"wiqid","RICE",19,"ICE"
 3,"BAT","RJA1",22,"Jackknife 1"
 3,"BiodiversityR","RJA1",19,"Jackknife 1"
@@ -1052,15 +1053,17 @@
 3,"fossil","RJA1",21.9838709677419,"Jackknife 1"
 3,"SSP","RJA1",18,"Jackknife 1"
 3,"tabula","RJA1",1.8536505532652,"Jackknife 1"
+3,"vegan","RJA1",19,"Jackknife 1"
 3,"wiqid","RJA1",22,"Jackknife 1"
 3,"BAT","RJA2",22,"Jackknife 2"
 3,"BiodiversityR","RJA2",19,"Jackknife 2"
 3,"fossil","RJA2",21.9515257192677,"Jackknife 2"
 3,"SSP","RJA2",18,"Jackknife 2"
+3,"vegan","RJA2",19,"Jackknife 2"
 3,"wiqid","RJA2",22,"Jackknife 2"
 3,"asbio","RLMD",NA,NA
 3,"sads","RLMD",1.44892668310865,NA
-3,"vegan","RLMD",22.980061734521,NA
+3,"vegan","RLMD",11.1146100586401,NA
 3,"wiqid","RMM",0,"Michaelis-Menten"
 3,"divDyn","RSQ",21.3321462694346,"Squares Richness Estimator"
 3,"ecodive","RSQ",21.3321462694346,"Squares Richness Estimator"
@@ -1159,7 +1162,6 @@
 4,"abdiv","DQ",5.91655497307444,"Q-statistic"
 4,"ade4","DRAO",0.809746197858086,"Rao"
 4,"BAT","DRAO",0.809746197858086,"Rao"
-4,"SYNCSA","DRAO",0.809746197858086,"Rao"
 4,"abdiv","DSHA",2.19930866615162,"Shannon"
 4,"adiv","DSHA",2.19930866615162,"Shannon"
 4,"aqp","DSHA",3.17293170604107,"Shannon"
@@ -1375,6 +1377,7 @@
 4,"vegan","RACE",28.4956951530612,"ACE"
 4,"wiqid","RACE",28.4956951530612,"ACE"
 4,"BiodiversityR","RBOO",23,"Bootstrap estimator"
+4,"vegan","RBOO",23,"Bootstrap estimator"
 4,"wiqid","RBOO",35,"Bootstrap estimator"
 4,"BAT","RC1",24.4285714285714,"Chao 1"
 4,"BiodiversityR","RC1",23,"Chao 1"
@@ -1396,14 +1399,13 @@
 4,"OTUtable","RC1M",25.0833333333333,"Chao 1 modified"
 4,"tabula","RC1M",25.0760489510489,"Chao 1 modified"
 4,"wiqid","RC1M",25.0833333333333,"Chao 1 modified"
-4,"BAT","RCA2",33.6416266870385,"Chao 2"
 4,"divDyn","RCA2",24.3664596273292,"Chao 2"
 4,"fossil","RCA2",25.0833333333333,"Chao 2"
-4,"tabula","RCA2",23,"Chao 2"
-4,"wiqid","RCA2",23,"Chao 2"
-4,"BAT","RICE",37.7928224789871,"ICE"
+4,"BAT","RCA2M",32.8709273292497,NA
+4,"tabula","RCA2M",23,NA
+4,"wiqid","RCA2M",23,NA
+4,"BAT","RICE",36.4735903605196,"ICE"
 4,"fossil","RICE",24.5178571428571,"ICE"
-4,"tabula","RICE",23,"ICE"
 4,"wiqid","RICE",23,"ICE"
 4,"BAT","RJA1",28,"Jackknife 1"
 4,"BiodiversityR","RJA1",23,"Jackknife 1"
@@ -1412,15 +1414,17 @@
 4,"fossil","RJA1",27.9825174825175,"Jackknife 1"
 4,"SSP","RJA1",22,"Jackknife 1"
 4,"tabula","RJA1",2.08738212187836,"Jackknife 1"
+4,"vegan","RJA1",23,"Jackknife 1"
 4,"wiqid","RJA1",28,"Jackknife 1"
 4,"BAT","RJA2",27,"Jackknife 2"
 4,"BiodiversityR","RJA2",23,"Jackknife 2"
 4,"fossil","RJA2",26.957968347442,"Jackknife 2"
 4,"SSP","RJA2",22,"Jackknife 2"
+4,"vegan","RJA2",23,"Jackknife 2"
 4,"wiqid","RJA2",27,"Jackknife 2"
 4,"asbio","RLMD",29.359183783432,NA
 4,"sads","RLMD",1.53798782424734,NA
-4,"vegan","RLMD",30.0348397420222,NA
+4,"vegan","RLMD",11.2863759649711,NA
 4,"wiqid","RMM",0,"Michaelis-Menten"
 4,"divDyn","RSQ",27.7630415886191,"Squares Richness Estimator"
 4,"ecodive","RSQ",27.7630415886191,"Squares Richness Estimator"
@@ -1519,7 +1523,6 @@
 5,"abdiv","DQ",4.92600136196937,"Q-statistic"
 5,"ade4","DRAO",0.885634201156537,"Rao"
 5,"BAT","DRAO",0.885634201156537,"Rao"
-5,"SYNCSA","DRAO",0.885634201156537,"Rao"
 5,"abdiv","DSHA",2.45414151003693,"Shannon"
 5,"adiv","DSHA",2.45414151003693,"Shannon"
 5,"aqp","DSHA",3.54057778617003,"Shannon"
@@ -1735,6 +1738,7 @@
 5,"vegan","RACE",20.9007421150278,"ACE"
 5,"wiqid","RACE",20.9007421150278,"ACE"
 5,"BiodiversityR","RBOO",19,"Bootstrap estimator"
+5,"vegan","RBOO",19,"Bootstrap estimator"
 5,"wiqid","RBOO",35,"Bootstrap estimator"
 5,"BAT","RC1",20,"Chao 1"
 5,"BiodiversityR","RC1",19,"Chao 1"
@@ -1756,14 +1760,13 @@
 5,"OTUtable","RC1M",21.25,"Chao 1 modified"
 5,"tabula","RC1M",21.2386934673367,"Chao 1 modified"
 5,"wiqid","RC1M",21.25,"Chao 1 modified"
-5,"BAT","RCA2",34.008124986125,"Chao 2"
 5,"divDyn","RCA2",19.9473684210526,"Chao 2"
 5,"fossil","RCA2",21.25,"Chao 2"
-5,"tabula","RCA2",19,"Chao 2"
-5,"wiqid","RCA2",19,"Chao 2"
-5,"BAT","RICE",36.2989486090511,"ICE"
+5,"BAT","RCA2M",32.9256277611278,NA
+5,"tabula","RCA2M",19,NA
+5,"wiqid","RCA2M",19,NA
+5,"BAT","RICE",36.1254532814874,"ICE"
 5,"fossil","RICE",19.8571428571429,"ICE"
-5,"tabula","RICE",19,"ICE"
 5,"wiqid","RICE",19,"ICE"
 5,"BAT","RJA1",22,"Jackknife 1"
 5,"BiodiversityR","RJA1",19,"Jackknife 1"
@@ -1772,15 +1775,17 @@
 5,"fossil","RJA1",21.9849246231156,"Jackknife 1"
 5,"SSP","RJA1",18,"Jackknife 1"
 5,"tabula","RJA1",2.36604935476367,"Jackknife 1"
+5,"vegan","RJA1",19,"Jackknife 1"
 5,"wiqid","RJA1",22,"Jackknife 1"
 5,"BAT","RJA2",23,"Jackknife 2"
 5,"BiodiversityR","RJA2",19,"Jackknife 2"
 5,"fossil","RJA2",22.9396477336176,"Jackknife 2"
 5,"SSP","RJA2",18,"Jackknife 2"
+5,"vegan","RJA2",19,"Jackknife 2"
 5,"wiqid","RJA2",23,"Jackknife 2"
 5,"asbio","RLMD",42.5965526552037,NA
 5,"sads","RLMD",1.76132286176834,NA
-5,"vegan","RLMD",20.6399752163834,NA
+5,"vegan","RLMD",11.1124473243667,NA
 5,"wiqid","RMM",0,"Michaelis-Menten"
 5,"divDyn","RSQ",20.0307758446288,"Squares Richness Estimator"
 5,"ecodive","RSQ",20.0307758446288,"Squares Richness Estimator"
@@ -1879,7 +1884,6 @@
 6,"abdiv","DQ",5.77446246996802,"Q-statistic"
 6,"ade4","DRAO",0.895858611295529,"Rao"
 6,"BAT","DRAO",0.895858611295529,"Rao"
-6,"SYNCSA","DRAO",0.895858611295529,"Rao"
 6,"abdiv","DSHA",2.55750479292843,"Shannon"
 6,"adiv","DSHA",2.55750479292843,"Shannon"
 6,"aqp","DSHA",3.6896994818076,"Shannon"
@@ -2095,6 +2099,7 @@
 6,"vegan","RACE",22.6935155680117,"ACE"
 6,"wiqid","RACE",22.6935155680117,"ACE"
 6,"BiodiversityR","RBOO",21,"Bootstrap estimator"
+6,"vegan","RBOO",21,"Bootstrap estimator"
 6,"wiqid","RBOO",35,"Bootstrap estimator"
 6,"BAT","RC1",22,"Chao 1"
 6,"BiodiversityR","RC1",21,"Chao 1"
@@ -2116,14 +2121,13 @@
 6,"OTUtable","RC1M",23.25,"Chao 1 modified"
 6,"tabula","RC1M",23.2392344497608,"Chao 1 modified"
 6,"wiqid","RC1M",23.25,"Chao 1 modified"
-6,"BAT","RCA2",34.5571998834499,"Chao 2"
 6,"divDyn","RCA2",21.952380952381,"Chao 2"
 6,"fossil","RCA2",23.25,"Chao 2"
-6,"tabula","RCA2",21,"Chao 2"
-6,"wiqid","RCA2",21,"Chao 2"
-6,"BAT","RICE",35.4719225920211,"ICE"
+6,"BAT","RCA2M",33.632077977578,NA
+6,"tabula","RCA2M",21,NA
+6,"wiqid","RCA2M",21,NA
+6,"BAT","RICE",36.1049800393349,"ICE"
 6,"fossil","RICE",21.7377049180328,"ICE"
-6,"tabula","RICE",21,"ICE"
 6,"wiqid","RICE",21,"ICE"
 6,"BAT","RJA1",24,"Jackknife 1"
 6,"BiodiversityR","RJA1",21,"Jackknife 1"
@@ -2132,15 +2136,17 @@
 6,"fossil","RJA1",23.9856459330144,"Jackknife 1"
 6,"SSP","RJA1",20,"Jackknife 1"
 6,"tabula","RJA1",2.47684595376102,"Jackknife 1"
+6,"vegan","RJA1",21,"Jackknife 1"
 6,"wiqid","RJA1",24,"Jackknife 1"
 6,"BAT","RJA2",25,"Jackknife 2"
 6,"BiodiversityR","RJA2",21,"Jackknife 2"
 6,"fossil","RJA2",24.9425377254325,"Jackknife 2"
 6,"SSP","RJA2",20,"Jackknife 2"
+6,"vegan","RJA2",21,"Jackknife 2"
 6,"wiqid","RJA2",25,"Jackknife 2"
 6,"asbio","RLMD",35.7300513779748,NA
 6,"sads","RLMD",1.73291999582396,NA
-6,"vegan","RLMD",23.4073559014676,NA
+6,"vegan","RLMD",12.7627147511169,NA
 6,"wiqid","RMM",0,"Michaelis-Menten"
 6,"divDyn","RSQ",21.9386262552157,"Squares Richness Estimator"
 6,"ecodive","RSQ",21.9386262552157,"Squares Richness Estimator"
@@ -2239,7 +2245,6 @@
 7,"abdiv","DQ",0,"Q-statistic"
 7,"ade4","DRAO",0.868770004572474,"Rao"
 7,"BAT","DRAO",0.868770004572474,"Rao"
-7,"SYNCSA","DRAO",0.868770004572474,"Rao"
 7,"abdiv","DSHA",2.28188850040498,"Shannon"
 7,"adiv","DSHA",2.28188850040498,"Shannon"
 7,"aqp","DSHA",3.29206922339581,"Shannon"
@@ -2455,6 +2460,7 @@
 7,"vegan","RACE",17.1613750976632,"ACE"
 7,"wiqid","RACE",17.1613750976632,"ACE"
 7,"BiodiversityR","RBOO",16,"Bootstrap estimator"
+7,"vegan","RBOO",16,"Bootstrap estimator"
 7,"wiqid","RBOO",35,"Bootstrap estimator"
 7,"BAT","RC1",16.5,"Chao 1"
 7,"BiodiversityR","RC1",16,"Chao 1"
@@ -2476,14 +2482,13 @@
 7,"OTUtable","RC1M",18,"Chao 1 modified"
 7,"tabula","RC1M",17.9876543209877,"Chao 1 modified"
 7,"wiqid","RC1M",18,"Chao 1 modified"
-7,"BAT","RCA2",34.160481962482,"Chao 2"
 7,"divDyn","RCA2",16.46875,"Chao 2"
 7,"fossil","RCA2",18,"Chao 2"
-7,"tabula","RCA2",16,"Chao 2"
-7,"wiqid","RCA2",16,"Chao 2"
-7,"BAT","RICE",35.1798465700519,"ICE"
+7,"BAT","RCA2M",34.5771576756577,NA
+7,"tabula","RCA2M",16,NA
+7,"wiqid","RCA2M",16,NA
+7,"BAT","RICE",35.801749194646,"ICE"
 7,"fossil","RICE",16.5789473684211,"ICE"
-7,"tabula","RICE",16,"ICE"
 7,"wiqid","RICE",16,"ICE"
 7,"BAT","RJA1",18,"Jackknife 1"
 7,"BiodiversityR","RJA1",16,"Jackknife 1"
@@ -2492,15 +2497,17 @@
 7,"fossil","RJA1",17.9876543209877,"Jackknife 1"
 7,"SSP","RJA1",15,"Jackknife 1"
 7,"tabula","RJA1",2.17425069143379,"Jackknife 1"
+7,"vegan","RJA1",16,"Jackknife 1"
 7,"wiqid","RJA1",18,"Jackknife 1"
 7,"BAT","RJA2",19,"Jackknife 2"
 7,"BiodiversityR","RJA2",16,"Jackknife 2"
 7,"fossil","RJA2",18.9444061038264,"Jackknife 2"
 7,"SSP","RJA2",15,"Jackknife 2"
+7,"vegan","RJA2",16,"Jackknife 2"
 7,"wiqid","RJA2",19,"Jackknife 2"
 7,"asbio","RLMD",26.0566385010026,NA
 7,"sads","RLMD",1.72653866624615,NA
-7,"vegan","RLMD",18.2744213870119,NA
+7,"vegan","RLMD",9.53244044547213,NA
 7,"wiqid","RMM",0,"Michaelis-Menten"
 7,"divDyn","RSQ",16.5255608118419,"Squares Richness Estimator"
 7,"ecodive","RSQ",16.5255608118419,"Squares Richness Estimator"
@@ -2599,7 +2606,6 @@
 8,"abdiv","DQ",5.64582826474227,"Q-statistic"
 8,"ade4","DRAO",0.887755102040816,"Rao"
 8,"BAT","DRAO",0.887755102040814,"Rao"
-8,"SYNCSA","DRAO",0.887755102040816,"Rao"
 8,"abdiv","DSHA",2.53987142731388,"Shannon"
 8,"adiv","DSHA",2.53987142731388,"Shannon"
 8,"aqp","DSHA",3.6642599126813,"Shannon"
@@ -2815,6 +2821,7 @@
 8,"vegan","RACE",24.5694833339726,"ACE"
 8,"wiqid","RACE",24.5694833339726,"ACE"
 8,"BiodiversityR","RBOO",21,"Bootstrap estimator"
+8,"vegan","RBOO",21,"Bootstrap estimator"
 8,"wiqid","RBOO",35,"Bootstrap estimator"
 8,"BAT","RC1",23.5,"Chao 1"
 8,"BiodiversityR","RC1",21,"Chao 1"
@@ -2836,14 +2843,13 @@
 8,"OTUtable","RC1M",25.1666666666667,"Chao 1 modified"
 8,"tabula","RC1M",25.1335978835979,"Chao 1 modified"
 8,"wiqid","RC1M",25.1666666666667,"Chao 1 modified"
-8,"BAT","RCA2",34.6611364746365,"Chao 2"
 8,"divDyn","RCA2",23.3809523809524,"Chao 2"
 8,"fossil","RCA2",25.1666666666667,"Chao 2"
-8,"tabula","RCA2",21,"Chao 2"
-8,"wiqid","RCA2",21,"Chao 2"
-8,"BAT","RICE",34.9054838340763,"ICE"
+8,"BAT","RCA2M",34.9464112554113,NA
+8,"tabula","RCA2M",21,NA
+8,"wiqid","RCA2M",21,NA
+8,"BAT","RICE",35.5183252252987,"ICE"
 8,"fossil","RICE",22.551724137931,"ICE"
-8,"tabula","RICE",21,"ICE"
 8,"wiqid","RICE",21,"ICE"
 8,"BAT","RJA1",26,"Jackknife 1"
 8,"BiodiversityR","RJA1",21,"Jackknife 1"
@@ -2852,15 +2858,17 @@
 8,"fossil","RJA1",25.9603174603175,"Jackknife 1"
 8,"SSP","RJA1",20,"Jackknife 1"
 8,"tabula","RJA1",2.45771200572363,"Jackknife 1"
+8,"vegan","RJA1",21,"Jackknife 1"
 8,"wiqid","RJA1",26,"Jackknife 1"
 8,"BAT","RJA2",28,"Jackknife 2"
 8,"BiodiversityR","RJA2",21,"Jackknife 2"
 8,"fossil","RJA2",27.8331428571429,"Jackknife 2"
 8,"SSP","RJA2",20,"Jackknife 2"
+8,"vegan","RJA2",21,"Jackknife 2"
 8,"wiqid","RJA2",28,"Jackknife 2"
 8,"asbio","RLMD",41.4206191614793,NA
 8,"sads","RLMD",1.27070141086503,NA
-8,"vegan","RLMD",23.7568471349435,NA
+8,"vegan","RLMD",13.8840331078958,NA
 8,"wiqid","RMM",0,"Michaelis-Menten"
 8,"divDyn","RSQ",23.8248050218756,"Squares Richness Estimator"
 8,"ecodive","RSQ",23.8248050218756,"Squares Richness Estimator"
@@ -2959,7 +2967,6 @@
 9,"abdiv","DQ",0,"Q-statistic"
 9,"ade4","DRAO",0.86509352898407,"Rao"
 9,"BAT","DRAO",0.865093528984071,"Rao"
-9,"SYNCSA","DRAO",0.86509352898407,"Rao"
 9,"abdiv","DSHA",2.27728918808146,"Shannon"
 9,"adiv","DSHA",2.27728918808146,"Shannon"
 9,"aqp","DSHA",3.28543381831518,"Shannon"
@@ -3175,6 +3182,7 @@
 9,"vegan","RACE",18.3960167412325,"ACE"
 9,"wiqid","RACE",18.3960167412325,"ACE"
 9,"BiodiversityR","RBOO",16,"Bootstrap estimator"
+9,"vegan","RBOO",16,"Bootstrap estimator"
 9,"wiqid","RBOO",35,"Bootstrap estimator"
 9,"BAT","RC1",16.75,"Chao 1"
 9,"BiodiversityR","RC1",16,"Chao 1"
@@ -3196,14 +3204,13 @@
 9,"OTUtable","RC1M",17.5,"Chao 1 modified"
 9,"tabula","RC1M",17.4878048780488,"Chao 1 modified"
 9,"wiqid","RC1M",17.5,"Chao 1 modified"
-9,"BAT","RCA2",35.0897136752137,"Chao 2"
 9,"divDyn","RCA2",16.703125,"Chao 2"
 9,"fossil","RCA2",17.5,"Chao 2"
-9,"tabula","RCA2",16,"Chao 2"
-9,"wiqid","RCA2",16,"Chao 2"
-9,"BAT","RICE",35.2792980159563,"ICE"
+9,"BAT","RCA2M",34.4090761183261,NA
+9,"tabula","RCA2M",16,NA
+9,"wiqid","RCA2M",16,NA
+9,"BAT","RICE",35.5604460358759,"ICE"
 9,"fossil","RICE",16.9230769230769,"ICE"
-9,"tabula","RICE",16,"ICE"
 9,"wiqid","RICE",16,"ICE"
 9,"BAT","RJA1",19,"Jackknife 1"
 9,"BiodiversityR","RJA1",16,"Jackknife 1"
@@ -3212,15 +3219,17 @@
 9,"fossil","RJA1",18.9756097560976,"Jackknife 1"
 9,"SSP","RJA1",15,"Jackknife 1"
 9,"tabula","RJA1",2.16923086996701,"Jackknife 1"
+9,"vegan","RJA1",16,"Jackknife 1"
 9,"wiqid","RJA1",19,"Jackknife 1"
 9,"BAT","RJA2",19,"Jackknife 2"
 9,"BiodiversityR","RJA2",16,"Jackknife 2"
 9,"fossil","RJA2",18.9266293482607,"Jackknife 2"
 9,"SSP","RJA2",15,"Jackknife 2"
+9,"vegan","RJA2",16,"Jackknife 2"
 9,"wiqid","RJA2",19,"Jackknife 2"
 9,"asbio","RLMD",34.7662714945631,NA
 9,"sads","RLMD",1.4640081225344,NA
-9,"vegan","RLMD",24.6133506709929,NA
+9,"vegan","RLMD",9.63316659051093,NA
 9,"wiqid","RMM",0,"Michaelis-Menten"
 9,"divDyn","RSQ",17.2180226775413,"Squares Richness Estimator"
 9,"ecodive","RSQ",17.2180226775413,"Squares Richness Estimator"
@@ -3319,7 +3328,6 @@
 10,"abdiv","DQ",6.25167851051884,"Q-statistic"
 10,"ade4","DRAO",0.887719552910437,"Rao"
 10,"BAT","DRAO",0.887719552910438,"Rao"
-10,"SYNCSA","DRAO",0.887719552910437,"Rao"
 10,"abdiv","DSHA",2.47691915111123,"Shannon"
 10,"adiv","DSHA",2.47691915111123,"Shannon"
 10,"aqp","DSHA",3.57343897599108,"Shannon"
@@ -3535,6 +3543,7 @@
 10,"vegan","RACE",19.9706630803106,"ACE"
 10,"wiqid","RACE",19.9706630803106,"ACE"
 10,"BiodiversityR","RBOO",19,"Bootstrap estimator"
+10,"vegan","RBOO",19,"Bootstrap estimator"
 10,"wiqid","RBOO",35,"Bootstrap estimator"
 10,"BAT","RC1",19.25,"Chao 1"
 10,"BiodiversityR","RC1",19,"Chao 1"
@@ -3556,14 +3565,13 @@
 10,"OTUtable","RC1M",19.6666666666667,"Chao 1 modified"
 10,"tabula","RC1M",19.6626506024096,"Chao 1 modified"
 10,"wiqid","RC1M",19.6666666666667,"Chao 1 modified"
-10,"BAT","RCA2",35.2849920634921,"Chao 2"
 10,"divDyn","RCA2",19.2368421052632,"Chao 2"
 10,"fossil","RCA2",19.6666666666667,"Chao 2"
-10,"tabula","RCA2",19,"Chao 2"
-10,"wiqid","RCA2",19,"Chao 2"
-10,"BAT","RICE",35.47212540429,"ICE"
+10,"BAT","RCA2M",34.7190689033189,NA
+10,"tabula","RCA2M",19,NA
+10,"wiqid","RCA2M",19,NA
+10,"BAT","RICE",35.4688530398921,"ICE"
 10,"fossil","RICE",19.5283018867925,"ICE"
-10,"tabula","RICE",19,"ICE"
 10,"wiqid","RICE",19,"ICE"
 10,"BAT","RJA1",21,"Jackknife 1"
 10,"BiodiversityR","RJA1",19,"Jackknife 1"
@@ -3572,15 +3580,17 @@
 10,"fossil","RJA1",20.9879518072289,"Jackknife 1"
 10,"SSP","RJA1",18,"Jackknife 1"
 10,"tabula","RJA1",2.39023546591702,"Jackknife 1"
+10,"vegan","RJA1",19,"Jackknife 1"
 10,"wiqid","RJA1",21,"Jackknife 1"
 10,"BAT","RJA2",20,"Jackknife 2"
 10,"BiodiversityR","RJA2",19,"Jackknife 2"
 10,"fossil","RJA2",19.9818181818182,"Jackknife 2"
 10,"SSP","RJA2",18,"Jackknife 2"
+10,"vegan","RJA2",19,"Jackknife 2"
 10,"wiqid","RJA2",20,"Jackknife 2"
 10,"asbio","RLMD",25.2338453590641,NA
 10,"sads","RLMD",1.6518381606885,NA
-10,"vegan","RLMD",19.8683498777313,NA
+10,"vegan","RLMD",12.5160007785286,NA
 10,"wiqid","RMM",0,"Michaelis-Menten"
 10,"divDyn","RSQ",19.449741987063,"Squares Richness Estimator"
 10,"ecodive","RSQ",19.449741987063,"Squares Richness Estimator"
@@ -3679,7 +3689,6 @@
 11,"abdiv","DQ",7.49451867310857,"Q-statistic"
 11,"ade4","DRAO",0.889274691358025,"Rao"
 11,"BAT","DRAO",0.889274691358019,"Rao"
-11,"SYNCSA","DRAO",0.889274691358025,"Rao"
 11,"abdiv","DSHA",2.57284443806123,"Shannon"
 11,"adiv","DSHA",2.57284443806123,"Shannon"
 11,"aqp","DSHA",3.71182991176969,"Shannon"
@@ -3895,6 +3904,7 @@
 11,"vegan","RACE",28.8195097210482,"ACE"
 11,"wiqid","RACE",28.8195097210482,"ACE"
 11,"BiodiversityR","RBOO",25,"Bootstrap estimator"
+11,"vegan","RBOO",25,"Bootstrap estimator"
 11,"wiqid","RBOO",35,"Bootstrap estimator"
 11,"BAT","RC1",30,"Chao 1"
 11,"BiodiversityR","RC1",25,"Chao 1"
@@ -3916,14 +3926,13 @@
 11,"OTUtable","RC1M",34,"Chao 1 modified"
 11,"tabula","RC1M",33.9583333333333,"Chao 1 modified"
 11,"wiqid","RC1M",34,"Chao 1 modified"
-11,"BAT","RCA2",35.1818066378066,"Chao 2"
 11,"divDyn","RCA2",29.8,"Chao 2"
 11,"fossil","RCA2",34,"Chao 2"
-11,"tabula","RCA2",25,"Chao 2"
-11,"wiqid","RCA2",25,"Chao 2"
-11,"BAT","RICE",35.3249326022894,"ICE"
+11,"BAT","RCA2M",34.6341825396825,NA
+11,"tabula","RCA2M",25,NA
+11,"wiqid","RCA2M",25,NA
+11,"BAT","RICE",35.4105083855777,"ICE"
 11,"fossil","RICE",26.8461538461538,"ICE"
-11,"tabula","RICE",25,"ICE"
 11,"wiqid","RICE",25,"ICE"
 11,"BAT","RJA1",31,"Jackknife 1"
 11,"BiodiversityR","RJA1",25,"Jackknife 1"
@@ -3932,15 +3941,17 @@
 11,"fossil","RJA1",30.9722222222222,"Jackknife 1"
 11,"SSP","RJA1",24,"Jackknife 1"
 11,"tabula","RJA1",2.49350024889736,"Jackknife 1"
+11,"vegan","RJA1",25,"Jackknife 1"
 11,"wiqid","RJA1",31,"Jackknife 1"
 11,"BAT","RJA2",35,"Jackknife 2"
 11,"BiodiversityR","RJA2",25,"Jackknife 2"
 11,"fossil","RJA2",34.861068044789,"Jackknife 2"
 11,"SSP","RJA2",24,"Jackknife 2"
+11,"vegan","RJA2",25,"Jackknife 2"
 11,"wiqid","RJA2",35,"Jackknife 2"
 11,"asbio","RLMD",51.9117000288937,NA
 11,"sads","RLMD",1.45905110647312,NA
-11,"vegan","RLMD",31.2780931483616,NA
+11,"vegan","RLMD",14.1395220232119,NA
 11,"wiqid","RMM",0,"Michaelis-Menten"
 11,"divDyn","RSQ",28.9989678751129,"Squares Richness Estimator"
 11,"ecodive","RSQ",28.9989678751129,"Squares Richness Estimator"
@@ -4039,7 +4050,6 @@
 12,"abdiv","DQ",3.94436998204963,"Q-statistic"
 12,"ade4","DRAO",0.852740858295312,"Rao"
 12,"BAT","DRAO",0.852740858295314,"Rao"
-12,"SYNCSA","DRAO",0.852740858295312,"Rao"
 12,"abdiv","DSHA",2.24718804757461,"Shannon"
 12,"adiv","DSHA",2.24718804757461,"Shannon"
 12,"aqp","DSHA",3.24200705218084,"Shannon"
@@ -4255,6 +4265,7 @@
 12,"vegan","RACE",22.7946428571429,"ACE"
 12,"wiqid","RACE",22.7946428571429,"ACE"
 12,"BiodiversityR","RBOO",19,"Bootstrap estimator"
+12,"vegan","RBOO",19,"Bootstrap estimator"
 12,"wiqid","RBOO",35,"Bootstrap estimator"
 12,"BAT","RC1",22.3333333333333,"Chao 1"
 12,"BiodiversityR","RC1",19,"Chao 1"
@@ -4276,14 +4287,13 @@
 12,"OTUtable","RC1M",25.25,"Chao 1 modified"
 12,"tabula","RC1M",25.2206572769953,"Chao 1 modified"
 12,"wiqid","RC1M",25.25,"Chao 1 modified"
-12,"BAT","RCA2",35.0441150793651,"Chao 2"
 12,"divDyn","RCA2",22.1578947368421,"Chao 2"
 12,"fossil","RCA2",25.25,"Chao 2"
-12,"tabula","RCA2",19,"Chao 2"
-12,"wiqid","RCA2",19,"Chao 2"
-12,"BAT","RICE",35.4732573648129,"ICE"
+12,"BAT","RCA2M",34.7655119047619,NA
+12,"tabula","RCA2M",19,NA
+12,"wiqid","RCA2M",19,NA
+12,"BAT","RICE",35.4857972149174,"ICE"
 12,"fossil","RICE",21.5,"ICE"
-12,"tabula","RICE",19,"ICE"
 12,"wiqid","RICE",19,"ICE"
 12,"BAT","RJA1",24,"Jackknife 1"
 12,"BiodiversityR","RJA1",19,"Jackknife 1"
@@ -4292,15 +4302,17 @@
 12,"fossil","RJA1",23.9765258215962,"Jackknife 1"
 12,"SSP","RJA1",18,"Jackknife 1"
 12,"tabula","RJA1",2.13802311575299,"Jackknife 1"
+12,"vegan","RJA1",19,"Jackknife 1"
 12,"wiqid","RJA1",24,"Jackknife 1"
 12,"BAT","RJA2",27,"Jackknife 2"
 12,"BiodiversityR","RJA2",19,"Jackknife 2"
 12,"fossil","RJA2",26.8872796527593,"Jackknife 2"
 12,"SSP","RJA2",18,"Jackknife 2"
+12,"vegan","RJA2",19,"Jackknife 2"
 12,"wiqid","RJA2",27,"Jackknife 2"
 12,"asbio","RLMD",33.1278807925597,NA
 12,"sads","RLMD",1.57201998718175,NA
-12,"vegan","RLMD",30.5039709363386,NA
+12,"vegan","RLMD",9.36311603230136,NA
 12,"wiqid","RMM",0,"Michaelis-Menten"
 12,"divDyn","RSQ",22.689203516367,"Squares Richness Estimator"
 12,"ecodive","RSQ",22.689203516367,"Squares Richness Estimator"
@@ -4399,7 +4411,6 @@
 13,"abdiv","DQ",5.4214210885152,"Q-statistic"
 13,"ade4","DRAO",0.756168406268952,"Rao"
 13,"BAT","DRAO",0.756168406268953,"Rao"
-13,"SYNCSA","DRAO",0.756168406268952,"Rao"
 13,"abdiv","DSHA",1.851997092018,"Shannon"
 13,"adiv","DSHA",1.851997092018,"Shannon"
 13,"aqp","DSHA",2.67186702039515,"Shannon"
@@ -4615,6 +4626,7 @@
 13,"vegan","RACE",27.1818181818182,"ACE"
 13,"wiqid","RACE",27.1818181818182,"ACE"
 13,"BiodiversityR","RBOO",18,"Bootstrap estimator"
+13,"vegan","RBOO",18,"Bootstrap estimator"
 13,"wiqid","RBOO",35,"Bootstrap estimator"
 13,"BAT","RC1",21,"Chao 1"
 13,"BiodiversityR","RC1",18,"Chao 1"
@@ -4636,14 +4648,13 @@
 13,"OTUtable","RC1M",22.5,"Chao 1 modified"
 13,"tabula","RC1M",22.4745762711864,"Chao 1 modified"
 13,"wiqid","RC1M",22.5,"Chao 1 modified"
-13,"BAT","RCA2",35.0788492063492,"Chao 2"
 13,"divDyn","RCA2",20.8333333333333,"Chao 2"
 13,"fossil","RCA2",22.5,"Chao 2"
-13,"tabula","RCA2",18,"Chao 2"
-13,"wiqid","RCA2",18,"Chao 2"
-13,"BAT","RICE",35.3454931912355,"ICE"
+13,"BAT","RCA2M",35.3065277777778,NA
+13,"tabula","RCA2M",18,NA
+13,"wiqid","RCA2M",18,NA
+13,"BAT","RICE",35.3043535932861,"ICE"
 13,"fossil","RICE",21,"ICE"
-13,"tabula","RICE",18,"ICE"
 13,"wiqid","RICE",18,"ICE"
 13,"BAT","RJA1",24,"Jackknife 1"
 13,"BiodiversityR","RJA1",18,"Jackknife 1"
@@ -4652,15 +4663,17 @@
 13,"fossil","RJA1",23.9661016949153,"Jackknife 1"
 13,"SSP","RJA1",17,"Jackknife 1"
 13,"tabula","RJA1",1.72075676128891,"Jackknife 1"
+13,"vegan","RJA1",18,"Jackknife 1"
 13,"wiqid","RJA1",24,"Jackknife 1"
 13,"BAT","RJA2",26,"Jackknife 2"
 13,"BiodiversityR","RJA2",18,"Jackknife 2"
 13,"fossil","RJA2",25.8642783769902,"Jackknife 2"
 13,"SSP","RJA2",17,"Jackknife 2"
+13,"vegan","RJA2",18,"Jackknife 2"
 13,"wiqid","RJA2",26,"Jackknife 2"
 13,"asbio","RLMD",27.7445842702156,NA
 13,"sads","RLMD",1.20709337058347,NA
-13,"vegan","RLMD",126.038967241811,NA
+13,"vegan","RLMD",9.57850606010094,NA
 13,"wiqid","RMM",0,"Michaelis-Menten"
 13,"divDyn","RSQ",26.8083021043528,"Squares Richness Estimator"
 13,"ecodive","RSQ",26.8083021043528,"Squares Richness Estimator"
@@ -4759,7 +4772,6 @@
 14,"abdiv","DQ",5.64582826474227,"Q-statistic"
 14,"ade4","DRAO",0.891391771810782,"Rao"
 14,"BAT","DRAO",0.891391771810783,"Rao"
-14,"SYNCSA","DRAO",0.891391771810782,"Rao"
 14,"abdiv","DSHA",2.56237755804038,"Shannon"
 14,"adiv","DSHA",2.56237755804038,"Shannon"
 14,"aqp","DSHA",3.69672939587003,"Shannon"
@@ -4975,6 +4987,7 @@
 14,"vegan","RACE",24.0142003876429,"ACE"
 14,"wiqid","RACE",24.0142003876429,"ACE"
 14,"BiodiversityR","RBOO",23,"Bootstrap estimator"
+14,"vegan","RBOO",23,"Bootstrap estimator"
 14,"wiqid","RBOO",35,"Bootstrap estimator"
 14,"BAT","RC1",23.1428571428571,"Chao 1"
 14,"BiodiversityR","RC1",23,"Chao 1"
@@ -4996,14 +5009,13 @@
 14,"OTUtable","RC1M",23.3333333333333,"Chao 1 modified"
 14,"tabula","RC1M",23.3320941759603,"Chao 1 modified"
 14,"wiqid","RC1M",23.3333333333333,"Chao 1 modified"
-14,"BAT","RCA2",34.971373015873,"Chao 2"
 14,"divDyn","RCA2",23.1366459627329,"Chao 2"
 14,"fossil","RCA2",23.3333333333333,"Chao 2"
-14,"tabula","RCA2",23,"Chao 2"
-14,"wiqid","RCA2",23,"Chao 2"
-14,"BAT","RICE",35.3082234661679,"ICE"
+14,"BAT","RCA2M",35.1409047619048,NA
+14,"tabula","RCA2M",23,NA
+14,"wiqid","RCA2M",23,NA
+14,"BAT","RICE",35.2135838791759,"ICE"
 14,"fossil","RICE",23.5660377358491,"ICE"
-14,"tabula","RICE",23,"ICE"
 14,"wiqid","RICE",23,"ICE"
 14,"BAT","RJA1",25,"Jackknife 1"
 14,"BiodiversityR","RJA1",23,"Jackknife 1"
@@ -5012,15 +5024,17 @@
 14,"fossil","RJA1",24.9925650557621,"Jackknife 1"
 14,"SSP","RJA1",22,"Jackknife 1"
 14,"tabula","RJA1",2.48217919152915,"Jackknife 1"
+14,"vegan","RJA1",23,"Jackknife 1"
 14,"wiqid","RJA1",25,"Jackknife 1"
 14,"BAT","RJA2",21,"Jackknife 2"
 14,"BiodiversityR","RJA2",23,"Jackknife 2"
 14,"fossil","RJA2",21.022221605726,"Jackknife 2"
 14,"SSP","RJA2",22,"Jackknife 2"
+14,"vegan","RJA2",23,"Jackknife 2"
 14,"wiqid","RJA2",21,"Jackknife 2"
 14,"asbio","RLMD",49.80731738159,NA
 14,"sads","RLMD",1.80204894013432,NA
-14,"vegan","RLMD",26.4728175617174,NA
+14,"vegan","RLMD",13.1456668834085,NA
 14,"wiqid","RMM",0,"Michaelis-Menten"
 14,"divDyn","RSQ",23.4347092581069,"Squares Richness Estimator"
 14,"ecodive","RSQ",23.4347092581069,"Squares Richness Estimator"
@@ -5119,7 +5133,6 @@
 15,"abdiv","DQ",6.68067845080676,"Q-statistic"
 15,"ade4","DRAO",0.8446,"Rao"
 15,"BAT","DRAO",0.8446,"Rao"
-15,"SYNCSA","DRAO",0.8446,"Rao"
 15,"abdiv","DSHA",2.24117596362769,"Shannon"
 15,"adiv","DSHA",2.24117596362769,"Shannon"
 15,"aqp","DSHA",3.23333344848522,"Shannon"
@@ -5335,6 +5348,7 @@
 15,"vegan","RACE",29.9419441780281,"ACE"
 15,"wiqid","RACE",29.9419441780281,"ACE"
 15,"BiodiversityR","RBOO",18,"Bootstrap estimator"
+15,"vegan","RBOO",18,"Bootstrap estimator"
 15,"wiqid","RBOO",35,"Bootstrap estimator"
 15,"BAT","RC1",36,"Chao 1"
 15,"BiodiversityR","RC1",18,"Chao 1"
@@ -5356,14 +5370,13 @@
 15,"OTUtable","RC1M",58.5,"Chao 1 modified"
 15,"tabula","RC1M",58.095,"Chao 1 modified"
 15,"wiqid","RC1M",58.5,"Chao 1 modified"
-15,"BAT","RCA2",34.8523452380952,"Chao 2"
 15,"divDyn","RCA2",35,"Chao 2"
 15,"fossil","RCA2",58.5,"Chao 2"
-15,"tabula","RCA2",18,"Chao 2"
-15,"wiqid","RCA2",18,"Chao 2"
-15,"BAT","RICE",35.2012596309463,"ICE"
+15,"BAT","RCA2M",35.2350119047619,NA
+15,"tabula","RCA2M",18,NA
+15,"wiqid","RCA2M",18,NA
+15,"BAT","RICE",35.202372928523,"ICE"
 15,"fossil","RICE",21.5121951219512,"ICE"
-15,"tabula","RICE",18,"ICE"
 15,"wiqid","RICE",18,"ICE"
 15,"BAT","RJA1",27,"Jackknife 1"
 15,"BiodiversityR","RJA1",18,"Jackknife 1"
@@ -5372,15 +5385,17 @@
 15,"fossil","RJA1",26.91,"Jackknife 1"
 15,"SSP","RJA1",17,"Jackknife 1"
 15,"tabula","RJA1",2.13305064332512,"Jackknife 1"
+15,"vegan","RJA1",18,"Jackknife 1"
 15,"wiqid","RJA1",27,"Jackknife 1"
 15,"BAT","RJA2",35,"Jackknife 2"
 15,"BiodiversityR","RJA2",18,"Jackknife 2"
 15,"fossil","RJA2",34.489898989899,"Jackknife 2"
 15,"SSP","RJA2",17,"Jackknife 2"
+15,"vegan","RJA2",18,"Jackknife 2"
 15,"wiqid","RJA2",35,"Jackknife 2"
 15,"asbio","RLMD",23.8229394554361,NA
 15,"sads","RLMD",1.01495467438614,NA
-15,"vegan","RLMD",5924.83452490352,NA
+15,"vegan","RLMD",10.6852263538711,NA
 15,"wiqid","RMM",0,"Michaelis-Menten"
 15,"divDyn","RSQ",30.7946737141695,"Squares Richness Estimator"
 15,"ecodive","RSQ",30.7946737141695,"Squares Richness Estimator"
@@ -5479,7 +5494,6 @@
 16,"abdiv","DQ",6.68067845080676,"Q-statistic"
 16,"ade4","DRAO",0.842172388139016,"Rao"
 16,"BAT","DRAO",0.842172388139015,"Rao"
-16,"SYNCSA","DRAO",0.842172388139016,"Rao"
 16,"abdiv","DSHA",2.26693887322499,"Shannon"
 16,"adiv","DSHA",2.26693887322499,"Shannon"
 16,"aqp","DSHA",3.27050147040011,"Shannon"
@@ -5695,6 +5709,7 @@
 16,"vegan","RACE",18.7943262411348,"ACE"
 16,"wiqid","RACE",18.7943262411348,"ACE"
 16,"BiodiversityR","RBOO",17,"Bootstrap estimator"
+16,"vegan","RBOO",17,"Bootstrap estimator"
 16,"wiqid","RBOO",35,"Bootstrap estimator"
 16,"BAT","RC1",17.5,"Chao 1"
 16,"BiodiversityR","RC1",17,"Chao 1"
@@ -5716,14 +5731,13 @@
 16,"OTUtable","RC1M",17.9,"Chao 1 modified"
 16,"tabula","RC1M",17.8907216494845,"Chao 1 modified"
 16,"wiqid","RC1M",17.9,"Chao 1 modified"
-16,"BAT","RCA2",34.8528452380952,"Chao 2"
 16,"divDyn","RCA2",17.4705882352941,"Chao 2"
 16,"fossil","RCA2",17.9,"Chao 2"
-16,"tabula","RCA2",17,"Chao 2"
-16,"wiqid","RCA2",17,"Chao 2"
-16,"BAT","RICE",35.2952886955893,"ICE"
+16,"BAT","RCA2M",35.0521904761905,NA
+16,"tabula","RCA2M",17,NA
+16,"wiqid","RCA2M",17,NA
+16,"BAT","RICE",35.211893655803,"ICE"
 16,"fossil","RICE",18,"ICE"
-16,"tabula","RICE",17,"ICE"
 16,"wiqid","RICE",17,"ICE"
 16,"BAT","RJA1",20,"Jackknife 1"
 16,"BiodiversityR","RJA1",17,"Jackknife 1"
@@ -5732,15 +5746,17 @@
 16,"fossil","RJA1",19.9690721649485,"Jackknife 1"
 16,"SSP","RJA1",16,"Jackknife 1"
 16,"tabula","RJA1",2.16034016884938,"Jackknife 1"
+16,"vegan","RJA1",17,"Jackknife 1"
 16,"wiqid","RJA1",20,"Jackknife 1"
 16,"BAT","RJA2",18,"Jackknife 2"
 16,"BiodiversityR","RJA2",17,"Jackknife 2"
 16,"fossil","RJA2",17.9685352233677,"Jackknife 2"
 16,"SSP","RJA2",16,"Jackknife 2"
+16,"vegan","RJA2",17,"Jackknife 2"
 16,"wiqid","RJA2",18,"Jackknife 2"
 16,"asbio","RLMD",32.5139346184954,NA
 16,"sads","RLMD",1.20786812953117,NA
-16,"vegan","RLMD",18.5231073160812,NA
+16,"vegan","RLMD",11.7805755506465,NA
 16,"wiqid","RMM",0,"Michaelis-Menten"
 16,"divDyn","RSQ",18.4281897841419,"Squares Richness Estimator"
 16,"ecodive","RSQ",18.4281897841419,"Squares Richness Estimator"
@@ -5839,7 +5855,6 @@
 17,"abdiv","DQ",0,"Q-statistic"
 17,"ade4","DRAO",0.785925925925926,"Rao"
 17,"BAT","DRAO",0.785925925925925,"Rao"
-17,"SYNCSA","DRAO",0.785925925925926,"Rao"
 17,"abdiv","DSHA",1.91061528727681,"Shannon"
 17,"adiv","DSHA",1.91061528727681,"Shannon"
 17,"aqp","DSHA",2.7564352000009,"Shannon"
@@ -6055,6 +6070,7 @@
 17,"vegan","RACE",21.2843137254902,"ACE"
 17,"wiqid","RACE",21.2843137254902,"ACE"
 17,"BiodiversityR","RBOO",14,"Bootstrap estimator"
+17,"vegan","RBOO",14,"Bootstrap estimator"
 17,"wiqid","RBOO",35,"Bootstrap estimator"
 17,"BAT","RC1",16.5,"Chao 1"
 17,"BiodiversityR","RC1",14,"Chao 1"
@@ -6076,14 +6092,13 @@
 17,"OTUtable","RC1M",18.1666666666667,"Chao 1 modified"
 17,"tabula","RC1M",18.1203703703704,"Chao 1 modified"
 17,"wiqid","RC1M",18.1666666666667,"Chao 1 modified"
-17,"BAT","RCA2",34.9333571428571,"Chao 2"
 17,"divDyn","RCA2",16.3214285714286,"Chao 2"
 17,"fossil","RCA2",18.1666666666667,"Chao 2"
-17,"tabula","RCA2",14,"Chao 2"
-17,"wiqid","RCA2",14,"Chao 2"
-17,"BAT","RICE",35.2573561953263,"ICE"
+17,"BAT","RCA2M",35.0461904761905,NA
+17,"tabula","RCA2M",14,NA
+17,"wiqid","RCA2M",14,NA
+17,"BAT","RICE",35.1819393850446,"ICE"
 17,"fossil","RICE",16,"ICE"
-17,"tabula","RICE",14,"ICE"
 17,"wiqid","RICE",14,"ICE"
 17,"BAT","RJA1",19,"Jackknife 1"
 17,"BiodiversityR","RJA1",14,"Jackknife 1"
@@ -6092,15 +6107,17 @@
 17,"fossil","RJA1",18.9444444444444,"Jackknife 1"
 17,"SSP","RJA1",13,"Jackknife 1"
 17,"tabula","RJA1",1.76170257098374,"Jackknife 1"
+17,"vegan","RJA1",14,"Jackknife 1"
 17,"wiqid","RJA1",19,"Jackknife 1"
 17,"BAT","RJA2",21,"Jackknife 2"
 17,"BiodiversityR","RJA2",14,"Jackknife 2"
 17,"fossil","RJA2",20.7662921348315,"Jackknife 2"
 17,"SSP","RJA2",13,"Jackknife 2"
+17,"vegan","RJA2",14,"Jackknife 2"
 17,"wiqid","RJA2",21,"Jackknife 2"
 17,"asbio","RLMD",21.244565344774,NA
 17,"sads","RLMD",1.09165402157855,NA
-17,"vegan","RLMD",23.5450337684949,NA
+17,"vegan","RLMD",8.05019756206246,NA
 17,"wiqid","RMM",0,"Michaelis-Menten"
 17,"divDyn","RSQ",19.3985056039851,"Squares Richness Estimator"
 17,"ecodive","RSQ",19.3985056039851,"Squares Richness Estimator"
@@ -6199,7 +6216,6 @@
 18,"abdiv","DQ",5.64582826474227,"Q-statistic"
 18,"ade4","DRAO",0.861103131284114,"Rao"
 18,"BAT","DRAO",0.861103131284113,"Rao"
-18,"SYNCSA","DRAO",0.861103131284114,"Rao"
 18,"abdiv","DSHA",2.32484210153417,"Shannon"
 18,"adiv","DSHA",2.32484210153417,"Shannon"
 18,"aqp","DSHA",3.35403817073323,"Shannon"
@@ -6415,6 +6431,7 @@
 18,"vegan","RACE",21.6407424173834,"ACE"
 18,"wiqid","RACE",21.6407424173834,"ACE"
 18,"BiodiversityR","RBOO",18,"Bootstrap estimator"
+18,"vegan","RBOO",18,"Bootstrap estimator"
 18,"wiqid","RBOO",35,"Bootstrap estimator"
 18,"BAT","RC1",19.2,"Chao 1"
 18,"BiodiversityR","RC1",18,"Chao 1"
@@ -6436,14 +6453,13 @@
 18,"OTUtable","RC1M",20,"Chao 1 modified"
 18,"tabula","RC1M",19.9830508474576,"Chao 1 modified"
 18,"wiqid","RC1M",20,"Chao 1 modified"
-18,"BAT","RCA2",35.1845238095238,"Chao 2"
 18,"divDyn","RCA2",19.1333333333333,"Chao 2"
 18,"fossil","RCA2",20,"Chao 2"
-18,"tabula","RCA2",18,"Chao 2"
-18,"wiqid","RCA2",18,"Chao 2"
-18,"BAT","RICE",35.2726166012672,"ICE"
+18,"BAT","RCA2M",35.0348571428571,NA
+18,"tabula","RCA2M",18,NA
+18,"wiqid","RCA2M",18,NA
+18,"BAT","RICE",35.2116245217212,"ICE"
 18,"fossil","RICE",19.2765957446809,"ICE"
-18,"tabula","RICE",18,"ICE"
 18,"wiqid","RICE",18,"ICE"
 18,"BAT","RJA1",22,"Jackknife 1"
 18,"BiodiversityR","RJA1",18,"Jackknife 1"
@@ -6452,15 +6468,17 @@
 18,"fossil","RJA1",21.9661016949153,"Jackknife 1"
 18,"SSP","RJA1",17,"Jackknife 1"
 18,"tabula","RJA1",2.22302412734667,"Jackknife 1"
+18,"vegan","RJA1",18,"Jackknife 1"
 18,"wiqid","RJA1",22,"Jackknife 1"
 18,"BAT","RJA2",22,"Jackknife 2"
 18,"BiodiversityR","RJA2",18,"Jackknife 2"
 18,"fossil","RJA2",21.8980153556425,"Jackknife 2"
 18,"SSP","RJA2",17,"Jackknife 2"
+18,"vegan","RJA2",18,"Jackknife 2"
 18,"wiqid","RJA2",22,"Jackknife 2"
 18,"asbio","RLMD",35.0644972818793,NA
 18,"sads","RLMD",1.28240018739003,NA
-18,"vegan","RLMD",20.7111304789159,NA
+18,"vegan","RLMD",11.1080501845165,NA
 18,"wiqid","RMM",0,"Michaelis-Menten"
 18,"divDyn","RSQ",20.233901241698,"Squares Richness Estimator"
 18,"ecodive","RSQ",20.233901241698,"Squares Richness Estimator"
@@ -6559,7 +6577,6 @@
 19,"abdiv","DQ",7.25543814516621,"Q-statistic"
 19,"ade4","DRAO",0.91123240448147,"Rao"
 19,"BAT","DRAO",0.911232404481472,"Rao"
-19,"SYNCSA","DRAO",0.911232404481471,"Rao"
 19,"abdiv","DSHA",2.65467015397119,"Shannon"
 19,"adiv","DSHA",2.65467015397119,"Shannon"
 19,"aqp","DSHA",3.82987946633018,"Shannon"
@@ -6775,6 +6792,7 @@
 19,"vegan","RACE",24.0849758140206,"ACE"
 19,"wiqid","RACE",24.0849758140206,"ACE"
 19,"BiodiversityR","RBOO",21,"Bootstrap estimator"
+19,"vegan","RBOO",21,"Bootstrap estimator"
 19,"wiqid","RBOO",35,"Bootstrap estimator"
 19,"BAT","RC1",21.8571428571429,"Chao 1"
 19,"BiodiversityR","RC1",21,"Chao 1"
@@ -6796,14 +6814,13 @@
 19,"OTUtable","RC1M",22.3333333333333,"Chao 1 modified"
 19,"tabula","RC1M",22.3220338983051,"Chao 1 modified"
 19,"wiqid","RC1M",22.3333333333333,"Chao 1 modified"
-19,"BAT","RCA2",35.2001904761905,"Chao 2"
 19,"divDyn","RCA2",21.8163265306122,"Chao 2"
 19,"fossil","RCA2",22.3333333333333,"Chao 2"
-19,"tabula","RCA2",21,"Chao 2"
-19,"wiqid","RCA2",21,"Chao 2"
-19,"BAT","RICE",35.1961021334543,"ICE"
+19,"BAT","RCA2M",35.1485952380952,NA
+19,"tabula","RCA2M",21,NA
+19,"wiqid","RCA2M",21,NA
+19,"BAT","RICE",35.274142481933,"ICE"
 19,"fossil","RICE",22.2592592592593,"ICE"
-19,"tabula","RICE",21,"ICE"
 19,"wiqid","RICE",21,"ICE"
 19,"BAT","RJA1",25,"Jackknife 1"
 19,"BiodiversityR","RJA1",21,"Jackknife 1"
@@ -6812,15 +6829,17 @@
 19,"fossil","RJA1",24.9661016949153,"Jackknife 1"
 19,"SSP","RJA1",20,"Jackknife 1"
 19,"tabula","RJA1",2.58180604592961,"Jackknife 1"
+19,"vegan","RJA1",21,"Jackknife 1"
 19,"wiqid","RJA1",25,"Jackknife 1"
 19,"BAT","RJA2",23,"Jackknife 2"
 19,"BiodiversityR","RJA2",21,"Jackknife 2"
 19,"fossil","RJA2",22.9487179487179,"Jackknife 2"
 19,"SSP","RJA2",20,"Jackknife 2"
+19,"vegan","RJA2",21,"Jackknife 2"
 19,"wiqid","RJA2",23,"Jackknife 2"
 19,"asbio","RLMD",40.4595103233749,NA
 19,"sads","RLMD",1.28464413339449,NA
-19,"vegan","RLMD",23.4269519459376,NA
+19,"vegan","RLMD",14.5768130513727,NA
 19,"wiqid","RMM",0,"Michaelis-Menten"
 19,"divDyn","RSQ",22.428901734104,"Squares Richness Estimator"
 19,"ecodive","RSQ",22.428901734104,"Squares Richness Estimator"
@@ -6919,7 +6938,6 @@
 20,"abdiv","DQ",6.68067845080676,"Q-statistic"
 20,"ade4","DRAO",0.873286862003781,"Rao"
 20,"BAT","DRAO",0.873286862003782,"Rao"
-20,"SYNCSA","DRAO",0.873286862003781,"Rao"
 20,"abdiv","DSHA",2.45675319140555,"Shannon"
 20,"adiv","DSHA",2.45675319140555,"Shannon"
 20,"aqp","DSHA",3.54434564592893,"Shannon"
@@ -7135,6 +7153,7 @@
 20,"vegan","RACE",21.4903104098782,"ACE"
 20,"wiqid","RACE",21.4903104098782,"ACE"
 20,"BiodiversityR","RBOO",20,"Bootstrap estimator"
+20,"vegan","RBOO",20,"Bootstrap estimator"
 20,"wiqid","RBOO",35,"Bootstrap estimator"
 20,"BAT","RC1",21,"Chao 1"
 20,"BiodiversityR","RC1",20,"Chao 1"
@@ -7156,14 +7175,13 @@
 20,"OTUtable","RC1M",22.25,"Chao 1 modified"
 20,"tabula","RC1M",22.2377717391304,"Chao 1 modified"
 20,"wiqid","RC1M",22.25,"Chao 1 modified"
-20,"BAT","RCA2",35.10825,"Chao 2"
 20,"divDyn","RCA2",20.95,"Chao 2"
 20,"fossil","RCA2",22.25,"Chao 2"
-20,"tabula","RCA2",20,"Chao 2"
-20,"wiqid","RCA2",20,"Chao 2"
-20,"BAT","RICE",35.1264024884059,"ICE"
+20,"BAT","RCA2M",35.2416666666667,NA
+20,"tabula","RCA2M",20,NA
+20,"wiqid","RCA2M",20,NA
+20,"BAT","RICE",35.2454289212094,"ICE"
 20,"fossil","RICE",20.8571428571429,"ICE"
-20,"tabula","RICE",20,"ICE"
 20,"wiqid","RICE",20,"ICE"
 20,"BAT","RJA1",23,"Jackknife 1"
 20,"BiodiversityR","RJA1",20,"Jackknife 1"
@@ -7172,15 +7190,17 @@
 20,"fossil","RJA1",22.9836956521739,"Jackknife 1"
 20,"SSP","RJA1",19,"Jackknife 1"
 20,"tabula","RJA1",2.36744910982708,"Jackknife 1"
+20,"vegan","RJA1",20,"Jackknife 1"
 20,"wiqid","RJA1",23,"Jackknife 1"
 20,"BAT","RJA2",24,"Jackknife 2"
 20,"BiodiversityR","RJA2",20,"Jackknife 2"
 20,"fossil","RJA2",23.9347232121644,"Jackknife 2"
 20,"SSP","RJA2",19,"Jackknife 2"
+20,"vegan","RJA2",20,"Jackknife 2"
 20,"wiqid","RJA2",24,"Jackknife 2"
 20,"asbio","RLMD",NA,NA
 20,"sads","RLMD",1.64555943446511,NA
-20,"vegan","RLMD",20.9724710043177,NA
+20,"vegan","RLMD",12.4581736113212,NA
 20,"wiqid","RMM",0,"Michaelis-Menten"
 20,"divDyn","RSQ",21.14244289265,"Squares Richness Estimator"
 20,"ecodive","RSQ",21.14244289265,"Squares Richness Estimator"
@@ -7279,7 +7299,6 @@
 21,"abdiv","DQ",0,"Q-statistic"
 21,"ade4","DRAO",0.840382789100738,"Rao"
 21,"BAT","DRAO",0.840382789100738,"Rao"
-21,"SYNCSA","DRAO",0.840382789100738,"Rao"
 21,"abdiv","DSHA",2.14817426119648,"Shannon"
 21,"adiv","DSHA",2.14817426119648,"Shannon"
 21,"aqp","DSHA",3.09916035359347,"Shannon"
@@ -7495,6 +7514,7 @@
 21,"vegan","RACE",19.7168724279835,"ACE"
 21,"wiqid","RACE",19.7168724279835,"ACE"
 21,"BiodiversityR","RBOO",16,"Bootstrap estimator"
+21,"vegan","RBOO",16,"Bootstrap estimator"
 21,"wiqid","RBOO",35,"Bootstrap estimator"
 21,"BAT","RC1",17.2,"Chao 1"
 21,"BiodiversityR","RC1",16,"Chao 1"
@@ -7516,14 +7536,13 @@
 21,"OTUtable","RC1M",18,"Chao 1 modified"
 21,"tabula","RC1M",17.982905982906,"Chao 1 modified"
 21,"wiqid","RC1M",18,"Chao 1 modified"
-21,"BAT","RCA2",35.0039166666667,"Chao 2"
 21,"divDyn","RCA2",17.125,"Chao 2"
 21,"fossil","RCA2",18,"Chao 2"
-21,"tabula","RCA2",16,"Chao 2"
-21,"wiqid","RCA2",16,"Chao 2"
-21,"BAT","RICE",35.0962923239986,"ICE"
+21,"BAT","RCA2M",35.1103333333333,NA
+21,"tabula","RCA2M",16,NA
+21,"wiqid","RCA2M",16,NA
+21,"BAT","RICE",35.1906404762269,"ICE"
 21,"fossil","RICE",17.7777777777778,"ICE"
-21,"tabula","RICE",16,"ICE"
 21,"wiqid","RICE",16,"ICE"
 21,"BAT","RJA1",20,"Jackknife 1"
 21,"BiodiversityR","RJA1",16,"Jackknife 1"
@@ -7532,15 +7551,17 @@
 21,"fossil","RJA1",19.965811965812,"Jackknife 1"
 21,"SSP","RJA1",15,"Jackknife 1"
 21,"tabula","RJA1",2.02701349212558,"Jackknife 1"
+21,"vegan","RJA1",16,"Jackknife 1"
 21,"wiqid","RJA1",20,"Jackknife 1"
 21,"BAT","RJA2",20,"Jackknife 2"
 21,"BiodiversityR","RJA2",16,"Jackknife 2"
 21,"fossil","RJA2",19.8971411730032,"Jackknife 2"
 21,"SSP","RJA2",15,"Jackknife 2"
+21,"vegan","RJA2",16,"Jackknife 2"
 21,"wiqid","RJA2",20,"Jackknife 2"
 21,"asbio","RLMD",25.8369829157571,NA
 21,"sads","RLMD",1.29152258389546,NA
-21,"vegan","RLMD",38.1112373004063,NA
+21,"vegan","RLMD",9.0381601622688,NA
 21,"wiqid","RMM",0,"Michaelis-Menten"
 21,"divDyn","RSQ",18.565871559633,"Squares Richness Estimator"
 21,"ecodive","RSQ",18.565871559633,"Squares Richness Estimator"
@@ -7639,7 +7660,6 @@
 22,"abdiv","DQ",0,"Q-statistic"
 22,"ade4","DRAO",0.755949161709032,"Rao"
 22,"BAT","DRAO",0.755949161709032,"Rao"
-22,"SYNCSA","DRAO",0.755949161709032,"Rao"
 22,"abdiv","DSHA",1.75099521105059,"Shannon"
 22,"adiv","DSHA",1.75099521105059,"Shannon"
 22,"aqp","DSHA",2.52615210760301,"Shannon"
@@ -7855,6 +7875,7 @@
 22,"vegan","RACE",18.4455429230516,"ACE"
 22,"wiqid","RACE",18.4455429230516,"ACE"
 22,"BiodiversityR","RBOO",14,"Bootstrap estimator"
+22,"vegan","RBOO",14,"Bootstrap estimator"
 22,"wiqid","RBOO",35,"Bootstrap estimator"
 22,"BAT","RC1",19,"Chao 1"
 22,"BiodiversityR","RC1",14,"Chao 1"
@@ -7876,14 +7897,13 @@
 22,"OTUtable","RC1M",26.5,"Chao 1 modified"
 22,"tabula","RC1M",26.4273255813954,"Chao 1 modified"
 22,"wiqid","RC1M",26.5,"Chao 1 modified"
-22,"BAT","RCA2",34.941,"Chao 2"
 22,"divDyn","RCA2",18.6428571428571,"Chao 2"
 22,"fossil","RCA2",26.5,"Chao 2"
-22,"tabula","RCA2",14,"Chao 2"
-22,"wiqid","RCA2",14,"Chao 2"
-22,"BAT","RICE",35.0439570601236,"ICE"
+22,"BAT","RCA2M",35.1306666666667,NA
+22,"tabula","RCA2M",14,NA
+22,"wiqid","RCA2M",14,NA
+22,"BAT","RICE",35.1442687399646,"ICE"
 22,"fossil","RICE",16.9411764705882,"ICE"
-22,"tabula","RICE",14,"ICE"
 22,"wiqid","RICE",14,"ICE"
 22,"BAT","RJA1",19,"Jackknife 1"
 22,"BiodiversityR","RJA1",14,"Jackknife 1"
@@ -7892,15 +7912,17 @@
 22,"fossil","RJA1",18.9709302325581,"Jackknife 1"
 22,"SSP","RJA1",13,"Jackknife 1"
 22,"tabula","RJA1",1.56372525283651,"Jackknife 1"
+22,"vegan","RJA1",14,"Jackknife 1"
 22,"wiqid","RJA1",19,"Jackknife 1"
 22,"BAT","RJA2",23,"Jackknife 2"
 22,"BiodiversityR","RJA2",14,"Jackknife 2"
 22,"fossil","RJA2",22.842989256086,"Jackknife 2"
 22,"SSP","RJA2",13,"Jackknife 2"
+22,"vegan","RJA2",14,"Jackknife 2"
 22,"wiqid","RJA2",23,"Jackknife 2"
 22,"asbio","RLMD",20.9797289751479,NA
 22,"sads","RLMD",1.42368448569112,NA
-22,"vegan","RLMD",32.3903550601577,NA
+22,"vegan","RLMD",6.68799225890952,NA
 22,"wiqid","RMM",0,"Michaelis-Menten"
 22,"divDyn","RSQ",20.1157416819137,"Squares Richness Estimator"
 22,"ecodive","RSQ",20.1157416819137,"Squares Richness Estimator"
@@ -7999,7 +8021,6 @@
 23,"abdiv","DQ",0,"Q-statistic"
 23,"ade4","DRAO",0.85230909922268,"Rao"
 23,"BAT","DRAO",0.85230909922268,"Rao"
-23,"SYNCSA","DRAO",0.852309099222679,"Rao"
 23,"abdiv","DSHA",2.22923289456105,"Shannon"
 23,"adiv","DSHA",2.22923289456105,"Shannon"
 23,"aqp","DSHA",3.21610324196978,"Shannon"
@@ -8215,6 +8236,7 @@
 23,"vegan","RACE",18.0710087156273,"ACE"
 23,"wiqid","RACE",18.0710087156273,"ACE"
 23,"BiodiversityR","RBOO",15,"Bootstrap estimator"
+23,"vegan","RBOO",15,"Bootstrap estimator"
 23,"wiqid","RBOO",35,"Bootstrap estimator"
 23,"BAT","RC1",17,"Chao 1"
 23,"BiodiversityR","RC1",15,"Chao 1"
@@ -8236,14 +8258,13 @@
 23,"OTUtable","RC1M",19,"Chao 1 modified"
 23,"tabula","RC1M",18.9506172839506,"Chao 1 modified"
 23,"wiqid","RC1M",19,"Chao 1 modified"
-23,"BAT","RCA2",34.9453333333333,"Chao 2"
 23,"divDyn","RCA2",16.8666666666667,"Chao 2"
 23,"fossil","RCA2",19,"Chao 2"
-23,"tabula","RCA2",15,"Chao 2"
-23,"wiqid","RCA2",15,"Chao 2"
-23,"BAT","RICE",35.0426806323631,"ICE"
+23,"BAT","RCA2M",35.0675,NA
+23,"tabula","RCA2M",15,NA
+23,"wiqid","RCA2M",15,NA
+23,"BAT","RICE",35.1451175787905,"ICE"
 23,"fossil","RICE",16.3684210526316,"ICE"
-23,"tabula","RICE",15,"ICE"
 23,"wiqid","RICE",15,"ICE"
 23,"BAT","RJA1",19,"Jackknife 1"
 23,"BiodiversityR","RJA1",15,"Jackknife 1"
@@ -8252,15 +8273,17 @@
 23,"fossil","RJA1",18.9506172839506,"Jackknife 1"
 23,"SSP","RJA1",14,"Jackknife 1"
 23,"tabula","RJA1",2.11584321189382,"Jackknife 1"
+23,"vegan","RJA1",15,"Jackknife 1"
 23,"wiqid","RJA1",19,"Jackknife 1"
 23,"BAT","RJA2",21,"Jackknife 2"
 23,"BiodiversityR","RJA2",15,"Jackknife 2"
 23,"fossil","RJA2",20.7774691358025,"Jackknife 2"
 23,"SSP","RJA2",14,"Jackknife 2"
+23,"vegan","RJA2",15,"Jackknife 2"
 23,"wiqid","RJA2",21,"Jackknife 2"
 23,"asbio","RLMD",30.7561373009926,NA
 23,"sads","RLMD",1.18512785637611,NA
-23,"vegan","RLMD",18.6904733183579,NA
+23,"vegan","RLMD",10.060450864949,NA
 23,"wiqid","RMM",0,"Michaelis-Menten"
 23,"divDyn","RSQ",17.3848638670974,"Squares Richness Estimator"
 23,"ecodive","RSQ",17.3848638670974,"Squares Richness Estimator"
@@ -8359,7 +8382,6 @@
 24,"abdiv","DQ",0,"Q-statistic"
 24,"ade4","DRAO",0.828125,"Rao"
 24,"BAT","DRAO",0.828124999999999,"Rao"
-24,"SYNCSA","DRAO",0.828125,"Rao"
 24,"abdiv","DSHA",2.05622663798673,"Shannon"
 24,"adiv","DSHA",2.05622663798673,"Shannon"
 24,"aqp","DSHA",2.96650797356724,"Shannon"
@@ -8575,6 +8597,7 @@
 24,"vegan","RACE",15.2479338842975,"ACE"
 24,"wiqid","RACE",15.2479338842975,"ACE"
 24,"BiodiversityR","RBOO",13,"Bootstrap estimator"
+24,"vegan","RBOO",13,"Bootstrap estimator"
 24,"wiqid","RBOO",35,"Bootstrap estimator"
 24,"BAT","RC1",19,"Chao 1"
 24,"BiodiversityR","RC1",13,"Chao 1"
@@ -8596,14 +8619,13 @@
 24,"OTUtable","RC1M",Inf,"Chao 1 modified"
 24,"tabula","RC1M",18.925,"Chao 1 modified"
 24,"wiqid","RC1M",19,"Chao 1 modified"
-24,"BAT","RCA2",34.967,"Chao 2"
 24,"divDyn","RCA2",18.5384615384615,"Chao 2"
 24,"fossil","RCA2",19,"Chao 2"
-24,"tabula","RCA2",13,"Chao 2"
-24,"wiqid","RCA2",13,"Chao 2"
-24,"BAT","RICE",35.0205841719845,"ICE"
+24,"BAT","RCA2M",35.0123333333333,NA
+24,"tabula","RCA2M",13,NA
+24,"wiqid","RCA2M",13,NA
+24,"BAT","RICE",35.1392122794359,"ICE"
 24,"fossil","RICE",14.8181818181818,"ICE"
-24,"tabula","RICE",13,"ICE"
 24,"wiqid","RICE",13,"ICE"
 24,"BAT","RJA1",17,"Jackknife 1"
 24,"BiodiversityR","RJA1",13,"Jackknife 1"
@@ -8612,15 +8634,17 @@
 24,"fossil","RJA1",16.95,"Jackknife 1"
 24,"SSP","RJA1",12,"Jackknife 1"
 24,"tabula","RJA1",1.92529473748093,"Jackknife 1"
+24,"vegan","RJA1",13,"Jackknife 1"
 24,"wiqid","RJA1",17,"Jackknife 1"
 24,"BAT","RJA2",21,"Jackknife 2"
 24,"BiodiversityR","RJA2",13,"Jackknife 2"
 24,"fossil","RJA2",20.7,"Jackknife 2"
 24,"SSP","RJA2",12,"Jackknife 2"
+24,"vegan","RJA2",13,"Jackknife 2"
 24,"wiqid","RJA2",21,"Jackknife 2"
 24,"asbio","RLMD",10.7164159848276,NA
 24,"sads","RLMD",1.25714098552324,NA
-24,"vegan","RLMD",18.4980592195944,NA
+24,"vegan","RLMD",8.07188652030846,NA
 24,"wiqid","RMM",0,"Michaelis-Menten"
 24,"divDyn","RSQ",15.7725267800882,"Squares Richness Estimator"
 24,"ecodive","RSQ",15.7725267800882,"Squares Richness Estimator"
@@ -8719,7 +8743,6 @@
 25,"abdiv","DQ",5.23158485696398,"Q-statistic"
 25,"ade4","DRAO",0.808116861656421,"Rao"
 25,"BAT","DRAO",0.808116861656421,"Rao"
-25,"SYNCSA","DRAO",0.808116861656422,"Rao"
 25,"abdiv","DSHA",2.05845264623166,"Shannon"
 25,"adiv","DSHA",2.05845264623166,"Shannon"
 25,"aqp","DSHA",2.96971942462319,"Shannon"
@@ -8935,6 +8958,7 @@
 25,"vegan","RACE",32.6089965397924,"ACE"
 25,"wiqid","RACE",32.6089965397924,"ACE"
 25,"BiodiversityR","RBOO",19,"Bootstrap estimator"
+25,"vegan","RBOO",19,"Bootstrap estimator"
 25,"wiqid","RBOO",35,"Bootstrap estimator"
 25,"BAT","RC1",26.2,"Chao 1"
 25,"BiodiversityR","RC1",19,"Chao 1"
@@ -8956,14 +8980,13 @@
 25,"OTUtable","RC1M",29.125,"Chao 1 modified"
 25,"tabula","RC1M",29.0426829268293,"Chao 1 modified"
 25,"wiqid","RC1M",29.125,"Chao 1 modified"
-25,"BAT","RCA2",34.9693333333333,"Chao 2"
 25,"divDyn","RCA2",25.8210526315789,"Chao 2"
 25,"fossil","RCA2",29.125,"Chao 2"
-25,"tabula","RCA2",19,"Chao 2"
-25,"wiqid","RCA2",19,"Chao 2"
-25,"BAT","RICE",35.0625818484153,"ICE"
+25,"BAT","RCA2M",34.9681666666667,NA
+25,"tabula","RCA2M",19,NA
+25,"wiqid","RCA2M",19,NA
+25,"BAT","RICE",35.1070685718208,"ICE"
 25,"fossil","RICE",26.9411764705882,"ICE"
-25,"tabula","RICE",19,"ICE"
 25,"wiqid","RICE",19,"ICE"
 25,"BAT","RJA1",28,"Jackknife 1"
 25,"BiodiversityR","RJA1",19,"Jackknife 1"
@@ -8972,15 +8995,17 @@
 25,"fossil","RJA1",27.9268292682927,"Jackknife 1"
 25,"SSP","RJA1",18,"Jackknife 1"
 25,"tabula","RJA1",1.92205486408922,"Jackknife 1"
+25,"vegan","RJA1",19,"Jackknife 1"
 25,"wiqid","RJA1",28,"Jackknife 1"
 25,"BAT","RJA2",33,"Jackknife 2"
 25,"BiodiversityR","RJA2",19,"Jackknife 2"
 25,"fossil","RJA2",32.6582700253232,"Jackknife 2"
 25,"SSP","RJA2",18,"Jackknife 2"
+25,"vegan","RJA2",19,"Jackknife 2"
 25,"wiqid","RJA2",33,"Jackknife 2"
 25,"asbio","RLMD",28.0359708463137,NA
 25,"sads","RLMD",0.950768416274215,NA
-25,"vegan","RLMD",NA,NA
+25,"vegan","RLMD",12.2668864746463,NA
 25,"wiqid","RMM",0,"Michaelis-Menten"
 25,"divDyn","RSQ",34.7202166064982,"Squares Richness Estimator"
 25,"ecodive","RSQ",34.7202166064982,"Squares Richness Estimator"
@@ -9079,7 +9104,6 @@
 26,"abdiv","DQ",6.25167851051884,"Q-statistic"
 26,"ade4","DRAO",0.814305555555555,"Rao"
 26,"BAT","DRAO",0.814305555555557,"Rao"
-26,"SYNCSA","DRAO",0.814305555555556,"Rao"
 26,"abdiv","DSHA",2.03679127607165,"Shannon"
 26,"adiv","DSHA",2.03679127607165,"Shannon"
 26,"aqp","DSHA",2.93846867331447,"Shannon"
@@ -9295,6 +9319,7 @@
 26,"vegan","RACE",27.050297210791,"ACE"
 26,"wiqid","RACE",27.050297210791,"ACE"
 26,"BiodiversityR","RBOO",17,"Bootstrap estimator"
+26,"vegan","RBOO",17,"Bootstrap estimator"
 26,"wiqid","RBOO",35,"Bootstrap estimator"
 26,"BAT","RC1",22.25,"Chao 1"
 26,"BiodiversityR","RC1",17,"Chao 1"
@@ -9316,14 +9341,13 @@
 26,"OTUtable","RC1M",25.1666666666667,"Chao 1 modified"
 26,"tabula","RC1M",25.0986111111111,"Chao 1 modified"
 26,"wiqid","RC1M",25.1666666666667,"Chao 1 modified"
-26,"BAT","RCA2",34.9508333333333,"Chao 2"
 26,"divDyn","RCA2",21.9411764705882,"Chao 2"
 26,"fossil","RCA2",25.1666666666667,"Chao 2"
-26,"tabula","RCA2",17,"Chao 2"
-26,"wiqid","RCA2",17,"Chao 2"
-26,"BAT","RICE",35.046618551191,"ICE"
+26,"BAT","RCA2M",34.9795,NA
+26,"tabula","RCA2M",17,NA
+26,"wiqid","RCA2M",17,NA
+26,"BAT","RICE",35.0790213174948,"ICE"
 26,"fossil","RICE",20.6296296296296,"ICE"
-26,"tabula","RICE",17,"ICE"
 26,"wiqid","RICE",17,"ICE"
 26,"BAT","RJA1",24,"Jackknife 1"
 26,"BiodiversityR","RJA1",17,"Jackknife 1"
@@ -9332,15 +9356,17 @@
 26,"fossil","RJA1",23.9416666666667,"Jackknife 1"
 26,"SSP","RJA1",16,"Jackknife 1"
 26,"tabula","RJA1",1.91985133851109,"Jackknife 1"
+26,"vegan","RJA1",17,"Jackknife 1"
 26,"wiqid","RJA1",24,"Jackknife 1"
 26,"BAT","RJA2",28,"Jackknife 2"
 26,"BiodiversityR","RJA2",17,"Jackknife 2"
 26,"fossil","RJA2",27.7247899159664,"Jackknife 2"
 26,"SSP","RJA2",16,"Jackknife 2"
+26,"vegan","RJA2",17,"Jackknife 2"
 26,"wiqid","RJA2",28,"Jackknife 2"
 26,"asbio","RLMD",24.0489812499059,NA
 26,"sads","RLMD",1.08616399765985,NA
-26,"vegan","RLMD",193.438012273424,NA
+26,"vegan","RLMD",9.66486460324039,NA
 26,"wiqid","RMM",0,"Michaelis-Menten"
 26,"divDyn","RSQ",26.1748476997409,"Squares Richness Estimator"
 26,"ecodive","RSQ",26.1748476997409,"Squares Richness Estimator"
@@ -9439,7 +9465,6 @@
 27,"abdiv","DQ",4.58842961024189,"Q-statistic"
 27,"ade4","DRAO",0.812723445487654,"Rao"
 27,"BAT","DRAO",0.81272344548765,"Rao"
-27,"SYNCSA","DRAO",0.812723445487655,"Rao"
 27,"abdiv","DSHA",2.23502351199203,"Shannon"
 27,"adiv","DSHA",2.23502351199203,"Shannon"
 27,"aqp","DSHA",3.22445733702113,"Shannon"
@@ -9655,6 +9680,7 @@
 27,"vegan","RACE",28.3844880174292,"ACE"
 27,"wiqid","RACE",28.3844880174292,"ACE"
 27,"BiodiversityR","RBOO",22,"Bootstrap estimator"
+27,"vegan","RBOO",22,"Bootstrap estimator"
 27,"wiqid","RBOO",35,"Bootstrap estimator"
 27,"BAT","RC1",29,"Chao 1"
 27,"BiodiversityR","RC1",22,"Chao 1"
@@ -9676,14 +9702,13 @@
 27,"OTUtable","RC1M",34.25,"Chao 1 modified"
 27,"tabula","RC1M",34.1791907514451,"Chao 1 modified"
 27,"wiqid","RC1M",34.25,"Chao 1 modified"
-27,"BAT","RCA2",34.9761666666667,"Chao 2"
 27,"divDyn","RCA2",28.6818181818182,"Chao 2"
 27,"fossil","RCA2",34.25,"Chao 2"
-27,"tabula","RCA2",22,"Chao 2"
-27,"wiqid","RCA2",22,"Chao 2"
-27,"BAT","RICE",35.1117414404767,"ICE"
+27,"BAT","RCA2M",34.9845,NA
+27,"tabula","RCA2M",22,NA
+27,"wiqid","RCA2M",22,NA
+27,"BAT","RICE",35.0784259605263,"ICE"
 27,"fossil","RICE",24.8,"ICE"
-27,"tabula","RICE",22,"ICE"
 27,"wiqid","RICE",22,"ICE"
 27,"BAT","RJA1",29,"Jackknife 1"
 27,"BiodiversityR","RJA1",22,"Jackknife 1"
@@ -9692,15 +9717,17 @@
 27,"fossil","RJA1",28.9595375722543,"Jackknife 1"
 27,"SSP","RJA1",21,"Jackknife 1"
 27,"tabula","RJA1",2.12191746123303,"Jackknife 1"
+27,"vegan","RJA1",22,"Jackknife 1"
 27,"wiqid","RJA1",29,"Jackknife 1"
 27,"BAT","RJA2",34,"Jackknife 2"
 27,"BiodiversityR","RJA2",22,"Jackknife 2"
 27,"fossil","RJA2",33.7918403011157,"Jackknife 2"
 27,"SSP","RJA2",21,"Jackknife 2"
+27,"vegan","RJA2",22,"Jackknife 2"
 27,"wiqid","RJA2",34,"Jackknife 2"
 27,"asbio","RLMD",41.4549501857563,NA
 27,"sads","RLMD",1.23997343252038,NA
-27,"vegan","RLMD",37.2997997240472,NA
+27,"vegan","RLMD",12.2817680677787,NA
 27,"wiqid","RMM",0,"Michaelis-Menten"
 27,"divDyn","RSQ",31.224013434089,"Squares Richness Estimator"
 27,"ecodive","RSQ",31.224013434089,"Squares Richness Estimator"
@@ -9799,7 +9826,6 @@
 28,"abdiv","DQ",5.91655497307444,"Q-statistic"
 28,"ade4","DRAO",0.859832805778752,"Rao"
 28,"BAT","DRAO",0.859832805778752,"Rao"
-28,"SYNCSA","DRAO",0.859832805778752,"Rao"
 28,"abdiv","DSHA",2.32674415127102,"Shannon"
 28,"adiv","DSHA",2.32674415127102,"Shannon"
 28,"aqp","DSHA",3.35678224845609,"Shannon"
@@ -10015,6 +10041,7 @@
 28,"vegan","RACE",22.6784607438017,"ACE"
 28,"wiqid","RACE",22.6784607438017,"ACE"
 28,"BiodiversityR","RBOO",18,"Bootstrap estimator"
+28,"vegan","RBOO",18,"Bootstrap estimator"
 28,"wiqid","RBOO",35,"Bootstrap estimator"
 28,"BAT","RC1",20.5,"Chao 1"
 28,"BiodiversityR","RC1",18,"Chao 1"
@@ -10036,14 +10063,13 @@
 28,"OTUtable","RC1M",22.1666666666667,"Chao 1 modified"
 28,"tabula","RC1M",22.1291291291291,"Chao 1 modified"
 28,"wiqid","RC1M",22.1666666666667,"Chao 1 modified"
-28,"BAT","RCA2",34.977,"Chao 2"
 28,"divDyn","RCA2",20.3611111111111,"Chao 2"
 28,"fossil","RCA2",22.1666666666667,"Chao 2"
-28,"tabula","RCA2",18,"Chao 2"
-28,"wiqid","RCA2",18,"Chao 2"
-28,"BAT","RICE",35.1112037653662,"ICE"
+28,"BAT","RCA2M",35.015,NA
+28,"tabula","RCA2M",18,NA
+28,"wiqid","RCA2M",18,NA
+28,"BAT","RICE",35.0716151636278,"ICE"
 28,"fossil","RICE",19.7045454545455,"ICE"
-28,"tabula","RICE",18,"ICE"
 28,"wiqid","RICE",18,"ICE"
 28,"BAT","RJA1",23,"Jackknife 1"
 28,"BiodiversityR","RJA1",18,"Jackknife 1"
@@ -10052,15 +10078,17 @@
 28,"fossil","RJA1",22.954954954955,"Jackknife 1"
 28,"SSP","RJA1",17,"Jackknife 1"
 28,"tabula","RJA1",2.22404615045005,"Jackknife 1"
+28,"vegan","RJA1",18,"Jackknife 1"
 28,"wiqid","RJA1",23,"Jackknife 1"
 28,"BAT","RJA2",25,"Jackknife 2"
 28,"BiodiversityR","RJA2",18,"Jackknife 2"
 28,"fossil","RJA2",24.8105651105651,"Jackknife 2"
 28,"SSP","RJA2",17,"Jackknife 2"
+28,"vegan","RJA2",18,"Jackknife 2"
 28,"wiqid","RJA2",25,"Jackknife 2"
 28,"asbio","RLMD",35.9575397543909,NA
 28,"sads","RLMD",1.22661547602497,NA
-28,"vegan","RLMD",24.886684446995,NA
+28,"vegan","RLMD",11.1032663792232,NA
 28,"wiqid","RMM",0,"Michaelis-Menten"
 28,"divDyn","RSQ",21.5299648434306,"Squares Richness Estimator"
 28,"ecodive","RSQ",21.5299648434306,"Squares Richness Estimator"
@@ -10159,7 +10187,6 @@
 29,"abdiv","DQ",0,"Q-statistic"
 29,"ade4","DRAO",0.758866975083192,"Rao"
 29,"BAT","DRAO",0.758866975083191,"Rao"
-29,"SYNCSA","DRAO",0.758866975083191,"Rao"
 29,"abdiv","DSHA",1.64167062992938,"Shannon"
 29,"adiv","DSHA",1.64167062992938,"Shannon"
 29,"aqp","DSHA",2.36843007657217,"Shannon"
@@ -10375,6 +10402,7 @@
 29,"vegan","RACE",11.3090909090909,"ACE"
 29,"wiqid","RACE",11.3090909090909,"ACE"
 29,"BiodiversityR","RBOO",9,"Bootstrap estimator"
+29,"vegan","RBOO",9,"Bootstrap estimator"
 29,"wiqid","RBOO",35,"Bootstrap estimator"
 29,"BAT","RC1",9.33333333333333,"Chao 1"
 29,"BiodiversityR","RC1",9,"Chao 1"
@@ -10396,14 +10424,13 @@
 29,"OTUtable","RC1M",10,"Chao 1 modified"
 29,"tabula","RC1M",9.99099099099099,"Chao 1 modified"
 29,"wiqid","RC1M",10,"Chao 1 modified"
-29,"BAT","RCA2",34.985,"Chao 2"
 29,"divDyn","RCA2",9.2962962962963,"Chao 2"
 29,"fossil","RCA2",10,"Chao 2"
-29,"tabula","RCA2",9,"Chao 2"
-29,"wiqid","RCA2",9,"Chao 2"
-29,"BAT","RICE",35.0987094769713,"ICE"
+29,"BAT","RCA2M",34.9916666666667,NA
+29,"tabula","RCA2M",9,NA
+29,"wiqid","RCA2M",9,NA
+29,"BAT","RICE",35.0528152265595,"ICE"
 29,"fossil","RICE",10,"ICE"
-29,"tabula","RICE",9,"ICE"
 29,"wiqid","RICE",9,"ICE"
 29,"BAT","RJA1",11,"Jackknife 1"
 29,"BiodiversityR","RJA1",9,"Jackknife 1"
@@ -10412,15 +10439,17 @@
 29,"fossil","RJA1",10.981981981982,"Jackknife 1"
 29,"SSP","RJA1",8,"Jackknife 1"
 29,"tabula","RJA1",1.42650476776008,"Jackknife 1"
+29,"vegan","RJA1",9,"Jackknife 1"
 29,"wiqid","RJA1",11,"Jackknife 1"
 29,"BAT","RJA2",11,"Jackknife 2"
 29,"BiodiversityR","RJA2",9,"Jackknife 2"
 29,"fossil","RJA2",10.9457821457821,"Jackknife 2"
 29,"SSP","RJA2",8,"Jackknife 2"
+29,"vegan","RJA2",9,"Jackknife 2"
 29,"wiqid","RJA2",11,"Jackknife 2"
 29,"asbio","RLMD",7.63024632055947,NA
 29,"sads","RLMD",1.73591181850573,NA
-29,"vegan","RLMD",NA,NA
+29,"vegan","RLMD",4.31553290211328,NA
 29,"wiqid","RMM",0,"Michaelis-Menten"
 29,"divDyn","RSQ",9.96594326587011,"Squares Richness Estimator"
 29,"ecodive","RSQ",9.96594326587011,"Squares Richness Estimator"
@@ -10519,7 +10548,6 @@
 30,"abdiv","DQ",5.64582826474227,"Q-statistic"
 30,"ade4","DRAO",0.879340277777778,"Rao"
 30,"BAT","DRAO",0.879340277777773,"Rao"
-30,"SYNCSA","DRAO",0.879340277777778,"Rao"
 30,"abdiv","DSHA",2.43864573732106,"Shannon"
 30,"adiv","DSHA",2.43864573732106,"Shannon"
 30,"aqp","DSHA",3.5182221117181,"Shannon"
@@ -10735,6 +10763,7 @@
 30,"vegan","RACE",44.9144489795918,"ACE"
 30,"wiqid","RACE",44.9144489795918,"ACE"
 30,"BiodiversityR","RBOO",21,"Bootstrap estimator"
+30,"vegan","RBOO",21,"Bootstrap estimator"
 30,"wiqid","RBOO",35,"Bootstrap estimator"
 30,"BAT","RC1",34.75,"Chao 1"
 30,"BiodiversityR","RC1",21,"Chao 1"
@@ -10756,14 +10785,13 @@
 30,"OTUtable","RC1M",41.1666666666667,"Chao 1 modified"
 30,"tabula","RC1M",40.9565972222222,"Chao 1 modified"
 30,"wiqid","RC1M",41.1666666666667,"Chao 1 modified"
-30,"BAT","RCA2",35.005,"Chao 2"
 30,"divDyn","RCA2",34.0952380952381,"Chao 2"
 30,"fossil","RCA2",41.1666666666667,"Chao 2"
-30,"tabula","RCA2",21,"Chao 2"
-30,"wiqid","RCA2",21,"Chao 2"
-30,"BAT","RICE",35.0739242817707,"ICE"
+30,"BAT","RCA2M",35.0033333333333,NA
+30,"tabula","RCA2M",21,NA
+30,"wiqid","RCA2M",21,NA
+30,"BAT","RICE",35.0593243948348,"ICE"
 30,"fossil","RICE",26.6571428571429,"ICE"
-30,"tabula","RICE",21,"ICE"
 30,"wiqid","RICE",21,"ICE"
 30,"BAT","RJA1",32,"Jackknife 1"
 30,"BiodiversityR","RJA1",21,"Jackknife 1"
@@ -10772,15 +10800,17 @@
 30,"fossil","RJA1",31.8854166666667,"Jackknife 1"
 30,"SSP","RJA1",20,"Jackknife 1"
 30,"tabula","RJA1",2.34879294776918,"Jackknife 1"
+30,"vegan","RJA1",21,"Jackknife 1"
 30,"wiqid","RJA1",32,"Jackknife 1"
 30,"BAT","RJA2",40,"Jackknife 2"
 30,"BiodiversityR","RJA2",21,"Jackknife 2"
 30,"fossil","RJA2",39.4059210526316,"Jackknife 2"
 30,"SSP","RJA2",20,"Jackknife 2"
+30,"vegan","RJA2",21,"Jackknife 2"
 30,"wiqid","RJA2",40,"Jackknife 2"
 30,"asbio","RLMD",26.7808467581354,NA
 30,"sads","RLMD",0.870593638698658,NA
-30,"vegan","RLMD",NA,NA
+30,"vegan","RLMD",13.584791691563,NA
 30,"wiqid","RMM",0,"Michaelis-Menten"
 30,"divDyn","RSQ",35.9751808569839,"Squares Richness Estimator"
 30,"ecodive","RSQ",35.9751808569839,"Squares Richness Estimator"
@@ -10879,7 +10909,6 @@
 31,"abdiv","DQ",0,"Q-statistic"
 31,"ade4","DRAO",0.79680473372781,"Rao"
 31,"BAT","DRAO",0.79680473372781,"Rao"
-31,"SYNCSA","DRAO",0.796804733727811,"Rao"
 31,"abdiv","DSHA",1.99034410181326,"Shannon"
 31,"adiv","DSHA",1.99034410181326,"Shannon"
 31,"aqp","DSHA",2.87145956534859,"Shannon"
@@ -11095,6 +11124,7 @@
 31,"vegan","RACE",27.5761772853186,"ACE"
 31,"wiqid","RACE",27.5761772853186,"ACE"
 31,"BiodiversityR","RBOO",15,"Bootstrap estimator"
+31,"vegan","RBOO",15,"Bootstrap estimator"
 31,"wiqid","RBOO",35,"Bootstrap estimator"
 31,"BAT","RC1",22.5,"Chao 1"
 31,"BiodiversityR","RC1",15,"Chao 1"
@@ -11116,14 +11146,13 @@
 31,"OTUtable","RC1M",33,"Chao 1 modified"
 31,"tabula","RC1M",32.8615384615385,"Chao 1 modified"
 31,"wiqid","RC1M",33,"Chao 1 modified"
-31,"BAT","RCA2",34.97,"Chao 2"
 31,"divDyn","RCA2",22,"Chao 2"
 31,"fossil","RCA2",33,"Chao 2"
-31,"tabula","RCA2",15,"Chao 2"
-31,"wiqid","RCA2",15,"Chao 2"
-31,"BAT","RICE",35.0418063050856,"ICE"
+31,"BAT","RCA2M",34.9883333333333,NA
+31,"tabula","RCA2M",15,NA
+31,"wiqid","RCA2M",15,NA
+31,"BAT","RICE",35.0431453878711,"ICE"
 31,"fossil","RICE",18.1578947368421,"ICE"
-31,"tabula","RICE",15,"ICE"
 31,"wiqid","RICE",15,"ICE"
 31,"BAT","RJA1",21,"Jackknife 1"
 31,"BiodiversityR","RJA1",15,"Jackknife 1"
@@ -11132,15 +11161,17 @@
 31,"fossil","RJA1",20.9538461538462,"Jackknife 1"
 31,"SSP","RJA1",14,"Jackknife 1"
 31,"tabula","RJA1",1.84484309440676,"Jackknife 1"
+31,"vegan","RJA1",15,"Jackknife 1"
 31,"wiqid","RJA1",21,"Jackknife 1"
 31,"BAT","RJA2",26,"Jackknife 2"
 31,"BiodiversityR","RJA2",15,"Jackknife 2"
 31,"fossil","RJA2",25.7460942158617,"Jackknife 2"
 31,"SSP","RJA2",14,"Jackknife 2"
+31,"vegan","RJA2",15,"Jackknife 2"
 31,"wiqid","RJA2",26,"Jackknife 2"
 31,"asbio","RLMD",23.4124806237432,NA
 31,"sads","RLMD",1.32492572058063,NA
-31,"vegan","RLMD",49.5705367442003,NA
+31,"vegan","RLMD",7.66683859376862,NA
 31,"wiqid","RMM",0,"Michaelis-Menten"
 31,"divDyn","RSQ",22.3541939321832,"Squares Richness Estimator"
 31,"ecodive","RSQ",22.3541939321832,"Squares Richness Estimator"
@@ -11239,7 +11270,6 @@
 32,"abdiv","DQ",0,"Q-statistic"
 32,"ade4","DRAO",0.890970054341542,"Rao"
 32,"BAT","DRAO",0.890970054341543,"Rao"
-32,"SYNCSA","DRAO",0.890970054341542,"Rao"
 32,"abdiv","DSHA",2.4570713728317,"Shannon"
 32,"adiv","DSHA",2.4570713728317,"Shannon"
 32,"aqp","DSHA",3.54480468469453,"Shannon"
@@ -11455,6 +11485,7 @@
 32,"vegan","RACE",16.4206854470741,"ACE"
 32,"wiqid","RACE",16.4206854470741,"ACE"
 32,"BiodiversityR","RBOO",16,"Bootstrap estimator"
+32,"vegan","RBOO",16,"Bootstrap estimator"
 32,"wiqid","RBOO",35,"Bootstrap estimator"
 32,"BAT","RC1",16,"Chao 1"
 32,"BiodiversityR","RC1",16,"Chao 1"
@@ -11476,14 +11507,13 @@
 32,"OTUtable","RC1M",16.1,"Chao 1 modified"
 32,"tabula","RC1M",16.0989247311828,"Chao 1 modified"
 32,"wiqid","RC1M",16.1,"Chao 1 modified"
-32,"BAT","RCA2",34.9708333333333,"Chao 2"
 32,"divDyn","RCA2",16,"Chao 2"
 32,"fossil","RCA2",16.1,"Chao 2"
-32,"tabula","RCA2",16,"Chao 2"
-32,"wiqid","RCA2",16,"Chao 2"
-32,"BAT","RICE",35.0241465483665,"ICE"
+32,"BAT","RCA2M",34.9833333333333,NA
+32,"tabula","RCA2M",16,NA
+32,"wiqid","RCA2M",16,NA
+32,"BAT","RICE",35.0457314074645,"ICE"
 32,"fossil","RICE",16.2456140350877,"ICE"
-32,"tabula","RICE",16,"ICE"
 32,"wiqid","RICE",16,"ICE"
 32,"BAT","RJA1",17,"Jackknife 1"
 32,"BiodiversityR","RJA1",16,"Jackknife 1"
@@ -11492,15 +11522,17 @@
 32,"fossil","RJA1",16.989247311828,"Jackknife 1"
 32,"SSP","RJA1",15,"Jackknife 1"
 32,"tabula","RJA1",2.36826887594516,"Jackknife 1"
+32,"vegan","RJA1",16,"Jackknife 1"
 32,"wiqid","RJA1",17,"Jackknife 1"
 32,"BAT","RJA2",13,"Jackknife 2"
 32,"BiodiversityR","RJA2",16,"Jackknife 2"
 32,"fossil","RJA2",13.0961898083216,"Jackknife 2"
 32,"SSP","RJA2",15,"Jackknife 2"
+32,"vegan","RJA2",16,"Jackknife 2"
 32,"wiqid","RJA2",13,"Jackknife 2"
 32,"asbio","RLMD",34.2140468805099,NA
 32,"sads","RLMD",1.43171495105157,NA
-32,"vegan","RLMD",16.8225411128013,NA
+32,"vegan","RLMD",13.5772757428809,NA
 32,"wiqid","RMM",0,"Michaelis-Menten"
 32,"divDyn","RSQ",16.1092320166802,"Squares Richness Estimator"
 32,"ecodive","RSQ",16.1092320166802,"Squares Richness Estimator"
@@ -11599,7 +11631,6 @@
 33,"abdiv","DQ",0,"Q-statistic"
 33,"ade4","DRAO",0.847750865051903,"Rao"
 33,"BAT","DRAO",0.847750865051902,"Rao"
-33,"SYNCSA","DRAO",0.847750865051903,"Rao"
 33,"abdiv","DSHA",2.16151178715681,"Shannon"
 33,"adiv","DSHA",2.16151178715681,"Shannon"
 33,"aqp","DSHA",3.11840233615417,"Shannon"
@@ -11815,6 +11846,7 @@
 33,"vegan","RACE",25.1010848126233,"ACE"
 33,"wiqid","RACE",25.1010848126233,"ACE"
 33,"BiodiversityR","RBOO",16,"Bootstrap estimator"
+33,"vegan","RBOO",16,"Bootstrap estimator"
 33,"wiqid","RBOO",35,"Bootstrap estimator"
 33,"BAT","RC1",18,"Chao 1"
 33,"BiodiversityR","RC1",16,"Chao 1"
@@ -11836,14 +11868,13 @@
 33,"OTUtable","RC1M",19.125,"Chao 1 modified"
 33,"tabula","RC1M",19.1020220588235,"Chao 1 modified"
 33,"wiqid","RC1M",19.125,"Chao 1 modified"
-33,"BAT","RCA2",34.9716666666667,"Chao 2"
 33,"divDyn","RCA2",17.875,"Chao 2"
 33,"fossil","RCA2",19.125,"Chao 2"
-33,"tabula","RCA2",16,"Chao 2"
-33,"wiqid","RCA2",16,"Chao 2"
-33,"BAT","RICE",35.0173543398604,"ICE"
+33,"BAT","RCA2M",34.98,NA
+33,"tabula","RCA2M",16,NA
+33,"wiqid","RCA2M",16,NA
+33,"BAT","RICE",35.0332325183457,"ICE"
 33,"fossil","RICE",18.1153846153846,"ICE"
-33,"tabula","RICE",16,"ICE"
 33,"wiqid","RICE",16,"ICE"
 33,"BAT","RJA1",21,"Jackknife 1"
 33,"BiodiversityR","RJA1",16,"Jackknife 1"
@@ -11852,15 +11883,17 @@
 33,"fossil","RJA1",20.9632352941176,"Jackknife 1"
 33,"SSP","RJA1",15,"Jackknife 1"
 33,"tabula","RJA1",2.03930535228894,"Jackknife 1"
+33,"vegan","RJA1",16,"Jackknife 1"
 33,"wiqid","RJA1",21,"Jackknife 1"
 33,"BAT","RJA2",22,"Jackknife 2"
 33,"BiodiversityR","RJA2",16,"Jackknife 2"
 33,"fossil","RJA2",21.8674291938998,"Jackknife 2"
 33,"SSP","RJA2",15,"Jackknife 2"
+33,"vegan","RJA2",16,"Jackknife 2"
 33,"wiqid","RJA2",22,"Jackknife 2"
 33,"asbio","RLMD",17.1259662084848,NA
 33,"sads","RLMD",1.37211662046973,NA
-33,"vegan","RLMD",48.519268167162,NA
+33,"vegan","RLMD",8.20508027421709,NA
 33,"wiqid","RMM",0,"Michaelis-Menten"
 33,"divDyn","RSQ",19.8227628149435,"Squares Richness Estimator"
 33,"ecodive","RSQ",19.8227628149435,"Squares Richness Estimator"
@@ -11959,7 +11992,6 @@
 34,"abdiv","DQ",4.92600136196937,"Q-statistic"
 34,"ade4","DRAO",0.846848761823786,"Rao"
 34,"BAT","DRAO",0.846848761823786,"Rao"
-34,"SYNCSA","DRAO",0.846848761823786,"Rao"
 34,"abdiv","DSHA",2.28586349862987,"Shannon"
 34,"adiv","DSHA",2.28586349862987,"Shannon"
 34,"aqp","DSHA",3.29780393362241,"Shannon"
@@ -12175,6 +12207,7 @@
 34,"vegan","RACE",27.3869387755102,"ACE"
 34,"wiqid","RACE",27.3869387755102,"ACE"
 34,"BiodiversityR","RBOO",21,"Bootstrap estimator"
+34,"vegan","RBOO",21,"Bootstrap estimator"
 34,"wiqid","RBOO",35,"Bootstrap estimator"
 34,"BAT","RC1",24,"Chao 1"
 34,"BiodiversityR","RC1",21,"Chao 1"
@@ -12196,14 +12229,13 @@
 34,"OTUtable","RC1M",25.5,"Chao 1 modified"
 34,"tabula","RC1M",25.4768041237113,"Chao 1 modified"
 34,"wiqid","RC1M",25.5,"Chao 1 modified"
-34,"BAT","RCA2",34.9866666666667,"Chao 2"
 34,"divDyn","RCA2",23.8571428571429,"Chao 2"
 34,"fossil","RCA2",25.5,"Chao 2"
-34,"tabula","RCA2",21,"Chao 2"
-34,"wiqid","RCA2",21,"Chao 2"
-34,"BAT","RICE",35.0382912844726,"ICE"
+34,"BAT","RCA2M",34.985,NA
+34,"tabula","RCA2M",21,NA
+34,"wiqid","RCA2M",21,NA
+34,"BAT","RICE",35.0237684152707,"ICE"
 34,"fossil","RICE",23.5714285714286,"ICE"
-34,"tabula","RICE",21,"ICE"
 34,"wiqid","RICE",21,"ICE"
 34,"BAT","RJA1",27,"Jackknife 1"
 34,"BiodiversityR","RJA1",21,"Jackknife 1"
@@ -12212,15 +12244,17 @@
 34,"fossil","RJA1",26.9690721649485,"Jackknife 1"
 34,"SSP","RJA1",20,"Jackknife 1"
 34,"tabula","RJA1",2.17944778989364,"Jackknife 1"
+34,"vegan","RJA1",21,"Jackknife 1"
 34,"wiqid","RJA1",27,"Jackknife 1"
 34,"BAT","RJA2",29,"Jackknife 2"
 34,"BiodiversityR","RJA2",21,"Jackknife 2"
 34,"fossil","RJA2",28.8761818278938,"Jackknife 2"
 34,"SSP","RJA2",20,"Jackknife 2"
+34,"vegan","RJA2",21,"Jackknife 2"
 34,"wiqid","RJA2",29,"Jackknife 2"
 34,"asbio","RLMD",35.9718721657118,NA
 34,"sads","RLMD",1.38933721486281,NA
-34,"vegan","RLMD",32.9468192184249,NA
+34,"vegan","RLMD",10.9271042805645,NA
 34,"wiqid","RMM",0,"Michaelis-Menten"
 34,"divDyn","RSQ",26.5319648093842,"Squares Richness Estimator"
 34,"ecodive","RSQ",26.5319648093842,"Squares Richness Estimator"
@@ -12319,7 +12353,6 @@
 35,"abdiv","DQ",7.25543814516621,"Q-statistic"
 35,"ade4","DRAO",0.831912994075156,"Rao"
 35,"BAT","DRAO",0.831912994075156,"Rao"
-35,"SYNCSA","DRAO",0.831912994075156,"Rao"
 35,"abdiv","DSHA",2.16732870909559,"Shannon"
 35,"adiv","DSHA",2.16732870909559,"Shannon"
 35,"aqp","DSHA",3.12679438058849,"Shannon"
@@ -12535,6 +12568,7 @@
 35,"vegan","RACE",22.4547807232287,"ACE"
 35,"wiqid","RACE",22.4547807232287,"ACE"
 35,"BiodiversityR","RBOO",18,"Bootstrap estimator"
+35,"vegan","RBOO",18,"Bootstrap estimator"
 35,"wiqid","RBOO",35,"Bootstrap estimator"
 35,"BAT","RC1",21.75,"Chao 1"
 35,"BiodiversityR","RC1",18,"Chao 1"
@@ -12556,14 +12590,13 @@
 35,"OTUtable","RC1M",24,"Chao 1 modified"
 35,"tabula","RC1M",23.9459459459459,"Chao 1 modified"
 35,"wiqid","RC1M",24,"Chao 1 modified"
-35,"BAT","RCA2",35.0033333333333,"Chao 2"
 35,"divDyn","RCA2",21.5416666666667,"Chao 2"
 35,"fossil","RCA2",24,"Chao 2"
-35,"tabula","RCA2",18,"Chao 2"
-35,"wiqid","RCA2",18,"Chao 2"
-35,"BAT","RICE",35.0295373619223,"ICE"
+35,"BAT","RCA2M",34.985,NA
+35,"tabula","RCA2M",18,NA
+35,"wiqid","RCA2M",18,NA
+35,"BAT","RICE",35.0133808379303,"ICE"
 35,"fossil","RICE",21.1034482758621,"ICE"
-35,"tabula","RICE",18,"ICE"
 35,"wiqid","RICE",18,"ICE"
 35,"BAT","RJA1",24,"Jackknife 1"
 35,"BiodiversityR","RJA1",18,"Jackknife 1"
@@ -12572,15 +12605,17 @@
 35,"fossil","RJA1",23.9459459459459,"Jackknife 1"
 35,"SSP","RJA1",17,"Jackknife 1"
 35,"tabula","RJA1",2.06887645662714,"Jackknife 1"
+35,"vegan","RJA1",18,"Jackknife 1"
 35,"wiqid","RJA1",24,"Jackknife 1"
 35,"BAT","RJA2",27,"Jackknife 2"
 35,"BiodiversityR","RJA2",18,"Jackknife 2"
 35,"fossil","RJA2",26.7565110565111,"Jackknife 2"
 35,"SSP","RJA2",17,"Jackknife 2"
+35,"vegan","RJA2",18,"Jackknife 2"
 35,"wiqid","RJA2",27,"Jackknife 2"
 35,"asbio","RLMD",30.6020975870476,NA
 35,"sads","RLMD",1.08941896693797,NA
-35,"vegan","RLMD",35.121956763294,NA
+35,"vegan","RLMD",10.6628840709341,NA
 35,"wiqid","RMM",0,"Michaelis-Menten"
 35,"divDyn","RSQ",24.1046425939573,"Squares Richness Estimator"
 35,"ecodive","RSQ",24.1046425939573,"Squares Richness Estimator"
@@ -12679,7 +12714,6 @@
 36,"abdiv","DQ",4.33950660903934,"Q-statistic"
 36,"ade4","DRAO",0.864605121827124,"Rao"
 36,"BAT","DRAO",0.864605121827125,"Rao"
-36,"SYNCSA","DRAO",0.864605121827124,"Rao"
 36,"abdiv","DSHA",2.28536861806529,"Shannon"
 36,"adiv","DSHA",2.28536861806529,"Shannon"
 36,"aqp","DSHA",3.29708997188605,"Shannon"
@@ -12895,6 +12929,7 @@
 36,"vegan","RACE",20.7442956349206,"ACE"
 36,"wiqid","RACE",20.7442956349206,"ACE"
 36,"BiodiversityR","RBOO",18,"Bootstrap estimator"
+36,"vegan","RBOO",18,"Bootstrap estimator"
 36,"wiqid","RBOO",35,"Bootstrap estimator"
 36,"BAT","RC1",21.3333333333333,"Chao 1"
 36,"BiodiversityR","RC1",18,"Chao 1"
@@ -12916,14 +12951,13 @@
 36,"OTUtable","RC1M",24.25,"Chao 1 modified"
 36,"tabula","RC1M",24.203007518797,"Chao 1 modified"
 36,"wiqid","RC1M",24.25,"Chao 1 modified"
-36,"BAT","RCA2",34.9958333333333,"Chao 2"
 36,"divDyn","RCA2",21.1481481481481,"Chao 2"
 36,"fossil","RCA2",24.25,"Chao 2"
-36,"tabula","RCA2",18,"Chao 2"
-36,"wiqid","RCA2",18,"Chao 2"
-36,"BAT","RICE",35.0371794178418,"ICE"
+36,"BAT","RCA2M",34.98,NA
+36,"tabula","RCA2M",18,NA
+36,"wiqid","RCA2M",18,NA
+36,"BAT","RICE",35.0162376585589,"ICE"
 36,"fossil","RICE",20.7083333333333,"ICE"
-36,"tabula","RICE",18,"ICE"
 36,"wiqid","RICE",18,"ICE"
 36,"BAT","RJA1",23,"Jackknife 1"
 36,"BiodiversityR","RJA1",18,"Jackknife 1"
@@ -12932,15 +12966,17 @@
 36,"fossil","RJA1",22.9624060150376,"Jackknife 1"
 36,"SSP","RJA1",17,"Jackknife 1"
 36,"tabula","RJA1",2.17890188399877,"Jackknife 1"
+36,"vegan","RJA1",18,"Jackknife 1"
 36,"wiqid","RJA1",23,"Jackknife 1"
 36,"BAT","RJA2",26,"Jackknife 2"
 36,"BiodiversityR","RJA2",18,"Jackknife 2"
 36,"fossil","RJA2",25.8194349510139,"Jackknife 2"
 36,"SSP","RJA2",17,"Jackknife 2"
+36,"vegan","RJA2",18,"Jackknife 2"
 36,"wiqid","RJA2",26,"Jackknife 2"
 36,"asbio","RLMD",32.5315765235581,NA
 36,"sads","RLMD",1.30736074893576,NA
-36,"vegan","RLMD",260.035132565755,NA
+36,"vegan","RLMD",10.0964789983464,NA
 36,"wiqid","RMM",0,"Michaelis-Menten"
 36,"divDyn","RSQ",21.4021819421558,"Squares Richness Estimator"
 36,"ecodive","RSQ",21.4021819421558,"Squares Richness Estimator"
@@ -13039,7 +13075,6 @@
 37,"abdiv","DQ",0,"Q-statistic"
 37,"ade4","DRAO",0.8443662336318,"Rao"
 37,"BAT","DRAO",0.844366233631797,"Rao"
-37,"SYNCSA","DRAO",0.8443662336318,"Rao"
 37,"abdiv","DSHA",2.13873944553299,"Shannon"
 37,"adiv","DSHA",2.13873944553299,"Shannon"
 37,"aqp","DSHA",3.08554879182406,"Shannon"
@@ -13255,6 +13290,7 @@
 37,"vegan","RACE",17.5714285714286,"ACE"
 37,"wiqid","RACE",17.5714285714286,"ACE"
 37,"BiodiversityR","RBOO",16,"Bootstrap estimator"
+37,"vegan","RBOO",16,"Bootstrap estimator"
 37,"wiqid","RBOO",35,"Bootstrap estimator"
 37,"BAT","RC1",16.5,"Chao 1"
 37,"BiodiversityR","RC1",16,"Chao 1"
@@ -13276,14 +13312,13 @@
 37,"OTUtable","RC1M",16.9,"Chao 1 modified"
 37,"tabula","RC1M",16.8935251798561,"Chao 1 modified"
 37,"wiqid","RC1M",16.9,"Chao 1 modified"
-37,"BAT","RCA2",34.99,"Chao 2"
 37,"divDyn","RCA2",16.46875,"Chao 2"
 37,"fossil","RCA2",16.9,"Chao 2"
-37,"tabula","RCA2",16,"Chao 2"
-37,"wiqid","RCA2",16,"Chao 2"
-37,"BAT","RICE",35.0285684070858,"ICE"
+37,"BAT","RCA2M",34.98,NA
+37,"tabula","RCA2M",16,NA
+37,"wiqid","RCA2M",16,NA
+37,"BAT","RICE",35.004657833805,"ICE"
 37,"fossil","RICE",17.5714285714286,"ICE"
-37,"tabula","RICE",16,"ICE"
 37,"wiqid","RICE",16,"ICE"
 37,"BAT","RJA1",19,"Jackknife 1"
 37,"BiodiversityR","RJA1",16,"Jackknife 1"
@@ -13292,15 +13327,17 @@
 37,"fossil","RJA1",18.9784172661871,"Jackknife 1"
 37,"SSP","RJA1",15,"Jackknife 1"
 37,"tabula","RJA1",2.01908303938281,"Jackknife 1"
+37,"vegan","RJA1",16,"Jackknife 1"
 37,"wiqid","RJA1",19,"Jackknife 1"
 37,"BAT","RJA2",17,"Jackknife 2"
 37,"BiodiversityR","RJA2",16,"Jackknife 2"
 37,"fossil","RJA2",16.9781566051507,"Jackknife 2"
 37,"SSP","RJA2",15,"Jackknife 2"
+37,"vegan","RJA2",16,"Jackknife 2"
 37,"wiqid","RJA2",17,"Jackknife 2"
 37,"asbio","RLMD",22.0234229338438,NA
 37,"sads","RLMD",1.4159026692973,NA
-37,"vegan","RLMD",22.7715779431852,NA
+37,"vegan","RLMD",8.62302748427772,NA
 37,"wiqid","RMM",0,"Michaelis-Menten"
 37,"divDyn","RSQ",17.4041923935039,"Squares Richness Estimator"
 37,"ecodive","RSQ",17.4041923935039,"Squares Richness Estimator"
@@ -13399,7 +13436,6 @@
 38,"abdiv","DQ",0,"Q-statistic"
 38,"ade4","DRAO",0.637832087567537,"Rao"
 38,"BAT","DRAO",0.637832087567537,"Rao"
-38,"SYNCSA","DRAO",0.637832087567537,"Rao"
 38,"abdiv","DSHA",1.6049222997935,"Shannon"
 38,"adiv","DSHA",1.6049222997935,"Shannon"
 38,"aqp","DSHA",2.3154134429242,"Shannon"
@@ -13615,6 +13651,7 @@
 38,"vegan","RACE",15.9732107445466,"ACE"
 38,"wiqid","RACE",15.9732107445466,"ACE"
 38,"BiodiversityR","RBOO",14,"Bootstrap estimator"
+38,"vegan","RBOO",14,"Bootstrap estimator"
 38,"wiqid","RBOO",35,"Bootstrap estimator"
 38,"BAT","RC1",15,"Chao 1"
 38,"BiodiversityR","RC1",14,"Chao 1"
@@ -13636,14 +13673,13 @@
 38,"OTUtable","RC1M",16.25,"Chao 1 modified"
 38,"tabula","RC1M",16.2380952380952,"Chao 1 modified"
 38,"wiqid","RC1M",16.25,"Chao 1 modified"
-38,"BAT","RCA2",34.99,"Chao 2"
 38,"divDyn","RCA2",14.9285714285714,"Chao 2"
 38,"fossil","RCA2",16.25,"Chao 2"
-38,"tabula","RCA2",14,"Chao 2"
-38,"wiqid","RCA2",14,"Chao 2"
-38,"BAT","RICE",35.0175569880462,"ICE"
+38,"BAT","RCA2M",34.98,NA
+38,"tabula","RCA2M",14,NA
+38,"wiqid","RCA2M",14,NA
+38,"BAT","RICE",35,"ICE"
 38,"fossil","RICE",14.7674418604651,"ICE"
-38,"tabula","RICE",14,"ICE"
 38,"wiqid","RICE",14,"ICE"
 38,"BAT","RJA1",17,"Jackknife 1"
 38,"BiodiversityR","RJA1",14,"Jackknife 1"
@@ -13652,15 +13688,17 @@
 38,"fossil","RJA1",16.984126984127,"Jackknife 1"
 38,"SSP","RJA1",13,"Jackknife 1"
 38,"tabula","RJA1",1.42626484572389,"Jackknife 1"
+38,"vegan","RJA1",14,"Jackknife 1"
 38,"wiqid","RJA1",17,"Jackknife 1"
 38,"BAT","RJA2",18,"Jackknife 2"
 38,"BiodiversityR","RJA2",14,"Jackknife 2"
 38,"fossil","RJA2",17.9364516492176,"Jackknife 2"
 38,"SSP","RJA2",13,"Jackknife 2"
+38,"vegan","RJA2",14,"Jackknife 2"
 38,"wiqid","RJA2",18,"Jackknife 2"
 38,"asbio","RLMD",28.9975322879193,NA
 38,"sads","RLMD",1.61468946700531,NA
-38,"vegan","RLMD",18.286172397707,NA
+38,"vegan","RLMD",7.14510281612934,NA
 38,"wiqid","RMM",0,"Michaelis-Menten"
 38,"divDyn","RSQ",17.2633481880098,"Squares Richness Estimator"
 38,"ecodive","RSQ",17.2633481880098,"Squares Richness Estimator"
@@ -13759,7 +13797,6 @@
 39,"abdiv","DQ",0,"Q-statistic"
 39,"ade4","DRAO",0.753055681303757,"Rao"
 39,"BAT","DRAO",0.753055681303757,"Rao"
-39,"SYNCSA","DRAO",0.753055681303757,"Rao"
 39,"abdiv","DSHA",1.75540712702658,"Shannon"
 39,"adiv","DSHA",1.75540712702658,"Shannon"
 39,"aqp","DSHA",2.53251715690238,"Shannon"
@@ -13975,6 +14012,7 @@
 39,"vegan","RACE",13.8251996450754,"ACE"
 39,"wiqid","RACE",13.8251996450754,"ACE"
 39,"BiodiversityR","RBOO",11,"Bootstrap estimator"
+39,"vegan","RBOO",11,"Bootstrap estimator"
 39,"wiqid","RBOO",35,"Bootstrap estimator"
 39,"BAT","RC1",12.5,"Chao 1"
 39,"BiodiversityR","RC1",11,"Chao 1"
@@ -13996,14 +14034,13 @@
 39,"OTUtable","RC1M",15.5,"Chao 1 modified"
 39,"tabula","RC1M",15.4521276595745,"Chao 1 modified"
 39,"wiqid","RC1M",15.5,"Chao 1 modified"
-39,"BAT","RCA2",34.99,"Chao 2"
 39,"divDyn","RCA2",12.3636363636364,"Chao 2"
 39,"fossil","RCA2",15.5,"Chao 2"
-39,"tabula","RCA2",11,"Chao 2"
-39,"wiqid","RCA2",11,"Chao 2"
-39,"BAT","RICE",35.0097877658646,"ICE"
+39,"BAT","RCA2M",35,NA
+39,"tabula","RCA2M",11,NA
+39,"wiqid","RCA2M",11,NA
+39,"BAT","RICE",35,"ICE"
 39,"fossil","RICE",12.1428571428571,"ICE"
-39,"tabula","RICE",11,"ICE"
 39,"wiqid","RICE",11,"ICE"
 39,"BAT","RJA1",14,"Jackknife 1"
 39,"BiodiversityR","RJA1",11,"Jackknife 1"
@@ -14012,15 +14049,17 @@
 39,"fossil","RJA1",13.968085106383,"Jackknife 1"
 39,"SSP","RJA1",11,"Jackknife 1"
 39,"tabula","RJA1",1.56711823567118,"Jackknife 1"
+39,"vegan","RJA1",11,"Jackknife 1"
 39,"wiqid","RJA1",14,"Jackknife 1"
 39,"BAT","RJA2",16,"Jackknife 2"
 39,"BiodiversityR","RJA2",11,"Jackknife 2"
 39,"fossil","RJA2",15.8403111416152,"Jackknife 2"
 39,"SSP","RJA2",11,"Jackknife 2"
+39,"vegan","RJA2",11,"Jackknife 2"
 39,"wiqid","RJA2",16,"Jackknife 2"
 39,"asbio","RLMD",22.5173128780418,NA
 39,"sads","RLMD",1.42212809761893,NA
-39,"vegan","RLMD",15.6735792015604,NA
+39,"vegan","RLMD",5.98708416668658,NA
 39,"wiqid","RMM",0,"Michaelis-Menten"
 39,"divDyn","RSQ",13.2308303987277,"Squares Richness Estimator"
 39,"ecodive","RSQ",13.2308303987277,"Squares Richness Estimator"
@@ -14119,7 +14158,6 @@
 40,"abdiv","DQ",0,"Q-statistic"
 40,"ade4","DRAO",0.753539697350805,"Rao"
 40,"BAT","DRAO",0.753539697350805,"Rao"
-40,"SYNCSA","DRAO",0.753539697350805,"Rao"
 40,"abdiv","DSHA",1.74570076572547,"Shannon"
 40,"adiv","DSHA",1.74570076572547,"Shannon"
 40,"aqp","DSHA",2.51851383758819,"Shannon"
@@ -14335,6 +14373,7 @@
 40,"vegan","RACE",14.3938993566176,"ACE"
 40,"wiqid","RACE",14.3938993566176,"ACE"
 40,"BiodiversityR","RBOO",12,"Bootstrap estimator"
+40,"vegan","RBOO",12,"Bootstrap estimator"
 40,"wiqid","RBOO",35,"Bootstrap estimator"
 40,"BAT","RC1",13.5,"Chao 1"
 40,"BiodiversityR","RC1",12,"Chao 1"
@@ -14356,14 +14395,13 @@
 40,"OTUtable","RC1M",16.5,"Chao 1 modified"
 40,"tabula","RC1M",16.4713375796178,"Chao 1 modified"
 40,"wiqid","RC1M",16.5,"Chao 1 modified"
-40,"BAT","RCA2",34.99,"Chao 2"
 40,"divDyn","RCA2",13.375,"Chao 2"
 40,"fossil","RCA2",16.5,"Chao 2"
-40,"tabula","RCA2",12,"Chao 2"
-40,"wiqid","RCA2",12,"Chao 2"
-40,"BAT","RICE",35.0057036621296,"ICE"
+40,"BAT","RCA2M",35,NA
+40,"tabula","RCA2M",12,NA
+40,"wiqid","RCA2M",12,NA
+40,"BAT","RICE",35,"ICE"
 40,"fossil","RICE",12.84375,"ICE"
-40,"tabula","RICE",12,"ICE"
 40,"wiqid","RICE",12,"ICE"
 40,"BAT","RJA1",15,"Jackknife 1"
 40,"BiodiversityR","RJA1",12,"Jackknife 1"
@@ -14372,15 +14410,17 @@
 40,"fossil","RJA1",14.9808917197452,"Jackknife 1"
 40,"SSP","RJA1",11,"Jackknife 1"
 40,"tabula","RJA1",1.55424265730628,"Jackknife 1"
+40,"vegan","RJA1",12,"Jackknife 1"
 40,"wiqid","RJA1",15,"Jackknife 1"
 40,"BAT","RJA2",17,"Jackknife 2"
 40,"BiodiversityR","RJA2",12,"Jackknife 2"
 40,"fossil","RJA2",16.9044177690675,"Jackknife 2"
 40,"SSP","RJA2",11,"Jackknife 2"
+40,"vegan","RJA2",12,"Jackknife 2"
 40,"wiqid","RJA2",17,"Jackknife 2"
 40,"asbio","RLMD",24.4517322328293,NA
 40,"sads","RLMD",1.67948103545955,NA
-40,"vegan","RLMD",18.5596306236002,NA
+40,"vegan","RLMD",5.76080222395672,NA
 40,"wiqid","RMM",0,"Michaelis-Menten"
 40,"divDyn","RSQ",14.2213870718726,"Squares Richness Estimator"
 40,"ecodive","RSQ",14.2213870718726,"Squares Richness Estimator"
@@ -14479,7 +14519,6 @@
 41,"abdiv","DQ",0,"Q-statistic"
 41,"ade4","DRAO",0.658131382411218,"Rao"
 41,"BAT","DRAO",0.658131382411218,"Rao"
-41,"SYNCSA","DRAO",0.658131382411218,"Rao"
 41,"abdiv","DSHA",1.50933415771251,"Shannon"
 41,"adiv","DSHA",1.50933415771251,"Shannon"
 41,"aqp","DSHA",2.17750890437616,"Shannon"
@@ -14695,6 +14734,7 @@
 41,"vegan","RACE",21.8810068649886,"ACE"
 41,"wiqid","RACE",21.8810068649886,"ACE"
 41,"BiodiversityR","RBOO",11,"Bootstrap estimator"
+41,"vegan","RBOO",11,"Bootstrap estimator"
 41,"wiqid","RBOO",35,"Bootstrap estimator"
 41,"BAT","RC1",14.3333333333333,"Chao 1"
 41,"BiodiversityR","RC1",11,"Chao 1"
@@ -14716,14 +14756,13 @@
 41,"OTUtable","RC1M",17.25,"Chao 1 modified"
 41,"tabula","RC1M",17.1728395061728,"Chao 1 modified"
 41,"wiqid","RC1M",17.25,"Chao 1 modified"
-41,"BAT","RCA2",34.99,"Chao 2"
 41,"divDyn","RCA2",14.030303030303,"Chao 2"
 41,"fossil","RCA2",17.25,"Chao 2"
-41,"tabula","RCA2",11,"Chao 2"
-41,"wiqid","RCA2",11,"Chao 2"
-41,"BAT","RICE",35.0016504434497,"ICE"
+41,"BAT","RCA2M",35,NA
+41,"tabula","RCA2M",11,NA
+41,"wiqid","RCA2M",11,NA
+41,"BAT","RICE",35,"ICE"
 41,"fossil","RICE",13.3684210526316,"ICE"
-41,"tabula","RICE",11,"ICE"
 41,"wiqid","RICE",11,"ICE"
 41,"BAT","RJA1",16,"Jackknife 1"
 41,"BiodiversityR","RJA1",11,"Jackknife 1"
@@ -14732,15 +14771,17 @@
 41,"fossil","RJA1",15.9382716049383,"Jackknife 1"
 41,"SSP","RJA1",10,"Jackknife 1"
 41,"tabula","RJA1",1.27318457125325,"Jackknife 1"
+41,"vegan","RJA1",11,"Jackknife 1"
 41,"wiqid","RJA1",16,"Jackknife 1"
 41,"BAT","RJA2",19,"Jackknife 2"
 41,"BiodiversityR","RJA2",11,"Jackknife 2"
 41,"fossil","RJA2",18.7033950617284,"Jackknife 2"
 41,"SSP","RJA2",10,"Jackknife 2"
+41,"vegan","RJA2",11,"Jackknife 2"
 41,"wiqid","RJA2",19,"Jackknife 2"
 41,"asbio","RLMD",15.3789974393068,NA
 41,"sads","RLMD",1.05885966873438,NA
-41,"vegan","RLMD",NA,NA
+41,"vegan","RLMD",6.4608529015116,NA
 41,"wiqid","RMM",0,"Michaelis-Menten"
 41,"divDyn","RSQ",19.6189671072856,"Squares Richness Estimator"
 41,"ecodive","RSQ",19.6189671072856,"Squares Richness Estimator"
@@ -14839,7 +14880,6 @@
 42,"abdiv","DQ",0,"Q-statistic"
 42,"ade4","DRAO",0.665510204081633,"Rao"
 42,"BAT","DRAO",0.665510204081632,"Rao"
-42,"SYNCSA","DRAO",0.665510204081633,"Rao"
 42,"abdiv","DSHA",1.47599258955746,"Shannon"
 42,"adiv","DSHA",1.47599258955746,"Shannon"
 42,"aqp","DSHA",2.1294071893434,"Shannon"
@@ -15055,6 +15095,7 @@
 42,"vegan","RACE",12.4409937888199,"ACE"
 42,"wiqid","RACE",12.4409937888199,"ACE"
 42,"BiodiversityR","RBOO",10,"Bootstrap estimator"
+42,"vegan","RBOO",10,"Bootstrap estimator"
 42,"wiqid","RBOO",35,"Bootstrap estimator"
 42,"BAT","RC1",13,"Chao 1"
 42,"BiodiversityR","RC1",10,"Chao 1"
@@ -15076,14 +15117,13 @@
 42,"OTUtable","RC1M",Inf,"Chao 1 modified"
 42,"tabula","RC1M",12.9785714285714,"Chao 1 modified"
 42,"wiqid","RC1M",13,"Chao 1 modified"
-42,"BAT","RCA2",34.99,"Chao 2"
 42,"divDyn","RCA2",12.7,"Chao 2"
 42,"fossil","RCA2",13,"Chao 2"
-42,"tabula","RCA2",10,"Chao 2"
-42,"wiqid","RCA2",10,"Chao 2"
-42,"BAT","RICE",35.0015313709965,"ICE"
+42,"BAT","RCA2M",35,NA
+42,"tabula","RCA2M",10,NA
+42,"wiqid","RCA2M",10,NA
+42,"BAT","RICE",35,"ICE"
 42,"fossil","RICE",11,"ICE"
-42,"tabula","RICE",10,"ICE"
 42,"wiqid","RICE",10,"ICE"
 42,"BAT","RJA1",13,"Jackknife 1"
 42,"BiodiversityR","RJA1",10,"Jackknife 1"
@@ -15092,15 +15132,17 @@
 42,"fossil","RJA1",12.9785714285714,"Jackknife 1"
 42,"SSP","RJA1",10,"Jackknife 1"
 42,"tabula","RJA1",1.2166930814198,"Jackknife 1"
+42,"vegan","RJA1",10,"Jackknife 1"
 42,"wiqid","RJA1",13,"Jackknife 1"
 42,"BAT","RJA2",16,"Jackknife 2"
 42,"BiodiversityR","RJA2",10,"Jackknife 2"
 42,"fossil","RJA2",15.8714285714286,"Jackknife 2"
 42,"SSP","RJA2",10,"Jackknife 2"
+42,"vegan","RJA2",10,"Jackknife 2"
 42,"wiqid","RJA2",16,"Jackknife 2"
 42,"asbio","RLMD",21.1544816400925,NA
 42,"sads","RLMD",1.66550731148071,NA
-42,"vegan","RLMD",17.2945267876889,NA
+42,"vegan","RLMD",4.6647034481668,NA
 42,"wiqid","RMM",0,"Michaelis-Menten"
 42,"divDyn","RSQ",13.0150229943792,"Squares Richness Estimator"
 42,"ecodive","RSQ",13.0150229943792,"Squares Richness Estimator"
@@ -15199,7 +15241,6 @@
 43,"abdiv","DQ",0,"Q-statistic"
 43,"ade4","DRAO",0.611760409057706,"Rao"
 43,"BAT","DRAO",0.611760409057706,"Rao"
-43,"SYNCSA","DRAO",0.611760409057706,"Rao"
 43,"abdiv","DSHA",1.47869931487261,"Shannon"
 43,"adiv","DSHA",1.47869931487261,"Shannon"
 43,"aqp","DSHA",2.13331216853262,"Shannon"
@@ -15415,6 +15456,7 @@
 43,"vegan","RACE",13.9117709213863,"ACE"
 43,"wiqid","RACE",13.9117709213863,"ACE"
 43,"BiodiversityR","RBOO",12,"Bootstrap estimator"
+43,"vegan","RBOO",12,"Bootstrap estimator"
 43,"wiqid","RBOO",35,"Bootstrap estimator"
 43,"BAT","RC1",13.5,"Chao 1"
 43,"BiodiversityR","RC1",12,"Chao 1"
@@ -15436,14 +15478,13 @@
 43,"OTUtable","RC1M",16.5,"Chao 1 modified"
 43,"tabula","RC1M",16.4695945945946,"Chao 1 modified"
 43,"wiqid","RC1M",16.5,"Chao 1 modified"
-43,"BAT","RCA2",34.99,"Chao 2"
 43,"divDyn","RCA2",13.375,"Chao 2"
 43,"fossil","RCA2",16.5,"Chao 2"
-43,"tabula","RCA2",12,"Chao 2"
-43,"wiqid","RCA2",12,"Chao 2"
-43,"BAT","RICE",34.9976201697205,"ICE"
+43,"BAT","RCA2M",35,NA
+43,"tabula","RCA2M",12,NA
+43,"wiqid","RCA2M",12,NA
+43,"BAT","RICE",35,"ICE"
 43,"fossil","RICE",13.0384615384615,"ICE"
-43,"tabula","RICE",12,"ICE"
 43,"wiqid","RICE",12,"ICE"
 43,"BAT","RJA1",15,"Jackknife 1"
 43,"BiodiversityR","RJA1",12,"Jackknife 1"
@@ -15452,15 +15493,17 @@
 43,"fossil","RJA1",14.9797297297297,"Jackknife 1"
 43,"SSP","RJA1",11,"Jackknife 1"
 43,"tabula","RJA1",1.27387390470678,"Jackknife 1"
+43,"vegan","RJA1",12,"Jackknife 1"
 43,"wiqid","RJA1",15,"Jackknife 1"
 43,"BAT","RJA2",17,"Jackknife 2"
 43,"BiodiversityR","RJA2",12,"Jackknife 2"
 43,"fossil","RJA2",16.898602684317,"Jackknife 2"
 43,"SSP","RJA2",11,"Jackknife 2"
+43,"vegan","RJA2",12,"Jackknife 2"
 43,"wiqid","RJA2",17,"Jackknife 2"
 43,"asbio","RLMD",NA,NA
 43,"sads","RLMD",1.52026018539301,NA
-43,"vegan","RLMD",16.5759046603622,NA
+43,"vegan","RLMD",6.09441635848577,NA
 43,"wiqid","RMM",0,"Michaelis-Menten"
 43,"divDyn","RSQ",15.4999085421621,"Squares Richness Estimator"
 43,"ecodive","RSQ",15.4999085421621,"Squares Richness Estimator"
@@ -15559,7 +15602,6 @@
 44,"abdiv","DQ",0,"Q-statistic"
 44,"ade4","DRAO",0.613888888888889,"Rao"
 44,"BAT","DRAO",0.613888888888889,"Rao"
-44,"SYNCSA","DRAO",0.613888888888889,"Rao"
 44,"abdiv","DSHA",1.11086952661299,"Shannon"
 44,"adiv","DSHA",1.11086952661299,"Shannon"
 44,"aqp","DSHA",1.60264595711923,"Shannon"
@@ -15610,7 +15652,7 @@
 44,"tabula","DSP",0.386111111111111,"Simpson"
 44,"triversity","DSP",0.386111111111111,"Simpson"
 44,"abdiv","EBP",0.466666666666667,"Berger-Parker"
-44,"agricolae","EBP",0.466666666666667,"Berger-Parker"
+44,"agricolae","EBP",NA,"Berger-Parker"
 44,"BiodiversityR","EBP",0.46666667,"Berger-Parker"
 44,"diverse","EBP",0.233644859813084,"Berger-Parker"
 44,"dyvDyn","EBP",0.466666666666667,"Berger-Parker"
@@ -15775,6 +15817,7 @@
 44,"vegan","RACE",5.82507288629738,"ACE"
 44,"wiqid","RACE",5.82507288629738,"ACE"
 44,"BiodiversityR","RBOO",5,"Bootstrap estimator"
+44,"vegan","RBOO",5,"Bootstrap estimator"
 44,"wiqid","RBOO",35,"Bootstrap estimator"
 44,"BAT","RC1",5,"Chao 1"
 44,"BiodiversityR","RC1",5,"Chao 1"
@@ -15796,14 +15839,13 @@
 44,"OTUtable","RC1M",5.5,"Chao 1 modified"
 44,"tabula","RC1M",5.49166666666667,"Chao 1 modified"
 44,"wiqid","RC1M",5.5,"Chao 1 modified"
-44,"BAT","RCA2",34.99,"Chao 2"
 44,"divDyn","RCA2",5,"Chao 2"
 44,"fossil","RCA2",5.5,"Chao 2"
-44,"tabula","RCA2",5,"Chao 2"
-44,"wiqid","RCA2",5,"Chao 2"
-44,"BAT","RICE",35.0054192602688,"ICE"
+44,"BAT","RCA2M",35,NA
+44,"tabula","RCA2M",5,NA
+44,"wiqid","RCA2M",5,NA
+44,"BAT","RICE",35,"ICE"
 44,"fossil","RICE",5.42857142857143,"ICE"
-44,"tabula","RICE",5,"ICE"
 44,"wiqid","RICE",5,"ICE"
 44,"BAT","RJA1",6,"Jackknife 1"
 44,"BiodiversityR","RJA1",5,"Jackknife 1"
@@ -15812,15 +15854,17 @@
 44,"fossil","RJA1",5.98333333333333,"Jackknife 1"
 44,"SSP","RJA1",5,"Jackknife 1"
 44,"tabula","RJA1",0.729763099339552,"Jackknife 1"
+44,"vegan","RJA1",5,"Jackknife 1"
 44,"wiqid","RJA1",6,"Jackknife 1"
 44,"BAT","RJA2",6,"Jackknife 2"
 44,"BiodiversityR","RJA2",5,"Jackknife 2"
 44,"fossil","RJA2",5.94971751412429,"Jackknife 2"
 44,"SSP","RJA2",5,"Jackknife 2"
+44,"vegan","RJA2",5,"Jackknife 2"
 44,"wiqid","RJA2",6,"Jackknife 2"
 44,"asbio","RLMD",NA,NA
 44,"sads","RLMD",1.76256868670344,NA
-44,"vegan","RLMD",NA,NA
+44,"vegan","RLMD",2.46795709706972,NA
 44,"wiqid","RMM",0,"Michaelis-Menten"
 44,"divDyn","RSQ",5.38664812239221,"Squares Richness Estimator"
 44,"ecodive","RSQ",5.38664812239221,"Squares Richness Estimator"
@@ -15919,7 +15963,6 @@
 45,"abdiv","DQ",6.25167851051884,"Q-statistic"
 45,"ade4","DRAO",0.770068899214869,"Rao"
 45,"BAT","DRAO",0.770068899214869,"Rao"
-45,"SYNCSA","DRAO",0.770068899214869,"Rao"
 45,"abdiv","DSHA",1.91191781438445,"Shannon"
 45,"adiv","DSHA",1.91191781438445,"Shannon"
 45,"aqp","DSHA",2.75831434939971,"Shannon"
@@ -16135,6 +16178,7 @@
 45,"vegan","RACE",22.8509861212564,"ACE"
 45,"wiqid","RACE",22.8509861212564,"ACE"
 45,"BiodiversityR","RBOO",17,"Bootstrap estimator"
+45,"vegan","RBOO",17,"Bootstrap estimator"
 45,"wiqid","RBOO",35,"Bootstrap estimator"
 45,"BAT","RC1",22,"Chao 1"
 45,"BiodiversityR","RC1",17,"Chao 1"
@@ -16156,14 +16200,13 @@
 45,"OTUtable","RC1M",26,"Chao 1 modified"
 45,"tabula","RC1M",25.9430379746835,"Chao 1 modified"
 45,"wiqid","RC1M",26,"Chao 1 modified"
-45,"BAT","RCA2",34.99,"Chao 2"
 45,"divDyn","RCA2",21.7058823529412,"Chao 2"
 45,"fossil","RCA2",26,"Chao 2"
-45,"tabula","RCA2",17,"Chao 2"
-45,"wiqid","RCA2",17,"Chao 2"
-45,"BAT","RICE",35.0054192602688,"ICE"
+45,"BAT","RCA2M",35,NA
+45,"tabula","RCA2M",17,NA
+45,"wiqid","RCA2M",17,NA
+45,"BAT","RICE",35,"ICE"
 45,"fossil","RICE",19.2702702702703,"ICE"
-45,"tabula","RICE",17,"ICE"
 45,"wiqid","RICE",17,"ICE"
 45,"BAT","RJA1",23,"Jackknife 1"
 45,"BiodiversityR","RJA1",17,"Jackknife 1"
@@ -16172,15 +16215,17 @@
 45,"fossil","RJA1",22.9620253164557,"Jackknife 1"
 45,"SSP","RJA1",16,"Jackknife 1"
 45,"tabula","RJA1",1.78342474633836,"Jackknife 1"
+45,"vegan","RJA1",17,"Jackknife 1"
 45,"wiqid","RJA1",23,"Jackknife 1"
 45,"BAT","RJA2",27,"Jackknife 2"
 45,"BiodiversityR","RJA2",17,"Jackknife 2"
 45,"fossil","RJA2",26.8100459566234,"Jackknife 2"
 45,"SSP","RJA2",16,"Jackknife 2"
+45,"vegan","RJA2",17,"Jackknife 2"
 45,"wiqid","RJA2",27,"Jackknife 2"
 45,"asbio","RLMD",31.3952788837703,NA
 45,"sads","RLMD",1.27213551001371,NA
-45,"vegan","RLMD",43.35128069586,NA
+45,"vegan","RLMD",8.88110066316998,NA
 45,"wiqid","RMM",0,"Michaelis-Menten"
 45,"divDyn","RSQ",25.3114793661009,"Squares Richness Estimator"
 45,"ecodive","RSQ",25.3114793661009,"Squares Richness Estimator"
@@ -16279,7 +16324,6 @@
 46,"abdiv","DQ",0,"Q-statistic"
 46,"ade4","DRAO",0.846432787991229,"Rao"
 46,"BAT","DRAO",0.846432787991231,"Rao"
-46,"SYNCSA","DRAO",0.846432787991229,"Rao"
 46,"abdiv","DSHA",2.18316504826242,"Shannon"
 46,"adiv","DSHA",2.18316504826242,"Shannon"
 46,"aqp","DSHA",3.14964138857031,"Shannon"
@@ -16495,6 +16539,7 @@
 46,"vegan","RACE",16.7586206896552,"ACE"
 46,"wiqid","RACE",16.7586206896552,"ACE"
 46,"BiodiversityR","RBOO",16,"Bootstrap estimator"
+46,"vegan","RBOO",16,"Bootstrap estimator"
 46,"wiqid","RBOO",35,"Bootstrap estimator"
 46,"BAT","RC1",16.25,"Chao 1"
 46,"BiodiversityR","RC1",16,"Chao 1"
@@ -16516,14 +16561,13 @@
 46,"OTUtable","RC1M",16.6666666666667,"Chao 1 modified"
 46,"tabula","RC1M",16.6623376623377,"Chao 1 modified"
 46,"wiqid","RC1M",16.6666666666667,"Chao 1 modified"
-46,"BAT","RCA2",35,"Chao 2"
 46,"divDyn","RCA2",16.234375,"Chao 2"
 46,"fossil","RCA2",16.6666666666667,"Chao 2"
-46,"tabula","RCA2",16,"Chao 2"
-46,"wiqid","RCA2",16,"Chao 2"
-46,"BAT","RICE",35.0054192602688,"ICE"
+46,"BAT","RCA2M",35,NA
+46,"tabula","RCA2M",16,NA
+46,"wiqid","RCA2M",16,NA
+46,"BAT","RICE",35,"ICE"
 46,"fossil","RICE",16.7586206896552,"ICE"
-46,"tabula","RICE",16,"ICE"
 46,"wiqid","RICE",16,"ICE"
 46,"BAT","RJA1",18,"Jackknife 1"
 46,"BiodiversityR","RJA1",16,"Jackknife 1"
@@ -16532,15 +16576,17 @@
 46,"fossil","RJA1",17.987012987013,"Jackknife 1"
 46,"SSP","RJA1",15,"Jackknife 1"
 46,"tabula","RJA1",2.06424557299307,"Jackknife 1"
+46,"vegan","RJA1",16,"Jackknife 1"
 46,"wiqid","RJA1",18,"Jackknife 1"
 46,"BAT","RJA2",17,"Jackknife 2"
 46,"BiodiversityR","RJA2",16,"Jackknife 2"
 46,"fossil","RJA2",16.9803921568627,"Jackknife 2"
 46,"SSP","RJA2",15,"Jackknife 2"
+46,"vegan","RJA2",16,"Jackknife 2"
 46,"wiqid","RJA2",17,"Jackknife 2"
 46,"asbio","RLMD",11.8768506888453,NA
 46,"sads","RLMD",1.6022030833297,NA
-46,"vegan","RLMD",17.8974719488918,NA
+46,"vegan","RLMD",9.30467236629068,NA
 46,"wiqid","RMM",0,"Michaelis-Menten"
 46,"divDyn","RSQ",16.6150988008782,"Squares Richness Estimator"
 46,"ecodive","RSQ",16.6150988008782,"Squares Richness Estimator"
@@ -16639,7 +16685,6 @@
 47,"abdiv","DQ",0,"Q-statistic"
 47,"ade4","DRAO",0.823577624479202,"Rao"
 47,"BAT","DRAO",0.823577624479201,"Rao"
-47,"SYNCSA","DRAO",0.823577624479202,"Rao"
 47,"abdiv","DSHA",1.97644857057545,"Shannon"
 47,"adiv","DSHA",1.97644857057545,"Shannon"
 47,"aqp","DSHA",2.85141255134128,"Shannon"
@@ -16855,6 +16900,7 @@
 47,"vegan","RACE",26.9224376731302,"ACE"
 47,"wiqid","RACE",26.9224376731302,"ACE"
 47,"BiodiversityR","RBOO",14,"Bootstrap estimator"
+47,"vegan","RBOO",14,"Bootstrap estimator"
 47,"wiqid","RBOO",35,"Bootstrap estimator"
 47,"BAT","RC1",19,"Chao 1"
 47,"BiodiversityR","RC1",14,"Chao 1"
@@ -16876,14 +16922,13 @@
 47,"OTUtable","RC1M",23,"Chao 1 modified"
 47,"tabula","RC1M",22.9256198347107,"Chao 1 modified"
 47,"wiqid","RC1M",23,"Chao 1 modified"
-47,"BAT","RCA2",35,"Chao 2"
 47,"divDyn","RCA2",18.6428571428571,"Chao 2"
 47,"fossil","RCA2",23,"Chao 2"
-47,"tabula","RCA2",14,"Chao 2"
-47,"wiqid","RCA2",14,"Chao 2"
-47,"BAT","RICE",35.0055518507964,"ICE"
+47,"BAT","RCA2M",35,NA
+47,"tabula","RCA2M",14,NA
+47,"wiqid","RCA2M",14,NA
+47,"BAT","RICE",35,"ICE"
 47,"fossil","RICE",17.1578947368421,"ICE"
-47,"tabula","RICE",14,"ICE"
 47,"wiqid","RICE",14,"ICE"
 47,"BAT","RJA1",20,"Jackknife 1"
 47,"BiodiversityR","RJA1",14,"Jackknife 1"
@@ -16892,15 +16937,17 @@
 47,"fossil","RJA1",19.9504132231405,"Jackknife 1"
 47,"SSP","RJA1",14,"Jackknife 1"
 47,"tabula","RJA1",1.82779998497288,"Jackknife 1"
+47,"vegan","RJA1",14,"Jackknife 1"
 47,"wiqid","RJA1",20,"Jackknife 1"
 47,"BAT","RJA2",24,"Jackknife 2"
 47,"BiodiversityR","RJA2",14,"Jackknife 2"
 47,"fossil","RJA2",23.7519283746556,"Jackknife 2"
 47,"SSP","RJA2",14,"Jackknife 2"
+47,"vegan","RJA2",14,"Jackknife 2"
 47,"wiqid","RJA2",24,"Jackknife 2"
 47,"asbio","RLMD",15.2569614455617,NA
 47,"sads","RLMD",1.28586888871255,NA
-47,"vegan","RLMD",NA,NA
+47,"vegan","RLMD",7.15218874185845,NA
 47,"wiqid","RMM",0,"Michaelis-Menten"
 47,"divDyn","RSQ",20.3878546403792,"Squares Richness Estimator"
 47,"ecodive","RSQ",20.3878546403792,"Squares Richness Estimator"
@@ -16999,7 +17046,6 @@
 48,"abdiv","DQ",0,"Q-statistic"
 48,"ade4","DRAO",0.700446393609523,"Rao"
 48,"BAT","DRAO",0.700446393609523,"Rao"
-48,"SYNCSA","DRAO",0.700446393609523,"Rao"
 48,"abdiv","DSHA",1.59473021331706,"Shannon"
 48,"adiv","DSHA",1.59473021331706,"Shannon"
 48,"aqp","DSHA",2.30070937030831,"Shannon"
@@ -17215,6 +17261,7 @@
 48,"vegan","RACE",18.9674556213018,"ACE"
 48,"wiqid","RACE",18.9674556213018,"ACE"
 48,"BiodiversityR","RBOO",12,"Bootstrap estimator"
+48,"vegan","RBOO",12,"Bootstrap estimator"
 48,"wiqid","RBOO",35,"Bootstrap estimator"
 48,"BAT","RC1",22,"Chao 1"
 48,"BiodiversityR","RC1",12,"Chao 1"
@@ -17236,14 +17283,13 @@
 48,"OTUtable","RC1M",Inf,"Chao 1 modified"
 48,"tabula","RC1M",21.9115044247788,"Chao 1 modified"
 48,"wiqid","RC1M",22,"Chao 1 modified"
-48,"BAT","RCA2",35,"Chao 2"
 48,"divDyn","RCA2",21.1666666666667,"Chao 2"
 48,"fossil","RCA2",22,"Chao 2"
-48,"tabula","RCA2",12,"Chao 2"
-48,"wiqid","RCA2",12,"Chao 2"
-48,"BAT","RICE",35.0023702245277,"ICE"
+48,"BAT","RCA2M",35,NA
+48,"tabula","RCA2M",12,NA
+48,"wiqid","RCA2M",12,NA
+48,"BAT","RICE",35,"ICE"
 48,"fossil","RICE",13.9230769230769,"ICE"
-48,"tabula","RICE",12,"ICE"
 48,"wiqid","RICE",12,"ICE"
 48,"BAT","RJA1",17,"Jackknife 1"
 48,"BiodiversityR","RJA1",12,"Jackknife 1"
@@ -17252,15 +17298,17 @@
 48,"fossil","RJA1",16.9557522123894,"Jackknife 1"
 48,"SSP","RJA1",12,"Jackknife 1"
 48,"tabula","RJA1",1.37916524717594,"Jackknife 1"
+48,"vegan","RJA1",12,"Jackknife 1"
 48,"wiqid","RJA1",17,"Jackknife 1"
 48,"BAT","RJA2",22,"Jackknife 2"
 48,"BiodiversityR","RJA2",12,"Jackknife 2"
 48,"fossil","RJA2",21.7345132743363,"Jackknife 2"
 48,"SSP","RJA2",12,"Jackknife 2"
+48,"vegan","RJA2",12,"Jackknife 2"
 48,"wiqid","RJA2",22,"Jackknife 2"
 48,"asbio","RLMD",21.1436946420778,NA
 48,"sads","RLMD",1.25128760368473,NA
-48,"vegan","RLMD",62.2177680642591,NA
+48,"vegan","RLMD",6.23860730293179,NA
 48,"wiqid","RMM",0,"Michaelis-Menten"
 48,"divDyn","RSQ",19.5241954520419,"Squares Richness Estimator"
 48,"ecodive","RSQ",19.5241954520419,"Squares Richness Estimator"
@@ -17359,7 +17407,6 @@
 49,"abdiv","DQ",0,"Q-statistic"
 49,"ade4","DRAO",0.874486854747139,"Rao"
 49,"BAT","DRAO",0.87448685474714,"Rao"
-49,"SYNCSA","DRAO",0.874486854747139,"Rao"
 49,"abdiv","DSHA",2.28222157332806,"Shannon"
 49,"adiv","DSHA",2.28222157332806,"Shannon"
 49,"aqp","DSHA",3.29254974605021,"Shannon"
@@ -17575,6 +17622,7 @@
 49,"vegan","RACE",13.30608,"ACE"
 49,"wiqid","RACE",13.30608,"ACE"
 49,"BiodiversityR","RBOO",13,"Bootstrap estimator"
+49,"vegan","RBOO",13,"Bootstrap estimator"
 49,"wiqid","RBOO",35,"Bootstrap estimator"
 49,"BAT","RC1",13,"Chao 1"
 49,"BiodiversityR","RC1",13,"Chao 1"
@@ -17596,14 +17644,13 @@
 49,"OTUtable","RC1M",13.5,"Chao 1 modified"
 49,"tabula","RC1M",13.4953271028037,"Chao 1 modified"
 49,"wiqid","RC1M",13.5,"Chao 1 modified"
-49,"BAT","RCA2",35,"Chao 2"
 49,"divDyn","RCA2",13,"Chao 2"
 49,"fossil","RCA2",13.5,"Chao 2"
-49,"tabula","RCA2",13,"Chao 2"
-49,"wiqid","RCA2",13,"Chao 2"
-49,"BAT","RICE",35.0023702245277,"ICE"
+49,"BAT","RCA2M",35,NA
+49,"tabula","RCA2M",13,NA
+49,"wiqid","RCA2M",13,NA
+49,"BAT","RICE",35,"ICE"
 49,"fossil","RICE",13.2,"ICE"
-49,"tabula","RICE",13,"ICE"
 49,"wiqid","RICE",13,"ICE"
 49,"BAT","RJA1",14,"Jackknife 1"
 49,"BiodiversityR","RJA1",13,"Jackknife 1"
@@ -17612,15 +17659,17 @@
 49,"fossil","RJA1",13.9906542056075,"Jackknife 1"
 49,"SSP","RJA1",12,"Jackknife 1"
 49,"tabula","RJA1",2.17502926704585,"Jackknife 1"
+49,"vegan","RJA1",13,"Jackknife 1"
 49,"wiqid","RJA1",14,"Jackknife 1"
 49,"BAT","RJA2",14,"Jackknife 2"
 49,"BiodiversityR","RJA2",13,"Jackknife 2"
 49,"fossil","RJA2",13.9718744489508,"Jackknife 2"
 49,"SSP","RJA2",12,"Jackknife 2"
+49,"vegan","RJA2",13,"Jackknife 2"
 49,"wiqid","RJA2",14,"Jackknife 2"
 49,"asbio","RLMD",19.8241158656583,NA
 49,"sads","RLMD",1.78679936107045,NA
-49,"vegan","RLMD",13.7218374043675,NA
+49,"vegan","RLMD",10.5808008544301,NA
 49,"wiqid","RMM",0,"Michaelis-Menten"
 49,"divDyn","RSQ",13.1256558237146,"Squares Richness Estimator"
 49,"ecodive","RSQ",13.1256558237146,"Squares Richness Estimator"
@@ -17719,7 +17768,6 @@
 50,"abdiv","DQ",0,"Q-statistic"
 50,"ade4","DRAO",0.766526661796932,"Rao"
 50,"BAT","DRAO",0.766526661796932,"Rao"
-50,"SYNCSA","DRAO",0.766526661796932,"Rao"
 50,"abdiv","DSHA",1.78501165071013,"Shannon"
 50,"adiv","DSHA",1.78501165071013,"Shannon"
 50,"aqp","DSHA",2.57522745640853,"Shannon"
@@ -17935,6 +17983,7 @@
 50,"vegan","RACE",11.6014030612245,"ACE"
 50,"wiqid","RACE",11.6014030612245,"ACE"
 50,"BiodiversityR","RBOO",11,"Bootstrap estimator"
+50,"vegan","RBOO",11,"Bootstrap estimator"
 50,"wiqid","RBOO",35,"Bootstrap estimator"
 50,"BAT","RC1",11,"Chao 1"
 50,"BiodiversityR","RC1",11,"Chao 1"
@@ -17956,14 +18005,13 @@
 50,"OTUtable","RC1M",11.25,"Chao 1 modified"
 50,"tabula","RC1M",11.2483108108108,"Chao 1 modified"
 50,"wiqid","RC1M",11.25,"Chao 1 modified"
-50,"BAT","RCA2",35,"Chao 2"
 50,"divDyn","RCA2",11,"Chao 2"
 50,"fossil","RCA2",11.25,"Chao 2"
-50,"tabula","RCA2",11,"Chao 2"
-50,"wiqid","RCA2",11,"Chao 2"
-50,"BAT","RICE",35.0023702245277,"ICE"
+50,"BAT","RCA2M",35,NA
+50,"tabula","RCA2M",11,NA
+50,"wiqid","RCA2M",11,NA
+50,"BAT","RICE",35,"ICE"
 50,"fossil","RICE",11.25,"ICE"
-50,"tabula","RICE",11,"ICE"
 50,"wiqid","RICE",11,"ICE"
 50,"BAT","RJA1",12,"Jackknife 1"
 50,"BiodiversityR","RJA1",11,"Jackknife 1"
@@ -17972,15 +18020,17 @@
 50,"fossil","RJA1",11.9932432432432,"Jackknife 1"
 50,"SSP","RJA1",10,"Jackknife 1"
 50,"tabula","RJA1",1.62575853429885,"Jackknife 1"
+50,"vegan","RJA1",11,"Jackknife 1"
 50,"wiqid","RJA1",12,"Jackknife 1"
 50,"BAT","RJA2",11,"Jackknife 2"
 50,"BiodiversityR","RJA2",11,"Jackknife 2"
 50,"fossil","RJA2",10.9999080713366,"Jackknife 2"
 50,"SSP","RJA2",10,"Jackknife 2"
+50,"vegan","RJA2",11,"Jackknife 2"
 50,"wiqid","RJA2",11,"Jackknife 2"
 50,"asbio","RLMD",20.8315384114581,NA
 50,"sads","RLMD",1.89443535571058,NA
-50,"vegan","RLMD",17.150224102148,NA
+50,"vegan","RLMD",6.10455795711059,NA
 50,"wiqid","RMM",0,"Michaelis-Menten"
 50,"divDyn","RSQ",11.2335906454118,"Squares Richness Estimator"
 50,"ecodive","RSQ",11.2335906454118,"Squares Richness Estimator"
@@ -18079,7 +18129,6 @@
 51,"abdiv","DQ",0,"Q-statistic"
 51,"ade4","DRAO",0.784929356357928,"Rao"
 51,"BAT","DRAO",0.784929356357928,"Rao"
-51,"SYNCSA","DRAO",0.784929356357928,"Rao"
 51,"abdiv","DSHA",1.93885827588015,"Shannon"
 51,"adiv","DSHA",1.93885827588015,"Shannon"
 51,"aqp","DSHA",2.79718121959882,"Shannon"
@@ -18295,6 +18344,7 @@
 51,"vegan","RACE",17.1111111111111,"ACE"
 51,"wiqid","RACE",17.1111111111111,"ACE"
 51,"BiodiversityR","RBOO",14,"Bootstrap estimator"
+51,"vegan","RBOO",14,"Bootstrap estimator"
 51,"wiqid","RBOO",35,"Bootstrap estimator"
 51,"BAT","RC1",16,"Chao 1"
 51,"BiodiversityR","RC1",14,"Chao 1"
@@ -18316,14 +18366,13 @@
 51,"OTUtable","RC1M",18,"Chao 1 modified"
 51,"tabula","RC1M",17.956043956044,"Chao 1 modified"
 51,"wiqid","RC1M",18,"Chao 1 modified"
-51,"BAT","RCA2",35,"Chao 2"
 51,"divDyn","RCA2",15.8571428571429,"Chao 2"
 51,"fossil","RCA2",18,"Chao 2"
-51,"tabula","RCA2",14,"Chao 2"
-51,"wiqid","RCA2",14,"Chao 2"
+51,"BAT","RCA2M",35,NA
+51,"tabula","RCA2M",14,NA
+51,"wiqid","RCA2M",14,NA
 51,"BAT","RICE",35,"ICE"
 51,"fossil","RICE",15.6,"ICE"
-51,"tabula","RICE",14,"ICE"
 51,"wiqid","RICE",14,"ICE"
 51,"BAT","RJA1",18,"Jackknife 1"
 51,"BiodiversityR","RJA1",14,"Jackknife 1"
@@ -18332,15 +18381,17 @@
 51,"fossil","RJA1",17.956043956044,"Jackknife 1"
 51,"SSP","RJA1",13,"Jackknife 1"
 51,"tabula","RJA1",1.79936374448936,"Jackknife 1"
+51,"vegan","RJA1",14,"Jackknife 1"
 51,"wiqid","RJA1",18,"Jackknife 1"
 51,"BAT","RJA2",20,"Jackknife 2"
 51,"BiodiversityR","RJA2",14,"Jackknife 2"
 51,"fossil","RJA2",19.8019536019536,"Jackknife 2"
 51,"SSP","RJA2",13,"Jackknife 2"
+51,"vegan","RJA2",14,"Jackknife 2"
 51,"wiqid","RJA2",20,"Jackknife 2"
 51,"asbio","RLMD",24.6736507172782,NA
 51,"sads","RLMD",1.17495634177605,NA
-51,"vegan","RLMD",18.3397492351757,NA
+51,"vegan","RLMD",8.38172860777329,NA
 51,"wiqid","RMM",0,"Michaelis-Menten"
 51,"divDyn","RSQ",17.4645592705167,"Squares Richness Estimator"
 51,"ecodive","RSQ",17.4645592705167,"Squares Richness Estimator"
@@ -18439,7 +18490,6 @@
 52,"abdiv","DQ",0,"Q-statistic"
 52,"ade4","DRAO",0.741071428571428,"Rao"
 52,"BAT","DRAO",0.741071428571428,"Rao"
-52,"SYNCSA","DRAO",0.741071428571429,"Rao"
 52,"abdiv","DSHA",1.7474499589395,"Shannon"
 52,"adiv","DSHA",1.7474499589395,"Shannon"
 52,"aqp","DSHA",2.52103738996364,"Shannon"
@@ -18655,6 +18705,7 @@
 52,"vegan","RACE",13.0560146923783,"ACE"
 52,"wiqid","RACE",13.0560146923783,"ACE"
 52,"BiodiversityR","RBOO",12,"Bootstrap estimator"
+52,"vegan","RBOO",12,"Bootstrap estimator"
 52,"wiqid","RBOO",35,"Bootstrap estimator"
 52,"BAT","RC1",12.5,"Chao 1"
 52,"BiodiversityR","RC1",12,"Chao 1"
@@ -18676,14 +18727,13 @@
 52,"OTUtable","RC1M",14,"Chao 1 modified"
 52,"tabula","RC1M",13.9821428571429,"Chao 1 modified"
 52,"wiqid","RC1M",14,"Chao 1 modified"
-52,"BAT","RCA2",35,"Chao 2"
 52,"divDyn","RCA2",12.4583333333333,"Chao 2"
 52,"fossil","RCA2",14,"Chao 2"
-52,"tabula","RCA2",12,"Chao 2"
-52,"wiqid","RCA2",12,"Chao 2"
+52,"BAT","RCA2M",35,NA
+52,"tabula","RCA2M",12,NA
+52,"wiqid","RCA2M",12,NA
 52,"BAT","RICE",35,"ICE"
 52,"fossil","RICE",12.6060606060606,"ICE"
-52,"tabula","RICE",12,"ICE"
 52,"wiqid","RICE",12,"ICE"
 52,"BAT","RJA1",14,"Jackknife 1"
 52,"BiodiversityR","RJA1",12,"Jackknife 1"
@@ -18692,15 +18742,17 @@
 52,"fossil","RJA1",13.9821428571429,"Jackknife 1"
 52,"SSP","RJA1",11,"Jackknife 1"
 52,"tabula","RJA1",1.59606435728012,"Jackknife 1"
+52,"vegan","RJA1",12,"Jackknife 1"
 52,"wiqid","RJA1",14,"Jackknife 1"
 52,"BAT","RJA2",15,"Jackknife 2"
 52,"BiodiversityR","RJA2",12,"Jackknife 2"
 52,"fossil","RJA2",14.9195624195624,"Jackknife 2"
 52,"SSP","RJA2",11,"Jackknife 2"
+52,"vegan","RJA2",12,"Jackknife 2"
 52,"wiqid","RJA2",15,"Jackknife 2"
 52,"asbio","RLMD",10.8007645430194,NA
 52,"sads","RLMD",1.48590532162905,NA
-52,"vegan","RLMD",13.2031151410363,NA
+52,"vegan","RLMD",6.96276743702515,NA
 52,"wiqid","RMM",0,"Michaelis-Menten"
 52,"divDyn","RSQ",13.0376996805112,"Squares Richness Estimator"
 52,"ecodive","RSQ",13.0376996805112,"Squares Richness Estimator"
@@ -18799,7 +18851,6 @@
 53,"abdiv","DQ",0,"Q-statistic"
 53,"ade4","DRAO",0.844137931034483,"Rao"
 53,"BAT","DRAO",0.844137931034483,"Rao"
-53,"SYNCSA","DRAO",0.844137931034483,"Rao"
 53,"abdiv","DSHA",2.19229065822757,"Shannon"
 53,"adiv","DSHA",2.19229065822757,"Shannon"
 53,"aqp","DSHA",3.16280686081212,"Shannon"
@@ -19015,6 +19066,7 @@
 53,"vegan","RACE",16.1161206100551,"ACE"
 53,"wiqid","RACE",16.1161206100551,"ACE"
 53,"BiodiversityR","RBOO",15,"Bootstrap estimator"
+53,"vegan","RBOO",15,"Bootstrap estimator"
 53,"wiqid","RBOO",35,"Bootstrap estimator"
 53,"BAT","RC1",15.25,"Chao 1"
 53,"BiodiversityR","RC1",15,"Chao 1"
@@ -19036,14 +19088,13 @@
 53,"OTUtable","RC1M",15.6666666666667,"Chao 1 modified"
 53,"tabula","RC1M",15.6620689655172,"Chao 1 modified"
 53,"wiqid","RC1M",15.6666666666667,"Chao 1 modified"
-53,"BAT","RCA2",35,"Chao 2"
 53,"divDyn","RCA2",15.2333333333333,"Chao 2"
 53,"fossil","RCA2",15.6666666666667,"Chao 2"
-53,"tabula","RCA2",15,"Chao 2"
-53,"wiqid","RCA2",15,"Chao 2"
+53,"BAT","RCA2M",35,NA
+53,"tabula","RCA2M",15,NA
+53,"wiqid","RCA2M",15,NA
 53,"BAT","RICE",35,"ICE"
 53,"fossil","RICE",15.4210526315789,"ICE"
-53,"tabula","RICE",15,"ICE"
 53,"wiqid","RICE",15,"ICE"
 53,"BAT","RJA1",17,"Jackknife 1"
 53,"BiodiversityR","RJA1",15,"Jackknife 1"
@@ -19052,15 +19103,17 @@
 53,"fossil","RJA1",16.9862068965517,"Jackknife 1"
 53,"SSP","RJA1",14,"Jackknife 1"
 53,"tabula","RJA1",2.0740644798647,"Jackknife 1"
+53,"vegan","RJA1",15,"Jackknife 1"
 53,"wiqid","RJA1",17,"Jackknife 1"
 53,"BAT","RJA2",16,"Jackknife 2"
 53,"BiodiversityR","RJA2",15,"Jackknife 2"
 53,"fossil","RJA2",15.9791666666667,"Jackknife 2"
 53,"SSP","RJA2",14,"Jackknife 2"
+53,"vegan","RJA2",15,"Jackknife 2"
 53,"wiqid","RJA2",16,"Jackknife 2"
 53,"asbio","RLMD",NA,NA
 53,"sads","RLMD",1.68731925599392,NA
-53,"vegan","RLMD",16.6424130058708,NA
+53,"vegan","RLMD",9.06898712496452,NA
 53,"wiqid","RMM",0,"Michaelis-Menten"
 53,"divDyn","RSQ",15.6243391283639,"Squares Richness Estimator"
 53,"ecodive","RSQ",15.6243391283639,"Squares Richness Estimator"
@@ -19159,7 +19212,6 @@
 54,"abdiv","DQ",0,"Q-statistic"
 54,"ade4","DRAO",0.698875468554769,"Rao"
 54,"BAT","DRAO",0.698875468554769,"Rao"
-54,"SYNCSA","DRAO",0.698875468554769,"Rao"
 54,"abdiv","DSHA",1.45175112233038,"Shannon"
 54,"adiv","DSHA",1.45175112233038,"Shannon"
 54,"aqp","DSHA",2.09443414479103,"Shannon"
@@ -19375,6 +19427,7 @@
 54,"vegan","RACE",19.0123456790123,"ACE"
 54,"wiqid","RACE",19.0123456790123,"ACE"
 54,"BiodiversityR","RBOO",8,"Bootstrap estimator"
+54,"vegan","RBOO",8,"Bootstrap estimator"
 54,"wiqid","RBOO",35,"Bootstrap estimator"
 54,"BAT","RC1",11,"Chao 1"
 54,"BiodiversityR","RC1",8,"Chao 1"
@@ -19396,14 +19449,13 @@
 54,"OTUtable","RC1M",16,"Chao 1 modified"
 54,"tabula","RC1M",15.8367346938776,"Chao 1 modified"
 54,"wiqid","RC1M",16,"Chao 1 modified"
-54,"BAT","RCA2",35,"Chao 2"
 54,"divDyn","RCA2",10.625,"Chao 2"
 54,"fossil","RCA2",16,"Chao 2"
-54,"tabula","RCA2",8,"Chao 2"
-54,"wiqid","RCA2",8,"Chao 2"
+54,"BAT","RCA2M",35,NA
+54,"tabula","RCA2M",8,NA
+54,"wiqid","RCA2M",8,NA
 54,"BAT","RICE",35,"ICE"
 54,"fossil","RICE",10.6666666666667,"ICE"
-54,"tabula","RICE",8,"ICE"
 54,"wiqid","RICE",8,"ICE"
 54,"BAT","RJA1",12,"Jackknife 1"
 54,"BiodiversityR","RJA1",8,"Jackknife 1"
@@ -19412,15 +19464,17 @@
 54,"fossil","RJA1",11.9183673469388,"Jackknife 1"
 54,"SSP","RJA1",7,"Jackknife 1"
 54,"tabula","RJA1",1.20451827177207,"Jackknife 1"
+54,"vegan","RJA1",8,"Jackknife 1"
 54,"wiqid","RJA1",12,"Jackknife 1"
 54,"BAT","RJA2",15,"Jackknife 2"
 54,"BiodiversityR","RJA2",8,"Jackknife 2"
 54,"fossil","RJA2",14.5710034013605,"Jackknife 2"
 54,"SSP","RJA2",7,"Jackknife 2"
+54,"vegan","RJA2",8,"Jackknife 2"
 54,"wiqid","RJA2",15,"Jackknife 2"
 54,"asbio","RLMD",9.49813664308316,NA
 54,"sads","RLMD",1.04895374608312,NA
-54,"vegan","RLMD",NA,NA
+54,"vegan","RLMD",4.67254030790241,NA
 54,"wiqid","RMM",0,"Michaelis-Menten"
 54,"divDyn","RSQ",12.8830730265935,"Squares Richness Estimator"
 54,"ecodive","RSQ",12.8830730265935,"Squares Richness Estimator"
@@ -19519,7 +19573,6 @@
 55,"abdiv","DQ",0,"Q-statistic"
 55,"ade4","DRAO",0.804399524375743,"Rao"
 55,"BAT","DRAO",0.804399524375743,"Rao"
-55,"SYNCSA","DRAO",0.804399524375743,"Rao"
 55,"abdiv","DSHA",1.86267837793432,"Shannon"
 55,"adiv","DSHA",1.86267837793432,"Shannon"
 55,"aqp","DSHA",2.68727685861694,"Shannon"
@@ -19735,6 +19788,7 @@
 55,"vegan","RACE",9.31336805555556,"ACE"
 55,"wiqid","RACE",9.31336805555556,"ACE"
 55,"BiodiversityR","RBOO",9,"Bootstrap estimator"
+55,"vegan","RBOO",9,"Bootstrap estimator"
 55,"wiqid","RBOO",35,"Bootstrap estimator"
 55,"BAT","RC1",9,"Chao 1"
 55,"BiodiversityR","RC1",9,"Chao 1"
@@ -19756,14 +19810,13 @@
 55,"OTUtable","RC1M",9.5,"Chao 1 modified"
 55,"tabula","RC1M",9.49137931034483,"Chao 1 modified"
 55,"wiqid","RC1M",9.5,"Chao 1 modified"
-55,"BAT","RCA2",35,"Chao 2"
 55,"divDyn","RCA2",9,"Chao 2"
 55,"fossil","RCA2",9.5,"Chao 2"
-55,"tabula","RCA2",9,"Chao 2"
-55,"wiqid","RCA2",9,"Chao 2"
+55,"BAT","RCA2M",35,NA
+55,"tabula","RCA2M",9,NA
+55,"wiqid","RCA2M",9,NA
 55,"BAT","RICE",35,"ICE"
 55,"fossil","RICE",9.29166666666667,"ICE"
-55,"tabula","RICE",9,"ICE"
 55,"wiqid","RICE",9,"ICE"
 55,"BAT","RJA1",10,"Jackknife 1"
 55,"BiodiversityR","RJA1",9,"Jackknife 1"
@@ -19772,15 +19825,17 @@
 55,"fossil","RJA1",9.98275862068965,"Jackknife 1"
 55,"SSP","RJA1",8,"Jackknife 1"
 55,"tabula","RJA1",1.70663233634809,"Jackknife 1"
+55,"vegan","RJA1",9,"Jackknife 1"
 55,"wiqid","RJA1",10,"Jackknife 1"
 55,"BAT","RJA2",10,"Jackknife 2"
 55,"BiodiversityR","RJA2",9,"Jackknife 2"
 55,"fossil","RJA2",9.94797338173019,"Jackknife 2"
 55,"SSP","RJA2",8,"Jackknife 2"
+55,"vegan","RJA2",9,"Jackknife 2"
 55,"wiqid","RJA2",10,"Jackknife 2"
 55,"asbio","RLMD",11.2860708195542,NA
 55,"sads","RLMD",1.49993655701636,NA
-55,"vegan","RLMD",9.32692418214068,NA
+55,"vegan","RLMD",7.08768745815438,NA
 55,"wiqid","RMM",0,"Michaelis-Menten"
 55,"divDyn","RSQ",9.19612518628912,"Squares Richness Estimator"
 55,"ecodive","RSQ",9.19612518628912,"Squares Richness Estimator"
@@ -19879,7 +19934,6 @@
 56,"abdiv","DQ",0,"Q-statistic"
 56,"ade4","DRAO",0.69684499314129,"Rao"
 56,"BAT","DRAO",0.696844993141289,"Rao"
-56,"SYNCSA","DRAO",0.696844993141289,"Rao"
 56,"abdiv","DSHA",1.6080244480804,"Shannon"
 56,"adiv","DSHA",1.6080244480804,"Shannon"
 56,"aqp","DSHA",2.31988889687381,"Shannon"
@@ -20095,6 +20149,7 @@
 56,"vegan","RACE",13.0333333333333,"ACE"
 56,"wiqid","RACE",13.0333333333333,"ACE"
 56,"BiodiversityR","RBOO",11,"Bootstrap estimator"
+56,"vegan","RBOO",11,"Bootstrap estimator"
 56,"wiqid","RBOO",35,"Bootstrap estimator"
 56,"BAT","RC1",12.5,"Chao 1"
 56,"BiodiversityR","RC1",11,"Chao 1"
@@ -20116,14 +20171,13 @@
 56,"OTUtable","RC1M",15.5,"Chao 1 modified"
 56,"tabula","RC1M",15.4583333333333,"Chao 1 modified"
 56,"wiqid","RC1M",15.5,"Chao 1 modified"
-56,"BAT","RCA2",35,"Chao 2"
 56,"divDyn","RCA2",12.3636363636364,"Chao 2"
 56,"fossil","RCA2",15.5,"Chao 2"
-56,"tabula","RCA2",11,"Chao 2"
-56,"wiqid","RCA2",11,"Chao 2"
+56,"BAT","RCA2M",35,NA
+56,"tabula","RCA2M",11,NA
+56,"wiqid","RCA2M",11,NA
 56,"BAT","RICE",35,"ICE"
 56,"fossil","RICE",12.3333333333333,"ICE"
-56,"tabula","RICE",11,"ICE"
 56,"wiqid","RICE",11,"ICE"
 56,"BAT","RJA1",14,"Jackknife 1"
 56,"BiodiversityR","RJA1",11,"Jackknife 1"
@@ -20132,15 +20186,17 @@
 56,"fossil","RJA1",13.9722222222222,"Jackknife 1"
 56,"SSP","RJA1",10,"Jackknife 1"
 56,"tabula","RJA1",1.39175065720062,"Jackknife 1"
+56,"vegan","RJA1",11,"Jackknife 1"
 56,"wiqid","RJA1",14,"Jackknife 1"
 56,"BAT","RJA2",16,"Jackknife 2"
 56,"BiodiversityR","RJA2",11,"Jackknife 2"
 56,"fossil","RJA2",15.8610245759778,"Jackknife 2"
 56,"SSP","RJA2",10,"Jackknife 2"
+56,"vegan","RJA2",11,"Jackknife 2"
 56,"wiqid","RJA2",16,"Jackknife 2"
 56,"asbio","RLMD",NA,NA
 56,"sads","RLMD",1.42763942687497,NA
-56,"vegan","RLMD",16.8748799410688,NA
+56,"vegan","RLMD",5.70700701664031,NA
 56,"wiqid","RMM",0,"Michaelis-Menten"
 56,"divDyn","RSQ",13.7361361877741,"Squares Richness Estimator"
 56,"ecodive","RSQ",13.7361361877741,"Squares Richness Estimator"
@@ -20239,7 +20295,6 @@
 57,"abdiv","DQ",0,"Q-statistic"
 57,"ade4","DRAO",0.78125,"Rao"
 57,"BAT","DRAO",0.78125,"Rao"
-57,"SYNCSA","DRAO",0.78125,"Rao"
 57,"abdiv","DSHA",1.55958115625988,"Shannon"
 57,"adiv","DSHA",1.55958115625988,"Shannon"
 57,"aqp","DSHA",2.25,"Shannon"
@@ -20455,6 +20510,7 @@
 57,"vegan","RACE",6.66666666666667,"ACE"
 57,"wiqid","RACE",6.66666666666667,"ACE"
 57,"BiodiversityR","RBOO",5,"Bootstrap estimator"
+57,"vegan","RBOO",5,"Bootstrap estimator"
 57,"wiqid","RBOO",35,"Bootstrap estimator"
 57,"BAT","RC1",5.25,"Chao 1"
 57,"BiodiversityR","RC1",5,"Chao 1"
@@ -20476,14 +20532,13 @@
 57,"OTUtable","RC1M",5.66666666666667,"Chao 1 modified"
 57,"tabula","RC1M",5.58333333333333,"Chao 1 modified"
 57,"wiqid","RC1M",5.66666666666667,"Chao 1 modified"
-57,"BAT","RCA2",35,"Chao 2"
 57,"divDyn","RCA2",5.2,"Chao 2"
 57,"fossil","RCA2",5.66666666666667,"Chao 2"
-57,"tabula","RCA2",5,"Chao 2"
-57,"wiqid","RCA2",5,"Chao 2"
+57,"BAT","RCA2M",35,NA
+57,"tabula","RCA2M",5,NA
+57,"wiqid","RCA2M",5,NA
 57,"BAT","RICE",35,"ICE"
 57,"fossil","RICE",6.66666666666667,"ICE"
-57,"tabula","RICE",5,"ICE"
 57,"wiqid","RICE",5,"ICE"
 57,"BAT","RJA1",7,"Jackknife 1"
 57,"BiodiversityR","RJA1",5,"Jackknife 1"
@@ -20492,15 +20547,17 @@
 57,"fossil","RJA1",6.75,"Jackknife 1"
 57,"SSP","RJA1",5,"Jackknife 1"
 57,"tabula","RJA1",1.32966134885476,"Jackknife 1"
+57,"vegan","RJA1",5,"Jackknife 1"
 57,"wiqid","RJA1",7,"Jackknife 1"
 57,"BAT","RJA2",6,"Jackknife 2"
 57,"BiodiversityR","RJA2",5,"Jackknife 2"
 57,"fossil","RJA2",5.57142857142857,"Jackknife 2"
 57,"SSP","RJA2",5,"Jackknife 2"
+57,"vegan","RJA2",5,"Jackknife 2"
 57,"wiqid","RJA2",6,"Jackknife 2"
 57,"asbio","RLMD",NA,NA
 57,"sads","RLMD",0.41588830884289,NA
-57,"vegan","RLMD",5.321744515901,NA
+57,"vegan","RLMD",10.1774857889685,NA
 57,"wiqid","RMM",0,"Michaelis-Menten"
 57,"divDyn","RSQ",6.03703703703704,"Squares Richness Estimator"
 57,"ecodive","RSQ",6.03703703703704,"Squares Richness Estimator"
@@ -20599,7 +20656,6 @@
 58,"abdiv","DQ",0,"Q-statistic"
 58,"ade4","DRAO",0.723721057304829,"Rao"
 58,"BAT","DRAO",0.723721057304829,"Rao"
-58,"SYNCSA","DRAO",0.723721057304829,"Rao"
 58,"abdiv","DSHA",1.6710044737347,"Shannon"
 58,"adiv","DSHA",1.6710044737347,"Shannon"
 58,"aqp","DSHA",2.41074986756033,"Shannon"
@@ -20815,6 +20871,7 @@
 58,"vegan","RACE",15.4368967401202,"ACE"
 58,"wiqid","RACE",15.4368967401202,"ACE"
 58,"BiodiversityR","RBOO",11,"Bootstrap estimator"
+58,"vegan","RBOO",11,"Bootstrap estimator"
 58,"wiqid","RBOO",35,"Bootstrap estimator"
 58,"BAT","RC1",12,"Chao 1"
 58,"BiodiversityR","RC1",11,"Chao 1"
@@ -20836,14 +20893,13 @@
 58,"OTUtable","RC1M",13.25,"Chao 1 modified"
 58,"tabula","RC1M",13.2314049586777,"Chao 1 modified"
 58,"wiqid","RC1M",13.25,"Chao 1 modified"
-58,"BAT","RCA2",35,"Chao 2"
 58,"divDyn","RCA2",11.9090909090909,"Chao 2"
 58,"fossil","RCA2",13.25,"Chao 2"
-58,"tabula","RCA2",11,"Chao 2"
-58,"wiqid","RCA2",11,"Chao 2"
+58,"BAT","RCA2M",35,NA
+58,"tabula","RCA2M",11,NA
+58,"wiqid","RCA2M",11,NA
 58,"BAT","RICE",35,"ICE"
 58,"fossil","RICE",12.2352941176471,"ICE"
-58,"tabula","RICE",11,"ICE"
 58,"wiqid","RICE",11,"ICE"
 58,"BAT","RJA1",14,"Jackknife 1"
 58,"BiodiversityR","RJA1",11,"Jackknife 1"
@@ -20852,15 +20908,17 @@
 58,"fossil","RJA1",13.9752066115702,"Jackknife 1"
 58,"SSP","RJA1",11,"Jackknife 1"
 58,"tabula","RJA1",1.46477923739347,"Jackknife 1"
+58,"vegan","RJA1",11,"Jackknife 1"
 58,"wiqid","RJA1",14,"Jackknife 1"
 58,"BAT","RJA2",15,"Jackknife 2"
 58,"BiodiversityR","RJA2",11,"Jackknife 2"
 58,"fossil","RJA2",14.9006887052342,"Jackknife 2"
 58,"SSP","RJA2",11,"Jackknife 2"
+58,"vegan","RJA2",11,"Jackknife 2"
 58,"wiqid","RJA2",15,"Jackknife 2"
 58,"asbio","RLMD",12.3323172572633,NA
 58,"sads","RLMD",1.54349183095823,NA
-58,"vegan","RLMD",19.956514909766,NA
+58,"vegan","RLMD",5.41731664102421,NA
 58,"wiqid","RMM",0,"Michaelis-Menten"
 58,"divDyn","RSQ",13.4921276013143,"Squares Richness Estimator"
 58,"ecodive","RSQ",13.4921276013143,"Squares Richness Estimator"
@@ -20952,14 +21010,13 @@
 59,"custom","DKO",0.72,"Kothe"
 59,"abdiv","DMC",0.355419666700975,"McIntosh"
 59,"adiv","DMC",0.355419666700975,"McIntosh"
-59,"agricolae","DMC",0.355419666700975,"McIntosh"
+59,"agricolae","DMC",NA,"McIntosh"
 59,"ecodive","DMC",0.355419666700975,"McIntosh"
 59,"forestHES","DMC",0.355419666700975,"McIntosh"
 59,"tabula","DMC",0.355419666700975,"McIntosh"
 59,"abdiv","DQ",0,"Q-statistic"
 59,"ade4","DRAO",0.534814814814815,"Rao"
 59,"BAT","DRAO",0.534814814814815,"Rao"
-59,"SYNCSA","DRAO",0.534814814814815,"Rao"
 59,"abdiv","DSHA",0.990595155815617,"Shannon"
 59,"adiv","DSHA",0.990595155815617,"Shannon"
 59,"aqp","DSHA",1.42912671882382,"Shannon"
@@ -21175,6 +21232,7 @@
 59,"vegan","RACE",10.75,"ACE"
 59,"wiqid","RACE",10.75,"ACE"
 59,"BiodiversityR","RBOO",7,"Bootstrap estimator"
+59,"vegan","RBOO",7,"Bootstrap estimator"
 59,"wiqid","RBOO",35,"Bootstrap estimator"
 59,"BAT","RC1",8,"Chao 1"
 59,"BiodiversityR","RC1",7,"Chao 1"
@@ -21196,14 +21254,13 @@
 59,"OTUtable","RC1M",9.25,"Chao 1 modified"
 59,"tabula","RC1M",9.225,"Chao 1 modified"
 59,"wiqid","RC1M",9.25,"Chao 1 modified"
-59,"BAT","RCA2",35,"Chao 2"
 59,"divDyn","RCA2",7.85714285714286,"Chao 2"
 59,"fossil","RCA2",9.25,"Chao 2"
-59,"tabula","RCA2",7,"Chao 2"
-59,"wiqid","RCA2",7,"Chao 2"
+59,"BAT","RCA2M",35,NA
+59,"tabula","RCA2M",7,NA
+59,"wiqid","RCA2M",7,NA
 59,"BAT","RICE",35,"ICE"
 59,"fossil","RICE",13.15625,"ICE"
-59,"tabula","RICE",7,"ICE"
 59,"wiqid","RICE",7,"ICE"
 59,"BAT","RJA1",10,"Jackknife 1"
 59,"BiodiversityR","RJA1",7,"Jackknife 1"
@@ -21212,15 +21269,17 @@
 59,"fossil","RJA1",9.96666666666667,"Jackknife 1"
 59,"SSP","RJA1",6,"Jackknife 1"
 59,"tabula","RJA1",0.534189811112482,"Jackknife 1"
+59,"vegan","RJA1",7,"Jackknife 1"
 59,"wiqid","RJA1",10,"Jackknife 1"
 59,"BAT","RJA2",11,"Jackknife 2"
 59,"BiodiversityR","RJA2",7,"Jackknife 2"
 59,"fossil","RJA2",10.8664169787765,"Jackknife 2"
 59,"SSP","RJA2",6,"Jackknife 2"
+59,"vegan","RJA2",7,"Jackknife 2"
 59,"wiqid","RJA2",11,"Jackknife 2"
 59,"asbio","RLMD",9.3651099574827,NA
 59,"sads","RLMD",1.24893917680983,NA
-59,"vegan","RLMD",2794.03372656072,NA
+59,"vegan","RLMD",5.23136747925567,NA
 59,"wiqid","RMM",0,"Michaelis-Menten"
 59,"divDyn","RSQ",11.1975492016339,"Squares Richness Estimator"
 59,"ecodive","RSQ",11.1975492016339,"Squares Richness Estimator"
@@ -21319,7 +21378,6 @@
 60,"abdiv","DQ",0,"Q-statistic"
 60,"ade4","DRAO",0.738173476346953,"Rao"
 60,"BAT","DRAO",0.738173476346953,"Rao"
-60,"SYNCSA","DRAO",0.738173476346953,"Rao"
 60,"abdiv","DSHA",1.69630811453213,"Shannon"
 60,"adiv","DSHA",1.69630811453213,"Shannon"
 60,"aqp","DSHA",2.44725530465521,"Shannon"
@@ -21535,6 +21593,7 @@
 60,"vegan","RACE",17.2592592592593,"ACE"
 60,"wiqid","RACE",17.2592592592593,"ACE"
 60,"BiodiversityR","RBOO",12,"Bootstrap estimator"
+60,"vegan","RBOO",12,"Bootstrap estimator"
 60,"wiqid","RBOO",35,"Bootstrap estimator"
 60,"BAT","RC1",14,"Chao 1"
 60,"BiodiversityR","RC1",12,"Chao 1"
@@ -21556,14 +21615,13 @@
 60,"OTUtable","RC1M",16,"Chao 1 modified"
 60,"tabula","RC1M",15.9685039370079,"Chao 1 modified"
 60,"wiqid","RC1M",16,"Chao 1 modified"
-60,"BAT","RCA2",35,"Chao 2"
 60,"divDyn","RCA2",13.8333333333333,"Chao 2"
 60,"fossil","RCA2",16,"Chao 2"
-60,"tabula","RCA2",12,"Chao 2"
-60,"wiqid","RCA2",12,"Chao 2"
+60,"BAT","RCA2M",35,NA
+60,"tabula","RCA2M",12,NA
+60,"wiqid","RCA2M",12,NA
 60,"BAT","RICE",35,"ICE"
 60,"fossil","RICE",13.5,"ICE"
-60,"tabula","RICE",12,"ICE"
 60,"wiqid","RICE",12,"ICE"
 60,"BAT","RJA1",16,"Jackknife 1"
 60,"BiodiversityR","RJA1",12,"Jackknife 1"
@@ -21572,15 +21630,17 @@
 60,"fossil","RJA1",15.9685039370079,"Jackknife 1"
 60,"SSP","RJA1",11,"Jackknife 1"
 60,"tabula","RJA1",1.49937335367242,"Jackknife 1"
+60,"vegan","RJA1",12,"Jackknife 1"
 60,"wiqid","RJA1",16,"Jackknife 1"
 60,"BAT","RJA2",18,"Jackknife 2"
 60,"BiodiversityR","RJA2",12,"Jackknife 2"
 60,"fossil","RJA2",17.8581427321585,"Jackknife 2"
 60,"SSP","RJA2",11,"Jackknife 2"
+60,"vegan","RJA2",12,"Jackknife 2"
 60,"wiqid","RJA2",18,"Jackknife 2"
 60,"asbio","RLMD",14.8064592283041,NA
 60,"sads","RLMD",1.41898748885992,NA
-60,"vegan","RLMD",56.0074990300116,NA
+60,"vegan","RLMD",5.84993977284857,NA
 60,"wiqid","RMM",0,"Michaelis-Menten"
 60,"divDyn","RSQ",16.2017287482122,"Squares Richness Estimator"
 60,"ecodive","RSQ",16.2017287482122,"Squares Richness Estimator"
@@ -21679,7 +21739,6 @@
 61,"abdiv","DQ",0,"Q-statistic"
 61,"ade4","DRAO",0.844671201814059,"Rao"
 61,"BAT","DRAO",0.844671201814059,"Rao"
-61,"SYNCSA","DRAO",0.844671201814059,"Rao"
 61,"abdiv","DSHA",1.98099159894805,"Shannon"
 61,"adiv","DSHA",1.98099159894805,"Shannon"
 61,"aqp","DSHA",2.85796675584505,"Shannon"
@@ -21895,6 +21954,7 @@
 61,"vegan","RACE",10.0236585365854,"ACE"
 61,"wiqid","RACE",10.0236585365854,"ACE"
 61,"BiodiversityR","RBOO",9,"Bootstrap estimator"
+61,"vegan","RBOO",9,"Bootstrap estimator"
 61,"wiqid","RBOO",35,"Bootstrap estimator"
 61,"BAT","RC1",9.5,"Chao 1"
 61,"BiodiversityR","RC1",9,"Chao 1"
@@ -21916,14 +21976,13 @@
 61,"OTUtable","RC1M",11,"Chao 1 modified"
 61,"tabula","RC1M",10.952380952381,"Chao 1 modified"
 61,"wiqid","RC1M",11,"Chao 1 modified"
-61,"BAT","RCA2",35,"Chao 2"
 61,"divDyn","RCA2",9.44444444444444,"Chao 2"
 61,"fossil","RCA2",11,"Chao 2"
-61,"tabula","RCA2",9,"Chao 2"
-61,"wiqid","RCA2",9,"Chao 2"
+61,"BAT","RCA2M",35,NA
+61,"tabula","RCA2M",9,NA
+61,"wiqid","RCA2M",9,NA
 61,"BAT","RICE",35,"ICE"
 61,"fossil","RICE",9.45,"ICE"
-61,"tabula","RICE",9,"ICE"
 61,"wiqid","RICE",9,"ICE"
 61,"BAT","RJA1",11,"Jackknife 1"
 61,"BiodiversityR","RJA1",9,"Jackknife 1"
@@ -21932,15 +21991,17 @@
 61,"fossil","RJA1",10.952380952381,"Jackknife 1"
 61,"SSP","RJA1",8,"Jackknife 1"
 61,"tabula","RJA1",1.83268782743625,"Jackknife 1"
+61,"vegan","RJA1",9,"Jackknife 1"
 61,"wiqid","RJA1",11,"Jackknife 1"
 61,"BAT","RJA2",12,"Jackknife 2"
 61,"BiodiversityR","RJA2",9,"Jackknife 2"
 61,"fossil","RJA2",11.7851335656214,"Jackknife 2"
 61,"SSP","RJA2",8,"Jackknife 2"
+61,"vegan","RJA2",9,"Jackknife 2"
 61,"wiqid","RJA2",12,"Jackknife 2"
 61,"asbio","RLMD",17.2909813797003,NA
 61,"sads","RLMD",1.26435171941946,NA
-61,"vegan","RLMD",14.2710899231959,NA
+61,"vegan","RLMD",7.47889223696122,NA
 61,"wiqid","RMM",0,"Michaelis-Menten"
 61,"divDyn","RSQ",9.62772050400916,"Squares Richness Estimator"
 61,"ecodive","RSQ",9.62772050400916,"Squares Richness Estimator"
@@ -21963,7 +22024,7 @@
 62,"abdiv","D1SP",0.757396449704142,"Simpson's reciprocal"
 62,"ade4","D1SP",0.757396449704142,"Simpson's reciprocal"
 62,"adiv","D1SP",0.757396449704142,"Simpson's reciprocal"
-62,"agricolae","D1SP",0.757396449704142,"Simpson's reciprocal"
+62,"agricolae","D1SP",NA,"Simpson's reciprocal"
 62,"asbio","D1SP",0.757396449704142,"Simpson's reciprocal"
 62,"BiodiversityR","D1SP",0.75739645,"Simpson's reciprocal"
 62,"biosampleR","D1SP",0.858418367346939,"Simpson's reciprocal"
@@ -22039,7 +22100,6 @@
 62,"abdiv","DQ",0,"Q-statistic"
 62,"ade4","DRAO",0.757396449704142,"Rao"
 62,"BAT","DRAO",0.757396449704142,"Rao"
-62,"SYNCSA","DRAO",0.757396449704142,"Rao"
 62,"abdiv","DSHA",1.5857708352081,"Shannon"
 62,"adiv","DSHA",1.5857708352081,"Shannon"
 62,"aqp","DSHA",2.28778371994107,"Shannon"
@@ -22255,6 +22315,7 @@
 62,"vegan","RACE",9.36,"ACE"
 62,"wiqid","RACE",9.36,"ACE"
 62,"BiodiversityR","RBOO",6,"Bootstrap estimator"
+62,"vegan","RBOO",6,"Bootstrap estimator"
 62,"wiqid","RBOO",35,"Bootstrap estimator"
 62,"BAT","RC1",7.5,"Chao 1"
 62,"BiodiversityR","RC1",6,"Chao 1"
@@ -22276,14 +22337,13 @@
 62,"OTUtable","RC1M",10.5,"Chao 1 modified"
 62,"tabula","RC1M",10.1538461538462,"Chao 1 modified"
 62,"wiqid","RC1M",10.5,"Chao 1 modified"
-62,"BAT","RCA2",35,"Chao 2"
 62,"divDyn","RCA2",7.25,"Chao 2"
 62,"fossil","RCA2",10.5,"Chao 2"
-62,"tabula","RCA2",6,"Chao 2"
-62,"wiqid","RCA2",6,"Chao 2"
+62,"BAT","RCA2M",35,NA
+62,"tabula","RCA2M",6,NA
+62,"wiqid","RCA2M",6,NA
 62,"BAT","RICE",35,"ICE"
 62,"fossil","RICE",7.8,"ICE"
-62,"tabula","RICE",6,"ICE"
 62,"wiqid","RICE",6,"ICE"
 62,"BAT","RJA1",9,"Jackknife 1"
 62,"BiodiversityR","RJA1",6,"Jackknife 1"
@@ -22292,15 +22352,17 @@
 62,"fossil","RJA1",8.76923076923077,"Jackknife 1"
 62,"SSP","RJA1",5,"Jackknife 1"
 62,"tabula","RJA1",1.35923670066501,"Jackknife 1"
+62,"vegan","RJA1",6,"Jackknife 1"
 62,"wiqid","RJA1",9,"Jackknife 1"
 62,"BAT","RJA2",11,"Jackknife 2"
 62,"BiodiversityR","RJA2",6,"Jackknife 2"
 62,"fossil","RJA2",9.83974358974359,"Jackknife 2"
 62,"SSP","RJA2",5,"Jackknife 2"
+62,"vegan","RJA2",6,"Jackknife 2"
 62,"wiqid","RJA2",11,"Jackknife 2"
 62,"asbio","RLMD",13.0414681882704,NA
 62,"sads","RLMD",0.566866230122047,NA
-62,"vegan","RLMD",7.88031571075074,NA
+62,"vegan","RLMD",6.32539874323492,NA
 62,"wiqid","RMM",0,"Michaelis-Menten"
 62,"divDyn","RSQ",8.44370860927152,"Squares Richness Estimator"
 62,"ecodive","RSQ",8.44370860927152,"Squares Richness Estimator"
@@ -22399,7 +22461,6 @@
 63,"abdiv","DQ",0,"Q-statistic"
 63,"ade4","DRAO",0.875878853434289,"Rao"
 63,"BAT","DRAO",0.875878853434291,"Rao"
-63,"SYNCSA","DRAO",0.875878853434289,"Rao"
 63,"abdiv","DSHA",2.3548864068504,"Shannon"
 63,"adiv","DSHA",2.3548864068504,"Shannon"
 63,"aqp","DSHA",3.3973829410199,"Shannon"
@@ -22615,6 +22676,7 @@
 63,"vegan","RACE",17.3859649122807,"ACE"
 63,"wiqid","RACE",17.3859649122807,"ACE"
 63,"BiodiversityR","RBOO",16,"Bootstrap estimator"
+63,"vegan","RBOO",16,"Bootstrap estimator"
 63,"wiqid","RBOO",35,"Bootstrap estimator"
 63,"BAT","RC1",16.125,"Chao 1"
 63,"BiodiversityR","RC1",16,"Chao 1"
@@ -22636,14 +22698,13 @@
 63,"OTUtable","RC1M",16.2857142857143,"Chao 1 modified"
 63,"tabula","RC1M",16.2823920265781,"Chao 1 modified"
 63,"wiqid","RC1M",16.2857142857143,"Chao 1 modified"
-63,"BAT","RCA2",35,"Chao 2"
 63,"divDyn","RCA2",16.1171875,"Chao 2"
 63,"fossil","RCA2",16.2857142857143,"Chao 2"
-63,"tabula","RCA2",16,"Chao 2"
-63,"wiqid","RCA2",16,"Chao 2"
+63,"BAT","RCA2M",35,NA
+63,"tabula","RCA2M",16,NA
+63,"wiqid","RCA2M",16,NA
 63,"BAT","RICE",35,"ICE"
 63,"fossil","RICE",16.6842105263158,"ICE"
-63,"tabula","RICE",16,"ICE"
 63,"wiqid","RICE",16,"ICE"
 63,"BAT","RJA1",18,"Jackknife 1"
 63,"BiodiversityR","RJA1",16,"Jackknife 1"
@@ -22652,15 +22713,17 @@
 63,"fossil","RJA1",17.9767441860465,"Jackknife 1"
 63,"SSP","RJA1",15,"Jackknife 1"
 63,"tabula","RJA1",2.25519467085333,"Jackknife 1"
+63,"vegan","RJA1",16,"Jackknife 1"
 63,"wiqid","RJA1",18,"Jackknife 1"
 63,"BAT","RJA2",13,"Jackknife 2"
 63,"BiodiversityR","RJA2",16,"Jackknife 2"
 63,"fossil","RJA2",13.1036935704514,"Jackknife 2"
 63,"SSP","RJA2",15,"Jackknife 2"
+63,"vegan","RJA2",16,"Jackknife 2"
 63,"wiqid","RJA2",13,"Jackknife 2"
 63,"asbio","RLMD",23.044172432279,NA
 63,"sads","RLMD",1.24171307597697,NA
-63,"vegan","RLMD",17.1658238536904,NA
+63,"vegan","RLMD",11.6419011428505,NA
 63,"wiqid","RMM",0,"Michaelis-Menten"
 63,"divDyn","RSQ",16.4986420423683,"Squares Richness Estimator"
 63,"ecodive","RSQ",16.4986420423683,"Squares Richness Estimator"
@@ -22759,7 +22822,6 @@
 64,"abdiv","DQ",0,"Q-statistic"
 64,"ade4","DRAO",0.856146694214876,"Rao"
 64,"BAT","DRAO",0.856146694214876,"Rao"
-64,"SYNCSA","DRAO",0.856146694214876,"Rao"
 64,"abdiv","DSHA",2.17138602043154,"Shannon"
 64,"adiv","DSHA",2.17138602043154,"Shannon"
 64,"aqp","DSHA",3.13264784353221,"Shannon"
@@ -22975,6 +23037,7 @@
 64,"vegan","RACE",13.7826086956522,"ACE"
 64,"wiqid","RACE",13.7826086956522,"ACE"
 64,"BiodiversityR","RBOO",13,"Bootstrap estimator"
+64,"vegan","RBOO",13,"Bootstrap estimator"
 64,"wiqid","RBOO",35,"Bootstrap estimator"
 64,"BAT","RC1",13.5,"Chao 1"
 64,"BiodiversityR","RC1",13,"Chao 1"
@@ -22996,14 +23059,13 @@
 64,"OTUtable","RC1M",15,"Chao 1 modified"
 64,"tabula","RC1M",14.9772727272727,"Chao 1 modified"
 64,"wiqid","RC1M",15,"Chao 1 modified"
-64,"BAT","RCA2",35,"Chao 2"
 64,"divDyn","RCA2",13.4615384615385,"Chao 2"
 64,"fossil","RCA2",15,"Chao 2"
-64,"tabula","RCA2",13,"Chao 2"
-64,"wiqid","RCA2",13,"Chao 2"
+64,"BAT","RCA2M",35,NA
+64,"tabula","RCA2M",13,NA
+64,"wiqid","RCA2M",13,NA
 64,"BAT","RICE",35,"ICE"
 64,"fossil","RICE",13.7826086956522,"ICE"
-64,"tabula","RICE",13,"ICE"
 64,"wiqid","RICE",13,"ICE"
 64,"BAT","RJA1",15,"Jackknife 1"
 64,"BiodiversityR","RJA1",13,"Jackknife 1"
@@ -23012,15 +23074,17 @@
 64,"fossil","RJA1",14.9772727272727,"Jackknife 1"
 64,"SSP","RJA1",12,"Jackknife 1"
 64,"tabula","RJA1",2.05098955334298,"Jackknife 1"
+64,"vegan","RJA1",13,"Jackknife 1"
 64,"wiqid","RJA1",15,"Jackknife 1"
 64,"BAT","RJA2",16,"Jackknife 2"
 64,"BiodiversityR","RJA2",13,"Jackknife 2"
 64,"fossil","RJA2",15.8975966562173,"Jackknife 2"
 64,"SSP","RJA2",12,"Jackknife 2"
+64,"vegan","RJA2",13,"Jackknife 2"
 64,"wiqid","RJA2",16,"Jackknife 2"
 64,"asbio","RLMD",11.3734283032757,NA
 64,"sads","RLMD",1.46820554778903,NA
-64,"vegan","RLMD",14.7944213826218,NA
+64,"vegan","RLMD",9.1003216922936,NA
 64,"wiqid","RMM",0,"Michaelis-Menten"
 64,"divDyn","RSQ",13.577351645504,"Squares Richness Estimator"
 64,"ecodive","RSQ",13.577351645504,"Squares Richness Estimator"
@@ -23119,7 +23183,6 @@
 65,"abdiv","DQ",0,"Q-statistic"
 65,"ade4","DRAO",0.858418367346939,"Rao"
 65,"BAT","DRAO",0.858418367346939,"Rao"
-65,"SYNCSA","DRAO",0.858418367346939,"Rao"
 65,"abdiv","DSHA",2.16637327968415,"Shannon"
 65,"adiv","DSHA",2.16637327968415,"Shannon"
 65,"aqp","DSHA",3.12541598731469,"Shannon"
@@ -23335,6 +23398,7 @@
 65,"vegan","RACE",14.3907068709837,"ACE"
 65,"wiqid","RACE",14.3907068709837,"ACE"
 65,"BiodiversityR","RBOO",13,"Bootstrap estimator"
+65,"vegan","RBOO",13,"Bootstrap estimator"
 65,"wiqid","RBOO",35,"Bootstrap estimator"
 65,"BAT","RC1",13.3333333333333,"Chao 1"
 65,"BiodiversityR","RC1",13,"Chao 1"
@@ -23356,14 +23420,13 @@
 65,"OTUtable","RC1M",14,"Chao 1 modified"
 65,"tabula","RC1M",13.9910714285714,"Chao 1 modified"
 65,"wiqid","RC1M",14,"Chao 1 modified"
-65,"BAT","RCA2",35,"Chao 2"
 65,"divDyn","RCA2",13.3076923076923,"Chao 2"
 65,"fossil","RCA2",14,"Chao 2"
-65,"tabula","RCA2",13,"Chao 2"
-65,"wiqid","RCA2",13,"Chao 2"
+65,"BAT","RCA2M",35,NA
+65,"tabula","RCA2M",13,NA
+65,"wiqid","RCA2M",13,NA
 65,"BAT","RICE",35,"ICE"
 65,"fossil","RICE",13.5294117647059,"ICE"
-65,"tabula","RICE",13,"ICE"
 65,"wiqid","RICE",13,"ICE"
 65,"BAT","RJA1",15,"Jackknife 1"
 65,"BiodiversityR","RJA1",13,"Jackknife 1"
@@ -23372,15 +23435,17 @@
 65,"fossil","RJA1",14.9821428571429,"Jackknife 1"
 65,"SSP","RJA1",12,"Jackknife 1"
 65,"tabula","RJA1",2.0449783213584,"Jackknife 1"
+65,"vegan","RJA1",13,"Jackknife 1"
 65,"wiqid","RJA1",15,"Jackknife 1"
 65,"BAT","RJA2",15,"Jackknife 2"
 65,"BiodiversityR","RJA2",13,"Jackknife 2"
 65,"fossil","RJA2",14.9462676962677,"Jackknife 2"
 65,"SSP","RJA2",12,"Jackknife 2"
+65,"vegan","RJA2",13,"Jackknife 2"
 65,"wiqid","RJA2",15,"Jackknife 2"
 65,"asbio","RLMD",29.8985938183007,NA
 65,"sads","RLMD",1.6568514998005,NA
-65,"vegan","RLMD",20.0875784340535,NA
+65,"vegan","RLMD",8.17193679400286,NA
 65,"wiqid","RMM",0,"Michaelis-Menten"
 65,"divDyn","RSQ",13.5675027959738,"Squares Richness Estimator"
 65,"ecodive","RSQ",13.5675027959738,"Squares Richness Estimator"
@@ -23479,7 +23544,6 @@
 66,"abdiv","DQ",0,"Q-statistic"
 66,"ade4","DRAO",0.868608799048751,"Rao"
 66,"BAT","DRAO",0.868608799048752,"Rao"
-66,"SYNCSA","DRAO",0.868608799048751,"Rao"
 66,"abdiv","DSHA",2.24414555990563,"Shannon"
 66,"adiv","DSHA",2.24414555990563,"Shannon"
 66,"aqp","DSHA",3.23761767030885,"Shannon"
@@ -23695,6 +23759,7 @@
 66,"vegan","RACE",15.9278530089341,"ACE"
 66,"wiqid","RACE",15.9278530089341,"ACE"
 66,"BiodiversityR","RBOO",14,"Bootstrap estimator"
+66,"vegan","RBOO",14,"Bootstrap estimator"
 66,"wiqid","RBOO",35,"Bootstrap estimator"
 66,"BAT","RC1",17,"Chao 1"
 66,"BiodiversityR","RC1",14,"Chao 1"
@@ -23716,14 +23781,13 @@
 66,"OTUtable","RC1M",Inf,"Chao 1 modified"
 66,"tabula","RC1M",16.9741379310345,"Chao 1 modified"
 66,"wiqid","RC1M",17,"Chao 1 modified"
-66,"BAT","RCA2",35,"Chao 2"
 66,"divDyn","RCA2",16.7857142857143,"Chao 2"
 66,"fossil","RCA2",17,"Chao 2"
-66,"tabula","RCA2",14,"Chao 2"
-66,"wiqid","RCA2",14,"Chao 2"
+66,"BAT","RCA2M",35,NA
+66,"tabula","RCA2M",14,NA
+66,"wiqid","RCA2M",14,NA
 66,"BAT","RICE",35,"ICE"
 66,"fossil","RICE",14.8108108108108,"ICE"
-66,"tabula","RICE",14,"ICE"
 66,"wiqid","RICE",14,"ICE"
 66,"BAT","RJA1",17,"Jackknife 1"
 66,"BiodiversityR","RJA1",14,"Jackknife 1"
@@ -23732,15 +23796,17 @@
 66,"fossil","RJA1",16.9741379310345,"Jackknife 1"
 66,"SSP","RJA1",13,"Jackknife 1"
 66,"tabula","RJA1",2.13211496239302,"Jackknife 1"
+66,"vegan","RJA1",14,"Jackknife 1"
 66,"wiqid","RJA1",17,"Jackknife 1"
 66,"BAT","RJA2",20,"Jackknife 2"
 66,"BiodiversityR","RJA2",14,"Jackknife 2"
 66,"fossil","RJA2",19.8448275862069,"Jackknife 2"
 66,"SSP","RJA2",13,"Jackknife 2"
+66,"vegan","RJA2",14,"Jackknife 2"
 66,"wiqid","RJA2",20,"Jackknife 2"
 66,"asbio","RLMD",24.1591990050456,NA
 66,"sads","RLMD",1.61977968272114,NA
-66,"vegan","RLMD",26.6813563052085,NA
+66,"vegan","RLMD",8.7187390198458,NA
 66,"wiqid","RMM",0,"Michaelis-Menten"
 66,"divDyn","RSQ",15.1862233487401,"Squares Richness Estimator"
 66,"ecodive","RSQ",15.1862233487401,"Squares Richness Estimator"
@@ -23832,14 +23898,13 @@
 67,"custom","DKO",0.76,"Kothe"
 67,"abdiv","DMC",0.0758413160578267,"McIntosh"
 67,"adiv","DMC",0.0758413160578267,"McIntosh"
-67,"agricolae","DMC",NA,"McIntosh"
+67,"agricolae","DMC",0.0758413160578267,"McIntosh"
 67,"ecodive","DMC",0.0758413160578267,"McIntosh"
 67,"forestHES","DMC",0.0758413160578267,"McIntosh"
 67,"tabula","DMC",0.0758413160578267,"McIntosh"
 67,"abdiv","DQ",0,"Q-statistic"
 67,"ade4","DRAO",0.140907369487557,"Rao"
 67,"BAT","DRAO",0.140907369487557,"Rao"
-67,"SYNCSA","DRAO",0.140907369487557,"Rao"
 67,"abdiv","DSHA",0.355800693368708,"Shannon"
 67,"adiv","DSHA",0.355800693368708,"Shannon"
 67,"aqp","DSHA",0.51331189586789,"Shannon"
@@ -24055,6 +24120,7 @@
 67,"vegan","RACE",6,"ACE"
 67,"wiqid","RACE",6,"ACE"
 67,"BiodiversityR","RBOO",6,"Bootstrap estimator"
+67,"vegan","RBOO",6,"Bootstrap estimator"
 67,"wiqid","RBOO",35,"Bootstrap estimator"
 67,"BAT","RC1",6,"Chao 1"
 67,"BiodiversityR","RC1",6,"Chao 1"
@@ -24076,14 +24142,13 @@
 67,"OTUtable","RC1M",NA,"Chao 1 modified"
 67,"tabula","RC1M",6,"Chao 1 modified"
 67,"wiqid","RC1M",6,"Chao 1 modified"
-67,"BAT","RCA2",35,"Chao 2"
 67,"divDyn","RCA2",6,"Chao 2"
 67,"fossil","RCA2",6,"Chao 2"
-67,"tabula","RCA2",6,"Chao 2"
-67,"wiqid","RCA2",6,"Chao 2"
+67,"BAT","RCA2M",35,NA
+67,"tabula","RCA2M",6,NA
+67,"wiqid","RCA2M",6,NA
 67,"BAT","RICE",35,"ICE"
 67,"fossil","RICE",6,"ICE"
-67,"tabula","RICE",6,"ICE"
 67,"wiqid","RICE",6,"ICE"
 67,"BAT","RJA1",6,"Jackknife 1"
 67,"BiodiversityR","RJA1",6,"Jackknife 1"
@@ -24092,15 +24157,17 @@
 67,"fossil","RJA1",6,"Jackknife 1"
 67,"SSP","RJA1",5,"Jackknife 1"
 67,"tabula","RJA1",0.188734393782713,"Jackknife 1"
+67,"vegan","RJA1",6,"Jackknife 1"
 67,"wiqid","RJA1",6,"Jackknife 1"
 67,"BAT","RJA2",6,"Jackknife 2"
 67,"BiodiversityR","RJA2",6,"Jackknife 2"
 67,"fossil","RJA2",6,"Jackknife 2"
 67,"SSP","RJA2",5,"Jackknife 2"
+67,"vegan","RJA2",6,"Jackknife 2"
 67,"wiqid","RJA2",6,"Jackknife 2"
 67,"asbio","RLMD",5.84824955337985,NA
 67,"sads","RLMD",2.81810480921096,NA
-67,"vegan","RLMD",NA,NA
+67,"vegan","RLMD",2.11915417788488,NA
 67,"wiqid","RMM",0,"Michaelis-Menten"
 67,"divDyn","RSQ",6,"Squares Richness Estimator"
 67,"ecodive","RSQ",6,"Squares Richness Estimator"
@@ -24199,7 +24266,6 @@
 68,"abdiv","DQ",0,"Q-statistic"
 68,"ade4","DRAO",0.836295755214674,"Rao"
 68,"BAT","DRAO",0.836295755214673,"Rao"
-68,"SYNCSA","DRAO",0.836295755214674,"Rao"
 68,"abdiv","DSHA",2.09739881684649,"Shannon"
 68,"adiv","DSHA",2.09739881684649,"Shannon"
 68,"aqp","DSHA",3.02590687183082,"Shannon"
@@ -24415,6 +24481,7 @@
 68,"vegan","RACE",13.9780524184956,"ACE"
 68,"wiqid","RACE",13.9780524184956,"ACE"
 68,"BiodiversityR","RBOO",13,"Bootstrap estimator"
+68,"vegan","RBOO",13,"Bootstrap estimator"
 68,"wiqid","RBOO",35,"Bootstrap estimator"
 68,"BAT","RC1",14,"Chao 1"
 68,"BiodiversityR","RC1",13,"Chao 1"
@@ -24436,14 +24503,13 @@
 68,"OTUtable","RC1M",Inf,"Chao 1 modified"
 68,"tabula","RC1M",13.990990990991,"Chao 1 modified"
 68,"wiqid","RC1M",14,"Chao 1 modified"
-68,"BAT","RCA2",35,"Chao 2"
 68,"divDyn","RCA2",13.9230769230769,"Chao 2"
 68,"fossil","RCA2",14,"Chao 2"
-68,"tabula","RCA2",13,"Chao 2"
-68,"wiqid","RCA2",13,"Chao 2"
+68,"BAT","RCA2M",35,NA
+68,"tabula","RCA2M",13,NA
+68,"wiqid","RCA2M",13,NA
 68,"BAT","RICE",35,"ICE"
 68,"fossil","RICE",13.5263157894737,"ICE"
-68,"tabula","RICE",13,"ICE"
 68,"wiqid","RICE",13,"ICE"
 68,"BAT","RJA1",15,"Jackknife 1"
 68,"BiodiversityR","RJA1",13,"Jackknife 1"
@@ -24452,15 +24518,17 @@
 68,"fossil","RJA1",14.981981981982,"Jackknife 1"
 68,"SSP","RJA1",12,"Jackknife 1"
 68,"tabula","RJA1",1.97114630538966,"Jackknife 1"
+68,"vegan","RJA1",13,"Jackknife 1"
 68,"wiqid","RJA1",15,"Jackknife 1"
 68,"BAT","RJA2",17,"Jackknife 2"
 68,"BiodiversityR","RJA2",13,"Jackknife 2"
 68,"fossil","RJA2",16.8918918918919,"Jackknife 2"
 68,"SSP","RJA2",12,"Jackknife 2"
+68,"vegan","RJA2",13,"Jackknife 2"
 68,"wiqid","RJA2",17,"Jackknife 2"
 68,"asbio","RLMD",21.3486541205407,NA
 68,"sads","RLMD",1.62350995522734,NA
-68,"vegan","RLMD",13.7981229288231,NA
+68,"vegan","RLMD",8.42695149870169,NA
 68,"wiqid","RMM",0,"Michaelis-Menten"
 68,"divDyn","RSQ",13.6562017080114,"Squares Richness Estimator"
 68,"ecodive","RSQ",13.6562017080114,"Squares Richness Estimator"
@@ -24559,7 +24627,6 @@
 69,"abdiv","DQ",6.68067845080676,"Q-statistic"
 69,"ade4","DRAO",0.801630434782609,"Rao"
 69,"BAT","DRAO",0.80163043478261,"Rao"
-69,"SYNCSA","DRAO",0.801630434782609,"Rao"
 69,"abdiv","DSHA",2.14589226571417,"Shannon"
 69,"adiv","DSHA",2.14589226571417,"Shannon"
 69,"aqp","DSHA",3.09586813002781,"Shannon"
@@ -24775,6 +24842,7 @@
 69,"vegan","RACE",17,"ACE"
 69,"wiqid","RACE",17,"ACE"
 69,"BiodiversityR","RBOO",17,"Bootstrap estimator"
+69,"vegan","RBOO",17,"Bootstrap estimator"
 69,"wiqid","RBOO",35,"Bootstrap estimator"
 69,"BAT","RC1",17,"Chao 1"
 69,"BiodiversityR","RC1",17,"Chao 1"
@@ -24796,14 +24864,13 @@
 69,"OTUtable","RC1M",17,"Chao 1 modified"
 69,"tabula","RC1M",17,"Chao 1 modified"
 69,"wiqid","RC1M",17,"Chao 1 modified"
-69,"BAT","RCA2",35,"Chao 2"
 69,"divDyn","RCA2",17,"Chao 2"
 69,"fossil","RCA2",17,"Chao 2"
-69,"tabula","RCA2",17,"Chao 2"
-69,"wiqid","RCA2",17,"Chao 2"
+69,"BAT","RCA2M",35,NA
+69,"tabula","RCA2M",17,NA
+69,"wiqid","RCA2M",17,NA
 69,"BAT","RICE",35,"ICE"
 69,"fossil","RICE",17,"ICE"
-69,"tabula","RICE",17,"ICE"
 69,"wiqid","RICE",17,"ICE"
 69,"BAT","RJA1",17,"Jackknife 1"
 69,"BiodiversityR","RJA1",17,"Jackknife 1"
@@ -24812,15 +24879,17 @@
 69,"fossil","RJA1",17,"Jackknife 1"
 69,"SSP","RJA1",16,"Jackknife 1"
 69,"tabula","RJA1",2.02154035662273,"Jackknife 1"
+69,"vegan","RJA1",17,"Jackknife 1"
 69,"wiqid","RJA1",17,"Jackknife 1"
 69,"BAT","RJA2",15,"Jackknife 2"
 69,"BiodiversityR","RJA2",17,"Jackknife 2"
 69,"fossil","RJA2",15.0325492991209,"Jackknife 2"
 69,"SSP","RJA2",16,"Jackknife 2"
+69,"vegan","RJA2",17,"Jackknife 2"
 69,"wiqid","RJA2",15,"Jackknife 2"
 69,"asbio","RLMD",21.9900097241543,NA
 69,"sads","RLMD",1.77588795750465,NA
-69,"vegan","RLMD",21.9978468383703,NA
+69,"vegan","RLMD",12.0179045777044,NA
 69,"wiqid","RMM",0,"Michaelis-Menten"
 69,"divDyn","RSQ",17,"Squares Richness Estimator"
 69,"ecodive","RSQ",17,"Squares Richness Estimator"
@@ -24919,7 +24988,6 @@
 70,"abdiv","DQ",0,"Q-statistic"
 70,"ade4","DRAO",0.892152175397855,"Rao"
 70,"BAT","DRAO",0.892152175397856,"Rao"
-70,"SYNCSA","DRAO",0.892152175397855,"Rao"
 70,"abdiv","DSHA",2.39096483468519,"Shannon"
 70,"adiv","DSHA",2.39096483468519,"Shannon"
 70,"aqp","DSHA",3.44943310994022,"Shannon"
@@ -25135,6 +25203,7 @@
 70,"vegan","RACE",16.9952054006367,"ACE"
 70,"wiqid","RACE",16.9952054006367,"ACE"
 70,"BiodiversityR","RBOO",15,"Bootstrap estimator"
+70,"vegan","RBOO",15,"Bootstrap estimator"
 70,"wiqid","RBOO",35,"Bootstrap estimator"
 70,"BAT","RC1",16.5,"Chao 1"
 70,"BiodiversityR","RC1",15,"Chao 1"
@@ -25156,14 +25225,13 @@
 70,"OTUtable","RC1M",19.5,"Chao 1 modified"
 70,"tabula","RC1M",19.4628099173554,"Chao 1 modified"
 70,"wiqid","RC1M",19.5,"Chao 1 modified"
-70,"BAT","RCA2",35,"Chao 2"
 70,"divDyn","RCA2",16.4,"Chao 2"
 70,"fossil","RCA2",19.5,"Chao 2"
-70,"tabula","RCA2",15,"Chao 2"
-70,"wiqid","RCA2",15,"Chao 2"
+70,"BAT","RCA2M",35,NA
+70,"tabula","RCA2M",15,NA
+70,"wiqid","RCA2M",15,NA
 70,"BAT","RICE",35,"ICE"
 70,"fossil","RICE",15.9310344827586,"ICE"
-70,"tabula","RICE",15,"ICE"
 70,"wiqid","RICE",15,"ICE"
 70,"BAT","RJA1",18,"Jackknife 1"
 70,"BiodiversityR","RJA1",15,"Jackknife 1"
@@ -25172,15 +25240,17 @@
 70,"fossil","RJA1",17.9752066115702,"Jackknife 1"
 70,"SSP","RJA1",14,"Jackknife 1"
 70,"tabula","RJA1",2.29496161106954,"Jackknife 1"
+70,"vegan","RJA1",15,"Jackknife 1"
 70,"wiqid","RJA1",18,"Jackknife 1"
 70,"BAT","RJA2",20,"Jackknife 2"
 70,"BiodiversityR","RJA2",15,"Jackknife 2"
 70,"fossil","RJA2",19.8759641873278,"Jackknife 2"
 70,"SSP","RJA2",14,"Jackknife 2"
+70,"vegan","RJA2",15,"Jackknife 2"
 70,"wiqid","RJA2",20,"Jackknife 2"
 70,"asbio","RLMD",NA,NA
 70,"sads","RLMD",1.65982314266927,NA
-70,"vegan","RLMD",18.0402632322111,NA
+70,"vegan","RLMD",9.72369688440006,NA
 70,"wiqid","RMM",0,"Michaelis-Menten"
 70,"divDyn","RSQ",15.9736229103864,"Squares Richness Estimator"
 70,"ecodive","RSQ",15.9736229103864,"Squares Richness Estimator"
