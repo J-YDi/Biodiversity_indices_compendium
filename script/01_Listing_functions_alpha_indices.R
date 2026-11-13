@@ -741,9 +741,9 @@ for (i in 1:nrow(mite)){
   hhi_DSP[i] <- hhi::hhi(as.data.frame(mite_long),"Relative") 
 }
 
-politics_DSP <- rep(1,70)
+politicsR_DSP <- rep(1,70)
 for (i in 1:nrow(mite)){
-  politics_DSP[i] <- politicsR::hh(as.numeric(mite_relat[i,])) 
+  politicsR_DSP[i] <- politicsR::hh(as.numeric(mite_relat[i,])) 
 }
 
 PDtoolkit_DSP <- rep(1,70)
@@ -1157,9 +1157,9 @@ QREN <- as.data.frame(QREN)
 
 # Berger-Parker ####
 abdiv_EBP <- apply(mite,1,abdiv::berger_parker_d)
-dyvDyn_EBP <- rep(1,70) 
+divDyn_EBP <- rep(1,70) 
 for (i in 1:nrow(mite)){
-  dyvDyn_EBP[i] <- divDyn::indices(as.matrix(mite[i,]),method = "dominance")
+  divDyn_EBP[i] <- divDyn::indices(as.matrix(mite[i,]),method = "dominance")
 }
 tabula_EBP <- rep(1,70) 
 for (i in 1:nrow(mite)){

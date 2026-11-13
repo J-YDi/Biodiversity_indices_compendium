@@ -168,7 +168,7 @@ ggplot(results_P) +
   ggh4x::facet_wrap2(
     vars(Index),
     scales = "free_x",
-    ncol = 31,
+    ncol = 32,
     strip = strip_themed(
       background_x = strip_colors,
       text_x = element_text(face = "bold", colour = "white", size = 10)

@@ -2977,30 +2977,30 @@ P74_P <- mget(P74_P)
 P74_P <- as.data.frame(P74_P)
 
 # Raup ####
-vegan_75_A <- rep(NA,69)
+vegan_75_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  vegan_75_A[i] <- vegan::vegdist(mite_beta,method = "raup")
+  vegan_75_P[i] <- vegan::vegdist(mite_beta,method = "raup")
 }
-pctax_75_A <- rep(NA,69)
+pctax_75_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  pctax_75_A[i] <- pctax::mat_dist(t((mite_beta)),method = "raup")
+  pctax_75_P[i] <- pctax::mat_dist(t((mite_beta)),method = "raup")
 }
-iCAMP_75_A <- rep(NA,69)
+iCAMP_75_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  iCAMP_75_A[i] <- iCAMP::RC.pc(mite_beta)$index[1,2]
+  iCAMP_75_P[i] <- iCAMP::RC.pc(mite_beta)$index[1,2]
 }
-NST_75_A <- rep(NA,69)
+NST_75_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
-  NST_75_A[i] <- NST::beta.g(mite_beta,dist.method = "raup")
+  NST_75_P[i] <- NST::beta.g(mite_beta,dist.method = "raup")
 }
 
-P75_A <- ls(pattern = "_75_A$")
-P75_A <- mget(P75_A)
-P75_A <- as.data.frame(P75_A)
+P75_P <- ls(pattern = "_75_P$")
+P75_P <- mget(P75_P)
+P75_P <- as.data.frame(P75_P)
 
 # Rogers & Tanimoto ####
 ade4_76_P <- rep(NA,69)
@@ -3951,7 +3951,7 @@ write.csv(beta_combined,"data/beta/b_combined_all_mite.csv",row.names = F)
 
 # Same but with a long version
 beta_combined$Sample <- paste0(1:69, "-", 2:70)
-beta_combined_long <- pivot_longer(beta_combined,cols = colnames(beta_combined)[1:631],names_to = "package_index",values_to = "value")
+beta_combined_long <- pivot_longer(beta_combined,cols = colnames(beta_combined)[1:627],names_to = "package_index",values_to = "value")
 beta_combined_long <- beta_combined_long |>
   separate(package_index, into = c("package", "index"), sep = "_",extra = "merge")
 write.csv(beta_combined_long,"data/beta/b_combined_long_all_mite.csv",row.names = F)
@@ -3975,7 +3975,7 @@ data$selection <- paste0(data$index,"_",data$package)
 
 dataindex_P <- filter(data,selection %in% c("1_P_PERMANOVA","5_P_vegan","8_P_proxy","39_P_proxy","40_P_Mercator","43_P_vegan","44_P_ade4",
                                           "45_P_abdiv","46_P_abdiv","48_P_adespatial","49_P_adespatial","50_P_adespatial","51_P_BAT","52_P_BAT",
-                                          "56_P_vegan","70_P_proxy","71_P_ade4","72_P_vegan","73_P_PERMANOVA","6_P_tabula",
+                                          "56_P_vegan","70_P_proxy","71_P_ade4","72_P_vegan","73_P_PERMANOVA","75_P_vegan","6_P_tabula",
                                           "76_P_wiqid","78_P_abdiv","79_P_wiqid","80_P_abdiv","82_P_PERMANOVA","84_P_PERMANOVA",
                                           "85_P_vegan","86_P_abdiv","87_P_vegan","88_P_vegan","89_P_BAT","90_P_BAT","91_P_adespatial","92_P_adespatial",
                                           "96_P_abdiv","97_P_proxy","98_P_MultBiplotR","101_P_vegan","102_P_vegan","103_P_vegan","104_P_vegan","105_P_vegan",
@@ -4000,10 +4000,10 @@ dataindex_A <- filter(data,selection %in% c("2_A_vegan","3_A_EnvNJ","4_A_ecodive
                                             "27_A_ecodive","28_A_vegan","29_A_ecodive","30_A_vegan","31_A_NST",
                                             "32_A_abdiv","33_A_ecodive","34_A_vegan","35_A_vegan","36_A_ecodist",
                                             "37_A_NST","40_A_proxyC","41_A_EnvNJ","42_A_vegan","43_A_vegan","45_A_adespatial","46_A_adespatial","47_A_vegan",
-                                            "48_A_adespatial","49_A_adespatial","51_A_BAT","52_A_BAT","53_A_EnvNJ","54_A_adiv","55_A_adiv","57_A_vegan","58_A_EnvNJ","59_A_EnvNJ","60_A_vegan",
+                                            "48_A_adespatial","49_A_adespatial","51_A_BAT","52_A_BAT","54_A_adiv","55_A_adiv","57_A_vegan","58_A_EnvNJ","59_A_EnvNJ","60_A_vegan",
                                             "61_A_vegan","62_A_NST","64_A_adespatial","65_A_ecodive","66_1_A_ecodive",
                                             "66_2_A_ecodive","66_3_A_ecodive","67_A_vegan","68_A_vegan","69_A_pctax",
-                                            "75_A_vegan","77_A_abdiv","81_A_adiv","87_A_adespatial","88_A_adespatial","89_A_BAT",
+                                            "77_A_abdiv","81_A_adiv","87_A_adespatial","88_A_adespatial","89_A_BAT",
                                             "90_A_BAT","91_A_adespatial","92_A_adespatial","93_A_adiv","94_A_ade4","95_A_ecodive",
                                             "99_A_ecodive","100_A_proxy"
 ))
