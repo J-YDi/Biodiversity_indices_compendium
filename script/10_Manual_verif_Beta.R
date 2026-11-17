@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 10_Manual_verif_Beta.r
-# Date               : 12/11/2026
+# Date               : 17/11/2026
 # Object             : Script to manually check values from packages that 
 #                      calculate beta diversity indices
 # Authors            : Jean-Yves Dias
@@ -422,6 +422,12 @@ for (i in 1:(nrow(mite)-1)){
   BAT_51_P[i] <- BAT::beta(mite_beta,func = "jaccard",abund = F)$Bgain
 }
 
+adiv_51_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adiv_51_P[i] <- adiv::betastatjac(mite_beta)[3]
+}
+
 jaccard_gain <- function(x, na.rm = TRUE) {
 
   # Missing values
@@ -463,6 +469,12 @@ BAT_52_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   BAT_52_P[i] <- BAT::beta(mite_beta,func = "jaccard",abund = F)$Bloss
+}
+
+adiv_52_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adiv_52_P[i] <- adiv::betastatjac(mite_beta)[2]
 }
 
 jaccard_loss <- function(x, na.rm = TRUE) {
@@ -1235,6 +1247,13 @@ for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   adespatial_91_P[i] <-  adespatial::beta.div.comp(mite_beta,coef = "S")$repl
 }
+
+BAT_91_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_91_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Brepl
+}
+
 custom_91_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
@@ -1242,6 +1261,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 
 sum(abs(adespatial_91_P)-abs(custom_91_P),na.rm = T)
+sum(abs(BAT_91_P)-abs(custom_91_P),na.rm = T)
 
 # 92_P ####
 adespatial_92_P <- rep(NA,69)

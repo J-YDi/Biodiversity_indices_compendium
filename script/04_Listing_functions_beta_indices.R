@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 04_Listing_functions_beta_indices.r
-# Date               : 13/11/2026
+# Date               : 17/11/2026
 # Object             : Script to create dataset of values from functions that 
 #                      calculate beta diversity indices
 # Authors            : Jean-Yves Dias
@@ -2013,6 +2013,12 @@ for (i in 1:(nrow(mite)-1)){
   BAT_51_P[i] <- BAT::beta(mite_beta,func = "jaccard",abund = F)$Bgain
 }
 
+adiv_51_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adiv_51_P[i] <- adiv::betastatjac(mite_beta)[3]
+}
+
 BAT_51_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
@@ -2032,6 +2038,12 @@ BAT_52_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   BAT_52_P[i] <- BAT::beta(mite_beta,func = "jaccard",abund = F)$Bloss
+}
+
+adiv_52_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adiv_52_P[i] <- adiv::betastatjac(mite_beta)[2]
 }
 
 BAT_52_A <- rep(NA,69)
@@ -3441,6 +3453,12 @@ for (i in 1:(nrow(mite)-1)){
   BAT_89_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Bgain
 }
 
+adiv_89_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adiv_89_P[i] <- adiv::betastatsor(mite_beta)[3]
+}
+
 BAT_89_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
@@ -3462,6 +3480,12 @@ for (i in 1:(nrow(mite)-1)){
   BAT_90_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = F)$Bloss
 }
 
+adiv_90_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  adiv_90_P[i] <- adiv::betastatsor(mite_beta)[2]
+}
+
 BAT_90_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
@@ -3481,6 +3505,12 @@ adespatial_91_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite[c(i,i+1),]
   adespatial_91_P[i] <-  adespatial::beta.div.comp(mite_beta,coef = "S")$repl
+}
+
+BAT_91_P <- rep(NA,69)
+for (i in 1:(nrow(mite)-1)){
+  mite_beta <- mite[c(i,i+1),]
+  BAT_91_P[i] <- BAT::beta(mite_beta,func = "sorensen",abund = T)$Brepl
 }
 
 adespatial_91_A <- rep(NA,69)
@@ -3951,7 +3981,7 @@ write.csv(beta_combined,"data/beta/b_combined_all_mite.csv",row.names = F)
 
 # Same but with a long version
 beta_combined$Sample <- paste0(1:69, "-", 2:70)
-beta_combined_long <- pivot_longer(beta_combined,cols = colnames(beta_combined)[1:627],names_to = "package_index",values_to = "value")
+beta_combined_long <- pivot_longer(beta_combined,cols = colnames(beta_combined)[1:632],names_to = "package_index",values_to = "value")
 beta_combined_long <- beta_combined_long |>
   separate(package_index, into = c("package", "index"), sep = "_",extra = "merge")
 write.csv(beta_combined_long,"data/beta/b_combined_long_all_mite.csv",row.names = F)
