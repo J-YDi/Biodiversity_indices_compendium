@@ -1,11 +1,13 @@
 #_______________________________________________________________________________
 # Title              : 10_Manual_verif_Beta.r
-# Date               : 17/11/2026
+# Date               : 19/11/2026
 # Object             : Script to manually check values from packages that 
 #                      calculate beta diversity indices
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
 # Github link        : 
+# Reproducibility: package versions are recorded in renv.lock.
+# Run install.packages("renv") if needed, then renv::restore() before running this script.
 #_______________________________________________________________________________
 
 # Function to install packages if not present and/or load them

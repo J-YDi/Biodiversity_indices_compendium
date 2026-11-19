@@ -1,10 +1,12 @@
 #_______________________________________________________________________________
 # Title              : 03_Alpha_index_analysis.r
-# Date               : 23/03/2025
+# Date               : 19/11/2026
 # Object             : Script to analyze alpha biodiversity index
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
 # Github link        : 
+# Reproducibility: package versions are recorded in renv.lock.
+# Run install.packages("renv") if needed, then renv::restore() before running this script.
 #_______________________________________________________________________________
 
 #_______________________________ Packages_______________________________________####
@@ -24,7 +26,7 @@ loadpackages <- function(packages){
 packages_needed <- c("readr","dplyr","tidyr","stringr","dendextend","ggplot2",
                      "tidyverse","dendextend","circlize","corrplot","cowplot",
                      "factoextra","FactoMineR","viridis","GGally","cluster",
-                     "clValid","vegan","ggrepel")
+                     "clValid","vegan","ggrepel","mclust")
 
 loadpackages(packages_needed)
 

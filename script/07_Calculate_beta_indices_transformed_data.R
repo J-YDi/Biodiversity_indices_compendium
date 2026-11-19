@@ -1,11 +1,13 @@
 #_______________________________________________________________________________
 # Title              : 07_Calculate_beta_indices_transformed_data.r
-# Date               : 24/04/2025
+# Date               : 19/11/2026
 # Object             : Script to create dataset of values from functions that 
 #                      calculate beta diversity indices with data transformation
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
 # Github link        : 
+# Reproducibility: package versions are recorded in renv.lock.
+# Run install.packages("renv") if needed, then renv::restore() before running this script.
 #_______________________________________________________________________________
 
 #_______________________________ Packages_______________________________________####

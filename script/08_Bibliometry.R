@@ -1,11 +1,13 @@
 #_______________________________________________________________________________
 # Title              : 08_Bibliometry.r
-# Date               : 09/03/2026
+# Date               : 19/11/2026
 # Object             : Script to represent the number of publications involving
 #                      biodiversity and/or marine and/or policy
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
 # Github link        : 
+# Reproducibility: package versions are recorded in renv.lock.
+# Run install.packages("renv") if needed, then renv::restore() before running this script.
 #_______________________________________________________________________________
 
 #_______________________________ Packages_______________________________________####

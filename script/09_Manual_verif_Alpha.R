@@ -1,11 +1,13 @@
 #_______________________________________________________________________________
 # Title              : 09_Manual_verif_Alpha.r
-# Date               : 11/11/2026
+# Date               : 19/11/2026
 # Object             : Script to manually check values from packages that 
 #                      calculate alpha diversity indices
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
 # Github link        : 
+# Reproducibility: package versions are recorded in renv.lock.
+# Run install.packages("renv") if needed, then renv::restore() before running this script.
 #_______________________________________________________________________________
 
 #_______________________________ Packages_______________________________________####

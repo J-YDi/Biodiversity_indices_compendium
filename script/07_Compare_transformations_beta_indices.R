@@ -1,11 +1,13 @@
 #_______________________________________________________________________________
 # Title              : 07_Compare_transformations_beta_indices.r
-# Date               : 22/04/2025
+# Date               : 19/11/2026
 # Object             : Script to determine the influence on transformations on 
 #                      on beta biodiversity indices
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
 # Github link        : 
+# Reproducibility: package versions are recorded in renv.lock.
+# Run install.packages("renv") if needed, then renv::restore() before running this script.
 #_______________________________________________________________________________
 
 #_______________________________ Packages_______________________________________####
