@@ -4033,7 +4033,7 @@ dataindex_A <- filter(data,selection %in% c("2_A_vegan","3_A_EnvNJ","4_A_ecodive
                                             "32_A_abdiv","33_A_ecodive","34_A_vegan","35_A_vegan","36_A_ecodist",
                                             "37_A_NST","40_A_proxyC","41_A_EnvNJ","42_A_vegan","43_A_vegan","45_A_adespatial","46_A_adespatial","47_A_vegan",
                                             "48_A_adespatial","49_A_adespatial","51_A_BAT","52_A_BAT","54_A_adiv","55_A_adiv","57_A_vegan","58_A_EnvNJ","59_A_EnvNJ","60_A_vegan",
-                                            "61_A_vegan","62_A_NST","64_A_adespatial","65_A_ecodive","66_1_A_ecodive",
+                                            "61_A_vegan","64_A_adespatial","65_A_ecodive","66_1_A_ecodive",
                                             "66_2_A_ecodive","66_3_A_ecodive","67_A_vegan","68_A_vegan","69_A_pctax",
                                             "77_A_abdiv","81_A_adiv","87_A_adespatial","88_A_adespatial","89_A_BAT",
                                             "90_A_BAT","91_A_adespatial","92_A_adespatial","93_A_adiv","94_A_ade4","95_A_ecodive",

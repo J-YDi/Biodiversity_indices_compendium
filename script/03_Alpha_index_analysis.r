@@ -26,7 +26,7 @@ loadpackages <- function(packages){
 packages_needed <- c("readr","dplyr","tidyr","stringr","dendextend","ggplot2",
                      "tidyverse","dendextend","circlize","corrplot","cowplot",
                      "factoextra","FactoMineR","viridis","GGally","cluster",
-                     "clValid","vegan","ggrepel","mclust")
+                     "clValid","vegan","ggrepel","mclust","ggrepel")
 
 loadpackages(packages_needed)
 
@@ -110,8 +110,12 @@ data_long <- filter(data_long,index != "DSP")
 # Calculate some stats to the plot
 data_stats <- data_long |> 
   group_by(index) |> 
-  summarise(mean_value = mean(value),
-            sd_value = sd(value))
+  arrange(Sample, .by_group = TRUE) |> 
+  mutate(diff_value = abs(value - lag(value)) / mean(value, na.rm = TRUE)) |> 
+  filter(!is.na(diff_value)) |> 
+  summarise(mean_value = mean(diff_value),
+            sd_value   = sd(diff_value)/mean_value,
+            .groups = "drop")
 
 # Equitability indices
 
@@ -120,7 +124,7 @@ ggplot(filter(data_long, startsWith(index, "E"))) +
             linewidth = 1, alpha = 0.4) +
   geom_point(aes(x = Sample, y = value), col = "darkmagenta", size = 1.7) +
   geom_label(data = filter(data_stats, startsWith(index, "E")),
-             aes(x = 12, y = 0, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
+             aes(x = 15, y = 0, label = paste0("Δ = ", round(mean_value * 100), " % ; CVΔ = ", round(sd_value, 2))),
              color = "black", size = 4,alpha=0.5,linewidth=0) +
   scale_y_continuous(limits = c(0, 1)) +
   facet_wrap(~ index,ncol = 3) +
@@ -130,7 +134,7 @@ ggplot(filter(data_long, startsWith(index, "E"))) +
         strip.background = element_rect(fill = "darkmagenta"),
         axis.title = element_text(size = 15),
         axis.text.y = element_text(size = 12,face = "bold"))
-#ggsave('values_alpha_E_indices.png', path = "output/fig/alpha/indices/", dpi = 900, width = 300, height = 200, units = 'mm')
+ggsave('values_alpha_E_indices.png', path = "output/fig/alpha/indices/", dpi = 900, width = 300, height = 200, units = 'mm')
 
 # Heterogeneity indices
 
@@ -139,7 +143,7 @@ ggplot(filter(data_long, startsWith(index, "D") | startsWith(index, "Q"))) +
                linewidth = 1, alpha = 0.4) +
   geom_point(aes(x = Sample, y = value), col = "darkblue", size = 1.7) +
   geom_label(data = filter(data_stats, startsWith(index, "D") | startsWith(index, "Q")),
-             aes(x = 14, y = 0, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
+             aes(x = 15, y = 0, label = paste0("Δ = ", round(mean_value * 100), " % ; CVΔ = ", round(sd_value, 2))),
              color = "black", size = 4,alpha=0.5,linewidth=0) +
   facet_wrap(~ index,scales="free_y",ncol=4) +
   labs(x = "Sample", y = "Index value") +
@@ -148,7 +152,7 @@ ggplot(filter(data_long, startsWith(index, "D") | startsWith(index, "Q"))) +
         strip.background = element_rect(fill = "darkblue"),
         axis.title = element_text(size = 15),
         axis.text.y = element_text(size = 12,face = "bold"))
-# ggsave('values_alpha_D_indices.png', path = "output/fig/alpha/indices/", dpi = 600, width = 450, height = 250, units = 'mm')
+ggsave('values_alpha_D_indices.png', path = "output/fig/alpha/indices/", dpi = 600, width = 450, height = 250, units = 'mm')
 
 # Heterogeneity indices
 
@@ -157,7 +161,7 @@ ggplot(filter(data_long, startsWith(index, "T"))) +
                linewidth = 1, alpha = 0.4) +
   geom_point(aes(x = Sample, y = value), col = "darkgreen", size = 1.7) +
   geom_label(data = filter(data_stats, startsWith(index, "T")),
-             aes(x = 14, y = 0, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
+             aes(x = 15, y = 0, label = paste0("Δ = ", round(mean_value * 100), " % ; CVΔ = ", round(sd_value, 2))),
              color = "black", size = 4,alpha=0.5,linewidth=0) +
   facet_wrap(~ index,scales="free_y",ncol=5) +
   labs(x = "Sample", y = "Index value") +
@@ -166,7 +170,7 @@ ggplot(filter(data_long, startsWith(index, "T"))) +
         strip.background = element_rect(fill = "darkgreen"),
         axis.title = element_text(size = 15),
         axis.text.y = element_text(size = 12,face = "bold"))
-# ggsave('values_alpha_T_indices.png', path = "output/fig/alpha/indices/", dpi = 600, width = 400, height = 100, units = 'mm')
+ggsave('values_alpha_T_indices.png', path = "output/fig/alpha/indices/", dpi = 600, width = 400, height = 100, units = 'mm')
 
 
 # Estimate of species richness indices
@@ -175,8 +179,8 @@ ggplot(filter(data_long, startsWith(index, "R") & !index %in% c("RHUR_2","RHUR_3
   geom_segment(aes(x = Sample,y=0, yend = value), col = "darkgoldenrod4",
                linewidth = 1, alpha = 0.4) +
   geom_point(aes(x = Sample, y = value), col = "darkgoldenrod4", size = 1.7) +
-  geom_label(data = filter(data_stats, startsWith(index, "R")& !index %in% c("RHUR_2","RHUR_3")),
-             aes(x = 12, y = 0, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
+  geom_label(data = filter(data_stats, startsWith(index, "R") & !index %in% c("RHUR_2","RHUR_3")),
+             aes(x = 15, y = 0, label = paste0("Δ = ", round(mean_value * 100), " % ; CVΔ = ", round(sd_value, 2))),
              color = "black", size = 4,alpha=0.5,linewidth=0) +
   facet_wrap(~ index,ncol=3) +
   labs(x = "Sample", y = "Index value") +
@@ -185,7 +189,7 @@ ggplot(filter(data_long, startsWith(index, "R") & !index %in% c("RHUR_2","RHUR_3
         strip.background = element_rect(fill = "darkgoldenrod4"),
         axis.title = element_text(size = 15),
         axis.text.y = element_text(size = 12,face = "bold"))
-# ggsave('values_alpha_R_indices.png', path = "output/fig/alpha/indices/", dpi = 900, width = 350, height = 200, units = 'mm')
+ggsave('values_alpha_R_indices.png', path = "output/fig/alpha/indices/", dpi = 900, width = 350, height = 200, units = 'mm')
 
 # Mixte Q indices
 

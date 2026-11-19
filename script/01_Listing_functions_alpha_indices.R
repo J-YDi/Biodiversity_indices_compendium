@@ -1650,7 +1650,7 @@ data$selection <- paste0(data$index,"_",data$package)
 
 dataindex <- filter(data,selection %in% c("D1SP_vegan","DBRI_abdiv","DFIS_vegan",
                                           "DINVSP_vegan","DMC_abdiv","TMG_abdiv","EEQ_codyn",
-                                          "TMN_abdiv","DSHA_vegan","DQ_abdiv","ECAM_microbiome",
+                                          "TMN_abdiv","DSHA_vegan",
                                           "DSP_abdiv","EBP_abdiv","EBRI_tabula","EBU_BAT",
                                           "EEVAR_adiv","EGIN_microbiome","EHEI_abdiv",
                                           "EHURE_vegan","EMC_tabula","EMN_microbiome",
@@ -1659,8 +1659,8 @@ dataindex <- filter(data,selection %in% c("D1SP_vegan","DBRI_abdiv","DFIS_vegan"
                                           "QREN_0_vegan","QREN_1_vegan","QREN_2_vegan","QREN_3_vegan",
                                           "QTSA_0_vegan","QTSA_1_vegan","QTSA_2_vegan","QTSA_3_vegan",
                                           "RACE_vegan","RC1_vegan","RC1M_entropart","RCA2M_tabula",
-                                          "DHUR_2_vegan","DHUR_3_vegan","RICE_wiqid","RJA1_entropart",
-                                          "RJA2_","RSQ_tabula","RICH_custom"))
+                                          "DHUR_2_vegan","DHUR_3_vegan","RJA1_vegan",
+                                          "RJA2_vegan","RSQ_tabula","RICH_custom","RBOO_vegan","RLMD_vegan"))
 dataindex <- dataindex |>
   select(-c(package,selection)) 
 
