@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 06_Beta_index_analysis.r
-# Date               : 19/11/2026
+# Date               : 20/11/2026
 # Object             : Script to analyze beta biodiversity indices
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
@@ -26,7 +26,7 @@ loadpackages <- function(packages){
 packages_needed <- c("readr","dplyr","tidyr","stringr","dendextend","ggplot2",
                      "tidyverse","dendextend","circlize","corrplot","cowplot",
                      "factoextra","FactoMineR","viridis","GGally","cluster",
-                     "clValid","vegan","ggrepel","forcats")
+                     "clValid","vegan","ggrepel","forcats","ggcorrplot")
 
 loadpackages(packages_needed)
 
@@ -98,6 +98,43 @@ cluster_quality <- function(data, k_min = 2, k_max = 8,
 data <- read_csv("data/beta/beta_values_mite_wide_mite_P.csv")
 data_long <- read_csv("data/beta/beta_values_mite_long_mite_P.csv")
 
+#___________________________Detect synonyms and discard them____________________####
+
+# Correlation
+mat <- data_long |> 
+  tidyr::pivot_wider(names_from = index, values_from = value) |> 
+  dplyr::select(-Sample)
+
+cor_full <- cor(mat, use = "pairwise.complete.obs")
+
+ggcorrplot(cor_full, hc.order = TRUE, type = "lower",
+           outline.color = "white", tl.cex = 8)
+
+idx <- which(abs(cor_full) >= 0.9999 & upper.tri(cor_full), arr.ind = TRUE)
+syn <- unique(c(rownames(cor_full)[idx[, 1]], colnames(cor_full)[idx[, 2]]))
+cor_syn <- cor_full[syn, syn]
+
+# Ordre sur |r| pour que les corrélations à -1 soient regroupées avec leur bloc
+ord <- hclust(as.dist(1 - abs(cor_syn)))$order
+cor_syn <- cor_syn[ord, ord]
+
+mask <- ifelse(abs(cor_syn) >= 0.9999, 0, 1)
+
+ggcorrplot(cor_syn, type = "lower", show.diag = FALSE,
+           p.mat = mask, sig.level = 0.5, insig = "blank",
+           lab = TRUE, lab_size = 3,legend.title = "Correlation",
+           outline.color = "white", tl.cex = 9) +
+  theme(panel.grid = element_blank())
+ggsave('correlations_beta_P_0.9999_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 150, height = 150, units = 'mm')
+
+# Lit of synonyms
+grp <- cutree(hclust(as.dist(1 - abs(cor_full))), h = 1e-4)
+syn_groups <- split(names(grp), grp)
+syn_groups <- syn_groups[lengths(syn_groups) > 1]
+syn_groups
+
+
+
 #______________________Some basic representations of the data___________________####
 
 # # All
@@ -105,11 +142,34 @@ data_long <- read_csv("data/beta/beta_values_mite_long_mite_P.csv")
 #   geom_line(aes(x=Sample,y=value))+
 #   facet_wrap(~index,scale = "free_y")
 
+# We do not consider some synonyms for the lollipop plot
+data_long <- data_long |>
+  filter(!index %in% c("1_P","50_P","102_P","109_P","113_P","117_P","118_P",
+                       "119_P","5_P","104_P","110_P","79_P","39_P","107_P","43_P"))
+
+data_long[data_long$index == "80_P", "index"] <- "80_P = 1-1_P"
+data_long[data_long$index == "48_P", "index"] <- "48_P = 1-50_P = 2*101_P"
+data_long[data_long$index == "85_P", "index"] <- "85_P = 102_P = 109_P = 113_P = 117_P = 118_P+1"
+data_long[data_long$index == "40_P", "index"] <- "40_P = 119_P = 5_P/log(2) = 2*104_P = 2*110_P = S*(1-79_P) = (RICH/2)(1-39_P)"
+data_long[data_long$index == "105_P", "index"] <- "105_P = 107_P = 1-43_P"
+data_long[data_long$index == "108_P", "index"] <- "108_P = 2*92_P"
+data_long[data_long$index == "87_P", "index"] <- "87_P = 116_P"
+
+data_long[data_long$index == "101_P", "index"] <- "101_P = 48_P/2 = 1-50_P/2"
+data_long[data_long$index == "116_P", "index"] <- "116_P = 87_P"
+data_long[data_long$index == "92_P", "index"] <- "92_P = 108_P/2"
+
+
+
 # Calculate some stats to the plot
 data_stats <- data_long |> 
   group_by(index) |> 
-  summarise(mean_value = mean(value),
-            sd_value = sd(value))
+  arrange(Sample, .by_group = TRUE) |> 
+  mutate(diff_value = abs(value - lag(value)) / mean(value, na.rm = TRUE)) |> 
+  filter(!is.na(diff_value)) |> 
+  summarise(mean_value = mean(diff_value),
+            sd_value   = sd(diff_value)/mean_value,
+            .groups = "drop")
 
 # PA indices
 
@@ -131,25 +191,23 @@ data_long <- data_long %>%
     Sample = fct_reorder(Sample, Sample_num)
   )
 
-data_long_P <- filter(data_long, !index %in% c("87_P","88_P","89_P","90_P","91_P","92_P",
-                                               "45_P","46_P","48_P","49_P","50_P","51_P","52_P") )
-data_stats_P <- filter(data_stats, !index %in% c("87_P","88_P","89_P","90_P","91_P","92_P",
-                                               "45_P","46_P","48_P","49_P","50_P","51_P","52_P") )
+data_long_P <- filter(data_long, !index %in% c("87_P = 116_P","88_P","89_P","90_P","91_P","92_P = 108_P/2",
+                                               "45_P","46_P","48_P = 2*101_P = 1-50_P","49_P","51_P","52_P","48_P = 1-50_P = 2*101_P") )
+data_stats_P <- filter(data_stats, !index %in% c("87_P = 116_P","88_P","89_P","90_P","91_P","92_P = 108_P/2",
+                                               "45_P","46_P","48_P = 2*101_P = 1-50_P","49_P","51_P","52_P","48_P = 1-50_P = 2*101_P") )
 
 ggplot(data_long_P) +
   geom_segment(aes(x = Sample,y=0, yend = value), col = "indianred1",
                linewidth = 1, alpha = 0.4) +
   geom_point(aes(x = Sample, y = value), col = "indianred1", size = 1.7) +
-  geom_label(data = filter(data_stats_P, !index %in% c("5_P","64_P","119_P","112_P","63_P","40_P")),
-             aes(x = 69/2, y = 0.04, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
+  geom_label(data = filter(data_stats_P),
+             aes(x = 17, y = 0.02, label = paste0("Δ = ", round(mean_value * 100), " % ; CVΔ = ", round(sd_value, 2))),
              color = "black", size = 4,alpha=0.5,linewidth=0) +
-  geom_label(data = filter(data_stats_P, index %in% c("5_P","64_P","119_P","112_P","63_P","40_P")),
-             aes(x = 69/2, y = 0.9, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
-             color = "black", size = 4,alpha=0.5,linewidth=0) +
-  facet_wrap(~ index,scale = "free_y",ncol = 5) +
+  facet_wrap(~ index, scales = "free_y", ncol = 6,
+             labeller = label_wrap_gen(width = 37))+
   labs(x = "Sample", y = "Index value") +
   theme(strip.text = element_text(face = "bold", color = "white",
-                                  hjust = 0, size = 10),
+                                  hjust = 0, size = 12),
         strip.background = element_rect(fill = "indianred1"),
         axis.title = element_text(size = 15),
         axis.text.y = element_text(size = 12,face = "bold"),
@@ -182,15 +240,15 @@ levels_index <- data_long$index %>%
 
 data_long$index <- factor(data_long$index, levels = levels_index)
 
-zeros <- ggplot(filter(data_long, value == 0 & !index %in% c("87_P","88_P","89_P","90_P","91_P","92_P",
-                                                          "45_P","46_P","48_P","49_P","50_P","51_P","52_P"))) +
+zeros <- ggplot(filter(data_long, value == 0 & !index %in% c("87_P = 116_P","88_P","89_P","90_P","91_P","92_P = 108_P/2",
+                                                            "45_P","46_P","48_P = 2*101_P = 1-50_P","49_P","51_P","52_P","48_P = 1-50_P = 2*101_P"))) +
   geom_point(aes(x = Sample, y = index),size=10,shape=15) +
   labs(x = "Samples", y = "Index with 0") +
   theme(axis.text.x = element_text(size = 8), 
         axis.text.y = element_text(size = 12,face = "bold"),
         axis.title = element_text(size = 15))
-ones <- ggplot(filter(data_long, value == 1 & !index %in% c("87_P","88_P","89_P","90_P","91_P","92_P",
-                                                            "45_P","46_P","48_P","49_P","50_P","51_P","52_P"))) +
+ones <- ggplot(filter(data_long, value == 1 & !index %in% c("87_P = 116_P","88_P","89_P","90_P","91_P","92_P = 108_P/2",
+                                                            "45_P","46_P","48_P = 2*101_P = 1-50_P","49_P","51_P","52_P","48_P = 1-50_P = 2*101_P"))) +
   geom_point(aes(x = Sample, y = index),size=12,shape=15) +
   labs(x = "Samples", y = "Index with 1") +
   theme(axis.text.x = element_text(size = 8), 
@@ -201,17 +259,17 @@ ggsave('extreme_values_beta_P_indices.png', path = "output/fig/beta/indices/", d
 
 
 
-data_long_Pdec <- filter(data_long, index %in% c("87_P","88_P","89_P","90_P","91_P","92_P",
-                                               "45_P","46_P","48_P","49_P","50_P","51_P","52_P") )
-data_stats_Pdec <- filter(data_stats, index %in% c("87_P","88_P","89_P","90_P","91_P","92_P",
-                                                 "45_P","46_P","48_P","49_P","50_P","51_P","52_P") )
+data_long_Pdec <- filter(data_long, index %in% c("87_P = 116_P","88_P","89_P","90_P","91_P","92_P = 108_P/2",
+                                                  "45_P","46_P","48_P = 2*101_P = 1-50_P","49_P","51_P","52_P","48_P = 1-50_P = 2*101_P") )
+data_stats_Pdec <- filter(data_stats, index %in% c("87_P = 116_P","88_P","89_P","90_P","91_P","92_P = 108_P/2",
+                                                   "45_P","46_P","48_P = 2*101_P = 1-50_P","49_P","51_P","52_P","48_P = 1-50_P = 2*101_P") )
 
 ggplot(data_long_Pdec) +
   geom_segment(aes(x = Sample,y=0, yend = value), col = "turquoise3",
                linewidth = 1, alpha = 0.4) +
   geom_point(aes(x = Sample, y = value), col = "turquoise3", size = 1.7) +
   geom_label(data = filter(data_stats_Pdec),
-             aes(x = 69/2, y = 0.01, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
+             aes(x = 17.5, y = 0, label = paste0("Δ = ", round(mean_value * 100), " % ; CVΔ = ", round(sd_value, 2))),
              color = "black", size = 4,alpha=0.5,linewidth=0) +
   facet_wrap(~ index,scale = "free_y",ncol = 3) +
   labs(x = "Sample", y = "Index value") +
@@ -334,6 +392,42 @@ ggsave('NMDS_k3_beta_P_all.png', path = "output/fig/beta/indices/", dpi = 1200, 
 data <- read_csv("data/beta/beta_values_mite_wide_mite_A.csv")
 data_long <- read_csv("data/beta/beta_values_mite_long_mite_A.csv")
 
+#___________________________Detect synonyms and discard them____________________####
+
+# Correlation
+mat <- data_long |> 
+  tidyr::pivot_wider(names_from = index, values_from = value) |> 
+  dplyr::select(-Sample)
+
+cor_full <- cor(mat, use = "pairwise.complete.obs")
+
+ggcorrplot(cor_full, hc.order = TRUE, type = "lower",
+           outline.color = "white", tl.cex = 8)
+
+idx <- which(abs(cor_full) >= 0.9999 & upper.tri(cor_full), arr.ind = TRUE)
+syn <- unique(c(rownames(cor_full)[idx[, 1]], colnames(cor_full)[idx[, 2]]))
+cor_syn <- cor_full[syn, syn]
+
+# Ordre sur |r| pour que les corrélations à -1 soient regroupées avec leur bloc
+ord <- hclust(as.dist(1 - abs(cor_syn)))$order
+cor_syn <- cor_syn[ord, ord]
+
+mask <- ifelse(abs(cor_syn) >= 0.9999, 0, 1)
+
+ggcorrplot(cor_syn, type = "lower", show.diag = FALSE,
+           p.mat = mask, sig.level = 0.5, insig = "blank",
+           lab = TRUE, lab_size = 3,legend.title = "Correlation",
+           outline.color = "white", tl.cex = 9) +
+  theme(panel.grid = element_blank())
+ggsave('correlations_beta_A_0.9999_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 150, height = 150, units = 'mm')
+
+# Lit of synonyms
+grp <- cutree(hclust(as.dist(1 - abs(cor_full))), h = 1e-4)
+syn_groups <- split(names(grp), grp)
+syn_groups <- syn_groups[lengths(syn_groups) > 1]
+syn_groups
+
+
 #______________________Some basic representations of the data___________________####
 
 # # All
@@ -341,11 +435,32 @@ data_long <- read_csv("data/beta/beta_values_mite_long_mite_A.csv")
 #   geom_line(aes(x=Sample,y=value))+
 #   facet_wrap(~index,scale = "free_y")
 
+# We do not consider some synonyms for the lollipop plot
+data_long <- data_long |>
+  filter(!index %in% c("10_A","100_A","14_A","21_A","77_A","30_A","66_2_A",
+                       "40_A","55_A","66_1_A","9_A"))
+
+data_long[data_long$index == "11_A", "index"] <- "11_A = 10_A/RICH"
+data_long[data_long$index == "7_A", "index"] <- "7_A = 200(1-100_A)"
+data_long[data_long$index == "13_A", "index"] <- "13_A = 14_A/ln(10)"
+data_long[data_long$index == "22_A", "index"] <- "22_A = 2*21_A"
+data_long[data_long$index == "32_A", "index"] <- "32_A = 77_A = 30_A/sqrt(RICH) = 66_2_A/sqrt(RICH)"
+data_long[data_long$index == "41_A", "index"] <- "41_A = 40_A/RICH"
+data_long[data_long$index == "95_A", "index"] <- "95_A = 2*55_A"
+data_long[data_long$index == "61_A", "index"] <- "61_A = 66_1_A"
+data_long[data_long$index == "69_A", "index"] <- "69_A = (1+9_A)/2"
+
+
+
 # Calculate some stats to the plot
 data_stats <- data_long |> 
   group_by(index) |> 
-  summarise(mean_value = mean(value),
-            sd_value = sd(value))
+  arrange(Sample, .by_group = TRUE) |> 
+  mutate(diff_value = abs(value - lag(value)) / mean(value, na.rm = TRUE)) |> 
+  filter(!is.na(diff_value)) |> 
+  summarise(mean_value = mean(diff_value),
+            sd_value   = sd(diff_value)/mean_value,
+            .groups = "drop")
 
 # A indices
 
@@ -390,15 +505,13 @@ ggplot(data_long_A) +
     color = "royalblue",
     size = 1.7
   ) +
-  
+
   geom_label(
     data = data_stats_A,
     aes(
       x = 69/2,
       y = y_label,
-      label = paste0(
-        round(mean_value, 3), " \u00B1 ", round(sd_value, 3)
-      )
+      label = paste0("Δ = ", round(mean_value * 100), " % ; CVΔ = ", round(sd_value, 2))
     ),
     hjust = 0.5,
     vjust = 1,
@@ -407,7 +520,8 @@ ggplot(data_long_A) +
     linewidth = 0
   ) +
   
-  facet_wrap(~ index, scales = "free_y", ncol = 5) +
+  facet_wrap(~ index, scales = "free_y", ncol = 6,
+             labeller = label_wrap_gen(width = 37))+
   
   scale_y_continuous(
     expand = expansion(mult = c(0.05, 0.15))
@@ -489,7 +603,7 @@ ggplot(data_long_Adec) +
                linewidth = 1, alpha = 0.4) +
   geom_point(aes(x = Sample, y = value), col = "turquoise3", size = 1.7) +
   geom_label(data = filter(data_stats_Adec),
-             aes(x = 69/2, y = 0.01, label = paste0(round(mean_value, 3)," +/- ",round(sd_value, 3))),
+             aes(x = 17, y = 0.02, label = paste0("Δ = ", round(mean_value * 100), " % ; CVΔ = ", round(sd_value, 2))),
              color = "black", size = 4,alpha=0.5,linewidth=0) +
   facet_wrap(~ index,scale = "free_y",ncol = 3) +
   labs(x = "Sample", y = "Index value") +

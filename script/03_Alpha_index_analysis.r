@@ -26,7 +26,7 @@ loadpackages <- function(packages){
 packages_needed <- c("readr","dplyr","tidyr","stringr","dendextend","ggplot2",
                      "tidyverse","dendextend","circlize","corrplot","cowplot",
                      "factoextra","FactoMineR","viridis","GGally","cluster",
-                     "clValid","vegan","ggrepel","mclust","ggrepel")
+                     "clValid","vegan","ggrepel","mclust","ggrepel","ggcorrplot")
 
 loadpackages(packages_needed)
 
@@ -96,9 +96,43 @@ cluster_quality <- function(data, k_min = 2, k_max = 8,
 #__________________________________Loading data_________________________________####
 
 data <- read_csv("data/alpha/alpha_values_mite_wide.csv")
-data <- select(data,-DSP)
 data_long <- read_csv("data/alpha/alpha_values_mite_long.csv")
-data_long <- filter(data_long,index != "DSP")
+
+#___________________________Detect synonyms and discard them____________________####
+
+# Correlation
+mat <- data_long |> 
+  tidyr::pivot_wider(names_from = index, values_from = value) |> 
+  dplyr::select(-Sample)
+
+cor_full <- cor(mat, use = "pairwise.complete.obs")
+
+ggcorrplot(cor_full, hc.order = TRUE, type = "lower",
+           outline.color = "white", tl.cex = 8)
+
+idx <- which(abs(cor_full) >= 0.9999 & upper.tri(cor_full), arr.ind = TRUE)
+syn <- unique(c(rownames(cor_full)[idx[, 1]], colnames(cor_full)[idx[, 2]]))
+
+cor_syn <- cor_full[syn, syn]
+
+# Ordre sur |r| pour que les corrélations à -1 soient regroupées avec leur bloc
+ord <- hclust(as.dist(1 - abs(cor_syn)))$order
+cor_syn <- cor_syn[ord, ord]
+
+mask <- ifelse(abs(cor_syn) >= 0.9999, 0, 1)
+
+ggcorrplot(cor_syn, type = "lower", show.diag = FALSE,
+           p.mat = mask, sig.level = 0.5, insig = "blank",
+           lab = TRUE, lab_size = 3,legend.title = "Correlation",
+           outline.color = "white", tl.cex = 9) +
+  theme(panel.grid = element_blank())
+ggsave('correlations_alpha_0.9999_indices.png', path = "output/fig/alpha/indices/", dpi = 900, width = 150, height = 150, units = 'mm')
+
+# Lit of synonyms
+grp <- cutree(hclust(as.dist(1 - abs(cor_full))), h = 1e-4)
+syn_groups <- split(names(grp), grp)
+syn_groups <- syn_groups[lengths(syn_groups) > 1]
+syn_groups
 
 #______________________Some basic representations of the data___________________####
 
@@ -106,6 +140,20 @@ data_long <- filter(data_long,index != "DSP")
 # ggplot(data_long)+
 #   geom_line(aes(x=Sample,y=value))+
 #   facet_wrap(~index,scale = "free_y")
+
+
+# We do not consider some synonyms for the lollipop plot
+data_long <- data_long |>
+  filter(!index %in% c("QREN_1","QTSA_1","DSP","QTSA_2","QHIL_2","QTSA_0"))
+
+data_long[data_long$index == "DSHA", "index"] <- "DSHA = QREN_1 = QTSA_1"
+data_long[data_long$index == "D1SP", "index"] <- "D1SP = 1-DSP = QTSA_2"
+data_long[data_long$index == "DHUR_2", "index"] <- "DHUR_2 = EHURE"
+data_long[data_long$index == "EHURE", "index"] <- "EHURE = DHUR_2"
+data_long[data_long$index == "DINVSP", "index"] <- "DINVSP = QHIL_2"
+data_long[data_long$index == "QHIL_0", "index"] <- "QHIL_0 = QTSA_0 = RICH"
+
+data_long[data_long$index == "RICH", "index"] <- "RICH = QHIL_0 = QTSA_0"
 
 # Calculate some stats to the plot
 data_stats <- data_long |> 

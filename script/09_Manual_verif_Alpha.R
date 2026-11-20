@@ -824,6 +824,8 @@ michaelis_menten <- function(x, na.rm = TRUE) {
     if (!na.rm) return(NA)
     x[is.na(x)] <- 0
   }
+  
+  m <- nrow(x)
 
   # Number of samples in which each species occurs
   occ <- colSums(x > 0)

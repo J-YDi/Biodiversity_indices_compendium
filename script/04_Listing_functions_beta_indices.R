@@ -3150,7 +3150,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 wiqid_79_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  wiqid_79_P[i] <- 1-wiqid::distMatching(mite[i,],mite[i+1,])
+  wiqid_79_P[i] <- wiqid::distMatching(mite[i,],mite[i+1,])
 }
 MultBiplotR_79_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
