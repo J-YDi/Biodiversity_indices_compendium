@@ -83,10 +83,10 @@ wiqid_RBOO <- rep(1,70)
 for (i in 1:nrow(mite)){
   wiqid_RBOO[i] <- wiqid::richBoot(t(mite[i,])) #44
 }
-BiodiversityR_RBOO <- rep(1,70)
-for (i in 1:nrow(mite)){
-  BiodiversityR_RBOO[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "boot",method = "each site")) #11
-}
+# BiodiversityR_RBOO <- rep(1,70)
+# for (i in 1:nrow(mite)){
+#   BiodiversityR_RBOO[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "boot",method = "each site")) #11
+# }
 
 vegan_RBOO <- rep(1,70)
 for (i in 1:nrow(mite)){
@@ -103,10 +103,10 @@ vegan_RC1 <- rep(1,70)
 for (i in 1:nrow(mite)){
   vegan_RC1[i] <- vegan::estimateR(mite[i,],index = "chao")[2]
 }
-BiodiversityR_RC1 <- rep(1,70)
-for (i in 1:nrow(mite)){
-  BiodiversityR_RC1[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "chao",method = "each site"))
-}
+# BiodiversityR_RC1 <- rep(1,70)
+# for (i in 1:nrow(mite)){
+#   BiodiversityR_RC1[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "chao",method = "each site"))
+# }
 microbiome_RC1 <- microbiome::richness(t(mite),index = c("chao1"))[,1]
 pctax_RC1 <- pctax::a_diversity(t(mite),method = "chao1")[,1]
 rareNMtests_RC1 <- rep(1,70)
@@ -281,10 +281,10 @@ for (i in 1:nrow(mite)){
   divent_RJA1[i] <- divent::div_richness(as.numeric(t(mite[i,])),estimator = "jackknife")$diversity
 }
 tabula_RJA1 <- tabula::jackknife(tabula::heterogeneity(mite,method = "shannon"),f = summary)[,1]
-BiodiversityR_RJA1 <- rep(1,70)
-for (i in 1:nrow(mite)){
-  BiodiversityR_RJA1[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "jack1",method = "each site"))
-}
+# BiodiversityR_RJA1 <- rep(1,70)
+# for (i in 1:nrow(mite)){
+#   BiodiversityR_RJA1[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "jack1",method = "each site"))
+# }
 entropart_RJA1 <- rep(1,70)
 for (i in 1:nrow(mite)){
   entropart_RJA1[i] <- entropart::bcRichness(mite[i,],Correction = "Jackknife")
@@ -327,10 +327,10 @@ for (i in 1:nrow(mite)){
   fossil_RJA2[i] <- fossil::jack2(as.numeric(mite[i,]))
 }
 
-BiodiversityR_RJA2 <- rep(1,70)
-for (i in 1:nrow(mite)){
-  BiodiversityR_RJA2[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "jack2",method = "each site"))
-}
+# BiodiversityR_RJA2 <- rep(1,70)
+# for (i in 1:nrow(mite)){
+#   BiodiversityR_RJA2[i] <- as.numeric(BiodiversityR::diversityresult(mite[i,],index = "jack2",method = "each site"))
+# }
 
 BAT_RJA2 <- BAT::alpha.estimate(mite)[,7]
 
@@ -396,7 +396,7 @@ for (i in 1:nrow(mite)){
   sads_DFIS[i] <- sads::fitsad(mite[i, ][mite[i, ] != 0],sad = "ls")@coef
 }
 ecodive_DFIS <- ecodive::fisher(mite)
-BiodiversityR_DFIS <- BiodiversityR::diversityresult(mite,y=NULL,index="Logalpha",method = "each site")$Logalpha
+# BiodiversityR_DFIS <- BiodiversityR::diversityresult(mite,y=NULL,index="Logalpha",method = "each site")$Logalpha
 preseqR_DFIS <- rep(1,70)
 for (i in 1:nrow(mite)){
   mat_need <- as.data.frame(t(as.data.frame(rbind(freq = mite[i, ]/sum(mite_relat[i, ]), numb = mite[i, ]))))
@@ -517,7 +517,7 @@ for (i in seq_len(nrow(mite))) {
 vegan_RLMD <- rep(1,70)
 for (i in 1:nrow(mite)){
   fit <- vegan::prestondistr(mite[i, ])
-  vegan_RLMD[i] <- vegan::veiledspec(fit)["Extrapolated"] / fit$coefficients["width"]
+  vegan_RLMD[i] <- vegan::veiledspec(fit)["Extrapolated"]# / fit$coefficients["width"]
 }
 
 
@@ -647,7 +647,7 @@ biosampleR_DSHA <- biosampleR::calc_diversity_indices(mite)$shannon
 divDyn_DSHA <- divDyn::indices(as.matrix(mite),method = "shannon")[,1]
 sprex_DSHA <- sprex::diversity(t(mite),type = "shannon")
 EconGeo_DSHA <- EconGeo::entropy(mite) #FALSE
-BiodiversityR_DSHA <- BiodiversityR::diversityresult(mite,y=NULL,index="Shannon",method = "each site")$Shannon
+# BiodiversityR_DSHA <- BiodiversityR::diversityresult(mite,y=NULL,index="Shannon",method = "each site")$Shannon
 tabula_DSHA <- tabula::diversity(mite)$shannon
 iNEXT_DSHA <- iNEXT::ChaoShannon(t(mite),datatype = "abundance",transform = F)$Observed
 adiv_DSHA <- adiv::speciesdiv(mite,method = "Shannon")[,1]
@@ -790,7 +790,7 @@ entropart_D1SP <- rep(1,70)
 for (i in 1:nrow(mite)){
   entropart_D1SP[i] <- entropart::Simpson(as.numeric(mite[i,]),Correction = "None")
 }
-BiodiversityR_D1SP <- BiodiversityR::diversityresult(mite,y=NULL,index="Simpson",method = "each site")$Simpson
+# BiodiversityR_D1SP <- BiodiversityR::diversityresult(mite,y=NULL,index="Simpson",method = "each site")$Simpson
 simboot_D1SP <- rep(1,70)
 for (i in 1:nrow(mite)){
   simboot_D1SP[i] <- simboot::Simpson(mite_relat[i,])
@@ -863,7 +863,7 @@ breakaway_DINVSP <- rep(1,70)
 for (i in 1:nrow(mite)){
   breakaway_DINVSP[i] <- breakaway::true_inverse_simpson(mite_relat[i,])
 }
-BiodiversityR_DINVSP <- BiodiversityR::diversityresult(mite,y=NULL,index="inverseSimpson",method = "each site")$inverseSimpson
+# BiodiversityR_DINVSP <- BiodiversityR::diversityresult(mite,y=NULL,index="inverseSimpson",method = "each site")$inverseSimpson
 adiv_DINVSP <- adiv::speciesdiv(mite,method = "Simpson")[,1]
 asbio_DINVSP <- asbio::alpha.div(mite,"inv.simp")
 microbiome_DINVSP <- microbiome::diversity(t(mite), index = "inverse_simpson")[,1] # OK
@@ -1137,10 +1137,10 @@ seewave_QREN_3 <- rep(1,70)
 for (i in 1:nrow(mite)){
   seewave_QREN_3[i] <- seewave::sh(mite[i,],alpha = 3)
 }
-BiodiversityR_QREN_0 <- as.numeric(BiodiversityR::renyiresult(mite,y=NULL,method = "each site",scales = 0))
-BiodiversityR_QREN_1 <- as.numeric(BiodiversityR::renyiresult(mite,y=NULL,method = "each site",scales = 1))
-BiodiversityR_QREN_2 <- as.numeric(BiodiversityR::renyiresult(mite,y=NULL,method = "each site",scales = 2))
-BiodiversityR_QREN_3 <- as.numeric(BiodiversityR::renyiresult(mite,y=NULL,method = "each site",scales = 3))
+# BiodiversityR_QREN_0 <- as.numeric(BiodiversityR::renyiresult(mite,y=NULL,method = "each site",scales = 0))
+# BiodiversityR_QREN_1 <- as.numeric(BiodiversityR::renyiresult(mite,y=NULL,method = "each site",scales = 1))
+# BiodiversityR_QREN_2 <- as.numeric(BiodiversityR::renyiresult(mite,y=NULL,method = "each site",scales = 2))
+# BiodiversityR_QREN_3 <- as.numeric(BiodiversityR::renyiresult(mite,y=NULL,method = "each site",scales = 3))
 
 adiv_QREN_0 <- adiv::divparam(mite,method = "renyi",q=0)
 adiv_QREN_1 <- adiv::divparam(mite,method = "renyi",q=1)
@@ -1167,7 +1167,7 @@ tabula_EBP <- rep(1,70)
 for (i in 1:nrow(mite)){
   tabula_EBP[i] <- tabula::index_berger(as.numeric(mite[i,]))
 }
-BiodiversityR_EBP <- BiodiversityR::diversityresult(mite,y=NULL,index="Berger",method = "each site")$Berger
+# BiodiversityR_EBP <- BiodiversityR::diversityresult(mite,y=NULL,index="Berger",method = "each site")$Berger
 diverse_EBP <- diverse::diversity(t(mite),type = "berger-parker",category_row = T)$berger.parker.D
 agricolae_EBP <- rep(1,70) 
 for (i in seq_len(nrow(mite))) {
@@ -1303,7 +1303,7 @@ EHUL <- as.data.frame(EHUL)
 # Hurlbert PIE ####
 mobr_EHURE <- mobr::calc_div(mite,index="PIE",effort = NA) # Hulbert PIE
 vegan_EHURE <- vegan::simpson.unb(mite) # Hulbert PIE 
-BiodiversityR_EHURE <- BiodiversityR::diversityresult(mite,y=NULL,index="simpson.unb",method = "each site")[,1] # Hulbert PIE = unbiaised Simpson
+# BiodiversityR_EHURE <- BiodiversityR::diversityresult(mite,y=NULL,index="simpson.unb",method = "each site")[,1] # Hulbert PIE = unbiaised Simpson
 
 benthos_EHURE <- rep(1,70) 
 for (i in 1:nrow(mite)){
@@ -1516,7 +1516,7 @@ for (i in 1:nrow(mite)){
   abdiv_EPIE[i] <- abdiv::pielou_e(as.numeric(mite_relat[i,])) 
 }
 tabula_EPIE <- tabula::evenness(mite,method = "shannon")@.Data
-BiodiversityR_EPIE <- BiodiversityR::diversityresult(mite,y=NULL,index="Jevenness",method = "each site")$Jevenness
+# BiodiversityR_EPIE <- BiodiversityR::diversityresult(mite,y=NULL,index="Jevenness",method = "each site")$Jevenness
 forestmangr_EPIE <- rep(1,70) 
 for (i in 1:nrow(mite)){
   mite_long <- tidyr::pivot_longer(mite[i,],cols = colnames(mite)[1]:colnames(mite)[35],names_to = "Esp",values_to = "Value")
@@ -1626,7 +1626,7 @@ write.csv(alpha_combined,"data/alpha/a_combined_all.csv",row.names = F)
 
 # Same but with a long version
 alpha_combined$Sample <- c(1:nrow(alpha_combined))
-alpha_combined_long <- pivot_longer(alpha_combined,cols = colnames(alpha_combined)[1:361],names_to = "package_index",values_to = "value")
+alpha_combined_long <- pivot_longer(alpha_combined,cols = colnames(alpha_combined)[1:346],names_to = "package_index",values_to = "value")
 alpha_combined_long <- alpha_combined_long |>
   separate(package_index, into = c("package", "index"), sep = "_",extra = "merge")
 write.csv(alpha_combined_long,"data/alpha/a_combined_long_all.csv",row.names = F)

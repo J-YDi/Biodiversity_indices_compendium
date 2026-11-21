@@ -287,6 +287,11 @@ ggsave('values_beta_Pdec_indices.png', path = "output/fig/beta/indices/", dpi = 
 # ALL VARIABLES SELECT #############____________________________________________
 #________________________________________PCA____________________________________####
 data_pca <- select(data,-Sample)
+
+data_pca <- select(data_pca,-c("80_P", "101_P","50_P","102_P","109_P","113_P","117_P","118_P",
+                               "119_P","5_P","104_P","110_P","79_P","39_P",
+                               "105_P","107_P","108_P","116_P"))
+
 PCA_results <- PCA(data_pca)
 PCA_results_t <- PCA(t(data_pca))
 

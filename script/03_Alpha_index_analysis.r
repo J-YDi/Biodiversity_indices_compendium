@@ -261,17 +261,23 @@ ggsave('values_alpha_R_indices.png', path = "output/fig/alpha/indices/", dpi = 9
 
 # ALL VARIABLES SELECT #############____________________________________________
 #________________________________________PCA____________________________________####
-data_pca <- select(data,-Sample)
+data_pca <- dplyr::select(data,-Sample)
+
+data_pca <- dplyr::select(data_pca,RICH, RACE, RBOO, RC1M, RLMD, RSQ, RC1,
+                          DSHA,D1SP,EHURE,DINVSP,DFIS,DHUR_3,DMC,QHIL_1,QHIL_3,
+                          TMG,TMN,TRYA,TRY,QREN_0,QREN_2,QREN_3,QTSA_3,EBP,EBRI,
+                          EBU,EEQ,EEVAR,EGIN,EHEI,EMC,EMN,EPIE,ESP,EST,DBRI)
+
 PCA_results <- PCA(data_pca)
 PCA_results_t <- PCA(t(data_pca))
 
 fviz_screeplot(PCA_results) # Screeplot
 
 # Create the color code
-group_D <- names(data)[startsWith(names(data), "D") | startsWith(names(data), "Q")]
-group_E <- names(data)[startsWith(names(data), "E")]
-group_T <- names(data)[startsWith(names(data), "T")]
-group_R <- names(data)[startsWith(names(data), "R")]
+group_D <- names(data_pca)[startsWith(names(data_pca), "D") | startsWith(names(data_pca), "Q")]
+group_E <- names(data_pca)[startsWith(names(data_pca), "E")]
+group_T <- names(data_pca)[startsWith(names(data_pca), "T")]
+group_R <- names(data_pca)[startsWith(names(data_pca), "R")]
 
 # Distinguishing the dimensions
 color_vector <- rep("Misrepresented", length(colnames(data_pca)))
@@ -290,7 +296,7 @@ PCA <- fviz_pca_var(PCA_results, axes = c(1, 2), repel = T ,col.var = color_vect
     axis.title.y = element_text(size = 12)
   )
 PCA
-# ggsave('PCA_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 600, width = 200, height = 200, units = 'mm')
+ggsave('PCA_alpha_all.png', path = "output/fig/alpha/indices/", dpi = 600, width = 200, height = 200, units = 'mm')
 
 fviz_contrib(PCA_results, choice = "var", axes = 1)
 fviz_contrib(PCA_results, choice = "var", axes = 2)

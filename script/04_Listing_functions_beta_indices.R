@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 04_Listing_functions_beta_indices.r
-# Date               : 19/11/2026
+# Date               : 21/11/2026
 # Object             : Script to create dataset of values from functions that 
 #                      calculate beta diversity indices
 # Authors            : Jean-Yves Dias
@@ -2973,7 +2973,7 @@ for (i in 1:(nrow(mite)-1)){
 PERMANOVA_73_P <- rep(NA,69) # Besoin de PA pour etre correct
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite_pa[c(i,i+1),]
-  PERMANOVA_73_P[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 14,transformation = 1)$D[1,2]
+  PERMANOVA_73_P[i] <- 1-PERMANOVA::DistBinary(mite_beta,coefficient = 14,transformation = 1)$D[1,2]
 }
 
 P73_P <- ls(pattern = "_73_P$")
@@ -3202,7 +3202,7 @@ for (i in 1:(nrow(mite)-1)){
 PERMANOVA_82_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
   mite_beta <- mite_pa[c(i,i+1),]
-  PERMANOVA_82_P[i] <- PERMANOVA::DistBinary(mite_beta,coefficient = 8,transformation = 1)$D[2,1]
+  PERMANOVA_82_P[i] <- 1-PERMANOVA::DistBinary(mite_beta,coefficient = 8,transformation = 1)$D[2,1]
 }
 Mercator_82_P <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
