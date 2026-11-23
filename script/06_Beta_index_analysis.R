@@ -214,29 +214,29 @@ ggplot(data_long_P) +
         axis.text.x = element_text(size = 3.7,angle=90,hjust = 1,vjust = 0.5))
 ggsave('values_beta_P_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 600, height = 300, units = 'mm')
 
-ggplot(filter(data_stats_P, mean_value <= 1 & mean_value >= 0)) +
-  geom_point(aes(x = reorder(index, mean_value), y = mean_value)) +
-  geom_errorbar(aes(
-    x = reorder(index, mean_value),
-    ymin = mean_value - sd_value,
-    ymax = mean_value + sd_value
-  ), width = 0.2)+
-  labs(x = "Index", y = "Mean index value") +
-  theme(axis.text.x = element_text(size = 12, angle=90,hjust = 1,vjust = 0.5), 
-        axis.text.y = element_text(size = 12,face = "bold"),
-        axis.title = element_text(size = 15))
-ggsave('mean_values_beta_P_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 250, height = 150, units = 'mm')
+# ggplot(filter(data_stats_P, mean_value <= 1 & mean_value >= 0)) +
+#   geom_point(aes(x = reorder(index, mean_value), y = mean_value)) +
+#   geom_errorbar(aes(
+#     x = reorder(index, mean_value),
+#     ymin = mean_value - sd_value,
+#     ymax = mean_value + sd_value
+#   ), width = 0.2)+
+#   labs(x = "Index", y = "Mean index value") +
+#   theme(axis.text.x = element_text(size = 12, angle=90,hjust = 1,vjust = 0.5), 
+#         axis.text.y = element_text(size = 12,face = "bold"),
+#         axis.title = element_text(size = 15))
+# ggsave('mean_values_beta_P_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 250, height = 150, units = 'mm')
 
-ggplot(filter(data_stats_P)) +
-  geom_point(aes(x = reorder(index, abs(sd_value/mean_value)), y = abs(sd_value/mean_value))) +
-  labs(x = "Index", y = "Mean index value") +
-  theme(axis.text.x = element_text(size = 12, angle=90,hjust = 1,vjust = 0.5), 
-        axis.text.y = element_text(size = 12,face = "bold"),
-        axis.title = element_text(size = 15))
+# ggplot(filter(data_stats_P)) +
+#   geom_point(aes(x = reorder(index, abs(sd_value/mean_value)), y = abs(sd_value/mean_value))) +
+#   labs(x = "Index", y = "Mean index value") +
+#   theme(axis.text.x = element_text(size = 12, angle=90,hjust = 1,vjust = 0.5), 
+#         axis.text.y = element_text(size = 12,face = "bold"),
+#         axis.title = element_text(size = 15))
 
 levels_index <- data_long$index %>%
   unique() %>%
-  .[order(as.numeric(str_extract(., "\\d+")))]
+  .[order(as.numeric(str_extract(., "\\d+")),decreasing = T)]
 
 data_long$index <- factor(data_long$index, levels = levels_index)
 
@@ -247,14 +247,15 @@ zeros <- ggplot(filter(data_long, value == 0 & !index %in% c("87_P = 116_P","88_
   theme(axis.text.x = element_text(size = 8), 
         axis.text.y = element_text(size = 12,face = "bold"),
         axis.title = element_text(size = 15))
-ones <- ggplot(filter(data_long, value == 1 & !index %in% c("87_P = 116_P","88_P","89_P","90_P","91_P","92_P = 108_P/2",
-                                                            "45_P","46_P","48_P = 2*101_P = 1-50_P","49_P","51_P","52_P","48_P = 1-50_P = 2*101_P"))) +
-  geom_point(aes(x = Sample, y = index),size=12,shape=15) +
-  labs(x = "Samples", y = "Index with 1") +
-  theme(axis.text.x = element_text(size = 8), 
-        axis.text.y = element_text(size = 12,face = "bold"),
-        axis.title = element_text(size = 15))
-plot_grid(zeros,ones,rel_widths = c(3,1))
+zeros
+# ones <- ggplot(filter(data_long, value == 1 & !index %in% c("87_P = 116_P","88_P","89_P","90_P","91_P","92_P = 108_P/2",
+#                                                             "45_P","46_P","48_P = 2*101_P = 1-50_P","49_P","51_P","52_P","48_P = 1-50_P = 2*101_P"))) +
+#   geom_point(aes(x = Sample, y = index),size=12,shape=15) +
+#   labs(x = "Samples", y = "Index with 1") +
+#   theme(axis.text.x = element_text(size = 8), 
+#         axis.text.y = element_text(size = 12,face = "bold"),
+#         axis.title = element_text(size = 15))
+# plot_grid(zeros,ones,rel_widths = c(3,1))
 ggsave('extreme_values_beta_P_indices.png', path = "output/fig/beta/indices/", dpi = 900, width = 220, height = 100, units = 'mm')
 
 
@@ -562,29 +563,35 @@ ggplot(data_long_A) +
 
 ggsave('values_beta_A_indices.png', path = "output/fig/beta/indices/", dpi = 300, width = 600, height = 300, units = 'mm')
 
-ggplot(filter(data_stats_A, mean_value <= 1 & mean_value >= 0)) +
-  geom_point(aes(x = reorder(index, mean_value), y = mean_value)) +
-  geom_errorbar(aes(
-    x = reorder(index, mean_value),
-    ymin = mean_value - sd_value,
-    ymax = mean_value + sd_value
-  ), width = 0.2)+
-  labs(x = "Index", y = "Mean index value") +
-  theme(axis.text.x = element_text(size = 12, angle=90,hjust = 1,vjust = 0.5), 
-        axis.text.y = element_text(size = 12,face = "bold"),
-        axis.title = element_text(size = 15))
-ggsave('mean_values_beta_A_indices.png', path = "output/fig/beta/indices/", dpi = 300, width = 250, height = 150, units = 'mm')
+# ggplot(filter(data_stats_A, mean_value <= 1 & mean_value >= 0)) +
+#   geom_point(aes(x = reorder(index, mean_value), y = mean_value)) +
+#   geom_errorbar(aes(
+#     x = reorder(index, mean_value),
+#     ymin = mean_value - sd_value,
+#     ymax = mean_value + sd_value
+#   ), width = 0.2)+
+#   labs(x = "Index", y = "Mean index value") +
+#   theme(axis.text.x = element_text(size = 12, angle=90,hjust = 1,vjust = 0.5), 
+#         axis.text.y = element_text(size = 12,face = "bold"),
+#         axis.title = element_text(size = 15))
+# ggsave('mean_values_beta_A_indices.png', path = "output/fig/beta/indices/", dpi = 300, width = 250, height = 150, units = 'mm')
 
-ggplot(filter(data_stats_A)) +
-  geom_point(aes(x = reorder(index, abs(sd_value/mean_value)), y = abs(sd_value/mean_value))) +
-  labs(x = "Index", y = "Mean index value") +
-  theme(axis.text.x = element_text(size = 12, angle=90,hjust = 1,vjust = 0.5), 
-        axis.text.y = element_text(size = 12,face = "bold"),
-        axis.title = element_text(size = 15))
+# ggplot(filter(data_stats_A)) +
+#   geom_point(aes(x = reorder(index, abs(sd_value/mean_value)), y = abs(sd_value/mean_value))) +
+#   labs(x = "Index", y = "Mean index value") +
+#   theme(axis.text.x = element_text(size = 12, angle=90,hjust = 1,vjust = 0.5), 
+#         axis.text.y = element_text(size = 12,face = "bold"),
+#         axis.title = element_text(size = 15))
 
 levels_index <- data_long$index %>%
   unique() %>%
+  .[order(as.numeric(str_extract(., "\\d+")),decreasing = T)]
+
+levels_sample <- data_long$Sample %>%
+  unique() %>%
   .[order(as.numeric(str_extract(., "\\d+")))]
+
+data_long$Sample <- factor(data_long$Sample, levels = levels_sample)
 
 data_long$index <- factor(data_long$index, levels = levels_index)
 
@@ -623,6 +630,10 @@ ggsave('values_beta_Adec_indices.png', path = "output/fig/beta/indices/", dpi = 
 # ALL VARIABLES SELECT #############____________________________________________
 #________________________________________PCA____________________________________####
 data_pca <- select(data,-Sample)
+
+data_pca <- select(data_pca,-c("10_A","100_A","14_A","21_A","77_A","30_A","66_2_A",
+                               "40_A","55_A","66_1_A","9_A"))
+
 PCA_results <- PCA(data_pca)
 PCA_results_t <- PCA(t(data_pca))
 
@@ -651,7 +662,7 @@ PCA <- fviz_pca_var(PCA_results, axes = c(1, 2), repel = T ,col.var = color_vect
     axis.title.y = element_text(size = 12)
   )
 PCA
-# ggsave('PCA_beta_A_all.png', path = "output/fig/beta/indices/", dpi = 1200, width = 250, height = 250, units = 'mm')
+ggsave('PCA_beta_A_all.png', path = "output/fig/beta/indices/", dpi = 1200, width = 250, height = 250, units = 'mm')
 
 fviz_contrib(PCA_results, choice = "var", axes = 1)
 fviz_contrib(PCA_results, choice = "var", axes = 2)
