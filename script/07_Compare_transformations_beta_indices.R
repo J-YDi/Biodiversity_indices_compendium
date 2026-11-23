@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 07_Compare_transformations_beta_indices.r
-# Date               : 19/11/2026
+# Date               : 20/11/2026
 # Object             : Script to determine the influence on transformations on 
 #                      on beta biodiversity indices
 # Authors            : Jean-Yves Dias
@@ -24,7 +24,7 @@ loadpackages <- function(packages){
   }
 }
 
-packages_needed <- c("readr","dplyr","tidyr","stringr")
+packages_needed <- c("readr","dplyr","tidyr","stringr","ggplot2","forcats")
 
 loadpackages(packages_needed)
 
@@ -157,7 +157,7 @@ for (i in 1:(nrow(mite)-1)){
 }
 Hellinger_59_A <- rep(NA,69)
 for (i in 1:(nrow(mite)-1)){
-  mite_beta <- mite[c(i,i+1),]
+  mite_beta <- mite_hellinger[c(i,i+1),]
   Hellinger_59_A[i] <- EnvNJ::metrics(t(mite_beta),method = "lorentzian") 
 }
 
@@ -225,25 +225,39 @@ data_long <- read_csv("data/beta/b_combined_long_transformed_mite.csv")
 
 #______________________Some basic representations of the data___________________####
 
+# Remove some indices 
+data_long <- filter(data_long,!index == c(67,41,100))
+
 # Calculate some stats to the plot
 data_stats <- data_long |> 
   group_by(index,Transformation) |> 
-  summarise(mean_value = mean(value),
-            sd_value = sd(value))
+  arrange(Sample, .by_group = TRUE) |> 
+  mutate(diff_value = abs(value - lag(value)) / mean(value, na.rm = TRUE)) |> 
+  filter(!is.na(diff_value)) |> 
+  summarise(mean_value = mean(diff_value),
+            sd_value   = sd(diff_value)/mean_value,
+            .groups = "drop")
 
 data_long$index <- paste(data_long$index,"-",data_long$Transformation)
 data_stats$index <- paste(data_stats$index,"-",data_stats$Transformation)
 
 
-levels_index <- c("9 - Raw","15 - Raw","41 - Raw",
-                  "9 - Relative","15 - Relative","41 - Relative",
-                  "9 - Hellinger","15 - Hellinger","41 - Hellinger",
-                  "43 - Raw","59 - Raw","61 - Raw",
-                  "43 - Relative","59 - Relative","61 - Relative",
-                  "43 - Hellinger","59 - Hellinger","61 - Hellinger",
-                  "67 - Raw","95 - Raw","100 - Raw",
-                  "67 - Relative","95 - Relative","100 - Relative",
-                  "67 - Hellinger","95 - Hellinger","100 - Hellinger")
+levels_index <- c(
+  # Raw
+  "9 - Raw", "15 - Raw", "41 - Raw", "43 - Raw",
+  "59 - Raw", "61 - Raw",  "95 - Raw",
+  "100 - Raw",
+  
+  # Relative
+  "9 - Relative", "15 - Relative", "41 - Relative", "43 - Relative",
+  "59 - Relative", "61 - Relative",  "95 - Relative",
+  "100 - Relative",
+  
+  # Hellinger
+  "9 - Hellinger", "15 - Hellinger", "41 - Hellinger", "43 - Hellinger",
+  "59 - Hellinger", "61 - Hellinger",  "95 - Hellinger",
+  "100 - Hellinger"
+)
 
 data_long$index <- factor(data_long$index, levels = levels_index)
 
@@ -274,8 +288,7 @@ ggplot(data_long) +
     aes(
       x = 69/2,
       y = y_label,
-      label = paste0(
-        round(mean_value, 3), " \u00B1 ", round(sd_value, 3)
+      label = paste0("Δ = ", round(mean_value * 100), " % ; CVΔ = ", round(sd_value, 2)
       )
     ),
     hjust = 0.5,
@@ -284,7 +297,7 @@ ggplot(data_long) +
     alpha = 0.5,
     linewidth = 0
   ) +
-  facet_wrap(~index,scale = "free_y",ncol = 3) +
+  facet_wrap(~index,scale = "free_y",ncol = 3,dir = "v",drop =F) +
   labs(x = "Sample", y = "Index value") +
   theme(strip.text = element_text(face = "bold", color = "white",
                                   hjust = 0, size = 10),
@@ -292,7 +305,6 @@ ggplot(data_long) +
         axis.title = element_text(size = 15),
         axis.text.y = element_text(size = 12,face = "bold"),
         axis.text.x = element_text(size = 3.7,angle=90,hjust = 1,vjust = 0.5))
-
 
 
 ggsave('values_beta_A_transform_indices.png', path = "output/fig/beta/indices/", dpi = 300, width = 290, height = 350, units = 'mm')
