@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 03_Alpha_index_analysis.r
-# Date               : 19/11/2026
+# Date               : 24/11/2026
 # Object             : Script to analyze alpha biodiversity index
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
@@ -378,69 +378,61 @@ corrplot(t(PCA_results$var$contrib),
 #   scale_color_discrete(palette = c("red", "blue", "darkgreen", "orange","magenta"))
 
 #______________________Clusterings______________________________________________####
-data_pca_scaled <- scale(data_pca,center = T,scale = T)
+data <- read_csv("data/alpha/alpha_values_mite_wide.csv")
 
-hc <- hclust(dist(t(data_pca_scaled),method = "euclidean"),method = "ward")
-plot(hc)
+data_clust <- dplyr::select(data,RICH, RACE, RC1M, RLMD, RSQ, RC1,
+                          DSHA,D1SP,EHURE,DINVSP,DFIS,DHUR_3,DMC,QHIL_1,QHIL_3,
+                          TMG,TMN,TRYA,TRY,QREN_0,QREN_2,QREN_3,QTSA_3,EBP,EBRI,
+                          EBU,EEQ,EEVAR,EGIN,EHEI,EMC,EMN,EPIE,ESP,EST,DBRI)
 
-library(cluster)
+marker_cols <- c(EBP = "cyan3", RICH = "pink3", DSHA = "orange3")  # un indice marqueur par groupe -> couleur
+# EBP -> dominance ; RICH -> richesse (avec DQ, DFIS) ; DSHA -> heterogeneite + equitabilite
 
-cluster_quality(data_pca_scaled, return_table = TRUE)
+wcss <- function(X, cl) sum(sapply(unique(cl), function(g){ p <- X[cl == g, , drop = FALSE]; sum(sweep(p, 2, colMeans(p))^2) }))
 
-k=4
-clusters <- cutree(hc, k = k)
-dend <- as.dendrogram(hc)
-# dend <- dendrapply(dend, function(n) {
-#   if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
-#   n
-# })
-dend <- color_branches(dend,k = k, col = c("red3","orange3","cyan3","pink3") )
+data_mat <- as.matrix(data_clust)
 
-dend <- color_labels(dend,col = c(rep("darkmagenta",8),rep("darkblue",3),"darkmagenta",rep("darkblue",14),
-                                  rep("darkmagenta",4),rep("darkgoldenrod4",6),"darkblue",
-                                  rep("darkgoldenrod4",2),"darkblue","darkgoldenrod4",rep("darkblue",2),
-                                  rep("darkgreen",2),"darkblue",rep("darkgreen",2)))
-dend <- set(dend, "branches_lwd", k)
-plot(dend, horiz = T,dLeaf = -0.1,axes=T)
-  
-# 
-# k=5
-# clusters <- cutree(hc, k = k)
-# cluster_cols <- c("red", "blue", "darkgreen", "orange")
-# label_cols <- cluster_cols[clusters]
-# dend <- as.dendrogram(hc)
-# dend <- dendrapply(dend, function(n) {
-#   if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
-#   n
-# })
-# 
-# dend <- color_branches(dend,k = k )
-# dend <- color_labels(dend,k = k )
-# dend <- set(dend, "branches_lwd", k)
-# plot(dend, horiz = T,dLeaf = -0.1,axes=T)
-# 
-# # Kmeans
-# 
-# km <- kmeans(x=scale(t(data_pca)),centers = 3,nstart = 100)
-# fviz_cluster(km, data = t(data_pca),
-#              palette = c("red", "blue", "darkgreen", "orange"),
-#              legend = "none",ellipse=F,repel = T,
-#              ggtheme = theme_bw()
-# )
-# 
-# km <- kmeans(x=scale(t(data_pca)),centers = 4,nstart = 100)
-# fviz_cluster(km, data = t(data_pca),
-#              palette = c("red", "blue", "darkgreen", "orange"),
-#              legend = "none",ellipse=F,repel = T,
-#              ggtheme = theme_bw()
-# )
-# 
-# km <- kmeans(x=scale(t(data_pca)),centers = 5,nstart = 100)
-# fviz_cluster(km, data = t(data_pca),
-#              palette = c("red", "blue", "darkgreen", "orange","magenta"),
-#              legend = "none",ellipse=F,repel = T,
-#              ggtheme = theme_bw()
-# )
+data_scaled <- t(scale(data_mat))
+dist_data <- dist(data_scaled)
+hc <- hclust(dist_data, "ward.D2")
+
+tab <- t(sapply(2:10, function(k) {
+  cl <- cutree(hc, k)
+  c(k = k, sil = mean(silhouette(cl, dist_data)[, "sil_width"]), dunn = dunn(dist_data, cl), wcss = wcss(data_scaled, cl))
+}))
+wcss_derivative  <- c(NA, diff(tab[, "wcss"], differences = 2), NA)
+k_sel <- tab[which.max(wcss_derivative), "k"]
+
+
+set.seed(1)
+ari <- sapply(2:6, function(k) {
+  cl0 <- cutree(hc, k)
+  mean(replicate(200, {
+    i <- sample(nrow(data_mat), replace = TRUE); xb <- scale(data_mat[i, ]); xb[is.na(xb)] <- 0
+    adjustedRandIndex(cl0, cutree(hclust(dist(t(xb)), "ward.D2"), k))
+  }))
+})
+print(round(cbind(tab, wcss_derivative = wcss_derivative), 3))
+cat("ARI bootstrap k=2..6 :", round(ari, 3), "\n")
+k_ARI <- which.max(round(ari, 3)) + 1
+round(ari, 3)
+if (k_sel != k_ARI) warning("Le coude (k = ", kel, ") differe du k stable selon ARI (k = ", k_fig, ").")
+
+## Dendrogramme
+fam <- function(l) ifelse(grepl("^R", l), "#8B6914", ifelse(grepl("^T", l), "darkgreen",
+                                                            ifelse(grepl("^[DQ]", l), "navy", "darkmagenta")))
+cl <- cutree(hc, k_sel); dend <- as.dendrogram(hc); lab <- labels(dend)
+grp_order  <- unique(cl[lab])                      # ordre d'apparition des groupes dans le dendrogramme
+col_of_grp <- sapply(grp_order, function(g) {
+  m <- names(marker_cols)[sapply(names(marker_cols), function(z) cl[z] == g)]
+  if (length(m)) marker_cols[[m[1]]] else "grey40"
+})
+dend <- color_branches(dend, k = k_sel, col = unname(col_of_grp))
+dend <- color_labels(dend, col = fam(lab)); dend <- set(dend, "branches_lwd", 3); dend <- set(dend, "labels_cex", 0.95)
+png("output/fig/alpha/indices/Fig_Clustering_alpha_wardD2.png", width = 1500, height = 1500, res = 150); par(mar = c(3, 1, 1, 7))
+plot(dend, horiz = TRUE, axes = TRUE); dev.off()
+cat("Figure ecrite :", "output/fig/alpha/indices/Fig_Clustering_alpha_wardD2.png", "\n")
+cat("Groupes (k =", k_sel, ") :\n"); for (g in sort(unique(cl))) cat("  groupe", g, ":", paste(names(cl)[cl == g], collapse = ", "), "\n")
 
 # NMDS
 data_pca_scaled <- scale(data_pca,center = T,scale = T)

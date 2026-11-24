@@ -1,6 +1,6 @@
 #_______________________________________________________________________________
 # Title              : 06_Beta_index_analysis.r
-# Date               : 20/11/2026
+# Date               : 24/11/2026
 # Object             : Script to analyze beta biodiversity indices
 # Authors            : Jean-Yves Dias
 # R version          : 4.5.0
@@ -26,7 +26,7 @@ loadpackages <- function(packages){
 packages_needed <- c("readr","dplyr","tidyr","stringr","dendextend","ggplot2",
                      "tidyverse","dendextend","circlize","corrplot","cowplot",
                      "factoextra","FactoMineR","viridis","GGally","cluster",
-                     "clValid","vegan","ggrepel","forcats","ggcorrplot")
+                     "clValid","vegan","ggrepel","forcats","ggcorrplot","mclust")
 
 loadpackages(packages_needed)
 
@@ -337,36 +337,69 @@ fviz_pca_ind(PCA_results_t,addEllipses = F,repel = T,col.ind = "indianred1"
              ,title="", ggtheme = theme_minimal(),legend = "none")
 
 #______________________Clusterings______________________________________________####
-# 
-data_pca_scaled <- scale(data_pca,T,T)
-hc <- hclust(dist(t(data_pca_scaled),method = "euclidean"),method = "ward")
-plot(hc)
+data <- read_csv("data/beta/beta_values_mite_wide_mite_P.csv")
 
-library(cluster)
+data_clust <- select(data,-c(Sample,"80_P", "101_P","50_P","102_P","109_P","113_P","117_P","118_P",
+                                             "119_P","5_P","104_P","110_P","79_P","39_P",
+                                             "105_P","107_P","108_P","116_P"))
 
-cluster_quality(data_pca_scaled, return_table = TRUE)
-k=4
-clusters <- cutree(hc, k = k)
-cluster_cols <- c("", "blue", "darkgreen", "orange")
+wcss <- function(X, cl) sum(sapply(unique(cl), function(g){ p <- X[cl == g, , drop = FALSE]; sum(sweep(p, 2, colMeans(p))^2) }))
+
+data_mat <- as.matrix(data_clust)
+
+data_scaled <- t(scale(data_mat))
+dist_data <- dist(data_scaled)
+hc <- hclust(dist_data, "ward.D2")
+
+tab <- t(sapply(2:10, function(k) {
+  cl <- cutree(hc, k)
+  c(k = k, sil = mean(silhouette(cl, dist_data)[, "sil_width"]), dunn = dunn(dist_data, cl), wcss = wcss(data_scaled, cl))
+}))
+wcss_derivative  <- c(NA, diff(tab[, "wcss"], differences = 2), NA)
+k_sel <- tab[which.max(wcss_derivative), "k"]
 
 
-label_cols <- cluster_cols[clusters]
-dend <- as.dendrogram(hc)
-# dend <- dendrapply(dend, function(n) {
-#   if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
-#   n
-# })
+set.seed(1)
+ari <- sapply(2:6, function(k) {
+  cl0 <- cutree(hc, k)
+  mean(replicate(200, {
+    i <- sample(nrow(data_mat), replace = TRUE); xb <- scale(data_mat[i, ]); xb[is.na(xb)] <- 0
+    adjustedRandIndex(cl0, cutree(hclust(dist(t(xb)), "ward.D2"), k))
+  }))
+})
+print(round(cbind(tab, wcss_derivative = wcss_derivative), 3))
+cat("ARI bootstrap k=2..6 :", round(ari, 3), "\n")
+k_ARI <- which.max(round(ari, 3)) + 1
+round(ari, 3)
+if (k_sel != k_ARI) warning("Le coude (k = ", k_sel, ") differe du k stable selon ARI (k = ", k_ARI, ").")
 
-dend <- color_branches(dend,k = k, col = c("orchid","olivedrab","thistle4","yellow3") )
+## Dendrogramme
+codes <- c("87_P","88_P","89_P","90_P","91_P","92_P",
+           "45_P","46_P","48_P","49_P","50_P","51_P","52_P")
 
-dend <- color_labels(dend,col = c(rep("indianred1",9),rep("turquoise3",1),rep("indianred1",13),"turquoise3",
-                                  rep("indianred1",1),rep("turquoise3",3),rep("indianred1",5),"turquoise3",rep("indianred1",12),"turquoise3",rep("indianred1",1),
-                                  rep("turquoise3",2),"indianred1",
-                                  rep("turquoise3",2),"indianred1","turquoise3",rep("indianred1",2)))
-dend <- set(dend, "branches_lwd",3 )
+fam <- function(l) {
+  ifelse(l %in% codes, "turquoise3", "indianred1")
+}
 
-plot(dend, horiz = T,dLeaf = -0.3,axes=T)
+cl <- cutree(hc, k_sel); dend <- as.dendrogram(hc); lab <- labels(dend)
+grp_order  <- unique(cl[lab])
 
+dend <- color_branches(dend, k = k_sel,col = c("#008585", "#4DAF4A", "magenta4"))
+dend <- color_labels(dend, col = fam(lab)); dend <- set(dend, "branches_lwd", 3); dend <- set(dend, "labels_cex", 0.95)
+png("output/fig/beta/indices/Fig_Clustering_beta_P_wardD2.png", width = 1500, height = 1500, res = 150); par(mar = c(3, 1, 1, 7))
+plot(dend, horiz = TRUE, axes = TRUE); dev.off()
+cat("Figure ecrite :", "output/fig/beta/indices/Fig_Clustering_beta_P_wardD2.png", "\n")
+cat("Groupes (k =", k_sel, ") :\n"); for (g in sort(unique(cl))) cat("  groupe", g, ":", paste(names(cl)[cl == g], collapse = ", "), "\n")
+
+cl <- cutree(hc, k_ARI); dend <- as.dendrogram(hc); lab <- labels(dend)
+grp_order  <- unique(cl[lab])
+
+dend <- color_branches(dend, k = k_ARI,col = c("#008585", "#4DAF4A", "magenta4","navy","maroon1"))
+dend <- color_labels(dend, col = fam(lab)); dend <- set(dend, "branches_lwd", 3); dend <- set(dend, "labels_cex", 0.95)
+png("output/fig/beta/indices/Fig_Clustering_beta_P_wardD2_ARI.png", width = 1500, height = 1500, res = 150); par(mar = c(3, 1, 1, 7))
+plot(dend, horiz = TRUE, axes = TRUE); dev.off()
+cat("Figure ecrite :", "output/fig/beta/indices/Fig_Clustering_beta_P_wardD2_ARI.png", "\n")
+cat("Groupes (k =", k_sel, ") :\n"); for (g in sort(unique(cl))) cat("  groupe", g, ":", paste(names(cl)[cl == g], collapse = ", "), "\n")
 
 # NMDS 
 cluster_quality(data_pca_scaled, return_table = TRUE)
@@ -677,33 +710,69 @@ fviz_pca_ind(PCA_results_t,addEllipses = F,repel = T,col.ind = "royalblue"
              ,title="", ggtheme = theme_minimal(),legend = "none")
 
 #______________________Clusterings______________________________________________####
-# 
-data_pca_scaled <- scale(data_pca,T,T)
+
+data <- read_csv("data/beta/beta_values_mite_wide_mite_A.csv")
+
+data_clust <- select(data,-c(Sample,"10_A","100_A","14_A","21_A","77_A","30_A","66_2_A",
+                               "40_A","55_A","66_1_A","9_A"))
+
+wcss <- function(X, cl) sum(sapply(unique(cl), function(g){ p <- X[cl == g, , drop = FALSE]; sum(sweep(p, 2, colMeans(p))^2) }))
+
+data_mat <- as.matrix(data_clust)
+
+data_scaled <- t(scale(data_mat))
+dist_data <- dist(data_scaled)
+hc <- hclust(dist_data, "ward.D2")
+
+tab <- t(sapply(2:10, function(k) {
+  cl <- cutree(hc, k)
+  c(k = k, sil = mean(silhouette(cl, dist_data)[, "sil_width"]), dunn = dunn(dist_data, cl), wcss = wcss(data_scaled, cl))
+}))
+wcss_derivative  <- c(NA, diff(tab[, "wcss"], differences = 2), NA)
+k_sel <- tab[which.max(wcss_derivative), "k"]
 
 
-hc <- hclust(dist(t(data_pca_scaled),method = "euclidean"),method = "ward")
-plot(hc)
+set.seed(1)
+ari <- sapply(2:6, function(k) {
+  cl0 <- cutree(hc, k)
+  mean(replicate(200, {
+    i <- sample(nrow(data_mat), replace = TRUE); xb <- scale(data_mat[i, ]); xb[is.na(xb)] <- 0
+    adjustedRandIndex(cl0, cutree(hclust(dist(t(xb)), "ward.D2"), k))
+  }))
+})
+print(round(cbind(tab, wcss_derivative = wcss_derivative), 3))
+cat("ARI bootstrap k=2..6 :", round(ari, 3), "\n")
+k_ARI <- which.max(round(ari, 3)) + 1
+round(ari, 3)
+if (k_sel != k_ARI) warning("Le coude (k = ", k_sel, ") differe du k stable selon ARI (k = ", k_ARI, ").")
 
-library(cluster)
+## Dendrogramme
+codes <- c("87_A","88_A","89_A","90_A","91_A","92_A",
+  "45_A","46_A","48_A","49_A","50_A","51_A","52_A")
 
-cluster_quality(data_pca_scaled, return_table = TRUE)
-k=3
-clusters <- cutree(hc, k = k)
-cluster_cols <- c("red", "blue", "darkgreen", "orange")
-label_cols <- cluster_cols[clusters]
-dend <- as.dendrogram(hc)
-# dend <- dendrapply(dend, function(n) {
-#   if (!is.leaf(n)) attr(n, "height") <- log1p(attr(n, "height"))
-#   n
-# })
+fam <- function(l) {
+  ifelse(l %in% codes, "turquoise3", "royalblue")
+}
 
-dend <- color_branches(dend,k = k, col = c("gold","limegreen","coral3") )
+cl <- cutree(hc, k_sel); dend <- as.dendrogram(hc); lab <- labels(dend)
+grp_order  <- unique(cl[lab])
 
-dend <- color_labels(dend,col = c(rep("royalblue",32),rep("turquoise3",6),rep("royalblue",33),rep("turquoise3",6)))
-dend <- set(dend, "branches_lwd",3 )
+dend <- color_branches(dend, k = k_sel,col = c("gold", "limegreen", "coral3"))
+dend <- color_labels(dend, col = fam(lab)); dend <- set(dend, "branches_lwd", 3); dend <- set(dend, "labels_cex", 0.95)
+png("output/fig/beta/indices/Fig_Clustering_beta_A_wardD2.png", width = 1500, height = 1500, res = 150); par(mar = c(3, 1, 1, 7))
+plot(dend, horiz = TRUE, axes = TRUE); dev.off()
+cat("Figure ecrite :", "output/fig/beta/indices/Fig_Clustering_beta_A_wardD2.png", "\n")
+cat("Groupes (k =", k_sel, ") :\n"); for (g in sort(unique(cl))) cat("  groupe", g, ":", paste(names(cl)[cl == g], collapse = ", "), "\n")
 
-plot(dend, horiz = T,dLeaf = -0.1,axes=T)
+cl <- cutree(hc, k_ARI); dend <- as.dendrogram(hc); lab <- labels(dend)
+grp_order  <- unique(cl[lab])
 
+dend <- color_branches(dend, k = k_ARI,col = c("gold", "limegreen", "coral3","maroon2","navy"))
+dend <- color_labels(dend, col = fam(lab)); dend <- set(dend, "branches_lwd", 3); dend <- set(dend, "labels_cex", 0.95)
+png("output/fig/beta/indices/Fig_Clustering_beta_A_wardD2_ARI.png", width = 1500, height = 1500, res = 150); par(mar = c(3, 1, 1, 7))
+plot(dend, horiz = TRUE, axes = TRUE); dev.off()
+cat("Figure ecrite :", "output/fig/beta/indices/Fig_Clustering_beta_A_wardD2_ARI.png", "\n")
+cat("Groupes (k =", k_sel, ") :\n"); for (g in sort(unique(cl))) cat("  groupe", g, ":", paste(names(cl)[cl == g], collapse = ", "), "\n")
 
 # NMDS 
 cluster_quality(data_pca_scaled, return_table = TRUE)
@@ -732,6 +801,11 @@ ggsave('NMDS_k3_beta_A_all.png', path = "output/fig/beta/indices/", dpi = 1200, 
 data <- read_csv("data/beta/beta_values_mite_wide_mite_A_relat.csv")
 
 data_pca <- select(data,-Sample)
+
+data_pca <- select(data_pca,-c("10_A","100_A","14_A","21_A","77_A","30_A","66_2_A",
+                               "40_A","55_A","66_1_A","9_A"))
+
+
 PCA_results <- PCA(data_pca)
 PCA_results_t <- PCA(t(data_pca))
 
@@ -766,6 +840,10 @@ PCA_relat
 data <- read_csv("data/beta/beta_values_mite_wide_mite_A_hellinger.csv")
 
 data_pca <- select(data,-Sample)
+
+data_pca <- select(data_pca,-c("10_A","100_A","14_A","21_A","77_A","30_A","66_2_A",
+                               "40_A","55_A","66_1_A","9_A"))
+
 PCA_results <- PCA(data_pca)
 PCA_results_t <- PCA(t(data_pca))
 
